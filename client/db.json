@@ -1,0 +1,200 @@
+{
+  "specialties": [
+    { "id": 1, "name": "Tim mạch", "icon": "HeartOutlined", "slug": "tim-mach", "doctorCount": 12 },
+    { "id": 2, "name": "Thần kinh", "icon": "ExperimentOutlined", "slug": "than-kinh", "doctorCount": 8 },
+    { "id": 3, "name": "Nhi khoa", "icon": "SmileOutlined", "slug": "nhi-khoa", "doctorCount": 15 },
+    { "id": 4, "name": "Da liễu", "icon": "MedicineBoxOutlined", "slug": "da-lieu", "doctorCount": 10 },
+    { "id": 5, "name": "Mắt", "icon": "EyeOutlined", "slug": "mat", "doctorCount": 7 },
+    { "id": 6, "name": "Tai Mũi Họng", "icon": "AudioOutlined", "slug": "tai-mui-hong", "doctorCount": 9 },
+    { "id": 7, "name": "Nội tiết", "icon": "ExperimentOutlined", "slug": "noi-tiet", "doctorCount": 6 },
+    { "id": 8, "name": "Chấn thương chỉnh hình", "icon": "MedicineBoxOutlined", "slug": "chan-thuong-chinh-hinh", "doctorCount": 11 }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "fullName": "PGS. TS. BS. Nguyễn Văn An",
+      "specialty": "Tim mạch",
+      "hospital": "Bệnh viện VitaFamily",
+      "experience": 20,
+      "rating": 4.9,
+      "reviewCount": 320,
+      "avatar": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop&crop=face",
+      "qualifications": "Phó Giáo sư, Tiến sĩ Y khoa",
+      "bio": "Chuyên gia hàng đầu về tim mạch can thiệp với hơn 20 năm kinh nghiệm."
+    },
+    {
+      "id": 2,
+      "fullName": "TS. BS. Trần Thị Bình",
+      "specialty": "Nhi khoa",
+      "hospital": "Bệnh viện VitaFamily",
+      "experience": 15,
+      "rating": 4.8,
+      "reviewCount": 275,
+      "avatar": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face",
+      "qualifications": "Tiến sĩ Y khoa",
+      "bio": "Bác sĩ nhi khoa giàu kinh nghiệm, chuyên về bệnh lý hô hấp ở trẻ em."
+    },
+    {
+      "id": 3,
+      "fullName": "BS. CKI. Lê Minh Tuấn",
+      "specialty": "Da liễu",
+      "hospital": "Bệnh viện VitaFamily",
+      "experience": 10,
+      "rating": 4.7,
+      "reviewCount": 198,
+      "avatar": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=face",
+      "qualifications": "Bác sĩ Chuyên khoa I",
+      "bio": "Chuyên gia da liễu thẩm mỹ, điều trị các bệnh lý da mạn tính."
+    },
+    {
+      "id": 4,
+      "fullName": "GS. TS. BS. Phạm Thị Lan",
+      "specialty": "Thần kinh",
+      "hospital": "Bệnh viện VitaFamily",
+      "experience": 25,
+      "rating": 4.9,
+      "reviewCount": 410,
+      "avatar": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=300&fit=crop&crop=face",
+      "qualifications": "Giáo sư, Tiến sĩ Y khoa",
+      "bio": "Giáo sư đầu ngành thần kinh học, nghiên cứu chuyên sâu về đột quỵ."
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Khám tổng quát",
+      "icon": "MedicineBoxOutlined",
+      "description": "Kiểm tra sức khỏe toàn diện với đội ngũ bác sĩ chuyên khoa giàu kinh nghiệm.",
+      "slug": "kham-tong-quat"
+    },
+    {
+      "id": 2,
+      "name": "Xét nghiệm",
+      "icon": "ExperimentOutlined",
+      "description": "Hệ thống xét nghiệm hiện đại, cho kết quả chính xác trong thời gian ngắn.",
+      "slug": "xet-nghiem"
+    },
+    {
+      "id": 3,
+      "name": "Chẩn đoán hình ảnh",
+      "icon": "FileImageOutlined",
+      "description": "X-quang, siêu âm, MRI, CT Scanner với máy móc thế hệ mới nhất.",
+      "slug": "chan-doan-hinh-anh"
+    },
+    {
+      "id": 4,
+      "name": "Tư vấn trực tuyến",
+      "icon": "VideoCameraOutlined",
+      "description": "Gặp bác sĩ qua video call, tiết kiệm thời gian mà vẫn đảm bảo chất lượng.",
+      "slug": "tu-van-truc-tuyen"
+    },
+    {
+      "id": 5,
+      "name": "Phẫu thuật",
+      "icon": "SafetyCertificateOutlined",
+      "description": "Phòng mổ đạt chuẩn quốc tế, đội ngũ phẫu thuật viên hàng đầu.",
+      "slug": "phau-thuat"
+    },
+    {
+      "id": 6,
+      "name": "Phục hồi chức năng",
+      "icon": "HeartOutlined",
+      "description": "Chương trình phục hồi chức năng cá nhân hóa, nâng cao chất lượng cuộc sống.",
+      "slug": "phuc-hoi-chuc-nang"
+    }
+  ],
+  "stats": [
+    { "id": 1, "label": "Năm thành lập", "value": 2007, "suffix": "", "prefix": "" },
+    { "id": 2, "label": "Bệnh nhân phục vụ", "value": 500000, "suffix": "+", "prefix": "" },
+    { "id": 3, "label": "Bác sĩ chuyên khoa", "value": 120, "suffix": "+", "prefix": "" },
+    { "id": 4, "label": "Chuyên khoa", "value": 30, "suffix": "+", "prefix": "" }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "title": "VitaFamily triển khai hệ thống đặt lịch trực tuyến thế hệ mới",
+      "slug": "vitafamily-dat-lich-truc-tuyen-moi",
+      "category": "Tin tức",
+      "date": "2024-06-10",
+      "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
+      "summary": "Hệ thống đặt lịch mới giúp bệnh nhân dễ dàng kết nối với bác sĩ chuyên khoa 24/7."
+    },
+    {
+      "id": 2,
+      "title": "Phòng khám tim mạch VitaFamily đạt chứng chỉ quốc tế JCI",
+      "slug": "phong-kham-tim-mach-dat-chung-chi-jci",
+      "category": "Thành tựu",
+      "date": "2024-05-22",
+      "thumbnail": "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=400&fit=crop",
+      "summary": "Chứng chỉ JCI khẳng định chất lượng dịch vụ y tế đạt chuẩn quốc tế của VitaFamily."
+    },
+    {
+      "id": 3,
+      "title": "Hội thảo sức khỏe cộng đồng: Phòng ngừa đột quỵ mùa hè",
+      "slug": "hoi-thao-phong-ngua-dot-quy",
+      "category": "Sự kiện",
+      "date": "2024-05-15",
+      "thumbnail": "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&h=400&fit=crop",
+      "summary": "Hội thảo miễn phí với sự tham gia của các chuyên gia đầu ngành thần kinh học."
+    },
+    {
+      "id": 4,
+      "title": "Dinh dưỡng thông minh: Chế độ ăn giúp tăng cường miễn dịch",
+      "slug": "dinh-duong-tang-cuong-mien-dich",
+      "category": "Sức khỏe",
+      "date": "2024-04-30",
+      "thumbnail": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop",
+      "summary": "Các chuyên gia dinh dưỡng VitaFamily chia sẻ bí quyết xây dựng hệ miễn dịch khỏe mạnh."
+    },
+    {
+      "id": 5,
+      "title": "VitaFamily mở rộng cơ sở tại TP. Hồ Chí Minh",
+      "slug": "vitafamily-mo-rong-co-so-hcm",
+      "category": "Tin tức",
+      "date": "2024-04-12",
+      "thumbnail": "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=600&h=400&fit=crop",
+      "summary": "Cơ sở mới tại Quận 7 với quy mô 5 tầng và đầy đủ trang thiết bị hiện đại."
+    },
+    {
+      "id": 6,
+      "title": "Tầm soát ung thư sớm: Cơ hội sống khỏe cho mọi gia đình",
+      "slug": "tam-soat-ung-thu-som",
+      "category": "Sức khỏe",
+      "date": "2024-03-28",
+      "thumbnail": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop",
+      "summary": "Chương trình tầm soát ung thư miễn phí dành cho 1.000 bệnh nhân đầu tiên đăng ký."
+    }
+  ],
+  "heroBanners": [
+    {
+      "id": 1,
+      "title": "Sức khỏe của bạn — Ưu tiên hàng đầu của chúng tôi",
+      "subtitle": "Đội ngũ bác sĩ chuyên khoa hàng đầu, trang thiết bị hiện đại, dịch vụ tận tâm — VitaFamily đồng hành cùng sức khỏe gia đình bạn.",
+      "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1440&h=600&fit=crop",
+      "ctaPrimary": "Đặt lịch khám ngay",
+      "ctaSecondary": "Tìm bác sĩ"
+    },
+    {
+      "id": 2,
+      "title": "Chuyên khoa đa dạng — Chăm sóc toàn diện",
+      "subtitle": "Hơn 30 chuyên khoa với đội ngũ 120+ bác sĩ giàu kinh nghiệm, sẵn sàng phục vụ bạn mọi lúc.",
+      "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1440&h=600&fit=crop",
+      "ctaPrimary": "Xem chuyên khoa",
+      "ctaSecondary": "Tư vấn trực tuyến"
+    },
+    {
+      "id": 3,
+      "title": "Công nghệ y tế tiên tiến — Kết quả chính xác",
+      "subtitle": "Hệ thống máy móc thế hệ mới nhất, quy trình chuẩn quốc tế JCI đảm bảo chất lượng dịch vụ vượt trội.",
+      "image": "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=1440&h=600&fit=crop",
+      "ctaPrimary": "Khám phá dịch vụ",
+      "ctaSecondary": "Liên hệ ngay"
+    }
+  ],
+  "milestones": [
+    { "id": 1, "year": "2007", "title": "Thành lập", "description": "VitaFamily ra đời với sứ mệnh mang dịch vụ y tế chất lượng cao đến mọi gia đình Việt Nam." },
+    { "id": 2, "year": "2012", "title": "Mở rộng", "description": "Khai trương cơ sở thứ hai tại Hà Nội, phục vụ hơn 100.000 lượt bệnh nhân mỗi năm." },
+    { "id": 3, "year": "2018", "title": "Chứng chỉ JCI", "description": "Đạt chuẩn Joint Commission International — chứng nhận quốc tế uy tín nhất trong y tế." },
+    { "id": 4, "year": "2024", "title": "Chuyển đổi số", "description": "Ra mắt nền tảng đặt lịch thông minh và hồ sơ y tế điện tử tích hợp AI chatbot." }
+  ]
+}

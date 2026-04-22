@@ -1,0 +1,449 @@
+/* ── Hero ── */
+.hero {
+  position: relative;
+  height: 380px;
+  background: url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1440&h=500&fit=crop')
+    center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  margin-top: 72px;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 119, 200, 0.82), rgba(0, 180, 216, 0.7));
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.heroBreadcrumb {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 16px;
+}
+
+.heroBreadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 200ms;
+}
+
+.heroBreadcrumb a:hover {
+  color: white;
+}
+
+.heroTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.heroSub {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* ── Common ── */
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+  margin: 0 0 12px;
+}
+
+.eyebrowLight {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 12px;
+}
+
+.sectionTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.sectionTitle span {
+  color: var(--primary-blue);
+}
+
+.desc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+/* ── Intro Section ── */
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+}
+
+.strengthList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.strengthItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.check {
+  color: var(--primary-blue);
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.introImageWrap {
+  position: relative;
+}
+
+.introImage {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.introBadge {
+  position: absolute;
+  bottom: 28px;
+  left: -20px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.badgeNum {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  line-height: 1;
+}
+
+.badgeLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Milestones ── */
+.milestoneSec {
+  background: var(--light-blue);
+}
+
+.milestoneGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-blue), var(--accent-cyan));
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -25px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--primary-blue);
+}
+
+.timelineBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timelineYear {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.timelineDesc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.milestoneImageWrap {
+  position: sticky;
+  top: 100px;
+}
+
+.milestoneImage {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* ── Awards ── */
+.awardsHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.awardsSubtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.awardsTable {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-gray);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.awardsHead {
+  display: grid;
+  grid-template-columns: 140px 1fr 240px;
+  gap: 16px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.awardsRow {
+  display: grid;
+  grid-template-columns: 140px 1fr 240px;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-gray);
+  align-items: center;
+  transition: background 200ms;
+}
+
+.awardsRow:last-child {
+  border-bottom: none;
+}
+
+.awardsRow:hover {
+  background: var(--light-blue);
+}
+
+.awardYear {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.awardName {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.awardBy {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── CTA / Work with us ── */
+.ctaSec {
+  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  padding: 80px 0;
+}
+
+.ctaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.ctaImageWrap {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ctaImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ctaTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ctaDesc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ctaBtn {
+  height: 48px !important;
+  padding: 0 28px !important;
+  font-weight: 600 !important;
+  background: white !important;
+  color: var(--primary-blue) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.ctaBtn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.ctaLink {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 2px;
+  transition: color 200ms, border-color 200ms;
+}
+
+.ctaLink:hover {
+  color: white;
+  border-color: white;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .heroTitle { font-size: 38px; }
+  .introGrid { gap: 48px; }
+  .milestoneGrid { gap: 48px; }
+  .ctaGrid { gap: 48px; }
+  .awardsHead { grid-template-columns: 120px 1fr 180px; }
+  .awardsRow { grid-template-columns: 120px 1fr 180px; }
+}
+
+@media (max-width: 768px) {
+  .hero { height: 300px; }
+  .heroTitle { font-size: 30px; }
+  .heroSub { font-size: 15px; }
+  .introGrid { grid-template-columns: 1fr; gap: 40px; }
+  .introBadge { left: 16px; }
+  .milestoneGrid { grid-template-columns: 1fr; gap: 40px; }
+  .milestoneImageWrap { position: static; }
+  .milestoneImage { height: 300px; }
+  .ctaGrid { grid-template-columns: 1fr; gap: 40px; }
+  .awardsHead { grid-template-columns: 100px 1fr; }
+  .awardsHead span:last-child { display: none; }
+  .awardsRow { grid-template-columns: 100px 1fr; }
+  .awardBy { display: none; }
+}
+
+@media (max-width: 640px) {
+  .hero { height: 260px; margin-top: 64px; }
+  .heroTitle { font-size: 26px; }
+  .sectionTitle { font-size: 26px; }
+  .introImage { height: 320px; }
+  .ctaSec { padding: 60px 0; }
+  .ctaTitle { font-size: 28px; }
+}

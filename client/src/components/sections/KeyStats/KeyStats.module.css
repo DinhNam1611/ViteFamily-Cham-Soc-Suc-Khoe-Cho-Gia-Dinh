@@ -1,0 +1,111 @@
+.section {
+  background: linear-gradient(135deg, #0077C8 0%, #00B4D8 100%);
+  padding: 80px 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+.titleBlock {
+  text-align: center;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+  gap: 8px;
+}
+
+.statItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.statValue {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.statDivider {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .statItem:nth-child(2)::after {
+    display: none;
+  }
+  .statItem:not(:last-child)::after {
+    display: block;
+  }
+  .statItem:nth-child(even)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 0;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 16px;
+  }
+  .statValue {
+    font-size: 36px;
+  }
+  .statItem {
+    padding: 28px 16px;
+  }
+}

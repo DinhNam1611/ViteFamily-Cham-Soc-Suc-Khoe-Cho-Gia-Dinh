@@ -1,0 +1,140 @@
+.section {
+  background: linear-gradient(135deg, #00244D 0%, #0077C8 60%, #00B4D8 100%);
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(0, 180, 216, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(0, 180, 216, 0.25);
+  border: 1px solid rgba(0, 180, 216, 0.4);
+  color: #7FDFFF;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.primaryBtn {
+  height: 56px !important;
+  padding: 0 32px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  background: white !important;
+  color: var(--primary-blue) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  white-space: nowrap !important;
+}
+
+.primaryBtn:hover {
+  background: var(--light-blue) !important;
+}
+
+.phoneBtn {
+  height: 56px !important;
+  padding: 0 32px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  white-space: nowrap !important;
+}
+
+.phoneBtn:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: white !important;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 32px;
+  }
+  .badge {
+    margin: 0 auto;
+  }
+  .actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 0;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .primaryBtn,
+  .phoneBtn {
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+}

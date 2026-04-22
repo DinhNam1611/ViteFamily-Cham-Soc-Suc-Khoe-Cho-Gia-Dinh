@@ -1,0 +1,210 @@
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Text */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+  margin: 0;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.title span {
+  color: var(--primary-blue);
+}
+
+.desc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.check {
+  color: var(--primary-blue);
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  height: 48px !important;
+  padding: 0 28px !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #0077C8, #00B4D8) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.secondaryBtn {
+  height: 48px !important;
+  padding: 0 28px !important;
+  font-weight: 600 !important;
+  border-color: var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+  border-radius: 10px !important;
+}
+
+.secondaryBtn:hover {
+  background: var(--primary-blue) !important;
+  color: white !important;
+}
+
+/* Image */
+.imageCol {}
+
+.imageWrap {
+  position: relative;
+}
+
+.mainImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.statBadge {
+  position: absolute;
+  bottom: 32px;
+  left: -24px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statNum {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.certBadge {
+  position: absolute;
+  top: 24px;
+  right: -16px;
+  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 16px rgba(0, 119, 200, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.certYear {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.certName {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.certDesc {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    gap: 48px;
+  }
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .statBadge {
+    left: 16px;
+  }
+  .certBadge {
+    right: 16px;
+  }
+  .mainImage {
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 26px;
+  }
+  .mainImage {
+    height: 300px;
+  }
+}
