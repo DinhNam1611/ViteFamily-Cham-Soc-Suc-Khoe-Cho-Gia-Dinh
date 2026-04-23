@@ -116,6 +116,19 @@
   border-color: white !important;
 }
 
+/* Skeleton */
+.skeleton {
+  height: 580px;
+  background: linear-gradient(90deg, #e8f4fd 25%, #d0e8f5 50%, #e8f4fd 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* Info Bar */
 .infoBar {
   background: white;

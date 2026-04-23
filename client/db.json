@@ -191,6 +191,188 @@
       "ctaSecondary": "Liên hệ ngay"
     }
   ],
+  "servicePackages": [
+    {
+      "id": 1,
+      "name": "Khám Tim Mạch Chuyên Sâu",
+      "category": "Khám Chuyên Khoa",
+      "slug": "kham-tim-mach",
+      "image": "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=400&fit=crop",
+      "description": "Siêu âm tim, Holter ECG 24h, đo huyết áp lưu động — chẩn đoán toàn diện các bệnh lý tim mạch.",
+      "features": ["Siêu âm tim màu Doppler", "Holter ECG 24 giờ", "Đo huyết áp lưu động", "Tư vấn chuyên khoa sau khám"],
+      "targetAudience": "Người trên 40 tuổi, có tiền sử bệnh tim"
+    },
+    {
+      "id": 2,
+      "name": "Khám Sản Phụ Khoa & Siêu Âm Thai 4D",
+      "category": "Khám Chuyên Khoa",
+      "slug": "kham-san-phu-khoa",
+      "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&h=400&fit=crop",
+      "description": "Khám thai định kỳ, siêu âm 4D HD, tầm soát ung thư cổ tử cung và vú theo chuẩn quốc tế.",
+      "features": ["Siêu âm thai 4D độ phân giải cao", "Xét nghiệm Double/Triple test", "Tầm soát ung thư phụ khoa", "Tư vấn dinh dưỡng cho mẹ bầu"],
+      "targetAudience": "Phụ nữ mang thai và phụ nữ từ 25 tuổi"
+    },
+    {
+      "id": 3,
+      "name": "Khám Nhi Khoa & Dinh Dưỡng Trẻ Em",
+      "category": "Khám Chuyên Khoa",
+      "slug": "kham-nhi-khoa",
+      "image": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&h=400&fit=crop",
+      "description": "Đánh giá phát triển thể chất, tâm thần vận động, tư vấn dinh dưỡng và lịch tiêm chủng cho trẻ.",
+      "features": ["Đánh giá phát triển toàn diện", "Tư vấn dinh dưỡng cá nhân hóa", "Lịch tiêm chủng mở rộng", "Xét nghiệm vi chất dinh dưỡng"],
+      "targetAudience": "Trẻ em từ sơ sinh đến 15 tuổi"
+    },
+    {
+      "id": 4,
+      "name": "Gói Khám Sức Khỏe Cơ Bản",
+      "category": "Gói Khám Tổng Quát",
+      "slug": "goi-co-ban",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+      "description": "Kiểm tra sức khỏe định kỳ với 22+ danh mục xét nghiệm — phù hợp người trẻ khỏe mạnh cần tầm soát hàng năm.",
+      "features": ["Xét nghiệm máu toàn phần (20 chỉ số)", "Xét nghiệm nước tiểu", "X-quang phổi thẳng", "Siêu âm ổ bụng tổng quát", "Đo huyết áp & ECG"],
+      "targetAudience": "Người từ 18–40 tuổi, kiểm tra sức khỏe định kỳ"
+    },
+    {
+      "id": 5,
+      "name": "Gói Khám Sức Khỏe Nâng Cao",
+      "category": "Gói Khám Tổng Quát",
+      "slug": "goi-nang-cao",
+      "image": "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&h=400&fit=crop",
+      "description": "Hơn 30 danh mục chuyên sâu — bổ sung siêu âm tuyến giáp, đo loãng xương và chỉ điểm ung thư cơ bản.",
+      "features": ["Tất cả danh mục gói Cơ Bản", "Siêu âm tuyến giáp", "Đo mật độ xương (loãng xương)", "Chỉ điểm ung thư: CEA, AFP", "Khám chuyên khoa Tim & Mắt"],
+      "targetAudience": "Người từ 40–60 tuổi hoặc có yếu tố nguy cơ"
+    },
+    {
+      "id": 6,
+      "name": "Gói Khám Sức Khỏe Cao Cấp",
+      "category": "Gói Khám Tổng Quát",
+      "slug": "goi-cao-cap",
+      "image": "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&h=400&fit=crop",
+      "description": "Tầm soát toàn diện 40+ danh mục bao gồm CT 128 dãy, MRI não, nội soi NBI và toàn bộ chỉ điểm ung thư.",
+      "features": ["CT 128 dãy vùng ngực-bụng", "MRI não không thuốc cản quang", "Nội soi dạ dày NBI HD", "Bộ chỉ điểm ung thư đầy đủ (8 loại)", "Tư vấn dinh dưỡng chuyên sâu"],
+      "targetAudience": "Người trên 50 tuổi hoặc cần tầm soát chuyên sâu"
+    },
+    {
+      "id": 7,
+      "name": "Xét Nghiệm Máu & Sinh Hóa",
+      "category": "Xét Nghiệm & Chẩn Đoán",
+      "slug": "xet-nghiem-mau",
+      "image": "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&h=400&fit=crop",
+      "description": "Hệ thống máy phân tích tự động thế hệ mới, cho kết quả trong 2–4 giờ với hơn 50 chỉ số sinh hóa.",
+      "features": ["Công thức máu toàn phần", "Sinh hóa máu (đường, mỡ, gan, thận)", "Hormone (TSH, T3, T4, FSH, LH)", "HbA1c — kiểm soát đái tháo đường"],
+      "targetAudience": "Mọi đối tượng cần kiểm tra định kỳ"
+    },
+    {
+      "id": 8,
+      "name": "Chẩn Đoán Hình Ảnh Cao Cấp",
+      "category": "Xét Nghiệm & Chẩn Đoán",
+      "slug": "chan-doan-hinh-anh",
+      "image": "https://images.unsplash.com/photo-Jg89tuvB1iQ?w=600&h=400&fit=crop",
+      "description": "Hệ thống X-quang kỹ thuật số, siêu âm 4D, CT 128 dãy và MRI 3.0 Tesla chuẩn quốc tế.",
+      "features": ["X-quang kỹ thuật số DR", "Siêu âm màu 4D", "CT 128 dãy đa lát cắt", "MRI 3.0 Tesla"],
+      "targetAudience": "Bệnh nhân cần chẩn đoán hình ảnh chính xác"
+    },
+    {
+      "id": 9,
+      "name": "Nội Soi Tiêu Hóa Có Gây Mê",
+      "category": "Xét Nghiệm & Chẩn Đoán",
+      "slug": "noi-soi-tieu-hoa",
+      "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=400&fit=crop",
+      "description": "Nội soi dạ dày và đại tràng bằng máy NBI HD thế hệ mới, gây mê an toàn, không đau, kết quả ngay sau 30 phút.",
+      "features": ["Nội soi NBI HD phát hiện tổn thương sớm", "Gây mê an toàn bởi bác sĩ gây mê chuyên nghiệp", "Sinh thiết nếu cần thiết", "Kết quả trong ngày"],
+      "targetAudience": "Người có triệu chứng tiêu hóa hoặc tầm soát ung thư đại tràng"
+    },
+    {
+      "id": 10,
+      "name": "Tiêm Chủng Người Lớn",
+      "category": "Tiêm Chủng & Phòng Ngừa",
+      "slug": "tiem-chung-nguoi-lon",
+      "image": "https://images.unsplash.com/photo-1558583055-d7ac00b1adbb?w=600&h=400&fit=crop",
+      "description": "Đầy đủ các loại vắc-xin khuyến cáo cho người lớn — HPV, cúm mùa, viêm gan A/B, phế cầu khuẩn.",
+      "features": ["Vắc-xin HPV (Gardasil 9)", "Vắc-xin cúm tứ giá hàng năm", "Viêm gan A & B", "Phế cầu khuẩn, Uốn ván-Bạch hầu"],
+      "targetAudience": "Người lớn từ 18 tuổi trở lên"
+    },
+    {
+      "id": 11,
+      "name": "Tiêm Chủng Trẻ Em",
+      "category": "Tiêm Chủng & Phòng Ngừa",
+      "slug": "tiem-chung-tre-em",
+      "image": "https://images.unsplash.com/photo-BSozBCQn6oY?w=600&h=400&fit=crop",
+      "description": "Lịch tiêm chủng theo chuẩn Bộ Y tế và mở rộng quốc tế — theo dõi sổ tiêm điện tử cá nhân hóa.",
+      "features": ["Vắc-xin 6 trong 1 (Hexaxim/Infanrix)", "Rota virus, Phế cầu PCV13", "Thủy đậu, Sởi-Quai bị-Rubella", "Theo dõi lịch nhắc tự động qua app"],
+      "targetAudience": "Trẻ từ sơ sinh đến 12 tuổi"
+    },
+    {
+      "id": 12,
+      "name": "Tầm Soát Ung Thư Sớm",
+      "category": "Tiêm Chủng & Phòng Ngừa",
+      "slug": "tam-soat-ung-thu",
+      "image": "https://images.unsplash.com/photo-SMxzEaidR20?w=600&h=400&fit=crop",
+      "description": "Gói tầm soát ung thư toàn diện với 8 chỉ điểm khối u và chẩn đoán hình ảnh chuyên sâu.",
+      "features": ["8 chỉ điểm ung thư: CEA, AFP, CA125, CA19-9, PSA...", "Siêu âm vú & tuyến giáp", "Chụp X-quang phổi & CT nếu cần", "Tư vấn chuyên gia ung bướu"],
+      "targetAudience": "Người từ 40 tuổi hoặc có yếu tố nguy cơ ung thư"
+    },
+    {
+      "id": 13,
+      "name": "Phẫu Thuật Nội Soi Xâm Lấn Tối Thiểu",
+      "category": "Phẫu Thuật & Thủ Thuật",
+      "slug": "phau-thuat-noi-soi",
+      "image": "https://images.unsplash.com/photo-5b95cK_mLB8?w=600&h=400&fit=crop",
+      "description": "Phẫu thuật nội soi cắt ruột thừa, túi mật, thoát vị — vết mổ nhỏ, hồi phục nhanh, ít đau.",
+      "features": ["Phòng mổ chuẩn quốc tế JCI", "Phẫu thuật viên kinh nghiệm 10+ năm", "Gây mê toàn thân an toàn", "Xuất viện sau 24–48h"],
+      "targetAudience": "Bệnh nhân cần phẫu thuật bụng xâm lấn tối thiểu"
+    },
+    {
+      "id": 14,
+      "name": "Thủ Thuật Da Liễu Thẩm Mỹ Y Tế",
+      "category": "Phẫu Thuật & Thủ Thuật",
+      "slug": "thu-thuat-da-lieu",
+      "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=600&h=400&fit=crop",
+      "description": "Điều trị mụn, sẹo, tàn nhang, nám bằng laser công nghệ cao — an toàn, không xâm lấn.",
+      "features": ["Laser CO2 Fractional trị sẹo rỗ", "IPL trị tàn nhang & nám da", "RF Microneedling căng da", "Tư vấn phác đồ cá nhân hóa"],
+      "targetAudience": "Người muốn cải thiện vấn đề da mặt an toàn theo y khoa"
+    },
+    {
+      "id": 15,
+      "name": "Phẫu Thuật Mắt & Điều Chỉnh Khúc Xạ",
+      "category": "Phẫu Thuật & Thủ Thuật",
+      "slug": "phau-thuat-mat",
+      "image": "https://images.unsplash.com/photo-1516069677018-378b1174c2d0?w=600&h=400&fit=crop",
+      "description": "Phẫu thuật LASIK, SMILE và điều trị đục thủy tinh thể bằng máy Phaco thế hệ mới.",
+      "features": ["LASIK / SMILE điều chỉnh cận thị", "Phẫu thuật Phaco đục thủy tinh thể", "Khám mắt tiền phẫu toàn diện", "Tái khám theo dõi miễn phí 1 năm"],
+      "targetAudience": "Người cận thị, loạn thị và bệnh nhân đục thủy tinh thể"
+    },
+    {
+      "id": 16,
+      "name": "Tư Vấn Sức Khỏe Trực Tuyến (Telemedicine)",
+      "category": "Dịch Vụ Số & Hỗ Trợ",
+      "slug": "telemedicine",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+      "description": "Gặp bác sĩ chuyên khoa qua video call bất cứ lúc nào — tiết kiệm thời gian, vẫn đảm bảo chất lượng tư vấn.",
+      "features": ["Video call với bác sĩ chuyên khoa", "Đặt lịch online 24/7", "Kê đơn điện tử & nhà thuốc giao tận nơi", "Lưu trữ lịch sử khám trên app"],
+      "targetAudience": "Người bận rộn, người ở xa, tái khám định kỳ"
+    },
+    {
+      "id": 17,
+      "name": "Khám Bệnh Tại Nhà",
+      "category": "Dịch Vụ Số & Hỗ Trợ",
+      "slug": "kham-tai-nha",
+      "image": "https://images.unsplash.com/photo-BUNNEclz-yQ?w=600&h=400&fit=crop",
+      "description": "Bác sĩ và điều dưỡng đến tận nhà khám — phù hợp người cao tuổi, hậu phẫu, bệnh mãn tính.",
+      "features": ["Khám tổng quát tại nhà", "Lấy mẫu xét nghiệm tại nhà", "Chăm sóc vết thương hậu phẫu", "Đặt lịch trong vòng 2 giờ"],
+      "targetAudience": "Người cao tuổi, hậu phẫu, bệnh nhân bất động"
+    },
+    {
+      "id": 18,
+      "name": "Hồ Sơ Y Tế Điện Tử & Nhắc Lịch Thông Minh",
+      "category": "Dịch Vụ Số & Hỗ Trợ",
+      "slug": "ho-so-y-te-dien-tu",
+      "image": "https://images.unsplash.com/photo-J5UTvRgse7Q?w=600&h=400&fit=crop",
+      "description": "Quản lý toàn bộ hồ sơ y tế gia đình trên một ứng dụng — nhắc uống thuốc, tái khám tự động.",
+      "features": ["Hồ sơ y tế điện tử cá nhân & gia đình", "Nhắc lịch uống thuốc theo đơn", "Thông báo tái khám tự động (FCM)", "Chia sẻ hồ sơ với bác sĩ điều trị"],
+      "targetAudience": "Mọi bệnh nhân muốn quản lý sức khỏe chủ động"
+    }
+  ],
   "milestones": [
     { "id": 1, "year": "2007", "title": "Thành lập", "description": "VitaFamily ra đời với sứ mệnh mang dịch vụ y tế chất lượng cao đến mọi gia đình Việt Nam." },
     { "id": 2, "year": "2012", "title": "Mở rộng", "description": "Khai trương cơ sở thứ hai tại Hà Nội, phục vụ hơn 100.000 lượt bệnh nhân mỗi năm." },

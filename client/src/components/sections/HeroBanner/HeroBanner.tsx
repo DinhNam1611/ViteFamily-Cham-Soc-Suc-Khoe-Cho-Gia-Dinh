@@ -13,7 +13,16 @@ const HeroBanner = () => {
     getHeroBanners().then(setBanners);
   }, []);
 
-  if (banners.length === 0) return null;
+  if (banners.length === 0) {
+    return (
+      <section className={styles.hero} aria-label="Hero Banner">
+        <div className={styles.skeleton} />
+        <div className={styles.infoBar}>
+          <div className={`container ${styles.infoInner}`} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.hero} aria-label="Hero Banner">

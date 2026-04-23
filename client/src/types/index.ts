@@ -60,3 +60,14 @@ export interface Milestone {
   title: string;
   description: string;
 }
+
+export interface ServicePackage {
+  id: number;
+  name: string;
+  category: string;
+  slug: string;
+  image: string;
+  description: string;
+  features: string[];
+  targetAudience: string;
+}
