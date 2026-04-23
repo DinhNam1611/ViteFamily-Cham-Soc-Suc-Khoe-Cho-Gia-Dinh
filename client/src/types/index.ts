@@ -10,6 +10,7 @@ export interface Doctor {
   id: number;
   fullName: string;
   specialty: string;
+  subSpecialty?: string;
   hospital: string;
   experience: number;
   rating: number;
@@ -17,6 +18,7 @@ export interface Doctor {
   avatar: string;
   qualifications: string;
   bio: string;
+  slug: string;
 }
 
 export interface Service {
