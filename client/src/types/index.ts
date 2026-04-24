@@ -6,6 +6,11 @@ export interface Specialty {
   doctorCount: number;
 }
 
+export interface TimelineItem {
+  period: string;
+  description: string;
+}
+
 export interface Doctor {
   id: number;
   fullName: string;
@@ -19,6 +24,12 @@ export interface Doctor {
   qualifications: string;
   bio: string;
   slug: string;
+  languages?: string[];
+  education?: TimelineItem[];
+  certifications?: TimelineItem[];
+  workExperience?: TimelineItem[];
+  memberships?: string[];
+  specialInterests?: string[];
 }
 
 export interface Service {

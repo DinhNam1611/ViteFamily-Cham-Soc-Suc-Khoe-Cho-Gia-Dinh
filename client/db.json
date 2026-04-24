@@ -22,7 +22,31 @@
       "avatar": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Phó Giáo sư, Tiến sĩ Y khoa",
       "bio": "Chuyên gia hàng đầu về tim mạch can thiệp, siêu âm tim và điều trị bệnh lý mạch vành với hơn 20 năm kinh nghiệm.",
-      "slug": "nguyen-van-an"
+      "slug": "nguyen-van-an",
+      "languages": ["Tiếng Việt", "Tiếng Anh", "Tiếng Pháp"],
+      "education": [
+        { "period": "1990–1996", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội, Hà Nội, Việt Nam" },
+        { "period": "1996–1999", "description": "Bác sĩ Nội trú, Đại học Y Hà Nội, chuyên ngành Tim Mạch" }
+      ],
+      "certifications": [
+        { "period": "2000–2002", "description": "Đào tạo sau đại học, chuyên ngành Tim Mạch Can Thiệp. Bệnh viện Lariboisière, Đại học Paris VII, CH Pháp." },
+        { "period": "2010", "description": "Phó Giáo sư, chuyên ngành Tim Mạch học. Hội đồng Chức danh Giáo sư Nhà nước, Việt Nam." }
+      ],
+      "workExperience": [
+        { "period": "1996–2000", "description": "Bác sĩ nội trú, Khoa Tim Mạch, Bệnh viện Bạch Mai, Hà Nội" },
+        { "period": "2000–2010", "description": "Bác sĩ chuyên khoa Tim Mạch, Viện Tim Mạch Quốc gia Việt Nam" },
+        { "period": "2010–nay", "description": "Trưởng Khoa Tim Mạch Can Thiệp, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Phó Chủ tịch Hội Tim Mạch học Việt Nam",
+        "Thành viên Hội Tim Mạch Can Thiệp Châu Á – Thái Bình Dương (APSIC)",
+        "Thành viên Hội Tim Mạch Châu Âu (ESC)"
+      ],
+      "specialInterests": [
+        "Tim mạch can thiệp: đặt stent mạch vành, bít lỗ thông liên nhĩ, thay van tim qua da (TAVI)",
+        "Siêu âm tim màu Doppler và siêu âm tim qua thực quản",
+        "Chẩn đoán và điều trị suy tim, rối loạn nhịp tim, tăng huyết áp"
+      ]
     },
     {
       "id": 2,
@@ -36,7 +60,29 @@
       "avatar": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Tiến sĩ Y khoa",
       "bio": "Bác sĩ nhi khoa giàu kinh nghiệm, chuyên về bệnh lý hô hấp, dinh dưỡng trẻ em và tư vấn lịch tiêm chủng.",
-      "slug": "tran-thi-binh"
+      "slug": "tran-thi-binh",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1994–2000", "description": "Bác sĩ Y khoa, Đại học Y Dược TP. Hồ Chí Minh" },
+        { "period": "2000–2003", "description": "Bác sĩ Nội trú, chuyên ngành Nhi Khoa, Đại học Y Dược TP. Hồ Chí Minh" }
+      ],
+      "certifications": [
+        { "period": "2008–2010", "description": "Đào tạo sau đại học, chuyên ngành Nhi Hô Hấp. Royal Children's Hospital, Melbourne, Australia." },
+        { "period": "2015", "description": "Tiến sĩ Y khoa, chuyên ngành Nhi Khoa, Đại học Y Dược TP. Hồ Chí Minh." }
+      ],
+      "workExperience": [
+        { "period": "2000–2009", "description": "Bác sĩ Nhi Khoa, Khoa Hô Hấp, Bệnh viện Nhi đồng 1, TP. Hồ Chí Minh" },
+        { "period": "2009–nay", "description": "Bác sĩ chuyên khoa Nhi Khoa – Hô Hấp, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Nhi Khoa Việt Nam",
+        "Thành viên Hội Nhi Hô Hấp Châu Á (APSR Pediatric Section)"
+      ],
+      "specialInterests": [
+        "Bệnh hô hấp trẻ em: hen phế quản, viêm phổi, viêm tiểu phế quản, tắc nghẽn đường thở",
+        "Dinh dưỡng và phát triển thể chất ở trẻ sơ sinh và trẻ nhỏ",
+        "Lịch tiêm chủng mở rộng và phòng bệnh truyền nhiễm cho trẻ em"
+      ]
     },
     {
       "id": 3,
@@ -50,7 +96,28 @@
       "avatar": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Bác sĩ Chuyên khoa II",
       "bio": "Chuyên gia da liễu thẩm mỹ điều trị mụn, sẹo, nám bằng laser công nghệ cao và phác đồ cá nhân hóa.",
-      "slug": "le-minh-tuan"
+      "slug": "le-minh-tuan",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1998–2004", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội" },
+        { "period": "2004–2007", "description": "Bác sĩ Nội trú, chuyên ngành Da Liễu, Đại học Y Hà Nội" }
+      ],
+      "certifications": [
+        { "period": "2012–2014", "description": "Bác sĩ Chuyên khoa II Da Liễu, Học viện Quân Y, Hà Nội." },
+        { "period": "2016", "description": "Đào tạo chuyên sâu Laser thẩm mỹ da. Dermatology Institute, Singapore." }
+      ],
+      "workExperience": [
+        { "period": "2007–2014", "description": "Bác sĩ Da Liễu, Bệnh viện Da Liễu Trung ương, Hà Nội" },
+        { "period": "2014–nay", "description": "Bác sĩ chuyên khoa Da Liễu – Thẩm mỹ, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Da Liễu Việt Nam"
+      ],
+      "specialInterests": [
+        "Điều trị mụn trứng cá, sẹo rỗ và sẹo thâm bằng laser CO2 Fractional, RF Microneedling",
+        "Trị nám, tàn nhang, rối loạn sắc tố bằng IPL và laser Nd:YAG",
+        "Chăm sóc da y tế cá nhân hóa, phác đồ kết hợp laser và dược mỹ phẩm"
+      ]
     },
     {
       "id": 4,
@@ -64,7 +131,32 @@
       "avatar": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Giáo sư, Tiến sĩ Y khoa",
       "bio": "Giáo sư đầu ngành thần kinh học, nghiên cứu chuyên sâu về đột quỵ, Parkinson và các bệnh lý mạch máu não.",
-      "slug": "pham-thi-lan"
+      "slug": "pham-thi-lan",
+      "languages": ["Tiếng Việt", "Tiếng Anh", "Tiếng Pháp"],
+      "education": [
+        { "period": "1984–1990", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội, Hà Nội, Việt Nam" },
+        { "period": "1990–1993", "description": "Bác sĩ Nội trú, Đại học Y Hà Nội, chuyên ngành Thần Kinh" }
+      ],
+      "certifications": [
+        { "period": "1995–1997", "description": "Đào tạo sau đại học, chuyên ngành Thần Kinh Mạch Máu. Đại học Y, Đại học Tổng hợp Paris VI, CH Pháp." },
+        { "period": "2002", "description": "Tiến sĩ Y khoa, chuyên ngành Thần Kinh, Đại học Y Hà Nội." },
+        { "period": "2012", "description": "Giáo sư, chuyên ngành Thần Kinh học. Hội đồng Chức danh Giáo sư Nhà nước, Việt Nam." }
+      ],
+      "workExperience": [
+        { "period": "1990–1999", "description": "Bác sĩ chuyên khoa Thần Kinh, Bệnh viện Bạch Mai, Hà Nội" },
+        { "period": "1999–2015", "description": "Trưởng Khoa Thần Kinh, Bệnh viện Bạch Mai; Giảng viên Đại học Y Hà Nội" },
+        { "period": "2015–nay", "description": "Chủ nhiệm Bộ môn Thần Kinh và Cố vấn cấp cao, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Nguyên Chủ tịch Hội Thần Kinh học Việt Nam",
+        "Thành viên Hội Đột Quỵ Thế Giới (WSO)",
+        "Thành viên Ban chấp hành Liên đoàn Thần Kinh học Thế Giới (WFN)"
+      ],
+      "specialInterests": [
+        "Đột quỵ não cấp tính: chẩn đoán, điều trị tiêu sợi huyết và can thiệp nội mạch",
+        "Bệnh Parkinson, sa sút trí tuệ và các rối loạn vận động",
+        "Chăm sóc hậu đột quỵ và phục hồi chức năng thần kinh"
+      ]
     },
     {
       "id": 5,
@@ -78,7 +170,31 @@
       "avatar": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Tiến sĩ Y khoa",
       "bio": "Chuyên gia tai mũi họng với kinh nghiệm phẫu thuật nội soi xoang, điều trị viêm xoang mãn tính và bệnh lý thanh quản.",
-      "slug": "vo-thanh-quang"
+      "slug": "vo-thanh-quang",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1988–1994", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội, Hà Nội, Việt Nam" },
+        { "period": "1994–1997", "description": "Bác sĩ Nội trú, Đại học Y Hà Nội, chuyên ngành Tai Mũi Họng" }
+      ],
+      "certifications": [
+        { "period": "2000–2002", "description": "Đào tạo sau đại học, chuyên ngành Phẫu thuật Tai. Đại học Y, Đại học Tổng hợp Lille, CH Pháp." },
+        { "period": "2005", "description": "Đào tạo sau đại học, chuyên ngành Phẫu thuật Mũi-Xoang nội soi. Đại học Y Lille, CH Pháp." },
+        { "period": "2009", "description": "Tiến sĩ Y khoa, chuyên ngành Tai Mũi Họng, Đại học Y Hà Nội." }
+      ],
+      "workExperience": [
+        { "period": "1994–2006", "description": "Bác sĩ chuyên khoa Tai Mũi Họng, Bệnh viện Tai Mũi Họng Trung ương, Hà Nội" },
+        { "period": "2006–nay", "description": "Trưởng Khoa Tai Mũi Họng, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Nguyên Chủ tịch Hội Tai Mũi Họng – Phẫu thuật Đầu Cổ Việt Nam",
+        "Nguyên Chủ tịch Hội Mũi-Xoang Đông Nam Á (SEAMS)",
+        "Thành viên Hội Tai Mũi Họng Quốc tế (IFOS)"
+      ],
+      "specialInterests": [
+        "Phẫu thuật nội soi mũi xoang (FESS) điều trị viêm xoang mãn tính và polyp mũi",
+        "Khám, phát hiện và điều trị các bệnh lý tai mũi họng người lớn và trẻ em",
+        "Phẫu thuật Amidan, VA và các bệnh lý thanh quản – đầu cổ"
+      ]
     },
     {
       "id": 6,
@@ -92,7 +208,30 @@
       "avatar": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Thạc sĩ, Bác sĩ Chuyên khoa II",
       "bio": "Chuyên gia tiêu hóa với thế mạnh nội soi NBI phát hiện sớm tổn thương ung thư đại tràng và dạ dày.",
-      "slug": "nguyen-thi-cam-tu"
+      "slug": "nguyen-thi-cam-tu",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1997–2003", "description": "Bác sĩ Y khoa, Đại học Y Dược TP. Hồ Chí Minh" },
+        { "period": "2003–2006", "description": "Bác sĩ Nội trú, chuyên ngành Nội Tiêu Hóa, Đại học Y Dược TP. Hồ Chí Minh" }
+      ],
+      "certifications": [
+        { "period": "2009–2011", "description": "Thạc sĩ Y khoa, chuyên ngành Tiêu Hóa – Gan Mật, Đại học Y Dược TP. Hồ Chí Minh." },
+        { "period": "2014–2016", "description": "Bác sĩ Chuyên khoa II, chuyên ngành Nội Tiêu Hóa, Đại học Y Dược TP. Hồ Chí Minh." },
+        { "period": "2018", "description": "Đào tạo nội soi NBI và can thiệp nội soi. Singapore General Hospital, Singapore." }
+      ],
+      "workExperience": [
+        { "period": "2006–2012", "description": "Bác sĩ Tiêu Hóa, Bệnh viện Chợ Rẫy, TP. Hồ Chí Minh" },
+        { "period": "2012–nay", "description": "Bác sĩ chuyên khoa Tiêu Hóa, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Tiêu Hóa Gan Mật Việt Nam",
+        "Thành viên Hội Nội soi Tiêu Hóa Việt Nam"
+      ],
+      "specialInterests": [
+        "Nội soi dạ dày và đại tràng NBI phát hiện sớm ung thư tiêu hóa",
+        "Chẩn đoán và điều trị bệnh lý gan mãn tính: viêm gan B, C và xơ gan",
+        "Điều trị viêm loét dạ dày tá tràng, hội chứng ruột kích thích và bệnh trào ngược"
+      ]
     },
     {
       "id": 7,
@@ -106,7 +245,28 @@
       "avatar": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Thạc sĩ Y khoa",
       "bio": "Phẫu thuật viên chỉnh hình chuyên về thay khớp gối, khớp háng và điều trị thoái hóa khớp tiến triển.",
-      "slug": "dang-van-hung"
+      "slug": "dang-van-hung",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1995–2001", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội" },
+        { "period": "2001–2004", "description": "Bác sĩ Nội trú, chuyên ngành Ngoại Chấn Thương Chỉnh Hình, Đại học Y Hà Nội" }
+      ],
+      "certifications": [
+        { "period": "2006–2009", "description": "Thạc sĩ Y khoa, chuyên ngành Ngoại Chấn Thương Chỉnh Hình, Đại học Y Hà Nội." },
+        { "period": "2013", "description": "Đào tạo phẫu thuật nội soi khớp và thay khớp. AO Trauma Course, Bangkok, Thái Lan." }
+      ],
+      "workExperience": [
+        { "period": "2004–2010", "description": "Bác sĩ Ngoại Chấn Thương Chỉnh Hình, Bệnh viện Việt Đức, Hà Nội" },
+        { "period": "2010–nay", "description": "Bác sĩ phẫu thuật Xương Khớp, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Chấn Thương Chỉnh Hình Việt Nam"
+      ],
+      "specialInterests": [
+        "Phẫu thuật thay khớp gối toàn phần và khớp háng nhân tạo",
+        "Nội soi khớp: tái tạo dây chằng chéo trước, điều trị sụn chêm",
+        "Điều trị không phẫu thuật thoái hóa khớp: tiêm PRP, hyaluronic acid"
+      ]
     },
     {
       "id": 8,
@@ -120,7 +280,29 @@
       "avatar": "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Bác sĩ Chuyên khoa II",
       "bio": "Chuyên gia sản phụ khoa, theo dõi thai kỳ nguy cơ cao, hỗ trợ sinh sản và phẫu thuật nội soi phụ khoa.",
-      "slug": "hoang-thi-mai"
+      "slug": "hoang-thi-mai",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1993–1999", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội" },
+        { "period": "1999–2002", "description": "Bác sĩ Nội trú, chuyên ngành Sản Phụ Khoa, Đại học Y Hà Nội" }
+      ],
+      "certifications": [
+        { "period": "2005–2008", "description": "Bác sĩ Chuyên khoa II, chuyên ngành Sản Phụ Khoa, Học viện Quân Y, Hà Nội." },
+        { "period": "2011", "description": "Đào tạo hỗ trợ sinh sản và thụ tinh trong ống nghiệm (IVF). National University Hospital, Singapore." }
+      ],
+      "workExperience": [
+        { "period": "1999–2008", "description": "Bác sĩ Sản Phụ Khoa, Bệnh viện Phụ Sản Trung ương, Hà Nội" },
+        { "period": "2008–nay", "description": "Bác sĩ chuyên khoa Sản Phụ Khoa và Hỗ trợ Sinh sản, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Sản Phụ Khoa Việt Nam",
+        "Thành viên Hội Hỗ trợ Sinh sản Việt Nam (VSAR)"
+      ],
+      "specialInterests": [
+        "Theo dõi và quản lý thai kỳ nguy cơ cao: tiền sản giật, đái tháo đường thai kỳ",
+        "Hỗ trợ sinh sản: thụ tinh trong ống nghiệm (IVF), bơm tinh trùng vào buồng tử cung (IUI)",
+        "Phẫu thuật nội soi phụ khoa: u nang buồng trứng, u xơ tử cung, lạc nội mạc tử cung"
+      ]
     },
     {
       "id": 9,
@@ -134,7 +316,29 @@
       "avatar": "https://images.unsplash.com/photo-1618498082410-b4aa22193b9e?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Tiến sĩ Y khoa",
       "bio": "Chuyên gia nhãn khoa với hơn 500 ca phẫu thuật LASIK/SMILE thành công và điều trị bệnh lý đáy mắt.",
-      "slug": "pham-quoc-binh"
+      "slug": "pham-quoc-binh",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1996–2002", "description": "Bác sĩ Y khoa, Đại học Y Dược TP. Hồ Chí Minh" },
+        { "period": "2002–2005", "description": "Bác sĩ Nội trú, chuyên ngành Nhãn Khoa, Đại học Y Dược TP. Hồ Chí Minh" }
+      ],
+      "certifications": [
+        { "period": "2009–2011", "description": "Tiến sĩ Y khoa, chuyên ngành Nhãn Khoa, Đại học Y Dược TP. Hồ Chí Minh." },
+        { "period": "2014", "description": "Đào tạo phẫu thuật khúc xạ LASIK và SMILE. Asia-Pacific Academy of Ophthalmology, Singapore." }
+      ],
+      "workExperience": [
+        { "period": "2005–2011", "description": "Bác sĩ Nhãn Khoa, Bệnh viện Mắt TP. Hồ Chí Minh" },
+        { "period": "2011–nay", "description": "Bác sĩ chuyên khoa Nhãn Khoa – Khúc Xạ, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Nhãn Khoa Việt Nam",
+        "Thành viên Hội Nhãn Khoa Châu Á – Thái Bình Dương (APAO)"
+      ],
+      "specialInterests": [
+        "Phẫu thuật khúc xạ LASIK, SMILE điều trị cận thị, viễn thị, loạn thị",
+        "Phẫu thuật Phaco điều trị đục thủy tinh thể và đặt kính nội nhãn đa tiêu cự",
+        "Chẩn đoán và điều trị bệnh lý đáy mắt: glaucoma, thoái hóa điểm vàng"
+      ]
     },
     {
       "id": 10,
@@ -148,7 +352,28 @@
       "avatar": "https://images.unsplash.com/photo-1588776814546-1ffbb319c654?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Thạc sĩ Y khoa",
       "bio": "Chuyên gia nội tiết điều trị đái tháo đường type 1 & 2, rối loạn tuyến giáp và bệnh lý nội tiết tố.",
-      "slug": "nguyen-thu-ha"
+      "slug": "nguyen-thu-ha",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "1998–2004", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội" },
+        { "period": "2004–2007", "description": "Bác sĩ Nội trú, chuyên ngành Nội Tổng Hợp – Nội Tiết, Đại học Y Hà Nội" }
+      ],
+      "certifications": [
+        { "period": "2009–2012", "description": "Thạc sĩ Y khoa, chuyên ngành Nội Tiết Đái Tháo Đường, Đại học Y Hà Nội." },
+        { "period": "2016", "description": "Đào tạo quản lý đái tháo đường toàn diện. International Diabetes Federation (IDF) Asia-Pacific." }
+      ],
+      "workExperience": [
+        { "period": "2007–2013", "description": "Bác sĩ Nội Tiết, Bệnh viện Nội Tiết Trung ương, Hà Nội" },
+        { "period": "2013–nay", "description": "Bác sĩ chuyên khoa Nội Tiết, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Thành viên Hội Nội Tiết – Đái Tháo Đường Việt Nam"
+      ],
+      "specialInterests": [
+        "Chẩn đoán và quản lý đái tháo đường type 1, type 2 và đái tháo đường thai kỳ",
+        "Rối loạn chức năng tuyến giáp: cường giáp, suy giáp, bướu giáp đa nhân",
+        "Rối loạn nội tiết tố: hội chứng buồng trứng đa nang, suy tuyến thượng thận"
+      ]
     },
     {
       "id": 11,
@@ -162,7 +387,26 @@
       "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Bác sĩ Chuyên khoa I",
       "bio": "Bác sĩ tim mạch tập trung vào tim mạch nhi, dị tật tim bẩm sinh và can thiệp mạch vành ít xâm lấn.",
-      "slug": "tran-dinh-nam"
+      "slug": "tran-dinh-nam",
+      "languages": ["Tiếng Việt", "Tiếng Anh"],
+      "education": [
+        { "period": "2003–2009", "description": "Bác sĩ Y khoa, Đại học Y Dược TP. Hồ Chí Minh" },
+        { "period": "2009–2012", "description": "Bác sĩ Nội trú, chuyên ngành Tim Mạch, Đại học Y Dược TP. Hồ Chí Minh" }
+      ],
+      "certifications": [
+        { "period": "2014–2016", "description": "Bác sĩ Chuyên khoa I Tim Mạch, Đại học Y Dược TP. Hồ Chí Minh." },
+        { "period": "2019", "description": "Đào tạo tim mạch nhi và siêu âm tim nhi. Children's Heart Center, Bangkok, Thái Lan." }
+      ],
+      "workExperience": [
+        { "period": "2012–2016", "description": "Bác sĩ Tim Mạch, Bệnh viện Nhi đồng 2, TP. Hồ Chí Minh" },
+        { "period": "2016–nay", "description": "Bác sĩ Tim Mạch – Tim Mạch Nhi, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [],
+      "specialInterests": [
+        "Tim mạch nhi: chẩn đoán và theo dõi dị tật tim bẩm sinh ở trẻ em",
+        "Can thiệp mạch vành ít xâm lấn và đặt máy tạo nhịp tim",
+        "Siêu âm tim Doppler đánh giá chức năng thất ở người lớn và trẻ em"
+      ]
     },
     {
       "id": 12,
@@ -176,7 +420,32 @@
       "avatar": "https://images.unsplash.com/photo-1587402092301-725e37c70fd8?w=300&h=300&fit=crop&crop=face",
       "qualifications": "Phó Giáo sư, Tiến sĩ Y khoa",
       "bio": "Phó Giáo sư đầu ngành ung bướu, điều trị ung thư vú và ung thư tiêu hóa theo phác đồ đa mô thức quốc tế.",
-      "slug": "mai-thi-phuong"
+      "slug": "mai-thi-phuong",
+      "languages": ["Tiếng Việt", "Tiếng Anh", "Tiếng Pháp"],
+      "education": [
+        { "period": "1986–1992", "description": "Bác sĩ Y khoa, Đại học Y Hà Nội, Hà Nội, Việt Nam" },
+        { "period": "1992–1995", "description": "Bác sĩ Nội trú, chuyên ngành Ung Bướu, Đại học Y Hà Nội" }
+      ],
+      "certifications": [
+        { "period": "1998–2000", "description": "Đào tạo sau đại học, Ung Thư Học Lâm Sàng. Institut Gustave Roussy, Paris, CH Pháp." },
+        { "period": "2004", "description": "Tiến sĩ Y khoa, chuyên ngành Ung Bướu, Đại học Y Hà Nội." },
+        { "period": "2014", "description": "Phó Giáo sư, chuyên ngành Ung Bướu. Hội đồng Chức danh Giáo sư Nhà nước, Việt Nam." }
+      ],
+      "workExperience": [
+        { "period": "1992–2005", "description": "Bác sĩ Ung Bướu, Bệnh viện K Trung ương, Hà Nội" },
+        { "period": "2005–2015", "description": "Phó Trưởng Khoa Ung Bướu; Giảng viên Đại học Y Hà Nội" },
+        { "period": "2015–nay", "description": "Trưởng Trung tâm Ung Bướu, Bệnh viện VitaFamily" }
+      ],
+      "memberships": [
+        "Phó Chủ tịch Hội Ung Thư Việt Nam",
+        "Thành viên Hội Ung Thư Châu Á (FACO)",
+        "Thành viên Hội Ung Thư Lâm Sàng Mỹ (ASCO)"
+      ],
+      "specialInterests": [
+        "Ung thư vú: phẫu thuật bảo tồn, hóa trị, xạ trị và liệu pháp nhắm đích (HER2, hormone)",
+        "Ung thư đường tiêu hóa: dạ dày, đại tràng, gan và tụy — điều trị đa mô thức",
+        "Chẩn đoán sớm ung thư và tư vấn di truyền ung thư"
+      ]
     }
   ],
   "services": [

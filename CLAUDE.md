@@ -33,6 +33,7 @@ Chi tiết format snapshot: [context-compaction.md](.claude/rules/context-compac
 | [performance-accessibility.md](.claude/rules/performance-accessibility.md) | Lighthouse, WCAG, image guidelines | Thêm ảnh, lazy load, audit |
 | [project-context.md](.claude/rules/project-context.md) | Tech stack, ERD, cấu trúc trang, roles | Cần hiểu ngữ cảnh dự án |
 | [context-compaction.md](.claude/rules/context-compaction.md) | Snapshot format trước khi compact | Trước mỗi lần nén context |
+| [file-reading-strategy.md](.claude/rules/file-reading-strategy.md) | Chỉ đọc file cần thiết, tiết kiệm token | **Mọi task** — đặc biệt khi tạo chức năng mới |
 
 ---
 
@@ -44,3 +45,4 @@ Chi tiết format snapshot: [context-compaction.md](.claude/rules/context-compac
 4. **CSS Module** riêng mỗi component — cấm inline style trong TSX.
 5. **Mọi section** phải có scroll-triggered animation.
 6. **Kiểm tra 3 viewport** trước khi hoàn thành: 375px · 768px · 1280px.
+7. **Chỉ đọc file cần thiết** — dùng Grep/Glob trước, Read sau; không đọc toàn bộ codebase khi tạo chức năng mới.

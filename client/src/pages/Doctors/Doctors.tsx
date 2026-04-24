@@ -34,49 +34,43 @@ const cardVariants = {
 };
 
 const Doctors = () => {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [filtered, setFiltered] = useState<Doctor[]>([]);
   const [specialty, setSpecialty] = useState('Tất cả');
   const [nameSearch, setNameSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     getDoctors().then((data) => {
-      setDoctors(data);
       setFiltered(data);
       setLoading(false);
     });
   }, []);
 
-  const applyFilter = useCallback(
-    (newSpecialty: string, newName: string) => {
-      let result = doctors;
-      if (newSpecialty !== 'Tất cả') {
-        result = result.filter((d) => d.specialty === newSpecialty);
-      }
-      if (newName.trim()) {
-        const lower = newName.toLowerCase();
-        result = result.filter((d) => d.fullName.toLowerCase().includes(lower));
-      }
-      setFiltered(result);
-    },
-    [doctors]
-  );
-
-  const handleSpecialtyChange = (value: string) => {
+  /* Demo skeleton: gọi qua service layer — sau này chỉ cần thay URL trong getDoctorsByFilter */
+  const handleSpecialtyChange = useCallback(async (value: string) => {
     setSpecialty(value);
-    applyFilter(value, nameSearch);
-  };
+    setSearching(true);
+    const result = await getDoctorsByFilter(value, nameSearch);
+    setFiltered(result);
+    setSearching(false);
+  }, [nameSearch]);
 
-  const handleSearch = () => {
-    applyFilter(specialty, nameSearch);
-  };
+  const handleSearch = useCallback(async () => {
+    setSearching(true);
+    const result = await getDoctorsByFilter(specialty, nameSearch);
+    setFiltered(result);
+    setSearching(false);
+  }, [specialty, nameSearch]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(async () => {
     setSpecialty('Tất cả');
     setNameSearch('');
-    setFiltered(doctors);
-  };
+    setSearching(true);
+    const result = await getDoctorsByFilter('Tất cả', '');
+    setFiltered(result);
+    setSearching(false);
+  }, []);
 
   return (
     <>
@@ -120,7 +114,8 @@ const Doctors = () => {
 
         {/* ── Filter Bar ── */}
         <div className={styles.filterBar}>
-          <div className={`container ${styles.filterInner}`}>
+          <div className="container">
+          <div className={styles.filterInner}>
             <Select
               value={specialty}
               onChange={handleSpecialtyChange}
@@ -135,7 +130,6 @@ const Doctors = () => {
               onPressEnter={handleSearch}
               prefix={<SearchOutlined className={styles.searchIcon} />}
               placeholder="Tìm theo tên bác sĩ..."
-              size="large"
               className={styles.nameInput}
             />
             <Button
@@ -143,6 +137,7 @@ const Doctors = () => {
               size="large"
               className={styles.searchBtn}
               onClick={handleSearch}
+              loading={searching}
             >
               Tìm kiếm
             </Button>
@@ -151,6 +146,7 @@ const Doctors = () => {
                 Đặt lại
               </Button>
             )}
+          </div>
           </div>
         </div>
 
