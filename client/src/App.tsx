@@ -4,6 +4,7 @@ import About from './pages/About/About';
 import Services from './pages/Services/Services';
 import Doctors from './pages/Doctors/Doctors';
 import DoctorProfile from './pages/DoctorProfile/DoctorProfile';
+import CustomerGuide from './pages/CustomerGuide/CustomerGuide';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/doctors/:slug" element={<DoctorProfile />} />
+        <Route path="/help" element={<CustomerGuide />} />
       </Routes>
     </BrowserRouter>
   );

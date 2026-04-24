@@ -1,0 +1,654 @@
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #0077C8 0%, #00B4D8 100%);
+  padding: 80px 16px 64px;
+  text-align: center;
+  color: #fff;
+}
+
+.heroInner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.heroSub {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.heroTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.heroDesc {
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.92;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Body layout ── */
+.body {
+  background: #f5f8ff;
+  padding: 48px 16px 80px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 119, 200, 0.08);
+  overflow: hidden;
+  position: sticky;
+  top: 90px;
+}
+
+.sidebarHeading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6B7C99;
+  padding: 20px 20px 12px;
+  margin: 0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A2B4B;
+  transition: background 200ms, color 200ms;
+  border-left: 3px solid transparent;
+}
+
+.sidebarItem:hover {
+  background: #E8F4FD;
+  color: #0077C8;
+}
+
+.sidebarItem.active {
+  background: #E8F4FD;
+  color: #0077C8;
+  border-left-color: #0077C8;
+  font-weight: 600;
+}
+
+.sidebarIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.sidebarLabel {
+  line-height: 1.3;
+}
+
+/* ── Main content ── */
+.main {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 119, 200, 0.08);
+  min-height: 600px;
+}
+
+.content {
+  padding: 40px 44px;
+}
+
+.contentTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0077C8;
+  margin: 0 0 8px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #E8F4FD;
+}
+
+.intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6B7C99;
+  margin: 16px 0 24px;
+}
+
+/* ── Block ── */
+.block {
+  margin-top: 32px;
+}
+
+.blockTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A2B4B;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.blockIcon {
+  color: #0077C8;
+}
+
+/* ── Lists ── */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1A2B4B;
+}
+
+.checkIcon {
+  color: #0077C8;
+  font-size: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.muted {
+  color: #6B7C99;
+  font-size: 13px;
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+.highlight {
+  font-weight: 600;
+  color: #1A2B4B;
+  margin-bottom: 8px;
+}
+
+/* ── Info / Warning boxes ── */
+.infoBox {
+  background: #E8F4FD;
+  border-left: 4px solid #0077C8;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin: 12px 0;
+}
+
+.infoBox p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #1A2B4B;
+  line-height: 1.6;
+}
+
+.warningBox {
+  background: #fff8f0;
+  border-left: 4px solid #ff9900;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin: 12px 0;
+}
+
+.warningBox p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #1A2B4B;
+}
+
+/* ── Schedule rows (horizontal layout) ── */
+.scheduleRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.scheduleRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #dce8f7;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 119, 200, 0.06);
+  transition: box-shadow 200ms;
+}
+
+.scheduleRow:hover {
+  box-shadow: 0 4px 16px rgba(0, 119, 200, 0.12);
+}
+
+.scheduleTimeBadge {
+  flex-shrink: 0;
+  width: 170px;
+  background: linear-gradient(160deg, #0077C8 0%, #00B4D8 100%);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  padding: 20px 16px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scheduleRowBody {
+  flex: 1;
+  padding: 16px 20px;
+  border-left: 1px solid #dce8f7;
+}
+
+.scheduleSpecialties {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
+  column-gap: 0;
+  columns: 2;
+}
+
+.scheduleSpecialties li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: #1A2B4B;
+  line-height: 1.5;
+  break-inside: avoid;
+  padding: 2px 0;
+}
+
+.scheduleNote {
+  font-size: 14px;
+  color: #6B7C99;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Schedule grid (kept for zone/other uses) ── */
+.scheduleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.scheduleCard {
+  background: #f5f8ff;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.scheduleTime {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0077C8;
+  margin-bottom: 10px;
+}
+
+/* ── Steps ── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 8px;
+}
+
+.stepItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.stepItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: #E2E8F0;
+}
+
+.stepNumber {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #0077C8;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stepBody {
+  padding-top: 6px;
+  font-size: 14px;
+  color: #1A2B4B;
+  line-height: 1.6;
+}
+
+.stepBody strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.stepBody p {
+  color: #6B7C99;
+  margin: 0;
+}
+
+/* ── Bed grid ── */
+.bedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.bedCard {
+  background: linear-gradient(135deg, #0077C8 0%, #00B4D8 100%);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bedCount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bedLabel {
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+/* ── Amenity grid ── */
+.amenityGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.amenityCard {
+  background: #f5f8ff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: box-shadow 200ms, transform 200ms;
+}
+
+.amenityCard:hover {
+  box-shadow: 0 6px 24px rgba(0, 119, 200, 0.12);
+  transform: translateY(-3px);
+}
+
+.amenityIcon {
+  font-size: 32px;
+  color: #0077C8;
+  margin-bottom: 12px;
+}
+
+.amenityTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A2B4B;
+  margin: 0 0 8px;
+}
+
+.amenityCard p {
+  font-size: 13px;
+  color: #6B7C99;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Zone grid ── */
+.zoneGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.zoneCard {
+  background: #f5f8ff;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.zoneTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0077C8;
+  margin: 0 0 10px;
+}
+
+/* ── Contact card ── */
+.contactCard {
+  background: #1A2B4B;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.contactCard p {
+  margin: 2px 0;
+}
+
+.contactCard strong {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+  }
+
+  .content {
+    padding: 28px 28px;
+  }
+
+  .scheduleGrid,
+  .zoneGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduleSpecialties {
+    columns: 1;
+  }
+
+  .bedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenityGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 16px 48px;
+  }
+
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarNav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .sidebarItem {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .sidebarItem.active {
+    border-left: none;
+    border-bottom-color: #0077C8;
+  }
+
+  .content {
+    padding: 24px 16px;
+  }
+
+  .contentTitle {
+    font-size: 22px;
+  }
+
+  .bedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduleRow {
+    flex-direction: column;
+  }
+
+  .scheduleTimeBadge {
+    width: 100%;
+    padding: 12px 20px;
+    text-align: left;
+    align-self: auto;
+    border-radius: 0;
+  }
+
+  .scheduleRowBody {
+    border-left: none;
+    border-top: 1px solid #dce8f7;
+    width: 100%;
+  }
+
+  .scheduleSpecialties {
+    columns: 1;
+  }
+
+  .scheduleGrid,
+  .zoneGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebarNav {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarItem {
+    flex-direction: row;
+    text-align: left;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+
+  .sidebarItem.active {
+    border-left-color: #0077C8;
+  }
+
+  .bedGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

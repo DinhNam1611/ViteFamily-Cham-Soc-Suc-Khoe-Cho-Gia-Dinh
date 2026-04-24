@@ -65,40 +65,48 @@ const KhamNgoaiTru = () => (
 
     <section className={styles.block}>
       <h3 className={styles.blockTitle}>Thứ Hai – Thứ Sáu</h3>
-      <div className={styles.scheduleGrid}>
-        <div className={styles.scheduleCard}>
-          <div className={styles.scheduleTime}>07:00 – 12:00 | 13:30 – 17:30</div>
-          <ul className={styles.list}>
-            {['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp',
-              'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng',
-              'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'].map((item) => (
-              <li key={item}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
-            ))}
-          </ul>
+      <div className={styles.scheduleRows}>
+        <div className={styles.scheduleRow}>
+          <div className={styles.scheduleTimeBadge}>07:00 – 12:00<br />13:30 – 17:30</div>
+          <div className={styles.scheduleRowBody}>
+            <ul className={styles.scheduleSpecialties}>
+              {['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp',
+                'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng',
+                'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'].map((item) => (
+                <li key={item}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className={styles.scheduleCard}>
-          <div className={styles.scheduleTime}>08:30 – 12:00 | 13:30 – 17:30</div>
-          <p className={styles.muted}>Áp dụng cho các chuyên khoa còn lại</p>
+        <div className={styles.scheduleRow}>
+          <div className={styles.scheduleTimeBadge}>08:30 – 12:00<br />13:30 – 17:30</div>
+          <div className={styles.scheduleRowBody}>
+            <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section className={styles.block}>
       <h3 className={styles.blockTitle}>Thứ Bảy</h3>
-      <div className={styles.scheduleGrid}>
-        <div className={styles.scheduleCard}>
-          <div className={styles.scheduleTime}>07:00 – 12:00</div>
-          <ul className={styles.list}>
-            {['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp',
-              'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng',
-              'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'].map((item) => (
-              <li key={item}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
-            ))}
-          </ul>
+      <div className={styles.scheduleRows}>
+        <div className={styles.scheduleRow}>
+          <div className={styles.scheduleTimeBadge}>07:00 – 12:00</div>
+          <div className={styles.scheduleRowBody}>
+            <ul className={styles.scheduleSpecialties}>
+              {['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp',
+                'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng',
+                'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'].map((item) => (
+                <li key={item}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className={styles.scheduleCard}>
-          <div className={styles.scheduleTime}>08:30 – 12:30</div>
-          <p className={styles.muted}>Áp dụng các chuyên khoa còn lại</p>
+        <div className={styles.scheduleRow}>
+          <div className={styles.scheduleTimeBadge}>08:30 – 12:30</div>
+          <div className={styles.scheduleRowBody}>
+            <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
+          </div>
         </div>
       </div>
     </section>
