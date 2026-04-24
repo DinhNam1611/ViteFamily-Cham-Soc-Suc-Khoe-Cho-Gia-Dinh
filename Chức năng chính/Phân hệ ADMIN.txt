@@ -1,0 +1,186 @@
+Phân hệ: Quản trị viên (Admin)
+
+1. Chức năng: Quản lý người dùng và Phân quyền
+   Mô tả chi tiết: Đây là chức năng quản trị cấp cao nhất, cho phép Admin có cái nhìn tổng thể về tất cả các đối tượng đang tham gia vào hệ thống (bao gồm Bệnh nhân, Bác sĩ và các Admin khác)
+   . Chức năng này đảm bảo tính chính trực của hệ thống bằng cách kiểm soát quyền truy cập và xử lý kịp thời các tài khoản có dấu hiệu vi phạm điều khoản
+   .
+   Cách hoạt động:
+   Tra cứu thông tin: Admin có thể xem danh sách toàn bộ người dùng, sử dụng các bộ lọc theo vai trò (Bệnh nhân/Bác sĩ) hoặc trạng thái tài khoản
+   .
+   Kiểm soát trạng thái: Admin có quyền Kích hoạt hoặc Khóa bất kỳ tài khoản nào. Khi một tài khoản bị khóa, hệ thống sẽ từ chối mọi yêu cầu đăng nhập từ tài khoản đó
+   .
+   Hỗ trợ người dùng: Admin có khả năng thực hiện Reset mật khẩu cho người dùng trong trường hợp họ gặp sự cố không thể tự khôi phục qua email
+   .
+   Giám sát hoạt động: Xem lịch sử hoạt động cơ bản của từng người dùng để phát hiện các hành vi bất thường hoặc hỗ trợ giải quyết khiếu nại
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng users: Đây là nguồn dữ liệu chính, bao gồm các trường: id, full_name, email, phone, status (active/locked), và created_at
+   .
+   Bảng roles: Để xác định quyền hạn của từng tài khoản (Admin/Doctor/Patient)
+   .
+   Giao diện quản trị: Sử dụng các component Table và Modal của Ant Design để hiển thị danh sách và thực hiện các thao tác sửa đổi nhanh
+   .
+
+2. Chức năng: Quản lý & Duyệt hồ sơ Bác sĩ
+   Mô tả chi tiết: Vì đây là một nền tảng y tế theo tiêu chuẩn quốc tế như Hanoi French Hospital, việc kiểm soát chất lượng bác sĩ là cực kỳ quan trọng
+   . Chức năng này cho phép Admin thẩm định trình độ chuyên môn của bác sĩ trước khi họ được phép tiếp nhận bệnh nhân, đồng thời giám sát uy tín của bác sĩ thông qua các đánh giá thực tế từ người dùng
+   .
+   Cách hoạt động:
+   Tiếp nhận hồ sơ mới: Khi một bác sĩ đăng ký tài khoản và cập nhật hồ sơ chuyên môn (bằng cấp, chứng chỉ, kinh nghiệm), hồ sơ sẽ rơi vào danh sách "Chờ duyệt" của Admin
+   .
+   Thẩm định hồ sơ: Admin xem xét chi tiết các thông tin bác sĩ cung cấp. Admin có thể chọn "Duyệt" để đưa bác sĩ lên hệ thống hoặc "Từ chối" kèm theo lý do cụ thể gửi về email của bác sĩ
+   .
+   Phân công chuyên môn: Sau khi duyệt, Admin thực hiện gán bác sĩ vào các Chuyên khoa (như Tai-Mũi-Họng, Sản & Phụ khoa) và Bệnh viện/Phòng khám cụ thể để bệnh nhân có thể tìm thấy khi đặt lịch
+   .
+   Giám sát chất lượng: Admin có thể xem tất cả đánh giá, số sao và nhận xét từ bệnh nhân dành cho bác sĩ đó để đảm bảo chất lượng dịch vụ
+   .
+   Xử lý vi phạm: Trong trường hợp bác sĩ có sai phạm chuyên môn hoặc nhận nhiều phản hồi tiêu cực, Admin có quyền khóa tài khoản bác sĩ ngay lập tức
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng doctors: Chứa thông tin chuyên sâu cần thẩm định: biography, qualifications (bằng cấp), experience (kinh nghiệm)
+   .
+   Bảng doctor_specialties & doctor_hospitals: Các bảng trung gian để Admin thực hiện việc gán bác sĩ vào đúng chuyên khoa và cơ sở y tế
+   .
+   Bảng reviews: Dữ liệu về rating và comment từ bệnh nhân để Admin làm căn cứ giám sát
+   .
+   Trạng thái hồ sơ: Một trường approval_status (pending/approved/rejected) trong bảng doctors để điều khiển luồng hiển thị
+   .
+
+3. Chức năng: Quản lý Bệnh viện, Phòng khám và Chuyên khoa
+   Mô tả chi tiết: Đây là chức năng quản lý "dữ liệu nền" (Master Data) của toàn hệ thống
+   . Admin có nhiệm vụ duy trì danh mục các cơ sở y tế (ví dụ: Tòa nhà Nội trú Building B, Tòa nhà Ngoại trú mới của HFH) và các chuyên khoa thực tế (như Nhi & Nhi sơ sinh, Sản & Phụ khoa, Tim mạch can thiệp)
+   . Việc quản lý chặt chẽ danh mục này đảm bảo thông tin hiển thị cho bệnh nhân luôn chính xác và đồng bộ với thực tế hoạt động của bệnh viện
+   .
+   Cách hoạt động:
+   Quản lý cơ sở y tế: Admin thực hiện Thêm/Sửa/Xóa hoặc Ẩn/Hiện các bệnh viện và phòng khám
+   . Mỗi cơ sở sẽ có thông tin chi tiết về địa chỉ, số điện thoại cấp cứu và giờ làm việc
+   .
+   Quản lý chuyên khoa: Admin thiết lập danh mục các khoa nội, ngoại và hỗ trợ
+   . Chức năng này cho phép gán các chuyên khoa tương ứng vào từng bệnh viện cụ thể
+   .
+   Thiết lập mối quan hệ: Admin thực hiện việc gán bác sĩ vào các bệnh viện và chuyên khoa mà họ phụ trách
+   . Ví dụ: Gán bác sĩ chuyên khoa Tai - Mũi - Họng vào làm việc tại cơ sở chính
+   .
+   Kiểm soát hiển thị: Admin có thể tạm ẩn một chuyên khoa hoặc bệnh viện khỏi ứng dụng nếu cơ sở đó đang bảo trì hoặc ngừng cung cấp dịch vụ
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng hospitals: Lưu trữ id (PK), name, address, phone, working_hours, và status (active/hidden)
+   .
+   Bảng specialties: Lưu trữ id (PK), name (tên chuyên khoa), description (mô tả chuyên khoa)
+   .
+   Bảng trung gian doctor_hospitals & doctor_specialties: Để lưu trữ các mối quan hệ nhiều-nhiều giữa bác sĩ với nơi làm việc và chuyên môn của họ
+   .
+   Giao diện: Sử dụng các form nhập liệu và bảng danh sách của Ant Design 5 để quản lý
+   .
+
+4. Chức năng: Quản lý dịch vụ khám tại nhà (Home Healthcare Services)
+   Mô tả chi tiết: Đây là chức năng cho phép Admin xây dựng và quản lý danh mục các gói dịch vụ y tế được thực hiện ngoài phạm vi bệnh viện
+   . Các dịch vụ này thường bao gồm lấy mẫu xét nghiệm tại nhà, chăm sóc mẹ và bé sau sinh, hoặc khám bệnh tổng quát tận nơi. Chức năng này giúp bệnh viện mở rộng phạm vi phục vụ và đáp ứng nhu cầu của những bệnh nhân khó khăn trong việc di chuyển.
+   Cách hoạt động:
+   Tạo gói dịch vụ: Admin thực hiện thêm mới các gói dịch vụ, định nghĩa rõ tên dịch vụ (ví dụ: "Gói chăm sóc trẻ sơ sinh tại nhà") và mô tả chi tiết các hạng mục đi kèm
+   .
+   Cài đặt giá và thời gian: Admin thiết lập giá tiền cho từng gói và thời gian phục vụ dự kiến để hệ thống có thể sắp xếp lịch trình cho nhân viên y tế
+   .
+   Kiểm soát trạng thái: Admin có thể Kích hoạt để dịch vụ hiển thị lên ứng dụng cho bệnh nhân đặt, hoặc Tạm dừng dịch vụ nếu thiếu nhân sự hoặc trong các đợt cao điểm tại viện
+   .
+   Cập nhật thông tin: Cho phép chỉnh sửa linh hoạt nội dung gói dịch vụ để phù hợp với các chương trình ưu đãi hoặc thay đổi chính sách giá của bệnh viện.
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng services: Lưu trữ các trường dữ liệu nòng cốt bao gồm: id (PK), name (tên gói), price (giá dịch vụ), description (mô tả chi tiết), duration (thời gian thực hiện ước tính), và status (active/inactive)
+   .
+   Mối quan hệ: Liên kết các dịch vụ này với các chuyên khoa tương ứng (ví dụ: gói chăm sóc sau sinh thuộc chuyên khoa Sản) để dễ dàng lọc bác sĩ phù hợp
+   .
+   Giao diện: Sử dụng các thành phần Form và Switch của Ant Design 5 để Admin thao tác bật/tắt dịch vụ nhanh chóng
+   .
+
+5. Chức năng: Quản lý lịch hẹn toàn hệ thống (System-wide Appointment Management)
+   Mô tả chi tiết: Đây là "tháp điều khiển" của toàn bộ hệ thống, cho phép Admin có cái nhìn tổng thể về mọi tương tác đặt lịch giữa bệnh nhân và bác sĩ
+   . Chức năng này không chỉ đơn thuần là xem danh sách mà còn đóng vai trò là chốt chặn cuối cùng để xử lý các sự cố vận hành, đảm bảo mọi bệnh nhân đều được phục vụ đúng hẹn theo tiêu chuẩn "First Class Healthcare"
+   .
+   Cách hoạt động:
+   Giám sát thời gian thực: Admin xem được toàn bộ danh sách lịch hẹn của tất cả người dùng trên hệ thống, không phân biệt loại hình (tại nhà, tại viện hay video)
+   .
+   Bộ lọc thông minh: Hệ thống cung cấp các công cụ lọc mạnh mẽ theo trạng thái (chờ xác nhận, đã xác nhận, hoàn thành, đã hủy), theo ngày khám, theo tên bác sĩ hoặc loại dịch vụ
+   .
+   Can thiệp sự cố: Khi có vấn đề phát sinh (ví dụ: bác sĩ gặp sự cố đột xuất không thể khám), Admin có quyền can thiệp để hủy lịch hoặc chủ động chuyển bệnh nhân sang một bác sĩ khác có cùng chuyên môn và khung giờ rảnh
+   .
+   Xử lý khiếu nại: Admin dựa vào lịch sử lịch hẹn để đối soát và giải quyết các khiếu nại liên quan đến việc chờ đợi lâu hoặc bác sĩ không đến khám đúng hẹn
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng appointments: Nguồn dữ liệu chính chứa mọi thông tin về status, appointment_type, date, và time_slot
+   .
+   Liên kết dữ liệu (Joins): Admin cần truy xuất thông tin từ bảng users (để biết người đặt), members (để biết người khám), và doctors (để biết người điều trị)
+   .
+   Bảng doctor_schedules & slots: Để Admin biết được các khung giờ rảnh khác khi cần thực hiện điều phối chuyển bác sĩ cho bệnh nhân
+   .
+   Giao diện quản trị: Sử dụng component Table với tính năng Filter và Search của Ant Design 5 để quản lý danh sách lên đến hàng nghìn bản ghi
+   .
+
+Phân hệ: Quản trị viên (Admin) 6. Chức năng: Quản lý đánh giá & Phản hồi (Reviews & Feedback Management)
+Mô tả chi tiết: Chức năng này cho phép Admin giám sát chất lượng dịch vụ của đội ngũ y tế thông qua các phản hồi trực tiếp từ bệnh nhân
+. Nó đóng vai trò là công cụ kiểm soát chất lượng, giúp bảo vệ uy tín của hệ thống bằng cách lọc bỏ các nội dung không phù hợp và giải quyết kịp thời các khiếu nại phát sinh từ trải nghiệm thực tế của người dùng
+.
+Cách hoạt động:
+Giám sát danh sách: Admin có thể xem toàn bộ các đánh giá (số sao) và nhận xét (comment) mà bệnh nhân gửi sau khi hoàn thành buổi khám
+.
+Kiểm duyệt nội dung: Admin có quyền Ẩn hoặc Xóa các đánh giá có nội dung vi phạm tiêu chuẩn cộng đồng (như ngôn từ không phù hợp, thông tin sai sự thật hoặc quảng cáo)
+.
+Xử lý khiếu nại: Khi nhận thấy các đánh giá có điểm số thấp kèm theo phản ánh tiêu cực về chuyên môn hoặc thái độ, Admin sẽ sử dụng thông tin này để liên hệ và giải quyết khiếu nại cho người dùng
+.
+Cảnh báo bác sĩ: Dữ liệu này giúp Admin có cơ sở để nhắc nhở hoặc tạm dừng quyền hoạt động của những bác sĩ thường xuyên bị đánh giá thấp, đảm bảo tiêu chuẩn chăm sóc y tế hạng nhất
+.
+Dữ liệu cần thiết để chức năng hoạt động:
+Bảng appointment_reviews (hoặc reviews): Đây là bảng lưu trữ dữ liệu chính, bao gồm: id (PK), appointment_id (FK), user_id (FK - người đánh giá), doctor_id (FK - người bị đánh giá), rating (số sao từ 1-5), và comment (nội dung nhận xét)
+.
+Trạng thái hiển thị: Cần một trường status (ví dụ: visible/hidden) để Admin điều khiển việc hiển thị đánh giá đó trên trang cá nhân của bác sĩ.
+Giao diện quản trị: Sử dụng các thành phần Table để liệt kê và Popconfirm để xác nhận khi xóa hoặc ẩn đánh giá từ thư viện Ant Design 5
+.
+
+7. Chức năng: Quản lý thông báo hệ thống (System Notification Management)
+   Mô tả chi tiết: Chức năng này cho phép Admin tạo và gửi các thông báo quan trọng đến toàn bộ người dùng hoặc các nhóm đối tượng cụ thể (chỉ Bác sĩ hoặc chỉ Bệnh nhân)
+   . Đây là công cụ hữu hiệu để cập nhật các chính sách mới về hội viên (như H PLUS Diamond hay Platinum), thông báo về các sự kiện y khoa (như talkshow sàng lọc sơ sinh) hoặc các cảnh báo sức khỏe khẩn cấp từ bệnh viện
+   .
+   Cách hoạt động:
+   Thiết kế thông báo: Admin soạn thảo tiêu đề, nội dung chi tiết và có thể đính kèm đường dẫn (URL) liên kết đến các bài viết tin tức hoặc ưu đãi
+   .
+   Lựa chọn đối tượng: Admin xác định nhóm nhận tin: tất cả người dùng, chỉ đội ngũ bác sĩ, hoặc chỉ các bệnh nhân và gia đình
+   .
+   Lập lịch gửi tin: Admin có quyền gửi ngay lập tức hoặc thiết lập một khung giờ cụ thể trong tương lai để hệ thống tự động phát tin
+   .
+   Phát hành đa phương thức: Khi đến thời điểm, hệ thống sẽ đồng thời đẩy thông báo qua Push Notification trên trình duyệt và gửi Email trực tiếp đến người dùng
+   .
+   Quản lý lịch sử: Admin có thể xem lại danh sách các thông báo đã gửi để theo dõi hiệu quả truyền thông và nội dung đã phát hành
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng system_notifications: Lưu trữ các trường dữ liệu: id (PK), title, content, target_group (all/doctor/patient), scheduled_at (thời gian dự kiến), sent_at (thời gian thực tế gửi), và status (nháp/đã lên lịch/đã gửi)
+   .
+   Thông tin định danh thiết bị: Hệ thống cần lưu trữ FCM Token của từng người dùng để gửi thông báo đẩy chính xác
+   .
+   Cấu hình dịch vụ ngoài: Cần Firebase Server Key (để Push) và tài khoản Gmail SMTP được cấu hình trong tệp .env của Backend
+   .
+   Tác vụ lập lịch: Sử dụng thư viện node-cron để tự động quét các thông báo đã lên lịch và thực thi lệnh gửi
+   .
+
+8. Chức năng: Thống kê & Báo cáo tổng thể (Statistics & Reports)
+   Mô tả chi tiết: Đây là cơ quan "đầu não" cung cấp dữ liệu phân tích cho người quản lý
+   . Thay vì quản lý cảm tính, Admin dựa vào các báo cáo định kỳ để hiểu rõ hành vi người dùng, hiệu suất của bác sĩ và mức độ quan tâm của cộng đồng đối với các dịch vụ y tế tại viện (như thai sản, nhi khoa) hay tại nhà
+   .
+   Cách hoạt động:
+   Thu thập chỉ số tăng trưởng: Hệ thống tự động đếm và phân loại số lượng người dùng mới đăng ký theo ngày, tuần, tháng
+   .
+   Phân tích hiệu suất lịch hẹn: Thống kê tổng số lịch hẹn và phân chia theo loại hình (tại nhà hoặc tại viện) cùng với tỷ lệ hoàn thành so với tỷ lệ hủy lịch
+   .
+   Xác định xu hướng chuyên môn: Hệ thống liệt kê những bác sĩ được đặt lịch nhiều nhất và những chuyên khoa được tìm kiếm nhiều nhất (ví dụ: Sản khoa hay Nhi khoa theo tiêu chuẩn HFH)
+   .
+   Trực quan hóa dữ liệu: Các con số được chuyển đổi thành biểu đồ đường, biểu đồ cột hoặc biểu đồ tròn sinh động bằng thư viện @ant-design/charts ngay trên Dashboard
+   .
+   Xuất báo cáo nghiệp vụ: Admin có thể trích xuất các dữ liệu này ra định dạng tệp PDF hoặc Excel để phục vụ các buổi họp giao ban hoặc lưu trữ hồ sơ bệnh viện
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng users: Để tính toán lượng truy cập và đăng ký mới
+   .
+   Bảng appointments: Nguồn dữ liệu chính để tính toán tần suất đặt lịch, loại dịch vụ và doanh thu dự kiến
+   .
+   Bảng specialties & doctors: Để đối chiếu và tìm ra các điểm sáng trong đội ngũ y tế
+   .
+   Thư viện hỗ trợ: @ant-design/charts (phía Frontend) để vẽ biểu đồ và các thư viện xử lý xuất tệp phía Backend
+   .

@@ -1,0 +1,115 @@
+Phân hệ: Bác sĩ
+
+1. Chức năng: Quản lý hồ sơ cá nhân và chuyên môn
+   Mô tả chi tiết: Chức năng này cho phép bác sĩ tự xây dựng và cập nhật "văn phòng số" của mình. Một hồ sơ chuyên môn đầy đủ và minh bạch không chỉ giúp bệnh nhân tin tưởng khi đặt lịch mà còn là căn cứ để hệ thống phân loại bác sĩ vào các chuyên khoa và gói dịch vụ phù hợp
+   .
+   Cách hoạt động:
+   Cập nhật thông tin cơ bản: Bác sĩ tải lên ảnh đại diện chuyên nghiệp và viết đoạn giới thiệu bản thân (Bio) để bệnh nhân hiểu rõ về triết lý chữa bệnh
+   .
+   Khai báo học vấn và bằng cấp: Bác sĩ nhập chi tiết về quá trình đào tạo (ví dụ: tốt nghiệp Đại học Y Hà Nội, tu nghiệp tại Pháp) và các chứng chỉ hành nghề liên quan
+   .
+   Quản lý chuyên môn: Bác sĩ lựa chọn các chuyên khoa mình đảm trách (ví dụ: Tai-Mũi-Họng, Sản phụ khoa, Nội đa khoa) và liệt kê các lĩnh vực quan tâm đặc biệt (ví dụ: phẫu thuật nội soi, điều trị hen phế quản)
+   .
+   Kinh nghiệm làm việc: Ghi lại lịch sử công tác tại các bệnh viện trung ương hoặc quốc tế để khẳng định năng lực thực tế
+   .
+   Hiển thị công khai: Sau khi Admin kiểm duyệt, các thông tin này sẽ hiển thị trên giao diện "Tìm bác sĩ" của bệnh nhân
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng users: Lấy các thông tin cơ bản như full_name, email, phone, và avatar
+   .
+   Bảng doctors: Lưu trữ dữ liệu chuyên sâu gồm: id (PK), user_id (FK), biography (giới thiệu), qualifications (bằng cấp), experience (kinh nghiệm), và memberships (thành viên các hiệp hội y khoa)
+   .
+   Bảng doctor_specialties: Bảng trung gian liên kết bác sĩ với một hoặc nhiều chuyên khoa cụ thể (ví dụ: Sản khoa & Phụ khoa)
+   .
+   Bảng doctor_hospitals: Liên kết bác sĩ với các cơ sở y tế mà họ đang công tác trong hệ thống
+   .
+
+   Phân hệ: Bác sĩ
+
+2. Chức năng: Quản lý lịch làm việc và Khung giờ khám (Schedules & Slots)
+   Mô tả chi tiết: Đây là công cụ cho phép bác sĩ chủ động thiết lập và kiểm soát thời gian biểu cá nhân trên hệ thống
+   . Chức năng này đóng vai trò quyết định trong việc hiển thị các lựa chọn cho bệnh nhân ở phía giao diện đặt lịch, đảm bảo rằng bác sĩ chỉ nhận bệnh nhân vào những lúc thực sự sẵn sàng và không bị quá tải công việc
+   .
+   Cách hoạt động:
+   Đăng ký ca rảnh: Bác sĩ chọn các ngày cụ thể trong tuần và phân bổ các khung giờ (slots) làm việc (ví dụ: ca sáng từ 08:00 - 11:00, ca chiều từ 13:30 - 16:30)
+   .
+   Thiết lập giới hạn bệnh nhân: Với mỗi khung giờ, bác sĩ cài đặt số lượng bệnh nhân tối đa có thể tiếp nhận
+   . Điều này giúp duy trì chất lượng khám chữa bệnh theo tiêu chuẩn quốc tế, tránh tình trạng bệnh nhân phải chờ đợi quá lâu
+   .
+   Quản lý ngày nghỉ: Bác sĩ có thể đánh dấu các ngày nghỉ lễ, ngày đi công tác hoặc các khung giờ bận đột xuất để hệ thống tự động khóa lịch, ngăn chặn bệnh nhân đặt vào những thời điểm đó
+   .
+   Xem lịch tổng quan: Hệ thống cung cấp giao diện lịch biểu (Calendar) theo tuần hoặc tháng để bác sĩ dễ dàng theo dõi và điều chỉnh kế hoạch làm việc lâu dài
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng doctor_schedules: Lưu trữ thông tin cơ bản về ngày làm việc bao gồm: id (PK), doctor_id (FK), và date
+   .
+   Bảng slots: Quản lý chi tiết các khung giờ trong một ngày: id (PK), schedule_id (FK), start_time, end_time, max_patients (giới hạn tối đa), và current_patients (biến đếm số người đã đặt để đối chiếu)
+   .
+   Logic xử lý: Hệ thống cần một bộ lọc để chỉ hiển thị những slots có current_patients nhỏ hơn max_patients lên giao diện người dùng
+   .
+
+3. Chức năng: Quản lý lịch hẹn (Xác nhận/Từ chối và Xem thông tin bệnh nhân)
+   Mô tả chi tiết: Đây là chức năng tác nghiệp hàng ngày quan trọng nhất của bác sĩ. Nó đóng vai trò như một bộ lọc thông minh giúp bác sĩ kiểm soát danh sách bệnh nhân sẽ khám, chủ động chuẩn bị kiến thức chuyên môn dựa trên hồ sơ có sẵn và quản lý trạng thái của từng buổi khám thực tế
+   . Chức năng này đảm bảo sự khớp nối thông tin hai chiều giữa bác sĩ và bệnh nhân một cách minh bạch
+   .
+   Cách hoạt động:
+   Tiếp nhận yêu cầu: Khi bệnh nhân thực hiện đặt lịch thành công, hệ thống gửi thông báo tức thời đến bác sĩ. Lịch hẹn mới này sẽ xuất hiện trong danh sách "Chờ xác nhận" (Pending)
+   .
+   Xem trước hồ sơ bệnh nhân: Trước khi quyết định, bác sĩ có thể nhấn vào chi tiết lịch hẹn để xem hồ sơ y tế của người đi khám (bao gồm: tên, tuổi, nhóm máu, tiền sử dị ứng, bệnh nền và các ảnh chụp kết quả khám cũ nếu có)
+   .
+   Phê duyệt lịch hẹn: Bác sĩ chọn "Xác nhận" để chấp nhận ca khám hoặc "Từ chối" kèm theo lý do cụ thể (ví dụ: trùng lịch hội chẩn đột xuất hoặc ca mổ khẩn cấp)
+   .
+   Quản lý trong buổi khám: Tại thời điểm khám, bác sĩ cập nhật trạng thái lịch hẹn sang "Đang khám" và sau khi kết thúc sẽ đánh dấu "Hoàn thành". Trường hợp bất khả kháng, bác sĩ có thể thực hiện "Hủy lịch" kèm lý do giải thích cho bệnh nhân
+   .
+   Thông báo phản hồi: Mọi thay đổi trạng thái từ phía bác sĩ đều tự động kích hoạt hệ thống thông báo gửi đến tài khoản của bệnh nhân để họ kịp thời nắm bắt
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng appointments: Lưu trữ các trường dữ liệu nòng cốt: id (PK), status (trạng thái: chờ xác nhận, đã xác nhận, hoàn thành, đã hủy), và reason_cancel (lý do từ chối hoặc hủy lịch)
+   .
+   Liên kết hồ sơ: Cần quyền truy cập đọc (Read) dữ liệu từ các bảng members và medical_records của bệnh nhân đó để bác sĩ xem trước thông tin chuyên môn
+   .
+   Dịch vụ thông báo: Sử dụng Firebase FCM để đẩy thông báo đến thiết bị và Nodemailer để gửi email cập nhật trạng thái cho bệnh nhân ngay khi bác sĩ thực hiện thao tác
+   .
+
+4. Chức năng: Hồ sơ sau khám & Kê đơn thuốc điện tử
+   Mô tả chi tiết: Đây là chức năng hoàn thiện quy trình khám chữa bệnh, giúp bác sĩ chuyển hóa kết quả thăm khám thực tế thành dữ liệu số
+   . Thay vì viết tay, bác sĩ sẽ ghi lại chẩn đoán, lời dặn và đặc biệt là kê đơn thuốc ngay trên hệ thống. Chức năng này đảm bảo tính chính xác, dễ đọc của đơn thuốc và là cơ sở để hệ thống tự động tạo các nhắc nhở uống thuốc cho bệnh nhân
+   .
+   Cách hoạt động:
+   Ghi nhận chẩn đoán: Sau khi buổi khám kết thúc (tại viện, tại nhà hoặc qua video), bác sĩ nhập chẩn đoán xác định và các ghi chú chuyên môn vào form kết quả
+   .
+   Kê đơn thuốc điện tử: Bác sĩ chọn thuốc từ danh mục, nhập liều lượng (ví dụ: 1 viên/lần), tần suất (ví dụ: 2 lần/ngày) và thời gian uống cụ thể (sáng/trưa/tối)
+   .
+   Lời dặn & Tái khám: Bác sĩ ghi chú hướng dẫn điều trị chi tiết và đề xuất ngày tái khám nếu cần thiết
+   .
+   Tự động đồng bộ: Ngay khi bác sĩ nhấn "Hoàn thành", dữ liệu này sẽ tự động được lưu vào Hồ sơ khám bệnh của bệnh nhân và kích hoạt chuỗi nhắc uống thuốc trên ứng dụng của họ
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng examination_results: Lưu trữ appointment_id (FK), diagnosis (Chẩn đoán), và notes (Ghi chú/Lời dặn)
+   .
+   Bảng prescriptions & prescription_items: Lưu thông tin đơn thuốc và chi tiết từng loại thuốc (tên thuốc, liều dùng, khung giờ uống)
+   .
+   Bảng medical_records: Để hệ thống tự động tạo một bản ghi lịch sử khám mới cho bệnh nhân dựa trên kết quả này
+   .
+   Logic kết nối: Chuỗi quan hệ appointments → examination_results → prescriptions → reminders phải được thiết lập chặt chẽ để dữ liệu chảy suốt từ lúc khám đến khi nhắc thuốc
+   .
+
+5. Chức năng: Thống kê cá nhân và Quản lý phản hồi
+   Mô tả chi tiết: Chức năng này cung cấp một cái nhìn tổng thể về hiệu suất làm việc của bác sĩ trong một khoảng thời gian nhất định (tháng/quý). Nó không chỉ là các con số khô khan mà còn là nơi bác sĩ tiếp nhận những đánh giá trực tiếp từ bệnh nhân, từ đó có cơ sở để cải thiện thái độ phục vụ và quy trình chuyên môn
+   .
+   Cách hoạt động:
+   Tổng hợp dữ liệu: Hệ thống tự động thu thập số lượng lịch hẹn từ bảng dữ liệu và phân loại theo trạng thái (hoàn thành, bệnh nhân hủy, bác sĩ hủy)
+   .
+   Trực quan hóa bằng biểu đồ: Sử dụng thư viện @ant-design/charts để hiển thị biểu đồ tăng trưởng bệnh nhân hoặc tỷ lệ hoàn thành công việc ngay trên bảng điều khiển (Dashboard) của bác sĩ
+   .
+   Quản lý danh sách bệnh nhân: Bác sĩ có thể xem lại danh sách tất cả bệnh nhân mình đã từng thăm khám để tiện cho việc theo dõi tiến triển bệnh lý lâu dài
+   .
+   Tiếp nhận phản hồi: Các đánh giá (số sao) và nhận xét (comment) của bệnh nhân sau mỗi ca khám sẽ được hiển thị minh bạch. Bác sĩ dựa vào đây để hiểu được cảm nhận của khách hàng về dịch vụ của mình
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng appointments: Để đếm số ca khám dựa trên doctor_id và status
+   .
+   Bảng reviews: Lưu trữ các trường: id (PK), appointment_id (FK), rating (số sao từ 1-5), và comment (nội dung nhận xét)
+   .
+   Thư viện Frontend: Cần tích hợp @ant-design/charts để xử lý hiển thị biểu đồ từ dữ liệu JSON trả về từ API
+   .

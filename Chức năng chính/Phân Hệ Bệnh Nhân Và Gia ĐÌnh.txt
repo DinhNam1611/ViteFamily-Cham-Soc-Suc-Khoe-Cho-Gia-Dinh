@@ -1,0 +1,171 @@
+Phân hệ: Bệnh nhân & Gia đình
+
+1. Chức năng: Xác thực & Quản lý Tài khoản cá nhân
+   Mô tả chi tiết: Đây là "cửa ngõ" đầu tiên giúp định danh người dùng trên hệ thống ViteFamily
+   . Chức năng này không chỉ đơn thuần là bảo mật mà còn giúp cá nhân hóa toàn bộ trải nghiệm y tế của người dùng, đảm bảo các thông tin nhạy cảm như hồ sơ khám bệnh và đơn thuốc được bảo vệ và chỉ truy cập bởi đúng chủ sở hữu
+   .
+   Cách hoạt động:
+   Đăng ký/Đăng nhập: Người dùng tạo tài khoản bằng Email. Mật khẩu sẽ được mã hóa bằng công nghệ bcryptjs trước khi lưu vào cơ sở dữ liệu để đảm bảo an toàn
+   .
+   Cấp quyền: Sau khi đăng nhập thành công, hệ thống sử dụng JSON Web Token (JWT) để duy trì phiên làm việc, cho phép người dùng truy cập vào các vùng dữ liệu riêng tư mà không cần đăng nhập lại nhiều lần
+   .
+   Quản lý thông tin: Người dùng có thể tự cập nhật các thông tin định danh như họ tên, số điện thoại và ảnh đại diện (avatar) để bác sĩ dễ dàng nhận diện khi khám bệnh
+   .
+   Khôi phục mật khẩu: Nếu quên mật khẩu, người dùng yêu cầu đặt lại. Hệ thống sẽ sử dụng Nodemailer để gửi một mã xác nhận hoặc đường dẫn thay đổi mật khẩu qua email
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng users: Lưu trữ các trường dữ liệu cốt lõi bao gồm: id (khóa chính), email (duy nhất), password (chuỗi đã mã hóa), full_name, phone, avatar, và status (để Admin có thể khóa/mở tài khoản)
+   .
+   Bảng roles: Để phân biệt người dùng này là khách hàng (Patient) chứ không phải Bác sĩ hay Admin
+   .
+   Dữ liệu cấu hình Email: Thông tin máy chủ Gmail SMTP để gửi các thông báo xác thực và khôi phục mật khẩu
+   .
+
+2. Chức năng: Quản lý hồ sơ gia đình (Family Profile Management)
+   Mô tả chi tiết: Chức năng này cho phép một tài khoản người dùng chính (chủ gia đình) tạo và quản lý hồ sơ sức khỏe cho nhiều thành viên khác nhau trong gia đình (như vợ/chồng, con cái, bố mẹ)
+   . Đây là điểm khác biệt lớn nhất của ViteFamily, giúp tập trung hóa mọi thông tin y tế của cả nhà vào một nơi duy nhất thay vì mỗi người phải tự quản lý rời rạc
+   .
+   Cách hoạt động:
+   Tạo nhóm gia đình: Sau khi đăng ký tài khoản, người dùng khởi tạo một "Nhóm gia đình"
+   .
+   Thêm thành viên: Người dùng thêm từng thành viên vào nhóm. Với mỗi thành viên, người dùng sẽ nhập các thông tin định danh và đặc điểm sinh học riêng biệt
+   .
+   Lưu trữ đặc điểm sức khỏe: Các thông tin quan trọng như nhóm máu, tiền sử dị ứng, và các bệnh lý nền được ghi nhận ngay từ đầu
+   .
+   Phân loại đối tượng: Dựa trên ngày sinh và giới tính, hệ thống sẽ hỗ trợ gợi ý các gói chăm sóc phù hợp theo tiêu chuẩn HFH, ví dụ như gói H PLUS Kidcare cho trẻ em hoặc H PLUS Baby Care cho trẻ sơ sinh
+   .
+   Cập nhật & Chỉnh sửa: Chủ gia đình có toàn quyền cập nhật thông tin hoặc xóa hồ sơ thành viên khi cần thiết.
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng families: Lưu trữ thông tin về nhóm gia đình, bao gồm: id (PK), user_id (FK - liên kết với người tạo), và family_name
+   .
+   Bảng members: Đây là bảng dữ liệu quan trọng nhất, chứa các trường:
+   id (PK), family_id (FK - liên kết với nhóm gia đình).
+   full_name (Họ tên thành viên).
+   dob (Ngày sinh - dùng để tính tuổi và gợi ý gói khám).
+   gender (Giới tính).
+   Thông tin y tế nền: blood_type (Nhóm máu), allergy (Dị ứng), medical_history (Các bệnh mãn tính hoặc tiền sử bệnh lý)
+   .
+   Mối quan hệ: Một tài khoản users có thể quản lý một families, và một families có thể chứa nhiều members
+   .
+
+3. Chức năng: Hồ sơ khám bệnh và Tải lên tập tin y tế
+   Mô tả chi tiết: Đây là chức năng cho phép người dùng tự xây dựng một "nhật ký sức khỏe" điện tử cho bản thân và người thân
+   . Thay vì chỉ lưu trữ các chỉ số máy móc khô khan, chức năng này tập trung vào tính thực tế bằng cách cho phép ghi chép tự do và lưu trữ hình ảnh thực tế của các loại giấy tờ y tế
+   .
+   Cách hoạt động:
+   Ghi nhận thông tin khám: Sau mỗi lần đi khám tại bệnh viện (ví dụ như tại HFH), người dùng chọn thành viên gia đình tương ứng và nhập các thông tin cơ bản: Ngày khám, tên bệnh viện, tên bác sĩ, lý do khám và kết luận/chẩn đoán của bác sĩ
+   .
+   Số hóa tài liệu: Người dùng sử dụng điện thoại để chụp ảnh hoặc tải lên các tập tin (PDF/Ảnh) của giấy khám, kết quả xét nghiệm, đơn thuốc hoặc phim chụp
+   .
+   Lưu trữ đám mây: Các tập tin này được đẩy lên hệ thống Cloudinary để tối ưu dung lượng lưu trữ và đảm bảo tốc độ truy cập nhanh chóng, an toàn
+   .
+   Tra cứu: Người dùng có thể xem lại toàn bộ lịch sử khám theo dòng thời gian, giúp dễ dàng theo dõi diễn biến bệnh lý khi đi tái khám hoặc tư vấn với chuyên gia khác
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng medical_records (Hồ sơ y tế): Lưu trữ các thông tin văn bản bao gồm: id (PK), member_id (FK), visit_date (Ngày khám), hospital_name, doctor_name, reason (Lý do khám), diagnosis (Chẩn đoán), và notes (Ghi chú tự do)
+   .
+   Bảng medical_files (Tập tin y tế): Quản lý các tệp đính kèm gồm: id (PK), medical_record_id (FK), file_url (Đường dẫn từ Cloudinary), và file_type (định dạng ảnh hoặc PDF)
+   .
+   Dịch vụ Cloudinary: Cần API Key và thông tin cấu hình để thực hiện việc upload và quản lý tệp tin trực tuyến
+   .
+
+4. Chức năng: Quản lý đơn thuốc & Nhắc uống thuốc tự động
+   Mô tả chi tiết: Chức năng này giúp chuyển đổi các đơn thuốc giấy truyền thống thành một hệ thống quản lý số thông minh
+   . Nó đảm bảo người bệnh uống thuốc đúng giờ, đúng liều lượng thông qua các thông báo nhắc nhở tự động, giảm thiểu rủi ro quên thuốc hoặc uống sai hướng dẫn
+   .
+   Cách hoạt động:
+   Nhập dữ liệu đơn thuốc: Người dùng có thể tự nhập thông tin từ đơn thuốc giấy hoặc hệ thống tự động đồng bộ khi bác sĩ thực hiện kê đơn thuốc điện tử sau buổi khám
+   .
+   Thiết lập lịch uống: Với mỗi loại thuốc, người dùng ghi chú liều lượng, số lần uống trong ngày và lựa chọn khung giờ cụ thể (Sáng/Trưa/Chiều/Tối) cùng ngày bắt đầu và kết thúc
+   .
+   Kích hoạt nhắc nhở: Hệ thống sử dụng công cụ lập lịch tự động (node-cron) để quét cơ sở dữ liệu định kỳ
+   . Khi đến giờ uống thuốc, hệ thống sẽ tự động kích hoạt thông báo
+   .
+   Gửi thông báo đa kênh: Thông báo nhắc nhở được gửi đồng thời qua Push Notification trên trình duyệt (thông qua Firebase FCM) và Email (thông qua Nodemailer) đến tài khoản của chủ gia đình
+   .
+   Theo dõi trạng thái: Người dùng có thể đánh dấu "Đã uống" để theo dõi lịch sử tuân thủ thuốc của thành viên trong gia đình
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng prescriptions (Đơn thuốc): Lưu thông tin chung như id (PK), medical_record_id (FK), doctor_id (nếu có), ngày kê đơn và lời dặn chung
+   .
+   Bảng prescription_items (Chi tiết thuốc): Lưu chi tiết từng loại thuốc gồm: medicine_name, dosage (liều lượng), frequency (tần suất), start_date, end_date
+   .
+   Bảng reminders (Nhắc nhở): Quản lý trạng thái nhắc nhở cho từng khung giờ: prescription_item_id (FK), remind_time (giờ nhắc), và status (đã nhắc/chưa nhắc/đã uống)
+   .
+   Dịch vụ ngoài: Tài khoản Gmail SMTP để gửi email và cấu hình Firebase Cloud Messaging để đẩy thông báo lên thiết b
+
+5. Chức năng: Đặt lịch khám đa phương thức (Tại viện, Tại nhà, Tư vấn video)
+   Mô tả chi tiết: Đây là chức năng cho phép người dùng chủ động sắp xếp kế hoạch chăm sóc sức khỏe cho bản thân và gia đình thông qua ba hình thức linh hoạt: Khám trực tiếp tại bệnh viện (theo tiêu chuẩn HFH), khám tại nhà (cho các gói dịch vụ tận nơi), hoặc tư vấn trực tuyến qua video
+   . Đặc biệt, chức năng này cho phép chọn người đi khám từ danh sách thành viên gia đình hoặc nhập thông tin cho người thân khác (khách) ngay tại form đặt lịch.
+   Cách hoạt động:
+   Lựa chọn hình thức: Người dùng chọn một trong ba phương thức (Tại viện/Tại nhà/Video).
+   Chọn đối tượng đi khám: Người dùng chọn thành viên trong gia đình (đã lưu ở mục 2) hoặc chọn "Đặt cho người thân khác" và nhập thông tin định danh nhanh (họ tên, năm sinh, số điện thoại).
+   Lọc dịch vụ & Bác sĩ:
+   Tại viện: Chọn chuyên khoa (như Nhi khoa, Sản phụ khoa, Tai - Mũi - Họng theo danh mục HFH)
+   và bác sĩ mong muốn.
+   Tại nhà: Chọn các gói dịch vụ cụ thể (như lấy mẫu xét nghiệm, chăm sóc sau sinh)
+   .
+   Chọn khung giờ: Hệ thống hiển thị các ca làm việc còn trống của bác sĩ dựa trên dữ liệu từ bảng doctor_schedules
+   .
+   Xác nhận: Người dùng nhập lý do khám và gửi yêu cầu. Hệ thống ghi nhận trạng thái ban đầu là "Chờ xác nhận" (Pending)
+   .
+   Thông báo: Một email xác nhận thông tin đặt lịch được gửi tự động qua Nodemailer
+   .
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng appointments (Lịch hẹn): Lưu trữ thông tin chi tiết bao gồm: id (PK), user_id (người đặt), member_id (người khám - FK từ bảng members), doctor_id (FK), hospital_id (nếu khám tại viện), appointment_type (Tại viện/Tại nhà/Video), date, time_slot, reason, và status (pending/confirmed/completed/cancelled)
+   .
+   Bảng doctor_schedules & slots: Để quản lý các ca làm việc và giới hạn số lượng bệnh nhân tối đa cho mỗi ca
+   .
+   Trường dữ liệu cho "Khách": Các trường bổ sung như guest_name, guest_phone trong bảng appointments nếu không muốn lưu khách thành một member cố định.
+   Danh mục nền: Dữ liệu từ bảng specialties (Chuyên khoa) và hospitals (Bệnh viện) để người dùng lựa chọn
+   .
+
+6. Chức năng: AI Chatbot tư vấn sức khỏe (Gemini AI) (lưu ý đây là chức năng phụ nếu làm xong chức năng chính mới hướng đến nên cứ để đây không cần quan tâm vội
+   )
+   Mô tả chi tiết: Đây là một "trợ lý ảo" thông minh hoạt động 24/7, đóng vai trò là điểm tiếp xúc đầu tiên khi người dùng có những thắc mắc về sức khỏe hoặc triệu chứng bất thường
+   . Thay vì phải tự tìm kiếm thông tin không kiểm chứng trên mạng, người dùng có thể trò chuyện trực tiếp với AI để nhận được những tư vấn sơ bộ dựa trên kiến thức y khoa hiện đại
+   .
+   Cách hoạt động:
+   Tiếp nhận câu hỏi: Người dùng nhập các thắc mắc về sức khỏe (ví dụ: "Bé bị sốt 38 độ kèm ho thì nên làm gì?") vào giao diện trò chuyện
+   .
+   Xử lý ngôn ngữ: Hệ thống gửi câu hỏi này cùng với ngữ cảnh y tế đến Gemini API để xử lý
+   .
+   Phản hồi thông minh: AI phân tích và đưa ra câu trả lời bằng tiếng Việt một cách tự nhiên
+   . Nếu phát hiện các dấu hiệu nguy hiểm, AI sẽ tự động đưa ra khuyến cáo người dùng nên đặt lịch khám ngay với bác sĩ chuyên khoa
+   .
+   Lưu trữ hội thoại: Toàn bộ lịch sử trò chuyện được lưu lại theo từng phiên (session)
+   . Điều này giúp người dùng có thể xem lại lời khuyên của AI sau này hoặc cung cấp cho bác sĩ làm thông tin tham khảo khi đi khám thực tế.
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng chat_sessions: Quản lý các phiên trò chuyện, bao gồm: id (PK), user_id (FK), và start_time
+   .
+   Bảng chat_messages: Lưu chi tiết từng tin nhắn: id (PK), session_id (FK), sender_role (user hoặc ai), content (nội dung tin nhắn), và timestamp
+   .
+   Dịch vụ ngoài: Gemini API Key được cấu hình trong Backend để thực hiện việc gửi và nhận dữ liệu từ mô hình AI
+   .
+   Ngôn ngữ lập trình: Sử dụng thư viện @google/generative-ai phía Backend (Node.js) để kết nối với API
+   .
+
+7. Chức năng: Hệ thống Thông báo & Nhắc lịch tập trung
+   Mô tả chi tiết: Đây là nơi tập hợp tất cả các tương tác chủ động từ hệ thống đến người dùng
+   . Thay vì phải kiểm tra từng mục riêng lẻ, chức năng này cung cấp một danh sách tổng thể các sự kiện quan trọng như nhắc uống thuốc, nhắc lịch khám sắp tới, hoặc thông báo khi bác sĩ đã xác nhận/hủy lịch hẹn
+   . Nó đóng vai trò như một thư ký riêng giúp đảm bảo tính tuân thủ và kịp thời trong quá trình chăm sóc sức khỏe gia đình.
+   Cách hoạt động:
+   Thu thập sự kiện: Hệ thống tự động tạo thông báo khi có các sự kiện phát sinh:
+   Từ lịch nhắc thuốc (theo giờ đã cài đặt)
+   .
+   Từ hệ thống đặt lịch (khi bác sĩ xác nhận/từ chối hoặc nhắc lịch trước 1 ngày khám)
+   .
+   Từ Admin (thông báo cập nhật hệ thống hoặc tin tức y tế mới)
+   .
+   Đẩy thông báo đa kênh: Thông báo được gửi đồng thời qua Push Notification trên trình duyệt để người dùng thấy ngay lập tức và lưu lại trong danh sách thông báo nội bộ của ứng dụng
+   .
+   Quản lý trạng thái: Người dùng nhấn vào thông báo để xem chi tiết hoặc đánh dấu "Đã đọc" để làm gọn danh sách
+   .
+   Điều hướng nhanh: Khi nhấn vào một thông báo cụ thể (ví dụ: nhắc lịch khám), hệ thống sẽ tự động chuyển hướng người dùng đến trang chi tiết lịch hẹn đó để xem hướng dẫn hoặc chuẩn bị hồ sơ.
+   Dữ liệu cần thiết để chức năng hoạt động:
+   Bảng notifications: Lưu trữ các trường dữ liệu: id (PK), user_id (FK - người nhận), title (Tiêu đề), content (Nội dung chi tiết), type (Loại thông báo: nhắc thuốc/lịch hẹn/hệ thống), is_read (Trạng thái đã đọc/chưa đọc), và created_at (Thời gian gửi)
+   .
+   Công cụ Firebase Cloud Messaging (FCM): Cần lưu trữ FCM Token của trình duyệt người dùng để gửi thông báo đẩy (Push)
+   .
+   Logic lập trình: Sử dụng node-cron ở Backend để quét các mốc thời gian nhắc nhở và tự động tạo bản ghi vào bảng thông báo
+   .
