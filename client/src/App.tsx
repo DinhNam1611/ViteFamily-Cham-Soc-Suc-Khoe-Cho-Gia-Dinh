@@ -16,6 +16,11 @@ import AskExpert from './pages/Contact/AskExpert';
 import WorkWithUs from './pages/Contact/WorkWithUs';
 import Specialties from './pages/Specialties/Specialties';
 import SpecialtyDetail from './pages/SpecialtyDetail/SpecialtyDetail';
+import News from './pages/News/News';
+import NewsDetail from './pages/News/NewsDetail';
+import Profile from './pages/Profile/Profile';
+import FamilyProfile from './pages/FamilyProfile/FamilyProfile';
+import TestResults from './pages/TestResults/TestResults';
 
 const App = () => {
   return (
@@ -31,6 +36,8 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/doctors/:slug" element={<DoctorProfile />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
           <Route path="/help" element={<CustomerGuide />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -46,6 +53,32 @@ const App = () => {
           />
           <Route path="/contact/hoi-chuyen-gia" element={<AskExpert />} />
           <Route path="/contact/lam-viec-tai-vf" element={<WorkWithUs />} />
+
+          {/* Protected — yêu cầu đăng nhập */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ho-so-gia-dinh"
+            element={
+              <ProtectedRoute>
+                <FamilyProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ket-qua-xet-nghiem"
+            element={
+              <ProtectedRoute>
+                <TestResults />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

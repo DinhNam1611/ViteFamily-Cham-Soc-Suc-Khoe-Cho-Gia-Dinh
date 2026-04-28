@@ -117,3 +117,58 @@ export interface AuthResponse {
   token: string;
   user: User;
 }
+
+export interface UpdateProfilePayload {
+  fullName: string;
+  phone?: string;
+}
+
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+}
+
+// ─── Family ──────────────────────────────────────────────────────────────────
+
+export interface FamilyMember {
+  id: number;
+  familyId: number;
+  fullName: string;
+  dob: string;
+  gender: 'male' | 'female' | 'other';
+  bloodType?: string;
+  allergy?: string;
+  medicalHistory?: string;
+  relationship: string;
+}
+
+export interface Family {
+  id: number;
+  userId: number;
+  familyName: string;
+  members: FamilyMember[];
+}
+
+export type FamilyMemberPayload = Omit<FamilyMember, 'id' | 'familyId'>;
+
+// ─── Medical Records ─────────────────────────────────────────────────────────
+
+export interface MedicalFile {
+  id: number;
+  fileUrl: string;
+  fileType: 'image' | 'pdf';
+  fileName: string;
+}
+
+export interface MedicalRecord {
+  id: number;
+  memberId: number;
+  memberName: string;
+  visitDate: string;
+  hospitalName: string;
+  doctorName: string;
+  reason: string;
+  diagnosis?: string;
+  notes?: string;
+  files: MedicalFile[];
+}

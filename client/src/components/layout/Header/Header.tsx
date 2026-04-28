@@ -17,8 +17,17 @@ import {
   SearchOutlined,
   ExperimentOutlined,
   FileSearchOutlined,
+  ReadOutlined,
+  FileTextOutlined,
+  CreditCardOutlined,
+  SafetyOutlined,
+  MedicineBoxOutlined,
+  ScanOutlined,
+  VideoCameraOutlined,
+  HomeOutlined,
+  HeartOutlined,
 } from '@ant-design/icons';
-import { NAV_ITEMS, CONTACT_INFO, SPECIALTY_GROUPS } from '../../../data/constants';
+import { NAV_ITEMS, CONTACT_INFO, SPECIALTY_GROUPS, PATIENT_GUIDE_DROPDOWN, SERVICES_DROPDOWN, NEWS_CATEGORIES } from '../../../data/constants';
 import { useAuth } from '../../../context/AuthContext';
 import styles from './Header.module.css';
 
@@ -28,6 +37,23 @@ const CONTACT_DROPDOWN = [
   { label: 'Làm việc tại VF', path: '/contact/lam-viec-tai-vf', icon: <TeamOutlined /> },
 ];
 
+const GUIDE_ICON_MAP: Record<string, React.ReactNode> = {
+  calendar: <CalendarOutlined />,
+  'file-text': <FileTextOutlined />,
+  'credit-card': <CreditCardOutlined />,
+  question: <QuestionCircleOutlined />,
+  safety: <SafetyOutlined />,
+};
+
+const SERVICE_ICON_MAP: Record<string, React.ReactNode> = {
+  medicine: <MedicineBoxOutlined />,
+  experiment: <ExperimentOutlined />,
+  scan: <ScanOutlined />,
+  video: <VideoCameraOutlined />,
+  home: <HomeOutlined />,
+  heart: <HeartOutlined />,
+};
+
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -35,10 +61,19 @@ const Header = () => {
   const [mobileContactOpen, setMobileContactOpen] = useState(false);
   const [specialtyOpen, setSpecialtyOpen] = useState(false);
   const [mobileSpecialtyOpen, setMobileSpecialtyOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
+  const [mobileGuideOpen, setMobileGuideOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [newsOpen, setNewsOpen] = useState(false);
+  const [mobileNewsOpen, setMobileNewsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const specialtyDropdownRef = useRef<HTMLDivElement>(null);
+  const guideDropdownRef = useRef<HTMLDivElement>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const newsDropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<InputRef>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -57,6 +92,15 @@ const Header = () => {
       }
       if (specialtyDropdownRef.current && !specialtyDropdownRef.current.contains(e.target as Node)) {
         setSpecialtyOpen(false);
+      }
+      if (guideDropdownRef.current && !guideDropdownRef.current.contains(e.target as Node)) {
+        setGuideOpen(false);
+      }
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+      if (newsDropdownRef.current && !newsDropdownRef.current.contains(e.target as Node)) {
+        setNewsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -84,6 +128,9 @@ const Header = () => {
 
   const isContactActive = location.pathname.startsWith('/contact');
   const isSpecialtyActive = location.pathname.startsWith('/specialties');
+  const isGuideActive = location.pathname.startsWith('/help');
+  const isServicesActive = location.pathname.startsWith('/services');
+  const isNewsActive = location.pathname.startsWith('/news');
 
   const handleLogout = () => {
     logout();
@@ -105,7 +152,7 @@ const Header = () => {
     if (!isAuthenticated) {
       navigate('/login', { state: { from: { pathname: '/ket-qua-xet-nghiem' } } });
     } else {
-      message.info('Tính năng kết quả xét nghiệm đang được phát triển');
+      navigate('/ket-qua-xet-nghiem');
     }
   };
 
@@ -126,6 +173,12 @@ const Header = () => {
       icon: <UserOutlined />,
       label: 'Hồ sơ của tôi',
       onClick: () => navigate('/profile'),
+    },
+    {
+      key: 'family',
+      icon: <TeamOutlined />,
+      label: 'Hồ sơ gia đình',
+      onClick: () => navigate('/ho-so-gia-dinh'),
     },
     {
       key: 'lab',
@@ -309,6 +362,110 @@ const Header = () => {
                   </div>
                 )}
               </div>
+            ) : item.label === 'Hướng dẫn bệnh nhân' ? (
+              <div
+                key={item.path}
+                className={styles.dropdownWrapper}
+                ref={guideDropdownRef}
+                onMouseEnter={() => setGuideOpen(true)}
+                onMouseLeave={() => setGuideOpen(false)}
+              >
+                <button
+                  className={`${styles.navLink} ${styles.dropdownTrigger} ${isGuideActive ? styles.active : ''}`}
+                  onClick={() => setGuideOpen((v) => !v)}
+                  aria-expanded={guideOpen}
+                  aria-haspopup="true"
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${guideOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {guideOpen && (
+                  <div className={styles.dropdown}>
+                    <div className={styles.dropdownInner}>
+                      {PATIENT_GUIDE_DROPDOWN.map((sub) => (
+                        <Link
+                          key={sub.path}
+                          to={sub.path}
+                          className={`${styles.dropdownItem} ${location.pathname === sub.path ? styles.dropdownItemActive : ''}`}
+                          onClick={() => setGuideOpen(false)}
+                        >
+                          <span className={styles.dropdownIcon}>{GUIDE_ICON_MAP[sub.icon]}</span>
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : item.label === 'Dịch vụ' ? (
+              <div
+                key={item.path}
+                className={styles.dropdownWrapper}
+                ref={servicesDropdownRef}
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <button
+                  className={`${styles.navLink} ${styles.dropdownTrigger} ${isServicesActive ? styles.active : ''}`}
+                  onClick={() => setServicesOpen((v) => !v)}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="true"
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${servicesOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {servicesOpen && (
+                  <div className={styles.dropdown}>
+                    <div className={styles.dropdownInner}>
+                      {SERVICES_DROPDOWN.map((sub) => (
+                        <Link
+                          key={sub.path}
+                          to={sub.path}
+                          className={`${styles.dropdownItem} ${location.pathname === sub.path ? styles.dropdownItemActive : ''}`}
+                          onClick={() => setServicesOpen(false)}
+                        >
+                          <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : item.label === 'Tin tức' ? (
+              <div
+                key={item.path}
+                className={styles.dropdownWrapper}
+                ref={newsDropdownRef}
+                onMouseEnter={() => setNewsOpen(true)}
+                onMouseLeave={() => setNewsOpen(false)}
+              >
+                <button
+                  className={`${styles.navLink} ${styles.dropdownTrigger} ${isNewsActive ? styles.active : ''}`}
+                  onClick={() => setNewsOpen((v) => !v)}
+                  aria-expanded={newsOpen}
+                  aria-haspopup="true"
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${newsOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {newsOpen && (
+                  <div className={styles.dropdown}>
+                    <div className={styles.dropdownInner}>
+                      {NEWS_CATEGORIES.map((cat) => (
+                        <Link
+                          key={cat.slug}
+                          to={cat.path}
+                          className={`${styles.dropdownItem} ${location.search.includes(cat.slug) && isNewsActive ? styles.dropdownItemActive : ''}`}
+                          onClick={() => setNewsOpen(false)}
+                        >
+                          {cat.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : item.label === 'Liên hệ' ? (
               <div
                 key={item.path}
@@ -416,6 +573,80 @@ const Header = () => {
                   </div>
                 )}
               </div>
+            ) : item.label === 'Hướng dẫn bệnh nhân' ? (
+              <div key={item.path}>
+                <button
+                  className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isGuideActive ? styles.active : ''}`}
+                  onClick={() => setMobileGuideOpen((v) => !v)}
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${mobileGuideOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {mobileGuideOpen && (
+                  <div className={styles.drawerSubMenu}>
+                    {PATIENT_GUIDE_DROPDOWN.map((sub) => (
+                      <Link
+                        key={sub.path}
+                        to={sub.path}
+                        className={`${styles.drawerSubLink} ${location.pathname === sub.path ? styles.active : ''}`}
+                        onClick={() => setDrawerOpen(false)}
+                      >
+                        <span className={styles.dropdownIcon}>{GUIDE_ICON_MAP[sub.icon]}</span>
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : item.label === 'Dịch vụ' ? (
+              <div key={item.path}>
+                <button
+                  className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isServicesActive ? styles.active : ''}`}
+                  onClick={() => setMobileServicesOpen((v) => !v)}
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${mobileServicesOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {mobileServicesOpen && (
+                  <div className={styles.drawerSubMenu}>
+                    {SERVICES_DROPDOWN.map((sub) => (
+                      <Link
+                        key={sub.path}
+                        to={sub.path}
+                        className={`${styles.drawerSubLink} ${location.pathname === sub.path ? styles.active : ''}`}
+                        onClick={() => setDrawerOpen(false)}
+                      >
+                        <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : item.label === 'Tin tức' ? (
+              <div key={item.path}>
+                <button
+                  className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isNewsActive ? styles.active : ''}`}
+                  onClick={() => setMobileNewsOpen((v) => !v)}
+                >
+                  {item.label}
+                  <DownOutlined className={`${styles.dropdownArrow} ${mobileNewsOpen ? styles.arrowOpen : ''}`} />
+                </button>
+                {mobileNewsOpen && (
+                  <div className={styles.drawerSubMenu}>
+                    {NEWS_CATEGORIES.map((cat) => (
+                      <Link
+                        key={cat.slug}
+                        to={cat.path}
+                        className={`${styles.drawerSubLink} ${location.search.includes(cat.slug) && isNewsActive ? styles.active : ''}`}
+                        onClick={() => setDrawerOpen(false)}
+                      >
+                        {cat.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : item.label === 'Liên hệ' ? (
               <div key={item.path}>
                 <button
@@ -451,6 +682,26 @@ const Header = () => {
                 {item.label}
               </Link>
             )
+          )}
+
+          {/* Quick links khi đã đăng nhập */}
+          {isAuthenticated && (
+            <>
+              <button
+                className={styles.drawerFeatureBtn}
+                onClick={() => { navigate('/profile'); setDrawerOpen(false); }}
+              >
+                <UserOutlined className={styles.drawerFeatureIcon} />
+                Hồ sơ của tôi
+              </button>
+              <button
+                className={styles.drawerFeatureBtn}
+                onClick={() => { navigate('/ho-so-gia-dinh'); setDrawerOpen(false); }}
+              >
+                <TeamOutlined className={styles.drawerFeatureIcon} />
+                Hồ sơ gia đình
+              </button>
+            </>
           )}
 
           {/* Kết quả xét nghiệm */}

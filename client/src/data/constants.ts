@@ -75,6 +75,77 @@ export const FOOTER_NAV = {
   ],
 } as const;
 
+export const NEWS_CATEGORIES = [
+  { label: 'Sự kiện', slug: 'su-kien', path: '/news?category=su-kien', banner: 'https://picsum.photos/seed/hospital-event/1440/400' },
+  { label: 'Thông tin báo chí', slug: 'bao-chi', path: '/news?category=bao-chi', banner: 'https://picsum.photos/seed/press-medical/1440/400' },
+  { label: 'Tin tức ưu đãi', slug: 'uu-dai', path: '/news?category=uu-dai', banner: 'https://picsum.photos/seed/health-promotion/1440/400' },
+  { label: 'Ca Bệnh Thành Công', slug: 'ca-benh', path: '/news?category=ca-benh', banner: 'https://picsum.photos/seed/success-surgery/1440/400' },
+  { label: 'Cảm Nhận Khách Hàng', slug: 'cam-nhan', path: '/news?category=cam-nhan', banner: 'https://picsum.photos/seed/patient-care/1440/400' },
+  { label: 'Tin tức chuyên môn', slug: 'chuyen-mon', path: '/news?category=chuyen-mon', banner: 'https://picsum.photos/seed/doctor-expert/1440/400' },
+  { label: 'Thư viện ảnh', slug: 'thu-vien', path: '/news?category=thu-vien', banner: 'https://picsum.photos/seed/gallery-clinic/1440/400' },
+] as const;
+
+export const PATIENT_GUIDE_DROPDOWN = [
+  {
+    label: 'Quy trình đặt lịch khám',
+    path: '/help/dat-lich-kham',
+    icon: 'calendar',
+  },
+  {
+    label: 'Quy trình khám bệnh',
+    path: '/help/quy-trinh-kham',
+    icon: 'file-text',
+  },
+  {
+    label: 'Thanh toán & Bảo hiểm',
+    path: '/help/thanh-toan-bao-hiem',
+    icon: 'credit-card',
+  },
+  {
+    label: 'Câu hỏi thường gặp',
+    path: '/help/faq',
+    icon: 'question',
+  },
+  {
+    label: 'Chính sách & Quy định',
+    path: '/help/chinh-sach',
+    icon: 'safety',
+  },
+];
+
+export const SERVICES_DROPDOWN = [
+  {
+    label: 'Khám tổng quát',
+    path: '/services/kham-tong-quat',
+    icon: 'medicine',
+  },
+  {
+    label: 'Xét nghiệm',
+    path: '/services/xet-nghiem',
+    icon: 'experiment',
+  },
+  {
+    label: 'Chẩn đoán hình ảnh',
+    path: '/services/chan-doan-hinh-anh',
+    icon: 'scan',
+  },
+  {
+    label: 'Tư vấn trực tuyến',
+    path: '/services/tu-van-truc-tuyen',
+    icon: 'video',
+  },
+  {
+    label: 'Khám tại nhà',
+    path: '/services/kham-tai-nha',
+    icon: 'home',
+  },
+  {
+    label: 'Gói sức khỏe gia đình',
+    path: '/services/goi-suc-khoe-gia-dinh',
+    icon: 'heart',
+  },
+];
+
 export const CONTACT_INFO = {
   address: "123 Đường Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh",
   phone: "1800 123 456",
