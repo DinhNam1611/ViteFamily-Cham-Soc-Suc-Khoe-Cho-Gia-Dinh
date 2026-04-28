@@ -4,6 +4,11 @@ export interface Specialty {
   icon: string;
   slug: string;
   doctorCount: number;
+  group: 'internal' | 'surgical' | 'support';
+  groupLabel: string;
+  description: string;
+  commonDiseases: string[];
+  staffTypes: string[];
 }
 
 export interface TimelineItem {
@@ -83,4 +88,32 @@ export interface ServicePackage {
   description: string;
   features: string[];
   targetAudience: string;
+}
+
+// ─── Auth ────────────────────────────────────────────────────────────────────
+
+export interface User {
+  id: number;
+  email: string;
+  fullName: string;
+  phone?: string;
+  avatar?: string;
+  role: 'user' | 'doctor' | 'admin';
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export interface RegisterPayload {
+  fullName: string;
+  email: string;
+  phone: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
 }

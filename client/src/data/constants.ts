@@ -10,7 +10,7 @@ export const COLORS = {
 } as const;
 
 export const NAV_ITEMS = [
-  { label: "Trang chủ", path: "/" },
+  { label: "Chuyên khoa", path: "/specialties" },
   { label: "Giới thiệu", path: "/about" },
   { label: "Hướng dẫn bệnh nhân", path: "/help" },
   { label: "Dịch vụ", path: "/services" },
@@ -18,6 +18,47 @@ export const NAV_ITEMS = [
   { label: "Tin tức", path: "/news" },
   { label: "Liên hệ", path: "/contact" },
 ] as const;
+
+export const SPECIALTY_GROUPS = [
+  {
+    label: 'Chuyên khoa nội',
+    path: '/specialties?group=internal',
+    items: [
+      { label: 'Tim Mạch & Can Thiệp', path: '/specialties/tim-mach' },
+      { label: 'Tiêu Hóa & Gan Mật', path: '/specialties/tieu-hoa-gan-mat' },
+      { label: 'Nội Tiết', path: '/specialties/noi-tiet' },
+      { label: 'Nhi & Sơ Sinh', path: '/specialties/nhi-so-sinh' },
+      { label: 'Hô Hấp', path: '/specialties/ho-hap' },
+      { label: 'Thần Kinh Nội', path: '/specialties/than-kinh-noi' },
+      { label: 'Da Liễu', path: '/specialties/da-lieu' },
+      { label: 'Ung Bướu', path: '/specialties/ung-buou' },
+    ],
+  },
+  {
+    label: 'Chuyên khoa ngoại',
+    path: '/specialties?group=surgical',
+    items: [
+      { label: 'Sản & Phụ Khoa', path: '/specialties/san-phu-khoa' },
+      { label: 'Chấn Thương & Chỉnh Hình', path: '/specialties/chan-thuong-chinh-hinh' },
+      { label: 'Tai - Mũi - Họng', path: '/specialties/tai-mui-hong' },
+      { label: 'Mắt', path: '/specialties/mat' },
+      { label: 'Răng - Hàm - Mặt', path: '/specialties/rang-ham-mat' },
+      { label: 'Phẫu Thuật Thần Kinh', path: '/specialties/phau-thuat-than-kinh' },
+      { label: 'Tiết Niệu', path: '/specialties/tiet-nieu' },
+    ],
+  },
+  {
+    label: 'Chuyên khoa hỗ trợ',
+    path: '/specialties?group=support',
+    items: [
+      { label: 'Chẩn Đoán Hình Ảnh', path: '/specialties/chan-doan-hinh-anh' },
+      { label: 'Xét Nghiệm', path: '/specialties/xet-nghiem' },
+      { label: 'Vật Lý Trị Liệu', path: '/specialties/vat-ly-tri-lieu' },
+      { label: 'Dinh Dưỡng', path: '/specialties/dinh-duong' },
+      { label: 'Khoa Dược', path: '/specialties/khoa-duoc' },
+    ],
+  },
+];
 
 export const FOOTER_NAV = {
   services: [
