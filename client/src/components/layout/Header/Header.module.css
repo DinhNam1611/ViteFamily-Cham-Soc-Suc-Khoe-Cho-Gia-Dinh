@@ -328,8 +328,13 @@
 
 .dropdownArrow {
   font-size: 13px; /* 10 × 1.3 */
-  transition: transform 200ms ease;
+  transition: transform 200ms ease, color 200ms ease;
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* Khi nav item đang active (nền trắng), mũi tên đổi sang màu xanh để hiển thị */
+.dropdownTrigger.active .dropdownArrow {
+  color: #0077c8;
 }
 
 .arrowOpen {

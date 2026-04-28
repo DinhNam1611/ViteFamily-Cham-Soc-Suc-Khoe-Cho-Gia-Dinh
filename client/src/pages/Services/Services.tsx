@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from 'antd';
 import { CheckOutlined, CalendarOutlined, RightOutlined } from '@ant-design/icons';
@@ -20,6 +20,15 @@ const CATEGORIES = [
   'Dịch Vụ Số & Hỗ Trợ',
 ];
 
+const CAT_SLUG_MAP: Record<string, string> = {
+  'kham-chuyen-khoa': 'Khám Chuyên Khoa',
+  'goi-kham-tong-quat': 'Gói Khám Tổng Quát',
+  'xet-nghiem': 'Xét Nghiệm & Chẩn Đoán',
+  'tiem-chung': 'Tiêm Chủng & Phòng Ngừa',
+  'phau-thuat': 'Phẫu Thuật & Thủ Thuật',
+  'dich-vu-so': 'Dịch Vụ Số & Hỗ Trợ',
+};
+
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
@@ -32,10 +41,19 @@ const containerVariants = {
 };
 
 const Services = () => {
+  const [searchParams] = useSearchParams();
   const [packages, setPackages] = useState<ServicePackage[]>([]);
-  const [activeCategory, setActiveCategory] = useState('Tất cả');
+  const [activeCategory, setActiveCategory] = useState(() => {
+    const slug = searchParams.get('cat');
+    return slug ? (CAT_SLUG_MAP[slug] ?? 'Tất cả') : 'Tất cả';
+  });
   const [filtered, setFiltered] = useState<ServicePackage[]>([]);
   const { ref: gridRef, isInView: gridInView } = useScrollAnimation();
+
+  useEffect(() => {
+    const slug = searchParams.get('cat');
+    setActiveCategory(slug ? (CAT_SLUG_MAP[slug] ?? 'Tất cả') : 'Tất cả');
+  }, [searchParams]);
 
   useEffect(() => {
     getServicePackages().then((data) => {

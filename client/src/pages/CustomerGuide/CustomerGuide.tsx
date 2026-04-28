@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MedicineBoxOutlined,
@@ -476,7 +477,20 @@ const TAB_CONTENT: Record<TabKey, React.ReactNode> = {
 /* ────────────── Main Page ────────────── */
 
 const CustomerGuide = () => {
-  const [activeTab, setActiveTab] = useState<TabKey>('kham-ngoai-tru');
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState<TabKey>(() => {
+    const tab = searchParams.get('tab');
+    return (tab as TabKey) in TAB_CONTENT ? (tab as TabKey) : 'kham-ngoai-tru';
+  });
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && tab in TAB_CONTENT) {
+      setActiveTab(tab as TabKey);
+    } else {
+      setActiveTab('kham-ngoai-tru');
+    }
+  }, [searchParams]);
 
   return (
     <>

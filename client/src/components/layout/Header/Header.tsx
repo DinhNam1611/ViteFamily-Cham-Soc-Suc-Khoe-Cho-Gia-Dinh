@@ -17,8 +17,6 @@ import {
   SearchOutlined,
   ExperimentOutlined,
   FileSearchOutlined,
-  ReadOutlined,
-  FileTextOutlined,
   CreditCardOutlined,
   SafetyOutlined,
   MedicineBoxOutlined,
@@ -26,6 +24,7 @@ import {
   VideoCameraOutlined,
   HomeOutlined,
   HeartOutlined,
+  StarOutlined,
 } from '@ant-design/icons';
 import { NAV_ITEMS, CONTACT_INFO, SPECIALTY_GROUPS, PATIENT_GUIDE_DROPDOWN, SERVICES_DROPDOWN, NEWS_CATEGORIES } from '../../../data/constants';
 import { useAuth } from '../../../context/AuthContext';
@@ -38,11 +37,11 @@ const CONTACT_DROPDOWN = [
 ];
 
 const GUIDE_ICON_MAP: Record<string, React.ReactNode> = {
-  calendar: <CalendarOutlined />,
-  'file-text': <FileTextOutlined />,
+  medicine: <MedicineBoxOutlined />,
+  home: <HomeOutlined />,
   'credit-card': <CreditCardOutlined />,
-  question: <QuestionCircleOutlined />,
-  safety: <SafetyOutlined />,
+  star: <StarOutlined />,
+  team: <TeamOutlined />,
 };
 
 const SERVICE_ICON_MAP: Record<string, React.ReactNode> = {
@@ -52,6 +51,7 @@ const SERVICE_ICON_MAP: Record<string, React.ReactNode> = {
   video: <VideoCameraOutlined />,
   home: <HomeOutlined />,
   heart: <HeartOutlined />,
+  safety: <SafetyOutlined />,
 };
 
 const Header = () => {
@@ -386,7 +386,7 @@ const Header = () => {
                         <Link
                           key={sub.path}
                           to={sub.path}
-                          className={`${styles.dropdownItem} ${location.pathname === sub.path ? styles.dropdownItemActive : ''}`}
+                          className={`${styles.dropdownItem} ${(location.pathname + location.search) === sub.path ? styles.dropdownItemActive : ''}`}
                           onClick={() => setGuideOpen(false)}
                         >
                           <span className={styles.dropdownIcon}>{GUIDE_ICON_MAP[sub.icon]}</span>
@@ -421,7 +421,7 @@ const Header = () => {
                         <Link
                           key={sub.path}
                           to={sub.path}
-                          className={`${styles.dropdownItem} ${location.pathname === sub.path ? styles.dropdownItemActive : ''}`}
+                          className={`${styles.dropdownItem} ${(location.pathname + location.search) === sub.path ? styles.dropdownItemActive : ''}`}
                           onClick={() => setServicesOpen(false)}
                         >
                           <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>
@@ -613,7 +613,7 @@ const Header = () => {
                       <Link
                         key={sub.path}
                         to={sub.path}
-                        className={`${styles.drawerSubLink} ${location.pathname === sub.path ? styles.active : ''}`}
+                        className={`${styles.drawerSubLink} ${(location.pathname + location.search) === sub.path ? styles.active : ''}`}
                         onClick={() => setDrawerOpen(false)}
                       >
                         <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>

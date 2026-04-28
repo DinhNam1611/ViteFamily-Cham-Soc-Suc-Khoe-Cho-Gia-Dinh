@@ -68,9 +68,9 @@ export const FOOTER_NAV = {
     { label: "Tư vấn trực tuyến", path: "/services/tu-van-truc-tuyen" },
   ],
   quickLinks: [
-    { label: "Đặt lịch khám", path: "/contact" },
+    { label: "Đặt lịch khám", path: "/contact/dat-lich-kham" },
     { label: "Tìm bác sĩ", path: "/doctors" },
-    { label: "Kết quả xét nghiệm", path: "/login" },
+    { label: "Kết quả xét nghiệm", path: "/ket-qua-xet-nghiem" },
     { label: "Tin tức sức khỏe", path: "/news" },
   ],
 } as const;
@@ -86,64 +86,20 @@ export const NEWS_CATEGORIES = [
 ] as const;
 
 export const PATIENT_GUIDE_DROPDOWN = [
-  {
-    label: 'Quy trình đặt lịch khám',
-    path: '/help/dat-lich-kham',
-    icon: 'calendar',
-  },
-  {
-    label: 'Quy trình khám bệnh',
-    path: '/help/quy-trinh-kham',
-    icon: 'file-text',
-  },
-  {
-    label: 'Thanh toán & Bảo hiểm',
-    path: '/help/thanh-toan-bao-hiem',
-    icon: 'credit-card',
-  },
-  {
-    label: 'Câu hỏi thường gặp',
-    path: '/help/faq',
-    icon: 'question',
-  },
-  {
-    label: 'Chính sách & Quy định',
-    path: '/help/chinh-sach',
-    icon: 'safety',
-  },
+  { label: 'Khám Bệnh Ngoại Trú', path: '/help?tab=kham-ngoai-tru', icon: 'medicine' },
+  { label: 'Nhập Viện', path: '/help?tab=nhap-vien', icon: 'home' },
+  { label: 'Thanh Toán', path: '/help?tab=thanh-toan', icon: 'credit-card' },
+  { label: 'Tiện Ích', path: '/help?tab=tien-ich', icon: 'star' },
+  { label: 'Thăm Bệnh', path: '/help?tab=tham-benh', icon: 'team' },
 ];
 
 export const SERVICES_DROPDOWN = [
-  {
-    label: 'Khám tổng quát',
-    path: '/services/kham-tong-quat',
-    icon: 'medicine',
-  },
-  {
-    label: 'Xét nghiệm',
-    path: '/services/xet-nghiem',
-    icon: 'experiment',
-  },
-  {
-    label: 'Chẩn đoán hình ảnh',
-    path: '/services/chan-doan-hinh-anh',
-    icon: 'scan',
-  },
-  {
-    label: 'Tư vấn trực tuyến',
-    path: '/services/tu-van-truc-tuyen',
-    icon: 'video',
-  },
-  {
-    label: 'Khám tại nhà',
-    path: '/services/kham-tai-nha',
-    icon: 'home',
-  },
-  {
-    label: 'Gói sức khỏe gia đình',
-    path: '/services/goi-suc-khoe-gia-dinh',
-    icon: 'heart',
-  },
+  { label: 'Khám Chuyên Khoa', path: '/services?cat=kham-chuyen-khoa', icon: 'medicine' },
+  { label: 'Gói Khám Tổng Quát', path: '/services?cat=goi-kham-tong-quat', icon: 'heart' },
+  { label: 'Xét Nghiệm & Chẩn Đoán', path: '/services?cat=xet-nghiem', icon: 'experiment' },
+  { label: 'Tiêm Chủng & Phòng Ngừa', path: '/services?cat=tiem-chung', icon: 'safety' },
+  { label: 'Phẫu Thuật & Thủ Thuật', path: '/services?cat=phau-thuat', icon: 'scan' },
+  { label: 'Dịch Vụ Số & Hỗ Trợ', path: '/services?cat=dich-vu-so', icon: 'video' },
 ];
 
 export const CONTACT_INFO = {

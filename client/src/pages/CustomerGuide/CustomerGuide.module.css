@@ -1,6 +1,7 @@
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #0077C8 0%, #00B4D8 100%);
+  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
+  margin-top: 110px;
   padding: 80px 16px 64px;
   text-align: center;
   color: #fff;
@@ -21,7 +22,7 @@
 }
 
 .heroTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
@@ -63,15 +64,15 @@
 }
 
 .sidebarHeading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #6B7C99;
+  color: #6b7c99;
   padding: 20px 20px 12px;
   margin: 0;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .sidebarNav {
@@ -91,20 +92,22 @@
   text-align: left;
   font-size: 14px;
   font-weight: 500;
-  color: #1A2B4B;
-  transition: background 200ms, color 200ms;
+  color: #1a2b4b;
+  transition:
+    background 200ms,
+    color 200ms;
   border-left: 3px solid transparent;
 }
 
 .sidebarItem:hover {
-  background: #E8F4FD;
-  color: #0077C8;
+  background: #e8f4fd;
+  color: #0077c8;
 }
 
 .sidebarItem.active {
-  background: #E8F4FD;
-  color: #0077C8;
-  border-left-color: #0077C8;
+  background: #e8f4fd;
+  color: #0077c8;
+  border-left-color: #0077c8;
   font-weight: 600;
 }
 
@@ -131,19 +134,19 @@
 }
 
 .contentTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 28px;
   font-weight: 700;
-  color: #0077C8;
+  color: #0077c8;
   margin: 0 0 8px;
   padding-bottom: 16px;
-  border-bottom: 2px solid #E8F4FD;
+  border-bottom: 2px solid #e8f4fd;
 }
 
 .intro {
   font-size: 15px;
   line-height: 1.7;
-  color: #6B7C99;
+  color: #6b7c99;
   margin: 16px 0 24px;
 }
 
@@ -153,10 +156,10 @@
 }
 
 .blockTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: #1A2B4B;
+  color: #1a2b4b;
   margin: 0 0 14px;
   display: flex;
   align-items: center;
@@ -164,7 +167,7 @@
 }
 
 .blockIcon {
-  color: #0077C8;
+  color: #0077c8;
 }
 
 /* ── Lists ── */
@@ -183,18 +186,18 @@
   gap: 8px;
   font-size: 14px;
   line-height: 1.6;
-  color: #1A2B4B;
+  color: #1a2b4b;
 }
 
 .checkIcon {
-  color: #0077C8;
+  color: #0077c8;
   font-size: 14px;
   margin-top: 3px;
   flex-shrink: 0;
 }
 
 .muted {
-  color: #6B7C99;
+  color: #6b7c99;
   font-size: 13px;
   margin: 8px 0 0;
   line-height: 1.6;
@@ -202,14 +205,14 @@
 
 .highlight {
   font-weight: 600;
-  color: #1A2B4B;
+  color: #1a2b4b;
   margin-bottom: 8px;
 }
 
 /* ── Info / Warning boxes ── */
 .infoBox {
-  background: #E8F4FD;
-  border-left: 4px solid #0077C8;
+  background: #e8f4fd;
+  border-left: 4px solid #0077c8;
   border-radius: 0 8px 8px 0;
   padding: 16px 20px;
   margin: 12px 0;
@@ -218,7 +221,7 @@
 .infoBox p {
   margin: 4px 0;
   font-size: 14px;
-  color: #1A2B4B;
+  color: #1a2b4b;
   line-height: 1.6;
 }
 
@@ -233,7 +236,7 @@
 .warningBox p {
   margin: 0 0 10px;
   font-size: 14px;
-  color: #1A2B4B;
+  color: #1a2b4b;
 }
 
 /* ── Schedule rows (horizontal layout) ── */
@@ -263,9 +266,9 @@
 .scheduleTimeBadge {
   flex-shrink: 0;
   width: 170px;
-  background: linear-gradient(160deg, #0077C8 0%, #00B4D8 100%);
+  background: linear-gradient(160deg, #0077c8 0%, #00b4d8 100%);
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.6;
@@ -299,7 +302,7 @@
   align-items: center;
   gap: 7px;
   font-size: 14px;
-  color: #1A2B4B;
+  color: #1a2b4b;
   line-height: 1.5;
   break-inside: avoid;
   padding: 2px 0;
@@ -307,7 +310,7 @@
 
 .scheduleNote {
   font-size: 14px;
-  color: #6B7C99;
+  color: #6b7c99;
   margin: 0;
   font-style: italic;
 }
@@ -322,16 +325,16 @@
 
 .scheduleCard {
   background: #f5f8ff;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 16px 18px;
 }
 
 .scheduleTime {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #0077C8;
+  color: #0077c8;
   margin-bottom: 10px;
 }
 
@@ -353,22 +356,22 @@
 }
 
 .stepItem:not(:last-child)::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 19px;
   top: 40px;
   bottom: 0;
   width: 2px;
-  background: #E2E8F0;
+  background: #e2e8f0;
 }
 
 .stepNumber {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #0077C8;
+  background: #0077c8;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 15px;
   display: flex;
@@ -382,7 +385,7 @@
 .stepBody {
   padding-top: 6px;
   font-size: 14px;
-  color: #1A2B4B;
+  color: #1a2b4b;
   line-height: 1.6;
 }
 
@@ -393,7 +396,7 @@
 }
 
 .stepBody p {
-  color: #6B7C99;
+  color: #6b7c99;
   margin: 0;
 }
 
@@ -406,7 +409,7 @@
 }
 
 .bedCard {
-  background: linear-gradient(135deg, #0077C8 0%, #00B4D8 100%);
+  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
   border-radius: 10px;
   padding: 16px;
   text-align: center;
@@ -417,7 +420,7 @@
 }
 
 .bedCount {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 28px;
   font-weight: 700;
   line-height: 1;
@@ -439,11 +442,13 @@
 
 .amenityCard {
   background: #f5f8ff;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 24px 20px;
   text-align: center;
-  transition: box-shadow 200ms, transform 200ms;
+  transition:
+    box-shadow 200ms,
+    transform 200ms;
 }
 
 .amenityCard:hover {
@@ -453,21 +458,21 @@
 
 .amenityIcon {
   font-size: 32px;
-  color: #0077C8;
+  color: #0077c8;
   margin-bottom: 12px;
 }
 
 .amenityTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #1A2B4B;
+  color: #1a2b4b;
   margin: 0 0 8px;
 }
 
 .amenityCard p {
   font-size: 13px;
-  color: #6B7C99;
+  color: #6b7c99;
   line-height: 1.6;
   margin: 0;
 }
@@ -482,22 +487,22 @@
 
 .zoneCard {
   background: #f5f8ff;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 16px 18px;
 }
 
 .zoneTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: #0077C8;
+  color: #0077c8;
   margin: 0 0 10px;
 }
 
 /* ── Contact card ── */
 .contactCard {
-  background: #1A2B4B;
+  background: #1a2b4b;
   color: #fff;
   border-radius: 10px;
   padding: 20px 24px;
@@ -547,6 +552,7 @@
 
 @media (max-width: 768px) {
   .hero {
+    margin-top: 64px;
     padding: 60px 16px 48px;
   }
 
@@ -585,7 +591,7 @@
 
   .sidebarItem.active {
     border-left: none;
-    border-bottom-color: #0077C8;
+    border-bottom-color: #0077c8;
   }
 
   .content {
@@ -633,6 +639,10 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    margin-top: 60px;
+  }
+
   .sidebarNav {
     grid-template-columns: 1fr;
   }
@@ -645,7 +655,7 @@
   }
 
   .sidebarItem.active {
-    border-left-color: #0077C8;
+    border-left-color: #0077c8;
   }
 
   .bedGrid {
