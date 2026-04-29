@@ -1,0 +1,156 @@
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #1B2559;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transition: width 200ms ease;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 64px;
+}
+
+.logoArea {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #2A3070;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.logoIcon {
+  color: #0077C8;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.logoText {
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 700;
+  white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.adminBadge {
+  font-size: 10px;
+  font-weight: 500;
+  color: #A0AEC0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1px;
+}
+
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.nav::-webkit-scrollbar { width: 3px; }
+.nav::-webkit-scrollbar-track { background: transparent; }
+.nav::-webkit-scrollbar-thumb { background: #2A3070; border-radius: 2px; }
+
+.sectionLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: #4A5568;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 20px 4px;
+  white-space: nowrap;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 20px;
+  color: #A0AEC0;
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  color: #FFFFFF;
+  background: #252E6B;
+}
+
+.menuItem.active {
+  color: #FFFFFF;
+  background: #2D3A8C;
+  border-left-color: #0077C8;
+}
+
+.menuIcon {
+  font-size: 17px;
+  flex-shrink: 0;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuLabel {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  margin-left: auto;
+  background: #DC3545;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 1px 7px;
+  flex-shrink: 0;
+}
+
+.divider {
+  height: 1px;
+  background: #2A3070;
+  margin: 8px 16px;
+}
+
+.userArea {
+  padding: 14px 20px;
+  border-top: 1px solid #2A3070;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.userMeta { overflow: hidden; }
+
+.userName {
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  color: #A0AEC0;
+  font-size: 11px;
+  white-space: nowrap;
+}

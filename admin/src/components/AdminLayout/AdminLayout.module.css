@@ -1,0 +1,19 @@
+.wrapper { display: flex; min-height: 100vh; }
+
+.main {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: margin-left 200ms ease;
+}
+
+.main.collapsed { margin-left: 64px; }
+
+.content {
+  padding: 24px;
+  background: #F4F6F9;
+  min-height: calc(100vh - 64px);
+  flex: 1;
+}

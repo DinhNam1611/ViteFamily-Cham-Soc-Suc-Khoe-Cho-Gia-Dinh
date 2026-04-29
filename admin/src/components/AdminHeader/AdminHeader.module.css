@@ -1,0 +1,89 @@
+.header {
+  height: 64px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E8ECEF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.left { display: flex; align-items: center; gap: 16px; }
+
+.toggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6B7C99;
+  font-size: 20px;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: all 200ms ease;
+  line-height: 1;
+}
+.toggleBtn:hover { color: #1A2B4B; background: #F4F6F9; }
+
+.pageTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A2B4B;
+}
+
+.right { display: flex; align-items: center; gap: 6px; }
+
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #6B7C99;
+  font-size: 18px;
+  transition: all 200ms ease;
+  position: relative;
+}
+.iconBtn:hover { background: #F4F6F9; color: #1A2B4B; }
+
+.notifDot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  background: #DC3545;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+}
+
+.divider { width: 1px; height: 24px; background: #E2E8F0; margin: 0 4px; }
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 200ms ease;
+  border: none;
+  background: none;
+}
+.userBtn:hover { background: #F4F6F9; }
+
+.userMeta { text-align: right; }
+.userName { font-size: 13px; font-weight: 600; color: #1A2B4B; }
+.userRole { font-size: 11px; color: #6B7C99; }
+
+@media (max-width: 768px) {
+  .userMeta { display: none; }
+  .pageTitle { font-size: 14px; }
+}
