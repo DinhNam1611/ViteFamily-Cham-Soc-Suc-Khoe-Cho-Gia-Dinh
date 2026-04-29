@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   MedicineBoxOutlined,
   ExperimentOutlined,
@@ -35,6 +36,7 @@ const itemVariants = {
 };
 
 const ServicesHighlight = () => {
+  const { t } = useTranslation();
   const [services, setServices] = useState<Service[]>([]);
   const { ref, isInView } = useScrollAnimation();
 
@@ -52,12 +54,9 @@ const ServicesHighlight = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className={styles.header}
         >
-          <p className={styles.eyebrow}>Dịch vụ</p>
-          <h2 className="section-title">Dịch vụ y tế toàn diện</h2>
-          <p className="section-subtitle">
-            Từ khám tổng quát đến phẫu thuật chuyên sâu, chúng tôi cung cấp
-            đầy đủ dịch vụ y tế với tiêu chuẩn quốc tế.
-          </p>
+          <p className={styles.eyebrow}>{t('services_section.eyebrow')}</p>
+          <h2 className="section-title">{t('services_section.title')}</h2>
+          <p className="section-subtitle">{t('services_section.subtitle')}</p>
         </motion.div>
 
         <motion.div
@@ -75,7 +74,7 @@ const ServicesHighlight = () => {
                 <h3 className={styles.cardTitle}>{service.name}</h3>
                 <p className={styles.cardDesc}>{service.description}</p>
                 <span className={styles.link}>
-                  Tìm hiểu thêm <RightOutlined />
+                  {t('services_section.learn_more')} <RightOutlined />
                 </span>
               </Link>
             </motion.div>

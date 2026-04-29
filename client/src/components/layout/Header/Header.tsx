@@ -26,15 +26,10 @@ import {
   HeartOutlined,
   StarOutlined,
 } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { NAV_ITEMS, CONTACT_INFO, SPECIALTY_GROUPS, PATIENT_GUIDE_DROPDOWN, SERVICES_DROPDOWN, NEWS_CATEGORIES } from '../../../data/constants';
 import { useAuth } from '../../../context/AuthContext';
 import styles from './Header.module.css';
-
-const CONTACT_DROPDOWN = [
-  { label: 'Đặt lịch khám', path: '/contact/dat-lich-kham', icon: <CalendarOutlined /> },
-  { label: 'Hỏi chuyên gia', path: '/contact/hoi-chuyen-gia', icon: <QuestionCircleOutlined /> },
-  { label: 'Làm việc tại VF', path: '/contact/lam-viec-tai-vf', icon: <TeamOutlined /> },
-];
 
 const GUIDE_ICON_MAP: Record<string, React.ReactNode> = {
   medicine: <MedicineBoxOutlined />,
@@ -55,6 +50,8 @@ const SERVICE_ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
+
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -78,6 +75,12 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
+
+  const contactDropdown = [
+    { labelKey: 'contact_dropdown.book', path: '/contact/dat-lich-kham', icon: <CalendarOutlined /> },
+    { labelKey: 'contact_dropdown.ask',  path: '/contact/hoi-chuyen-gia', icon: <QuestionCircleOutlined /> },
+    { labelKey: 'contact_dropdown.work', path: '/contact/lam-viec-tai-vf', icon: <TeamOutlined /> },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -107,14 +110,12 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Focus ô tìm kiếm khi mở
   useEffect(() => {
     if (searchOpen) {
       setTimeout(() => searchInputRef.current?.focus(), 50);
     }
   }, [searchOpen]);
 
-  // Đóng search khi nhấn Escape
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && searchOpen) {
@@ -134,7 +135,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    message.success('Đã đăng xuất');
+    message.success(t('header.logout_success'));
     navigate('/');
     setDrawerOpen(false);
   };
@@ -156,6 +157,10 @@ const Header = () => {
     }
   };
 
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'vi' ? 'en' : 'vi');
+  };
+
   const userMenuItems: MenuProps['items'] = [
     {
       key: 'info',
@@ -171,26 +176,26 @@ const Header = () => {
     {
       key: 'profile',
       icon: <UserOutlined />,
-      label: 'Hồ sơ của tôi',
+      label: t('header.my_profile'),
       onClick: () => navigate('/profile'),
     },
     {
       key: 'family',
       icon: <TeamOutlined />,
-      label: 'Hồ sơ gia đình',
+      label: t('header.family_profile'),
       onClick: () => navigate('/ho-so-gia-dinh'),
     },
     {
       key: 'lab',
       icon: <ExperimentOutlined />,
-      label: 'Kết quả xét nghiệm',
+      label: t('header.lab_results'),
       onClick: () => navigate('/ket-qua-xet-nghiem'),
     },
     { type: 'divider' },
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: 'Đăng xuất',
+      label: t('header.logout'),
       danger: true,
       onClick: handleLogout,
     },
@@ -215,7 +220,7 @@ const Header = () => {
           <a href={`tel:${CONTACT_INFO.phone}`} className={styles.hotline}>
             <span className={styles.hotlineIcon}><PhoneOutlined /></span>
             <div className={styles.hotlineText}>
-              <span className={styles.hotlineLabel}>Đường dây nóng</span>
+              <span className={styles.hotlineLabel}>{t('header.hotline')}</span>
               <span className={styles.hotlineNumber}>{CONTACT_INFO.phone}</span>
             </div>
           </a>
@@ -223,13 +228,12 @@ const Header = () => {
           {/* Actions bên phải */}
           <div className={styles.topbarRight}>
             {searchOpen ? (
-              /* Thanh tìm kiếm mở rộng */
               <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
                 <Input
                   ref={searchInputRef}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm bác sĩ, dịch vụ, chuyên khoa..."
+                  placeholder={t('header.search_placeholder')}
                   className={styles.searchInput}
                   prefix={<SearchOutlined className={styles.searchPrefixIcon} />}
                   variant="filled"
@@ -238,30 +242,41 @@ const Header = () => {
                   type="button"
                   className={styles.iconBtn}
                   onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
-                  aria-label="Đóng tìm kiếm"
+                  aria-label={t('header.close_search')}
                 >
                   <CloseOutlined />
                 </button>
               </form>
             ) : (
               <>
+                {/* Nút chuyển ngôn ngữ */}
+                <Tooltip title={i18n.language === 'vi' ? 'Switch to English' : 'Chuyển sang Tiếng Việt'} placement="bottom">
+                  <button
+                    className={styles.langBtn}
+                    onClick={toggleLanguage}
+                    aria-label="Toggle language"
+                  >
+                    {i18n.language === 'vi' ? 'EN' : 'VI'}
+                  </button>
+                </Tooltip>
+
                 {/* Icon: Kết quả xét nghiệm */}
-                <Tooltip title="Kết quả xét nghiệm" placement="bottom">
+                <Tooltip title={t('header.lab_results')} placement="bottom">
                   <button
                     className={styles.iconBtn}
                     onClick={handleLabResults}
-                    aria-label="Kết quả xét nghiệm"
+                    aria-label={t('header.lab_results')}
                   >
                     <FileSearchOutlined />
                   </button>
                 </Tooltip>
 
                 {/* Icon: Tìm kiếm */}
-                <Tooltip title="Tìm kiếm" placement="bottom">
+                <Tooltip title={t('header.search')} placement="bottom">
                   <button
                     className={styles.iconBtn}
                     onClick={() => setSearchOpen(true)}
-                    aria-label="Tìm kiếm"
+                    aria-label={t('header.search')}
                   >
                     <SearchOutlined />
                   </button>
@@ -270,7 +285,7 @@ const Header = () => {
                 {/* Auth */}
                 {isAuthenticated ? (
                   <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
-                    <button className={styles.userBtn} aria-label="Tài khoản">
+                    <button className={styles.userBtn} aria-label={t('header.account')}>
                       <Avatar
                         size={42}
                         src={user?.avatar}
@@ -287,14 +302,14 @@ const Header = () => {
                       className={styles.loginBtn}
                       onClick={() => navigate('/login')}
                     >
-                      Đăng nhập
+                      {t('header.login')}
                     </Button>
                     <Button
                       type="primary"
                       className={styles.registerBtn}
                       onClick={() => navigate('/register')}
                     >
-                      Đăng ký
+                      {t('header.register')}
                     </Button>
                   </div>
                 )}
@@ -305,7 +320,7 @@ const Header = () => {
             <button
               className={styles.menuBtn}
               onClick={() => setDrawerOpen(true)}
-              aria-label="Mở menu"
+              aria-label={t('header.open_menu')}
             >
               <MenuOutlined />
             </button>
@@ -317,7 +332,7 @@ const Header = () => {
       <nav className={styles.navbar}>
         <div className={`container ${styles.navInner}`}>
           {NAV_ITEMS.map((item) =>
-            item.label === 'Chuyên khoa' ? (
+            item.id === 'specialties' ? (
               <div
                 key={item.path}
                 className={styles.dropdownWrapper}
@@ -331,7 +346,7 @@ const Header = () => {
                   aria-expanded={specialtyOpen}
                   aria-haspopup="true"
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${specialtyOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {specialtyOpen && (
@@ -344,7 +359,7 @@ const Header = () => {
                             className={styles.megaGroupTitle}
                             onClick={() => setSpecialtyOpen(false)}
                           >
-                            {group.label}
+                            {t(group.label)}
                           </Link>
                           {group.items.map((sp) => (
                             <Link
@@ -353,7 +368,7 @@ const Header = () => {
                               className={styles.megaItem}
                               onClick={() => setSpecialtyOpen(false)}
                             >
-                              {sp.label}
+                              {t(sp.label)}
                             </Link>
                           ))}
                         </div>
@@ -362,7 +377,7 @@ const Header = () => {
                   </div>
                 )}
               </div>
-            ) : item.label === 'Hướng dẫn bệnh nhân' ? (
+            ) : item.id === 'guide' ? (
               <div
                 key={item.path}
                 className={styles.dropdownWrapper}
@@ -376,7 +391,7 @@ const Header = () => {
                   aria-expanded={guideOpen}
                   aria-haspopup="true"
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${guideOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {guideOpen && (
@@ -390,14 +405,14 @@ const Header = () => {
                           onClick={() => setGuideOpen(false)}
                         >
                           <span className={styles.dropdownIcon}>{GUIDE_ICON_MAP[sub.icon]}</span>
-                          {sub.label}
+                          {t(sub.label)}
                         </Link>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
-            ) : item.label === 'Dịch vụ' ? (
+            ) : item.id === 'services' ? (
               <div
                 key={item.path}
                 className={styles.dropdownWrapper}
@@ -411,7 +426,7 @@ const Header = () => {
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${servicesOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {servicesOpen && (
@@ -425,14 +440,14 @@ const Header = () => {
                           onClick={() => setServicesOpen(false)}
                         >
                           <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>
-                          {sub.label}
+                          {t(sub.label)}
                         </Link>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
-            ) : item.label === 'Tin tức' ? (
+            ) : item.id === 'news' ? (
               <div
                 key={item.path}
                 className={styles.dropdownWrapper}
@@ -446,7 +461,7 @@ const Header = () => {
                   aria-expanded={newsOpen}
                   aria-haspopup="true"
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${newsOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {newsOpen && (
@@ -459,14 +474,14 @@ const Header = () => {
                           className={`${styles.dropdownItem} ${location.search.includes(cat.slug) && isNewsActive ? styles.dropdownItemActive : ''}`}
                           onClick={() => setNewsOpen(false)}
                         >
-                          {cat.label}
+                          {t(cat.label)}
                         </Link>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
-            ) : item.label === 'Liên hệ' ? (
+            ) : item.id === 'contact' ? (
               <div
                 key={item.path}
                 className={styles.dropdownWrapper}
@@ -480,13 +495,13 @@ const Header = () => {
                   aria-expanded={contactOpen}
                   aria-haspopup="true"
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${contactOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {contactOpen && (
                   <div className={styles.dropdown}>
                     <div className={styles.dropdownInner}>
-                      {CONTACT_DROPDOWN.map((sub) => (
+                      {contactDropdown.map((sub) => (
                         <Link
                           key={sub.path}
                           to={sub.path}
@@ -494,7 +509,7 @@ const Header = () => {
                           onClick={() => setContactOpen(false)}
                         >
                           <span className={styles.dropdownIcon}>{sub.icon}</span>
-                          {sub.label}
+                          {t(sub.labelKey)}
                         </Link>
                       ))}
                     </div>
@@ -507,7 +522,7 @@ const Header = () => {
                 to={item.path}
                 className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             )
           )}
@@ -547,15 +562,20 @@ const Header = () => {
             </div>
           )}
 
+          {/* Language toggle trong mobile drawer */}
+          <button className={styles.drawerLangBtn} onClick={toggleLanguage}>
+            {i18n.language === 'vi' ? '🌐 Switch to English' : '🌐 Chuyển sang Tiếng Việt'}
+          </button>
+
           {/* Nav links */}
           {NAV_ITEMS.map((item) =>
-            item.label === 'Chuyên khoa' ? (
+            item.id === 'specialties' ? (
               <div key={item.path}>
                 <button
                   className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isSpecialtyActive ? styles.active : ''}`}
                   onClick={() => setMobileSpecialtyOpen((v) => !v)}
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${mobileSpecialtyOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {mobileSpecialtyOpen && (
@@ -567,19 +587,19 @@ const Header = () => {
                         className={`${styles.drawerSubLink} ${location.pathname.startsWith(group.path) ? styles.active : ''}`}
                         onClick={() => setDrawerOpen(false)}
                       >
-                        {group.label}
+                        {t(group.label)}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
-            ) : item.label === 'Hướng dẫn bệnh nhân' ? (
+            ) : item.id === 'guide' ? (
               <div key={item.path}>
                 <button
                   className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isGuideActive ? styles.active : ''}`}
                   onClick={() => setMobileGuideOpen((v) => !v)}
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${mobileGuideOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {mobileGuideOpen && (
@@ -592,19 +612,19 @@ const Header = () => {
                         onClick={() => setDrawerOpen(false)}
                       >
                         <span className={styles.dropdownIcon}>{GUIDE_ICON_MAP[sub.icon]}</span>
-                        {sub.label}
+                        {t(sub.label)}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
-            ) : item.label === 'Dịch vụ' ? (
+            ) : item.id === 'services' ? (
               <div key={item.path}>
                 <button
                   className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isServicesActive ? styles.active : ''}`}
                   onClick={() => setMobileServicesOpen((v) => !v)}
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${mobileServicesOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {mobileServicesOpen && (
@@ -617,19 +637,19 @@ const Header = () => {
                         onClick={() => setDrawerOpen(false)}
                       >
                         <span className={styles.dropdownIcon}>{SERVICE_ICON_MAP[sub.icon]}</span>
-                        {sub.label}
+                        {t(sub.label)}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
-            ) : item.label === 'Tin tức' ? (
+            ) : item.id === 'news' ? (
               <div key={item.path}>
                 <button
                   className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isNewsActive ? styles.active : ''}`}
                   onClick={() => setMobileNewsOpen((v) => !v)}
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${mobileNewsOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {mobileNewsOpen && (
@@ -641,24 +661,24 @@ const Header = () => {
                         className={`${styles.drawerSubLink} ${location.search.includes(cat.slug) && isNewsActive ? styles.active : ''}`}
                         onClick={() => setDrawerOpen(false)}
                       >
-                        {cat.label}
+                        {t(cat.label)}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
-            ) : item.label === 'Liên hệ' ? (
+            ) : item.id === 'contact' ? (
               <div key={item.path}>
                 <button
                   className={`${styles.drawerLink} ${styles.drawerDropdownTrigger} ${isContactActive ? styles.active : ''}`}
                   onClick={() => setMobileContactOpen((v) => !v)}
                 >
-                  {item.label}
+                  {t(item.label)}
                   <DownOutlined className={`${styles.dropdownArrow} ${mobileContactOpen ? styles.arrowOpen : ''}`} />
                 </button>
                 {mobileContactOpen && (
                   <div className={styles.drawerSubMenu}>
-                    {CONTACT_DROPDOWN.map((sub) => (
+                    {contactDropdown.map((sub) => (
                       <Link
                         key={sub.path}
                         to={sub.path}
@@ -666,7 +686,7 @@ const Header = () => {
                         onClick={() => setDrawerOpen(false)}
                       >
                         <span className={styles.dropdownIcon}>{sub.icon}</span>
-                        {sub.label}
+                        {t(sub.labelKey)}
                       </Link>
                     ))}
                   </div>
@@ -679,7 +699,7 @@ const Header = () => {
                 className={`${styles.drawerLink} ${location.pathname === item.path ? styles.active : ''}`}
                 onClick={() => setDrawerOpen(false)}
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             )
           )}
@@ -692,14 +712,14 @@ const Header = () => {
                 onClick={() => { navigate('/profile'); setDrawerOpen(false); }}
               >
                 <UserOutlined className={styles.drawerFeatureIcon} />
-                Hồ sơ của tôi
+                {t('header.my_profile')}
               </button>
               <button
                 className={styles.drawerFeatureBtn}
                 onClick={() => { navigate('/ho-so-gia-dinh'); setDrawerOpen(false); }}
               >
                 <TeamOutlined className={styles.drawerFeatureIcon} />
-                Hồ sơ gia đình
+                {t('header.family_profile')}
               </button>
             </>
           )}
@@ -710,7 +730,7 @@ const Header = () => {
             onClick={() => { handleLabResults(); setDrawerOpen(false); }}
           >
             <FileSearchOutlined className={styles.drawerFeatureIcon} />
-            Kết quả xét nghiệm
+            {t('header.lab_results')}
           </button>
 
           <div className={styles.drawerDivider} />
@@ -724,7 +744,7 @@ const Header = () => {
               className={styles.drawerLogoutBtn}
               onClick={handleLogout}
             >
-              Đăng xuất
+              {t('header.logout')}
             </Button>
           ) : (
             <>
@@ -733,7 +753,7 @@ const Header = () => {
                 className={styles.drawerLoginBtn}
                 onClick={() => { navigate('/login'); setDrawerOpen(false); }}
               >
-                Đăng nhập
+                {t('header.login')}
               </Button>
               <Button
                 type="primary"
@@ -741,7 +761,7 @@ const Header = () => {
                 className={styles.drawerRegisterBtn}
                 onClick={() => { navigate('/register'); setDrawerOpen(false); }}
               >
-                Đăng ký
+                {t('header.register')}
               </Button>
             </>
           )}

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { getStats } from '../../../services/homeService';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import type { Stat } from '../../../types';
@@ -44,6 +45,7 @@ const Counter = ({ target, suffix, duration = 2 }: CounterProps) => {
 };
 
 const KeyStats = () => {
+  const { t } = useTranslation();
   const [stats, setStats] = useState<Stat[]>([]);
   const { ref, isInView } = useScrollAnimation();
 
@@ -61,10 +63,8 @@ const KeyStats = () => {
           transition={{ duration: 0.6 }}
           className={styles.titleBlock}
         >
-          <h2 className={styles.title}>Những con số ấn tượng</h2>
-          <p className={styles.subtitle}>
-            Hơn 15 năm không ngừng phát triển và cải thiện chất lượng dịch vụ
-          </p>
+          <h2 className={styles.title}>{t('stats.title')}</h2>
+          <p className={styles.subtitle}>{t('stats.subtitle')}</p>
         </motion.div>
 
         <div className={styles.statsGrid}>
