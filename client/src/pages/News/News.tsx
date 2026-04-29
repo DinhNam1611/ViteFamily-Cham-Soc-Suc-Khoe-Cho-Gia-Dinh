@@ -32,7 +32,9 @@ interface ArticleCardProps {
   size?: 'normal' | 'featured' | 'sidebar';
 }
 
-const ArticleCard = ({ article, index, size = 'normal' }: ArticleCardProps) => (
+const ArticleCard = ({ article, index, size = 'normal' }: ArticleCardProps) => {
+  const categoryLabel = NEWS_CATEGORIES.find((c) => c.slug === article.category)?.label ?? article.category;
+  return (
   <motion.article
     className={`${styles.card} ${styles[`card_${size}`]}`}
     variants={fadeUp}
@@ -44,7 +46,7 @@ const ArticleCard = ({ article, index, size = 'normal' }: ArticleCardProps) => (
     <Link to={`/news/${article.slug}`} className={styles.cardImageWrap}>
       <img src={article.image} alt={article.title} className={styles.cardImage} loading="lazy" />
       <span className={styles.cardCategoryBadge}>
-        {NEWS_CATEGORIES.find((c) => c.slug === article.category)?.label ?? article.category}
+        {categoryLabel}
       </span>
     </Link>
     <div className={styles.cardBody}>
@@ -69,7 +71,8 @@ const ArticleCard = ({ article, index, size = 'normal' }: ArticleCardProps) => (
       </div>
     </div>
   </motion.article>
-);
+  );
+};
 
 const SidebarArticle = ({ article, index }: { article: NewsArticle; index: number }) => (
   <motion.article

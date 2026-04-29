@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button, Tag } from 'antd';
+import { Button } from 'antd';
 import {
   HeartOutlined, MedicineBoxOutlined, ExperimentOutlined, SmileOutlined,
   CloudOutlined, BulbOutlined, UserOutlined, SafetyOutlined, WomanOutlined,
@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons';
 import Header from '../../components/layout/Header/Header';
 import Footer from '../../components/layout/Footer/Footer';
-import { SPECIALTIES, getSpecialtyBySlug, getSpecialtiesByGroup } from '../../data/specialtyData';
+import { getSpecialtyBySlug, getSpecialtiesByGroup } from '../../data/specialtyData';
 import styles from './SpecialtyDetail.module.css';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
