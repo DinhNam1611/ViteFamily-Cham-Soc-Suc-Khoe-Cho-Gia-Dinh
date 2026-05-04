@@ -43,3 +43,27 @@ a {
 .ant-table-tbody > tr:hover > td {
   background: #EBF8FF !important;
 }
+
+/* Table row auto height — tự co theo nội dung, không cứng chiều cao */
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
+  height: auto !important;
+  line-height: 1.5 !important;
+  vertical-align: middle !important;
+}
+
+/* Padding đồng nhất cho size="middle" */
+.ant-table-middle > .ant-table-content .ant-table-thead > tr > th,
+.ant-table-middle > .ant-table-content .ant-table-tbody > tr > td,
+.ant-table-middle .ant-table-thead > tr > th,
+.ant-table-middle .ant-table-tbody > tr > td {
+  padding: 10px 12px !important;
+}
+
+/* Padding cho size="small" */
+.ant-table-small > .ant-table-content .ant-table-thead > tr > th,
+.ant-table-small > .ant-table-content .ant-table-tbody > tr > td,
+.ant-table-small .ant-table-thead > tr > th,
+.ant-table-small .ant-table-tbody > tr > td {
+  padding: 7px 10px !important;
+}

@@ -22,8 +22,8 @@ const Hospitals = () => {
   const openAdd  = () => { setEditing(null); form.resetFields(); setModalOpen(true); };
 
   const cols: ColumnsType<HospitalRow> = [
-    { title: 'Tên bệnh viện', dataIndex: 'name', key: 'name', render: (v: string) => <b>{v}</b> },
-    { title: 'Địa chỉ', dataIndex: 'address', key: 'address' },
+    { title: 'Tên bệnh viện', dataIndex: 'name', key: 'name', width: 200, render: (v: string) => <b>{v}</b> },
+    { title: 'Địa chỉ', dataIndex: 'address', key: 'address', width: 300 },
     { title: 'SĐT', dataIndex: 'phone', key: 'phone', width: 150 },
     { title: 'Số BS', dataIndex: 'doctorCount', key: 'doctorCount', width: 80, align: 'center' },
     { title: 'Hiển thị', dataIndex: 'isActive', key: 'isActive', width: 90, render: (v: boolean) => <Switch checked={v} size="small" /> },
@@ -51,7 +51,7 @@ const Hospitals = () => {
           <Input prefix={<SearchOutlined style={{ color: '#6B7C99' }} />} placeholder="Tìm bệnh viện..." style={{ width: 260 }} />
           <Button type="primary" icon={<PlusOutlined />} style={{ marginLeft: 'auto', background: '#0077C8' }} onClick={openAdd}>Thêm bệnh viện</Button>
         </div>
-        <Table dataSource={mock} columns={cols} pagination={{ pageSize: 10 }} scroll={{ x: 800 }} size="middle" />
+        <Table dataSource={mock} columns={cols} pagination={{ pageSize: 10 }} scroll={{ x: 'max-content' }} size="middle" />
       </div>
       <Modal title={editing ? 'Chỉnh sửa bệnh viện' : 'Thêm bệnh viện mới'} open={modalOpen}
         onOk={() => { form.submit(); setModalOpen(false); }} onCancel={() => setModalOpen(false)}

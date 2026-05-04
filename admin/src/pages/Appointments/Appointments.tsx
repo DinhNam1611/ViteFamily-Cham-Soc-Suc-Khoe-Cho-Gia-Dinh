@@ -32,8 +32,8 @@ const Appointments = () => {
   );
 
   const cols: ColumnsType<ApptRow> = [
-    { title: 'Bệnh nhân', dataIndex: 'patient', key: 'patient' },
-    { title: 'Bác sĩ', dataIndex: 'doctor', key: 'doctor' },
+    { title: 'Bệnh nhân', dataIndex: 'patient', key: 'patient', width: 160 },
+    { title: 'Bác sĩ', dataIndex: 'doctor', key: 'doctor', width: 180 },
     { title: 'Ngày', dataIndex: 'date', key: 'date', width: 120 },
     { title: 'Giờ', dataIndex: 'time', key: 'time', width: 80 },
     { title: 'Loại', dataIndex: 'type', key: 'type', width: 100, render: (v: string) => <Tag>{v}</Tag> },
@@ -77,7 +77,7 @@ const Appointments = () => {
         </div>
         <Table dataSource={data} columns={cols}
           pagination={{ pageSize: 10, showTotal: (t) => `${t} lịch hẹn` }}
-          scroll={{ x: 900 }} size="middle" />
+          scroll={{ x: 'max-content' }} size="middle" />
       </div>
     </div>
   );

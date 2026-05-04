@@ -33,7 +33,7 @@ const Users = () => {
 
   const cols: ColumnsType<UserRow> = [
     {
-      title: 'Họ tên', dataIndex: 'name', key: 'name',
+      title: 'Họ tên', dataIndex: 'name', key: 'name', width: 200,
       render: (n: string) => (
         <Space>
           <Avatar size={32} icon={<UserOutlined />} style={{ background: '#E8F4FD', color: '#0077C8' }} />
@@ -41,7 +41,7 @@ const Users = () => {
         </Space>
       ),
     },
-    { title: 'Email', dataIndex: 'email', key: 'email' },
+    { title: 'Email', dataIndex: 'email', key: 'email', width: 200 },
     { title: 'SĐT', dataIndex: 'phone', key: 'phone', width: 130 },
     {
       title: 'Role', dataIndex: 'role', key: 'role', width: 110,
@@ -93,7 +93,7 @@ const Users = () => {
         </div>
         <Table dataSource={data} columns={cols}
           pagination={{ pageSize: 10, showSizeChanger: true, showTotal: (t) => `${t} người dùng` }}
-          scroll={{ x: 900 }} size="middle" />
+          scroll={{ x: 'max-content' }} size="middle" />
       </div>
     </div>
   );

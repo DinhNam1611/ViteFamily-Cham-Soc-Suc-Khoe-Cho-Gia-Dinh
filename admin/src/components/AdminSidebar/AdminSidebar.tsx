@@ -31,30 +31,24 @@ const menu: MenuSection[] = [
   {
     sectionLabel: 'Tổng quan',
     items: [
-      { key: 'dashboard', path: '/', label: 'Dashboard', icon: <DashboardOutlined /> },
+      { key: 'dashboard', path: '/admin', label: 'Thống kê & Báo cáo', icon: <DashboardOutlined /> },
     ],
   },
   {
     sectionLabel: 'Quản lý',
     items: [
-      { key: 'users', path: '/users', label: 'Người dùng', icon: <UserOutlined /> },
-      { key: 'doctors', path: '/doctors', label: 'Bác sĩ', icon: <MedicineBoxOutlined /> },
-      { key: 'hospitals', path: '/hospitals', label: 'Bệnh viện', icon: <BankOutlined /> },
-      { key: 'specialties', path: '/specialties', label: 'Chuyên khoa', icon: <AppstoreOutlined /> },
+      { key: 'users', path: '/admin/users', label: 'Người dùng', icon: <UserOutlined /> },
+      { key: 'doctors', path: '/admin/doctors', label: 'Bác sĩ', icon: <MedicineBoxOutlined /> },
+      { key: 'hospitals', path: '/admin/hospitals', label: 'Bệnh viện', icon: <BankOutlined /> },
+      { key: 'specialties', path: '/admin/specialties', label: 'Chuyên khoa', icon: <AppstoreOutlined /> },
     ],
   },
   {
     sectionLabel: 'Vận hành',
     items: [
-      { key: 'appointments', path: '/appointments', label: 'Lịch hẹn', icon: <CalendarOutlined /> },
-      { key: 'reviews', path: '/reviews', label: 'Đánh giá', icon: <StarOutlined /> },
-      { key: 'notifications', path: '/notifications', label: 'Thông báo', icon: <BellOutlined /> },
-    ],
-  },
-  {
-    sectionLabel: 'Phân tích',
-    items: [
-      { key: 'statistics', path: '/statistics', label: 'Thống kê & Báo cáo', icon: <BarChartOutlined /> },
+      { key: 'appointments', path: '/admin/appointments', label: 'Lịch hẹn', icon: <CalendarOutlined /> },
+      { key: 'reviews', path: '/admin/reviews', label: 'Đánh giá', icon: <StarOutlined /> },
+      { key: 'notifications', path: '/admin/notifications', label: 'Thông báo', icon: <BellOutlined /> },
     ],
   },
 ];
@@ -67,7 +61,7 @@ const AdminSidebar = ({ collapsed }: AdminSidebarProps) => {
   const location = useLocation();
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === '/admin') return location.pathname === '/admin';
     return location.pathname.startsWith(path);
   };
 
@@ -75,7 +69,9 @@ const AdminSidebar = ({ collapsed }: AdminSidebarProps) => {
     <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
       {/* Logo */}
       <div className={styles.logoArea}>
-        <HeartOutlined className={styles.logoIcon} />
+        <div className={styles.logoIconWrap}>
+          <HeartOutlined className={styles.logoIcon} />
+        </div>
         {!collapsed && (
           <div>
             <span className={styles.logoText}>VitaFamily</span>

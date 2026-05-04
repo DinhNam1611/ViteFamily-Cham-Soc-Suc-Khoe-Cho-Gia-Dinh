@@ -23,8 +23,8 @@ const Specialties = () => {
   const openAdd  = () => { setEditing(null); form.resetFields(); setModalOpen(true); };
 
   const cols: ColumnsType<SpecialtyRow> = [
-    { title: 'Chuyên khoa', dataIndex: 'name', key: 'name', render: (v: string) => <b>{v}</b> },
-    { title: 'Mô tả', dataIndex: 'description', key: 'description' },
+    { title: 'Chuyên khoa', dataIndex: 'name', key: 'name', width: 150, render: (v: string) => <b>{v}</b> },
+    { title: 'Mô tả', dataIndex: 'description', key: 'description', width: 320 },
     { title: 'Số BS', dataIndex: 'doctorCount', key: 'doctorCount', width: 80, align: 'center' },
     { title: 'Hiển thị', dataIndex: 'isActive', key: 'isActive', width: 90, render: (v: boolean) => <Switch checked={v} size="small" /> },
     {
@@ -51,7 +51,7 @@ const Specialties = () => {
           <Input prefix={<SearchOutlined style={{ color: '#6B7C99' }} />} placeholder="Tìm chuyên khoa..." style={{ width: 260 }} />
           <Button type="primary" icon={<PlusOutlined />} style={{ marginLeft: 'auto', background: '#0077C8' }} onClick={openAdd}>Thêm chuyên khoa</Button>
         </div>
-        <Table dataSource={mock} columns={cols} pagination={{ pageSize: 10 }} scroll={{ x: 700 }} size="middle" />
+        <Table dataSource={mock} columns={cols} pagination={{ pageSize: 10 }} scroll={{ x: 'max-content' }} size="middle" />
       </div>
       <Modal title={editing ? 'Chỉnh sửa chuyên khoa' : 'Thêm chuyên khoa mới'} open={modalOpen}
         onOk={() => { form.submit(); setModalOpen(false); }} onCancel={() => setModalOpen(false)}

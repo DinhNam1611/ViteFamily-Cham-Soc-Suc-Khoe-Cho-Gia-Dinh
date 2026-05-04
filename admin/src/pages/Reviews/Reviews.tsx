@@ -20,7 +20,7 @@ const Reviews = () => {
     { title: 'Bệnh nhân', dataIndex: 'patient', key: 'patient', width: 150 },
     { title: 'Bác sĩ', dataIndex: 'doctor', key: 'doctor', width: 180 },
     { title: 'Đánh giá', dataIndex: 'rating', key: 'rating', width: 150, render: (v: number) => <Rate disabled value={v} style={{ fontSize: 14 }} /> },
-    { title: 'Nhận xét', dataIndex: 'comment', key: 'comment' },
+    { title: 'Nhận xét', dataIndex: 'comment', key: 'comment', width: 260 },
     { title: 'Ngày', dataIndex: 'date', key: 'date', width: 120 },
     { title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 110,
       render: (s: string) => <Tag color={s === 'visible' ? 'green' : 'default'}>{s === 'visible' ? 'Hiển thị' : 'Đã ẩn'}</Tag> },
@@ -61,7 +61,7 @@ const Reviews = () => {
         </div>
         <Table dataSource={mock} columns={cols}
           pagination={{ pageSize: 10, showTotal: (t) => `${t} đánh giá` }}
-          scroll={{ x: 900 }} size="middle" />
+          scroll={{ x: 'max-content' }} size="middle" />
       </div>
     </div>
   );

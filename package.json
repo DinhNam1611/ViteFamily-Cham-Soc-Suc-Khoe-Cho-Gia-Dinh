@@ -1,0 +1,15 @@
+{
+  "name": "vitafamily-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --names \"client,admin,server\" --prefix-colors \"cyan,magenta,yellow\" \"npm run dev --prefix client\" \"npm run dev --prefix admin\" \"npm run dev --prefix server\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:admin": "npm run dev --prefix admin",
+    "dev:server": "npm run dev --prefix server",
+    "dev:frontend": "concurrently --names \"client,admin\" --prefix-colors \"cyan,magenta\" \"npm run dev --prefix client\" \"npm run dev --prefix admin\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

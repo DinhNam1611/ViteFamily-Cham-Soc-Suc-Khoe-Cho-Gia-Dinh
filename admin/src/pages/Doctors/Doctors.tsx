@@ -33,7 +33,7 @@ const Doctors = () => {
 
   const cols: ColumnsType<DoctorRow> = [
     {
-      title: 'Bác sĩ', dataIndex: 'name', key: 'name',
+      title: 'Bác sĩ', dataIndex: 'name', key: 'name', width: 200,
       render: (n: string) => (
         <Space>
           <Avatar size={36} style={{ background: '#E8F4FD', color: '#0077C8', fontWeight: 600 }}>
@@ -43,8 +43,8 @@ const Doctors = () => {
         </Space>
       ),
     },
-    { title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty' },
-    { title: 'Bệnh viện', dataIndex: 'hospital', key: 'hospital' },
+    { title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty', width: 140 },
+    { title: 'Bệnh viện', dataIndex: 'hospital', key: 'hospital', width: 180 },
     { title: 'Kinh nghiệm', dataIndex: 'experience', key: 'experience', width: 120 },
     {
       title: 'Trạng thái', dataIndex: 'approvalStatus', key: 'approvalStatus', width: 130,
@@ -86,7 +86,7 @@ const Doctors = () => {
         </div>
         <Table dataSource={data} columns={cols}
           pagination={{ pageSize: 10, showTotal: (t) => `${t} bác sĩ` }}
-          scroll={{ x: 900 }} size="middle" />
+          scroll={{ x: 'max-content' }} size="middle" />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const statusLabel: Record<string, string> = { sent: 'Đã gửi', scheduled: 'L�
 const statusColor: Record<string, string> = { sent: 'green', scheduled: 'orange', draft: 'default' };
 
 const cols: ColumnsType<NotifRow> = [
-  { title: 'Tiêu đề', dataIndex: 'title', key: 'title' },
+  { title: 'Tiêu đề', dataIndex: 'title', key: 'title', width: 240 },
   { title: 'Đối tượng', dataIndex: 'targetGroup', key: 'targetGroup', width: 120,
     render: (v: string) => <Tag color={targetColor[v]}>{targetLabel[v]}</Tag> },
   { title: 'Thời gian gửi', dataIndex: 'scheduledAt', key: 'scheduledAt', width: 160 },
@@ -29,8 +29,6 @@ const cols: ColumnsType<NotifRow> = [
   { title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 110,
     render: (s: string) => <Tag color={statusColor[s]}>{statusLabel[s]}</Tag> },
 ];
-
-const [form] = Form.useForm ? [Form.useForm()] : [null];
 
 const Notifications = () => {
   const [notifForm] = Form.useForm();
@@ -75,14 +73,11 @@ const Notifications = () => {
         {/* History */}
         <div className={styles.card}>
           <h3 className={styles.cardTitle}>Lịch sử thông báo</h3>
-          <Table dataSource={mock} columns={cols} pagination={{ pageSize: 5 }} size="small" scroll={{ x: 500 }} />
+          <Table dataSource={mock} columns={cols} pagination={{ pageSize: 5 }} size="small" scroll={{ x: 'max-content' }} />
         </div>
       </div>
     </div>
   );
 };
-
-// suppress unused warning
-void form;
 
 export default Notifications;

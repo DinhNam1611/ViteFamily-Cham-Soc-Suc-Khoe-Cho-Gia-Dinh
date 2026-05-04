@@ -1,13 +1,14 @@
 import { Column, Line, Pie } from '@ant-design/plots';
-import { Table, Tag, Button, Select } from 'antd';
+import { Table, Tag, Button, Avatar, Progress } from 'antd';
 import {
   UserOutlined, MedicineBoxOutlined, CalendarOutlined, ClockCircleOutlined,
-  RiseOutlined, FallOutlined, EyeOutlined,
+  DollarCircleOutlined, ArrowRightOutlined, EyeOutlined, StarFilled,
+  RiseOutlined, FallOutlined,
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './Dashboard.module.css';
 
-/* ---------- mock data ---------- */
+/* ── Mock data ── */
 const apptByMonth = [
   { month: 'T1', value: 65 }, { month: 'T2', value: 78 }, { month: 'T3', value: 90 },
   { month: 'T4', value: 81 }, { month: 'T5', value: 110 }, { month: 'T6', value: 95 },
@@ -29,115 +30,189 @@ const apptTypes = [
 ];
 
 interface PendingAppt {
-  key: string; patient: string; doctor: string; date: string; type: string;
+  key: string; patient: string; doctor: string; specialty: string;
+  date: string; type: string; status: string;
 }
 interface PendingDoc {
   key: string; name: string; specialty: string; experience: string; submittedAt: string;
 }
+interface TopDoctor {
+  key: string; name: string; specialty: string; appointments: number;
+  rating: number; completion: number; initials: string; color: string;
+}
 
 const pendingAppts: PendingAppt[] = [
-  { key: '1', patient: 'Nguyễn Văn A', doctor: 'BS. Trần Thị B', date: '30/04/2026', type: 'Tại viện' },
-  { key: '2', patient: 'Lê Văn C', doctor: 'BS. Phạm Minh D', date: '30/04/2026', type: 'Video' },
-  { key: '3', patient: 'Trần Thị E', doctor: 'BS. Nguyễn F', date: '01/05/2026', type: 'Tại nhà' },
-  { key: '4', patient: 'Phạm Văn G', doctor: 'BS. Lê Thị H', date: '01/05/2026', type: 'Tại viện' },
-  { key: '5', patient: 'Hoàng Thị I', doctor: 'BS. Vũ Văn K', date: '02/05/2026', type: 'Tại viện' },
+  { key: '1', patient: 'Nguyễn Văn A', doctor: 'BS. Trần Thị B', specialty: 'Tim mạch', date: '30/04', type: 'Tại viện', status: 'pending' },
+  { key: '2', patient: 'Lê Văn C', doctor: 'BS. Phạm Minh D', specialty: 'Nhi khoa', date: '30/04', type: 'Video', status: 'pending' },
+  { key: '3', patient: 'Trần Thị E', doctor: 'BS. Nguyễn F', specialty: 'Da liễu', date: '01/05', type: 'Tại nhà', status: 'pending' },
+  { key: '4', patient: 'Phạm Văn G', doctor: 'BS. Lê Thị H', specialty: 'Thần kinh', date: '01/05', type: 'Tại viện', status: 'confirmed' },
+  { key: '5', patient: 'Hoàng Thị I', doctor: 'BS. Vũ Văn K', specialty: 'Cơ xương khớp', date: '02/05', type: 'Tại viện', status: 'pending' },
 ];
 
 const pendingDocs: PendingDoc[] = [
-  { key: '1', name: 'BS. Nguyễn Minh Tú', specialty: 'Tim mạch', experience: '8 năm', submittedAt: '28/04/2026' },
-  { key: '2', name: 'BS. Trần Thị Lan', specialty: 'Nhi khoa', experience: '5 năm', submittedAt: '27/04/2026' },
-  { key: '3', name: 'BS. Lê Văn Hùng', specialty: 'Thần kinh', experience: '12 năm', submittedAt: '27/04/2026' },
-  { key: '4', name: 'BS. Phạm Thu Hà', specialty: 'Da liễu', experience: '6 năm', submittedAt: '26/04/2026' },
+  { key: '1', name: 'BS. Nguyễn Minh Tú', specialty: 'Tim mạch', experience: '8 năm', submittedAt: '28/04' },
+  { key: '2', name: 'BS. Trần Thị Lan', specialty: 'Nhi khoa', experience: '5 năm', submittedAt: '27/04' },
+  { key: '3', name: 'BS. Lê Văn Hùng', specialty: 'Thần kinh', experience: '12 năm', submittedAt: '27/04' },
+  { key: '4', name: 'BS. Phạm Thu Hà', specialty: 'Da liễu', experience: '6 năm', submittedAt: '26/04' },
+];
+
+const topDoctors: TopDoctor[] = [
+  { key: '1', name: 'BS. Trần Thị Lan', specialty: 'Tim mạch', appointments: 124, rating: 4.9, completion: 96, initials: 'TL', color: '#4e73df' },
+  { key: '2', name: 'BS. Nguyễn Văn Hùng', specialty: 'Thần kinh', appointments: 118, rating: 4.8, completion: 94, initials: 'NH', color: '#1cc88a' },
+  { key: '3', name: 'BS. Lê Thu Hà', specialty: 'Da liễu', appointments: 105, rating: 4.8, completion: 91, initials: 'LH', color: '#36b9cc' },
+  { key: '4', name: 'BS. Phạm Minh Đức', specialty: 'Nhi khoa', appointments: 98, rating: 4.7, completion: 89, initials: 'PD', color: '#f6c23e' },
+  { key: '5', name: 'BS. Vũ Thị Mai', specialty: 'Sản phụ khoa', appointments: 93, rating: 4.7, completion: 87, initials: 'VM', color: '#e74a3b' },
 ];
 
 const apptCols: ColumnsType<PendingAppt> = [
-  { title: 'Bệnh nhân', dataIndex: 'patient', key: 'patient' },
-  { title: 'Bác sĩ', dataIndex: 'doctor', key: 'doctor' },
-  { title: 'Ngày', dataIndex: 'date', key: 'date', width: 110 },
-  { title: 'Loại', dataIndex: 'type', key: 'type', width: 100, render: (v: string) => <Tag color="blue">{v}</Tag> },
-  { title: '', key: 'act', width: 50, render: () => <Button type="link" size="small" icon={<EyeOutlined />} /> },
+  {
+    title: 'Bệnh nhân', dataIndex: 'patient', key: 'patient',
+    render: (v: string) => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Avatar size={28} style={{ background: '#4e73df', fontSize: 11, fontWeight: 700 }}>
+          {v.charAt(0)}
+        </Avatar>
+        <span style={{ fontWeight: 500, fontSize: 13 }}>{v}</span>
+      </div>
+    ),
+  },
+  { title: 'Bác sĩ', dataIndex: 'doctor', key: 'doctor', render: (v: string) => <span style={{ fontSize: 13 }}>{v}</span> },
+  { title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty', render: (v: string) => <Tag color="blue" style={{ borderRadius: 20, fontSize: 11 }}>{v}</Tag> },
+  { title: 'Ngày', dataIndex: 'date', key: 'date', width: 70 },
+  {
+    title: 'Loại', dataIndex: 'type', key: 'type', width: 90,
+    render: (v: string) => {
+      const color = v === 'Video' ? 'purple' : v === 'Tại nhà' ? 'green' : 'geekblue';
+      return <Tag color={color} style={{ borderRadius: 20, fontSize: 11 }}>{v}</Tag>;
+    },
+  },
+  {
+    title: '', key: 'act', width: 44,
+    render: () => <Button type="link" size="small" icon={<EyeOutlined />} style={{ color: '#4e73df' }} />,
+  },
 ];
 
 const docCols: ColumnsType<PendingDoc> = [
-  { title: 'Họ tên', dataIndex: 'name', key: 'name' },
-  { title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty' },
-  { title: 'KN', dataIndex: 'experience', key: 'experience', width: 80 },
-  { title: 'Nộp lúc', dataIndex: 'submittedAt', key: 'submittedAt', width: 110 },
-  { title: '', key: 'act', width: 50, render: () => <Button type="link" size="small" icon={<EyeOutlined />} /> },
+  {
+    title: 'Họ tên', dataIndex: 'name', key: 'name',
+    render: (v: string) => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Avatar size={28} style={{ background: '#1cc88a', fontSize: 11, fontWeight: 700 }}>
+          {v.charAt(v.lastIndexOf(' ') + 1)}
+        </Avatar>
+        <span style={{ fontWeight: 500, fontSize: 13 }}>{v}</span>
+      </div>
+    ),
+  },
+  { title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty', render: (v: string) => <Tag color="green" style={{ borderRadius: 20, fontSize: 11 }}>{v}</Tag> },
+  { title: 'K.Nghiệm', dataIndex: 'experience', key: 'experience', width: 90 },
+  { title: 'Nộp', dataIndex: 'submittedAt', key: 'submittedAt', width: 72 },
+  {
+    title: '', key: 'act', width: 44,
+    render: () => <Button type="link" size="small" icon={<EyeOutlined />} style={{ color: '#4e73df' }} />,
+  },
 ];
 
-/* ---------- chart configs ---------- */
+/* ── Chart configs ── */
 const columnConfig = {
-  data: apptByMonth,
-  xField: 'month',
-  yField: 'value',
-  color: '#0077C8',
-  columnStyle: { radius: [4, 4, 0, 0] },
-  xAxis: { line: null, tickLine: null },
-  yAxis: { grid: { line: { style: { stroke: '#F0F0F0' } } } },
-  tooltip: { formatter: (d: { value: number }) => ({ name: 'Lịch hẹn', value: d.value }) },
-  height: 220,
+  data: apptByMonth, xField: 'month', yField: 'value',
+  style: { fill: '#4e73df', radiusTopLeft: 3, radiusTopRight: 3 },
+  height: 200, autoFit: false,
 };
 
 const lineConfig = {
-  data: newUsers,
-  xField: 'day',
-  yField: 'value',
-  color: '#0077C8',
-  smooth: true,
-  point: { size: 4, color: '#0077C8' },
-  xAxis: { line: null, tickLine: null },
-  yAxis: { grid: { line: { style: { stroke: '#F0F0F0' } } } },
-  tooltip: { formatter: (d: { value: number }) => ({ name: 'Người dùng mới', value: d.value }) },
-  height: 220,
+  data: newUsers, xField: 'day', yField: 'value',
+  style: { stroke: '#1cc88a', lineWidth: 2.5 },
+  point: { style: { fill: '#1cc88a', r: 4 } },
+  height: 200, autoFit: false,
 };
 
 const pieConfig = {
-  data: apptTypes,
-  angleField: 'value',
-  colorField: 'type',
-  color: ['#0077C8', '#28A745', '#17A2B8'],
-  radius: 0.85,
-  innerRadius: 0.6,
-  label: { type: 'inner', offset: '-50%', style: { fontSize: 13 } },
+  data: apptTypes, angleField: 'value', colorField: 'type',
+  radius: 0.85, innerRadius: 0.65,
+  color: ['#4e73df', '#1cc88a', '#36b9cc'],
   legend: { position: 'bottom' as const },
-  height: 220,
+  height: 200, autoFit: false,
 };
 
-/* ---------- component ---------- */
+/* ── KPI config ── */
+const kpiCards = [
+  {
+    color: '#4e73df',
+    colorLight: '#eaecf4',
+    icon: <UserOutlined />,
+    label: 'Tổng người dùng',
+    value: '1,248',
+    change: '+12%',
+    dir: 'up',
+    note: 'so với tháng trước',
+  },
+  {
+    color: '#1cc88a',
+    colorLight: '#d1f2e3',
+    icon: <MedicineBoxOutlined />,
+    label: 'Bác sĩ hoạt động',
+    value: '84',
+    change: '+3 mới',
+    dir: 'up',
+    note: 'tháng này',
+  },
+  {
+    color: '#36b9cc',
+    colorLight: '#d1ecf1',
+    icon: <CalendarOutlined />,
+    label: 'Lịch hẹn hôm nay',
+    value: '37',
+    change: '-5%',
+    dir: 'down',
+    note: 'so với hôm qua',
+  },
+  {
+    color: '#f6c23e',
+    colorLight: '#fef3cd',
+    icon: <DollarCircleOutlined />,
+    label: 'Doanh thu tháng',
+    value: '198M ₫',
+    change: '+18%',
+    dir: 'up',
+    note: 'so với tháng trước',
+  },
+  {
+    color: '#e74a3b',
+    colorLight: '#fde8e6',
+    icon: <ClockCircleOutlined />,
+    label: 'Hồ sơ chờ duyệt',
+    value: '4',
+    change: 'Cần xử lý',
+    dir: 'down',
+    note: '',
+  },
+];
+
+/* ── Component ── */
 const Dashboard = () => (
   <div className={styles.page}>
-    {/* Header */}
-    <div className={styles.pageHeader}>
-      <div>
-        <h1 className={styles.pageTitle}>Dashboard</h1>
-        <p className={styles.pageSubtitle}>Tổng quan hệ thống VitaFamily — 29/04/2026</p>
-      </div>
-      <Select defaultValue="month" style={{ width: 140 }}>
-        <Select.Option value="today">Hôm nay</Select.Option>
-        <Select.Option value="week">Tuần này</Select.Option>
-        <Select.Option value="month">Tháng này</Select.Option>
-        <Select.Option value="year">Năm nay</Select.Option>
-      </Select>
-    </div>
 
-    {/* KPI */}
+    {/* KPI Cards */}
     <div className={styles.kpiGrid}>
-      {[
-        { icon: <UserOutlined />, color: 'blue', label: 'Tổng người dùng', value: '1,248', change: '12%', dir: 'up', note: 'so với tháng trước' },
-        { icon: <MedicineBoxOutlined />, color: 'green', label: 'Bác sĩ hoạt động', value: '84', change: '3 bác sĩ mới', dir: 'up', note: '' },
-        { icon: <CalendarOutlined />, color: 'orange', label: 'Lịch hẹn hôm nay', value: '37', change: '5%', dir: 'down', note: 'so với hôm qua' },
-        { icon: <ClockCircleOutlined />, color: 'red', label: 'Chờ duyệt hồ sơ BS', value: '4', change: 'Cần xử lý', dir: 'down', note: '' },
-      ].map((k) => (
-        <div key={k.label} className={styles.kpiCard}>
-          <div className={`${styles.kpiIcon} ${styles[k.color as 'blue' | 'green' | 'orange' | 'red']}`}>{k.icon}</div>
-          <div>
-            <div className={styles.kpiLabel}>{k.label}</div>
-            <div className={styles.kpiValue}>{k.value}</div>
-            <span className={`${styles.kpiChange} ${styles[k.dir as 'up' | 'down']}`}>
-              {k.dir === 'up' ? <RiseOutlined /> : <FallOutlined />}
-              {' '}{k.change} {k.note}
-            </span>
+      {kpiCards.map((k) => (
+        <div key={k.label} className={styles.kpiCard} style={{ borderLeft: `4px solid ${k.color}` }}>
+          <div className={styles.kpiBody}>
+            <div>
+              <div className={styles.kpiLabel}>{k.label}</div>
+              <div className={styles.kpiValue}>{k.value}</div>
+              <div className={`${styles.kpiChange} ${k.dir === 'up' ? styles.up : styles.down}`}>
+                {k.dir === 'up' ? <RiseOutlined /> : <FallOutlined />}
+                {' '}{k.change}{k.note ? ` ${k.note}` : ''}
+              </div>
+            </div>
+            <div className={styles.kpiIconWrap} style={{ background: k.colorLight, color: k.color }}>
+              {k.icon}
+            </div>
+          </div>
+          <div className={styles.kpiFooter} style={{ borderTop: `1px solid ${k.colorLight}` }}>
+            <span style={{ color: k.color }}>Xem chi tiết</span>
+            <ArrowRightOutlined style={{ color: k.color, fontSize: 11 }} />
           </div>
         </div>
       ))}
@@ -151,6 +226,7 @@ const Dashboard = () => (
             <h3 className={styles.cardTitle}>Lịch hẹn theo tháng</h3>
             <p className={styles.cardSubtitle}>Tổng số lịch hẹn năm 2026</p>
           </div>
+          <Tag color="blue" style={{ borderRadius: 20 }}>2026</Tag>
         </div>
         <Column {...columnConfig} />
       </div>
@@ -160,23 +236,86 @@ const Dashboard = () => (
             <h3 className={styles.cardTitle}>Người dùng mới (30 ngày)</h3>
             <p className={styles.cardSubtitle}>Lượng đăng ký mỗi ngày</p>
           </div>
+          <span className={styles.successBadge}><RiseOutlined /> +18%</span>
         </div>
         <Line {...lineConfig} />
       </div>
     </div>
 
-    {/* Charts row 2 */}
-    <div className={styles.row3}>
+    {/* Tables row */}
+    <div className={styles.row2}>
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <div>
             <h3 className={styles.cardTitle}>Lịch hẹn chờ xác nhận</h3>
-            <p className={styles.cardSubtitle}>5 lịch hẹn mới nhất cần xử lý</p>
+            <p className={styles.cardSubtitle}>5 lịch hẹn mới nhất</p>
           </div>
-          <Button type="link" size="small" style={{ color: '#0077C8', padding: 0 }}>Xem tất cả →</Button>
+          <Button type="link" size="small" style={{ color: '#4e73df', padding: 0, fontSize: 12 }}>Xem tất cả →</Button>
         </div>
-        <Table dataSource={pendingAppts} columns={apptCols} pagination={false} size="small" scroll={{ x: 400 }} />
+        <Table
+          dataSource={pendingAppts}
+          columns={apptCols}
+          pagination={false}
+          size="small"
+          scroll={{ x: 560 }}
+          rowClassName={styles.tableRow}
+        />
       </div>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <div>
+            <h3 className={styles.cardTitle}>Hồ sơ bác sĩ chờ duyệt</h3>
+            <p className={styles.cardSubtitle}>Cần phê duyệt sớm</p>
+          </div>
+          <Button type="link" size="small" style={{ color: '#4e73df', padding: 0, fontSize: 12 }}>Xem tất cả →</Button>
+        </div>
+        <Table
+          dataSource={pendingDocs}
+          columns={docCols}
+          pagination={false}
+          size="small"
+          scroll={{ x: 440 }}
+          rowClassName={styles.tableRow}
+        />
+      </div>
+    </div>
+
+    {/* Top Doctors + Pie */}
+    <div className={styles.row3}>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <div>
+            <h3 className={styles.cardTitle}>Top 5 Bác sĩ được đặt nhiều nhất</h3>
+            <p className={styles.cardSubtitle}>Xếp hạng theo tổng lịch hẹn tháng này</p>
+          </div>
+        </div>
+        <div className={styles.topDoctorList}>
+          {topDoctors.map((doc, i) => (
+            <div key={doc.key} className={styles.topDoctorRow}>
+              <span className={styles.rankNum} style={{ color: i < 3 ? doc.color : '#b7b9cc' }}>
+                #{i + 1}
+              </span>
+              <Avatar size={36} style={{ background: doc.color, fontWeight: 700, fontSize: 13, flexShrink: 0 }}>
+                {doc.initials}
+              </Avatar>
+              <div className={styles.topDoctorMeta}>
+                <div className={styles.topDoctorName}>{doc.name}</div>
+                <div className={styles.topDoctorSub}>{doc.specialty}</div>
+              </div>
+              <div className={styles.topDoctorProgress}>
+                <div className={styles.topDoctorStats}>
+                  <span style={{ color: doc.color, fontWeight: 600, fontSize: 12 }}>{doc.appointments} lịch</span>
+                  <span className={styles.topDoctorRating}>
+                    <StarFilled style={{ color: '#f6c23e', fontSize: 11 }} /> {doc.rating}
+                  </span>
+                </div>
+                <Progress percent={doc.completion} strokeColor={doc.color} showInfo={false} size="small" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <div>
@@ -185,20 +324,18 @@ const Dashboard = () => (
           </div>
         </div>
         <Pie {...pieConfig} />
+        <div className={styles.pieStats}>
+          {apptTypes.map((t, i) => (
+            <div key={t.type} className={styles.pieStat}>
+              <span className={styles.pieDot} style={{ background: ['#4e73df','#1cc88a','#36b9cc'][i] }} />
+              <span className={styles.pieLabel}>{t.type}</span>
+              <span className={styles.pieVal}>{t.value}%</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
 
-    {/* Pending doctors */}
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <div>
-          <h3 className={styles.cardTitle}>Hồ sơ bác sĩ chờ duyệt</h3>
-          <p className={styles.cardSubtitle}>Cần xem xét và phê duyệt sớm</p>
-        </div>
-        <Button type="primary" size="small" style={{ background: '#0077C8' }}>Xem tất cả</Button>
-      </div>
-      <Table dataSource={pendingDocs} columns={docCols} pagination={false} size="small" scroll={{ x: 500 }} />
-    </div>
   </div>
 );
 
