@@ -7,19 +7,27 @@ const USE_MOCK = true;
 
 const mockDelay = (ms = 700) => new Promise((r) => setTimeout(r, ms));
 
-const MOCK_USER: User = {
-  id: 1,
-  email: 'test@vitafamily.vn',
-  fullName: 'Nguyễn Văn A',
-  phone: '0901234567',
-  role: 'user',
+const MOCK_ACCOUNTS: Record<string, { token: string; user: User }> = {
+  'test@vitafamily.vn': {
+    token: 'mock-jwt-token-001',
+    user: { id: 1, email: 'test@vitafamily.vn', fullName: 'Nguyễn Văn A', phone: '0901234567', role: 'user' },
+  },
+  'admin@vitafamily.vn': {
+    token: 'mock-jwt-token-002',
+    user: { id: 2, email: 'admin@vitafamily.vn', fullName: 'Quản trị viên', phone: '0901000001', role: 'admin' },
+  },
+  'doctor@vitafamily.vn': {
+    token: 'mock-jwt-token-003',
+    user: { id: 3, email: 'doctor@vitafamily.vn', fullName: 'BS. Nguyễn Văn An', phone: '0901000010', role: 'doctor' },
+  },
 };
 
 export const login = async (payload: LoginPayload): Promise<AuthResponse> => {
   if (USE_MOCK) {
     await mockDelay();
-    if (payload.email === 'test@vitafamily.vn' && payload.password === '123456') {
-      return { token: 'mock-jwt-token-001', user: MOCK_USER };
+    const account = MOCK_ACCOUNTS[payload.email];
+    if (account && payload.password === '123456') {
+      return account;
     }
     throw new Error('Email hoặc mật khẩu không đúng');
   }

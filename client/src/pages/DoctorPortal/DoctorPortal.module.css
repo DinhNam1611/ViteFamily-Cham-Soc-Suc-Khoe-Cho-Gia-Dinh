@@ -1,0 +1,12 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F4F6F9;
+}
+
+.icon {
+  font-size: 64px;
+  color: #0077C8;
+}

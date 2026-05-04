@@ -21,6 +21,7 @@ import NewsDetail from './pages/News/NewsDetail';
 import Profile from './pages/Profile/Profile';
 import FamilyProfile from './pages/FamilyProfile/FamilyProfile';
 import TestResults from './pages/TestResults/TestResults';
+import DoctorPortal from './pages/DoctorPortal/DoctorPortal';
 
 const App = () => {
   return (
@@ -55,6 +56,16 @@ const App = () => {
           />
           <Route path="/contact/hoi-chuyen-gia" element={<AskExpert />} />
           <Route path="/contact/lam-viec-tai-vf" element={<WorkWithUs />} />
+
+          {/* Doctor portal — placeholder */}
+          <Route
+            path="/doctor"
+            element={
+              <ProtectedRoute>
+                <DoctorPortal />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Protected — yêu cầu đăng nhập */}
           <Route

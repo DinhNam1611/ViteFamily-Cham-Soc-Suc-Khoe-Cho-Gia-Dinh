@@ -6,7 +6,7 @@ interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (payload: LoginPayload) => Promise<void>;
+  login: (payload: LoginPayload) => Promise<User>;
   register: (payload: RegisterPayload) => Promise<void>;
   logout: () => void;
   updateUser: (updated: User) => void;
@@ -25,12 +25,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => window.removeEventListener('auth:logout', handle);
   }, []);
 
-  const login = useCallback(async (payload: LoginPayload) => {
+  const login = useCallback(async (payload: LoginPayload): Promise<User> => {
     setIsLoading(true);
     try {
       const res = await authService.login(payload);
       authService.persistAuth(res);
       setUser(res.user);
+      return res.user;
     } finally {
       setIsLoading(false);
     }

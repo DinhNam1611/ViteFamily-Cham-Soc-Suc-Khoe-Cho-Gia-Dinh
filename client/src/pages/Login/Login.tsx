@@ -22,9 +22,16 @@ const Login = () => {
   const handleSubmit = async (values: LoginPayload) => {
     setLoading(true);
     try {
-      await login(values);
+      const user = await login(values);
       message.success(t('login.success'));
-      navigate(fromPath, { replace: true });
+
+      if (user.role === 'admin') {
+        window.location.href = `${import.meta.env.VITE_ADMIN_URL ?? ''}/admin`;
+      } else if (user.role === 'doctor') {
+        navigate('/doctor', { replace: true });
+      } else {
+        navigate(fromPath, { replace: true });
+      }
     } catch (err) {
       message.error(err instanceof Error ? err.message : t('login.error_default'));
     } finally {
@@ -107,7 +114,9 @@ const Login = () => {
 
         <div className={styles.demoHint}>
           <span className={styles.demoLabel}>Demo</span>
-          test@vitafamily.vn &nbsp;/&nbsp; 123456
+          <div>👤 test@vitafamily.vn &nbsp;/&nbsp; 123456</div>
+          <div>🛡️ admin@vitafamily.vn &nbsp;/&nbsp; 123456</div>
+          <div>🩺 doctor@vitafamily.vn &nbsp;/&nbsp; 123456</div>
         </div>
       </motion.div>
     </div>

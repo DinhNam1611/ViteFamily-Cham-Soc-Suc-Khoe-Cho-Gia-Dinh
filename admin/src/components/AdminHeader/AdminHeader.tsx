@@ -47,6 +47,12 @@ const AdminHeader = ({ collapsed, onToggle }: AdminHeaderProps) => {
   const title = pageTitles[location.pathname] ?? 'Admin';
   const breadcrumbs = breadcrumbMap[location.pathname] ?? ['Trang chủ'];
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = `${import.meta.env.VITE_CLIENT_URL ?? ''}/login`;
+  };
+
   const userMenu: MenuProps['items'] = [
     { key: 'profile', icon: <UserOutlined />, label: 'Hồ sơ cá nhân' },
     { key: 'settings', icon: <SettingOutlined />, label: 'Cài đặt' },
@@ -99,7 +105,7 @@ const AdminHeader = ({ collapsed, onToggle }: AdminHeaderProps) => {
 
         <div className={styles.divider} />
 
-        <Dropdown menu={{ items: userMenu }} placement="bottomRight" trigger={['click']}>
+        <Dropdown menu={{ items: userMenu, onClick: ({ key }) => key === 'logout' && handleLogout() }} placement="bottomRight" trigger={['click']}>
           <button className={styles.userBtn}>
             <Avatar size={36} icon={<UserOutlined />} style={{ background: '#4e73df' }} />
             <div className={styles.userMeta}>
