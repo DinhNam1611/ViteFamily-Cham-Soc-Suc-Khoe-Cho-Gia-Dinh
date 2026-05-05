@@ -11,6 +11,7 @@ import Specialties from './pages/Specialties/Specialties';
 import Appointments from './pages/Appointments/Appointments';
 import Reviews from './pages/Reviews/Reviews';
 import Notifications from './pages/Notifications/Notifications';
+import Services from './pages/Services/Services';
 
 interface EBState { error: Error | null }
 
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="doctors/:id" element={<DoctorDetail />} />
           <Route path="hospitals" element={<Hospitals />} />
           <Route path="specialties" element={<Specialties />} />
+          <Route path="services" element={<Services />} />
           <Route path="appointments" element={<Appointments />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="notifications" element={<Notifications />} />

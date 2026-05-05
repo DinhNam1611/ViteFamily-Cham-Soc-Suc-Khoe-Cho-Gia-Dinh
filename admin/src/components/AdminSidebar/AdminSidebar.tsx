@@ -6,6 +6,7 @@ import {
   MedicineBoxOutlined,
   BankOutlined,
   AppstoreOutlined,
+  SolutionOutlined,
   CalendarOutlined,
   StarOutlined,
   BellOutlined,
@@ -41,6 +42,7 @@ const menu: MenuSection[] = [
       { key: 'doctors', path: '/admin/doctors', label: 'Bác sĩ', icon: <MedicineBoxOutlined /> },
       { key: 'hospitals', path: '/admin/hospitals', label: 'Bệnh viện', icon: <BankOutlined /> },
       { key: 'specialties', path: '/admin/specialties', label: 'Chuyên khoa', icon: <AppstoreOutlined /> },
+      { key: 'services', path: '/admin/services', label: 'Dịch vụ', icon: <SolutionOutlined /> },
     ],
   },
   {
