@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Table, Input, Button, Switch, Space, Modal, Form, Popconfirm } from 'antd';
-import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
+import { Table, Input, Button, Switch, Space, Modal, Form, Popconfirm, Tooltip } from 'antd';
+import { PlusOutlined, FormOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './Hospitals.module.css';
 
@@ -28,13 +28,17 @@ const Hospitals = () => {
     { title: 'Số BS', dataIndex: 'doctorCount', key: 'doctorCount', width: 80, align: 'center' },
     { title: 'Hiển thị', dataIndex: 'isActive', key: 'isActive', width: 90, render: (v: boolean) => <Switch checked={v} size="small" /> },
     {
-      title: 'Thao tác', key: 'act', width: 120, fixed: 'right' as const,
+      title: 'Thao tác', key: 'act', width: 80, fixed: 'right' as const,
       render: (_, r) => (
-        <Space>
-          <Button type="link" size="small" icon={<EditOutlined />} onClick={() => openEdit(r)}>Sửa</Button>
-          <Popconfirm title="Xóa bệnh viện?" okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}>
-            <Button type="link" size="small" danger icon={<DeleteOutlined />}>Xóa</Button>
-          </Popconfirm>
+        <Space size={4}>
+          <Tooltip title="Chỉnh sửa">
+            <Button type="link" size="small" icon={<FormOutlined />} onClick={() => openEdit(r)} />
+          </Tooltip>
+          <Tooltip title="Xóa bệnh viện">
+            <Popconfirm title="Xóa bệnh viện?" okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}>
+              <Button type="link" size="small" danger icon={<DeleteOutlined />} />
+            </Popconfirm>
+          </Tooltip>
         </Space>
       ),
     },

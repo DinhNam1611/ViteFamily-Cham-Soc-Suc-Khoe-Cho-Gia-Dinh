@@ -5,6 +5,7 @@ import AdminLayout from './components/AdminLayout/AdminLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
 import Doctors from './pages/Doctors/Doctors';
+import DoctorDetail from './pages/Doctors/DoctorDetail';
 import Hospitals from './pages/Hospitals/Hospitals';
 import Specialties from './pages/Specialties/Specialties';
 import Appointments from './pages/Appointments/Appointments';
@@ -51,6 +52,7 @@ const App = () => (
           <Route index element={<Dashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="doctors" element={<Doctors />} />
+          <Route path="doctors/:id" element={<DoctorDetail />} />
           <Route path="hospitals" element={<Hospitals />} />
           <Route path="specialties" element={<Specialties />} />
           <Route path="appointments" element={<Appointments />} />

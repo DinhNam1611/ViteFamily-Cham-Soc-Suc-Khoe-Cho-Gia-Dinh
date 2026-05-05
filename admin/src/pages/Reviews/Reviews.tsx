@@ -1,4 +1,4 @@
-import { Table, Rate, Select, Button, Space, Popconfirm, Tag } from 'antd';
+import { Table, Rate, Select, Button, Space, Popconfirm, Tag, Tooltip } from 'antd';
 import { EyeInvisibleOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './Reviews.module.css';
@@ -25,17 +25,19 @@ const Reviews = () => {
     { title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 110,
       render: (s: string) => <Tag color={s === 'visible' ? 'green' : 'default'}>{s === 'visible' ? 'Hiển thị' : 'Đã ẩn'}</Tag> },
     {
-      title: 'Thao tác', key: 'act', width: 140, fixed: 'right' as const,
+      title: 'Thao tác', key: 'act', width: 80, fixed: 'right' as const,
       render: (_, r) => (
-        <Space>
-          <Popconfirm title={r.status === 'visible' ? 'Ẩn đánh giá này?' : 'Hiện lại?'} okText="Xác nhận" cancelText="Hủy">
-            <Button type="link" size="small" icon={r.status === 'visible' ? <EyeInvisibleOutlined /> : <EyeOutlined />}>
-              {r.status === 'visible' ? 'Ẩn' : 'Hiện'}
-            </Button>
-          </Popconfirm>
-          <Popconfirm title="Xóa vĩnh viễn?" okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}>
-            <Button type="link" size="small" danger icon={<DeleteOutlined />}>Xóa</Button>
-          </Popconfirm>
+        <Space size={4}>
+          <Tooltip title={r.status === 'visible' ? 'Ẩn đánh giá' : 'Hiện đánh giá'}>
+            <Popconfirm title={r.status === 'visible' ? 'Ẩn đánh giá này?' : 'Hiện lại đánh giá này?'} okText="Xác nhận" cancelText="Hủy">
+              <Button type="link" size="small" icon={r.status === 'visible' ? <EyeInvisibleOutlined /> : <EyeOutlined />} />
+            </Popconfirm>
+          </Tooltip>
+          <Tooltip title="Xóa vĩnh viễn">
+            <Popconfirm title="Xóa vĩnh viễn?" okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}>
+              <Button type="link" size="small" danger icon={<DeleteOutlined />} />
+            </Popconfirm>
+          </Tooltip>
         </Space>
       ),
     },

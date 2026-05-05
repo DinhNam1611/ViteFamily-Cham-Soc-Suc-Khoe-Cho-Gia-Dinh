@@ -1,0 +1,167 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+
+/* Header */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.backBtn { color: #6B7C99; }
+.headerMeta { display: flex; align-items: center; }
+.headerName { font-size: 17px; font-weight: 700; color: #1A2B4B; }
+
+/* Card */
+.card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E3E6F0;
+  padding: 18px 20px;
+}
+
+/* Tab content */
+.tabContent { display: flex; flex-direction: column; gap: 20px; padding-top: 4px; }
+
+/* Profile card */
+.profileCard {
+  background: linear-gradient(135deg, #f0f7ff, #e8f4fd) !important;
+  border: 1px solid #BAE0FF !important;
+  border-radius: 10px !important;
+}
+.profileHeader { display: flex; align-items: center; gap: 16px; }
+.profileAvatar {
+  background: #0077C8 !important;
+  color: #fff !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  flex-shrink: 0;
+}
+.profileInfo { flex: 1; }
+.profileName { font-size: 18px; font-weight: 700; color: #1A2B4B; margin: 0 0 8px; }
+
+/* Descriptions */
+.descriptions :global(.ant-descriptions-item-label) {
+  width: 140px;
+  font-size: 13px;
+  color: #6B7C99;
+  background: #F7FAFC !important;
+}
+.descriptions :global(.ant-descriptions-item-content) {
+  font-size: 13px;
+  color: #1A2B4B;
+}
+
+/* Edit section */
+.editSection {
+  background: #FAFBFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.sectionTitle { font-size: 14px; font-weight: 600; color: #1A2B4B; margin: 0 0 14px; }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+
+/* Approval panel */
+.approvalPanel {
+  background: #FFFBF0;
+  border: 1px solid #FFD666;
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.approvalTitle { font-size: 14px; font-weight: 600; color: #D48806; margin: 0 0 4px; }
+.approvalDesc { font-size: 13px; color: #6B7C99; margin: 0 0 12px; }
+
+/* Rejected panel */
+.rejectedPanel {
+  background: #FFF2F0;
+  border: 1px solid #FFCCC7;
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+.rejectedTitle { font-size: 14px; font-weight: 600; color: #CF1322; margin: 0 0 6px; }
+.rejectedReason { font-size: 13px; color: #595959; margin: 0; }
+
+/* Schedule header */
+.scheduleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.scheduleHeader .sectionTitle { margin: 0; }
+
+/* Schedule badge */
+.schedBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #0077C8;
+  color: #fff;
+  border-radius: 9px;
+}
+.patientRatio { font-size: 12px; color: #A0AEC0; }
+
+/* Expandable inner table */
+.innerTable {
+  background: #F8FAFF;
+  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid #E2E8F0;
+  margin: 4px 0;
+}
+.patientName { margin: 0; font-size: 13px; font-weight: 500; color: #1A2B4B; }
+.patientPhone { margin: 0; font-size: 12px; color: #6B7C99; }
+
+/* Schedule form — time slot row */
+.slotRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.slotSep { font-size: 14px; color: #6B7C99; flex-shrink: 0; }
+
+/* Reviews tab */
+.reviewSummary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: #FFFBF0;
+  border: 1px solid #FFD666;
+  border-radius: 8px;
+}
+.reviewAvg {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1A2B4B;
+  line-height: 1;
+}
+.reviewCount { font-size: 13px; color: #6B7C99; }
+
+/* Appointment modal */
+.apptModalContent { display: flex; flex-direction: column; gap: 0; }
+.updateLabel { font-size: 13px; font-weight: 600; color: #1A2B4B; margin: 0 0 8px; }
+.cancelReasonBlock { margin-top: 12px; }
+.cancelText { color: #DC3545; font-size: 13px; }
+.finalState {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: #F5F5F5;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #8C8C8C;
+  text-align: center;
+}
+.modalFooter { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Not found */
+.notFound { text-align: center; padding: 60px 0; }

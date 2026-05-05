@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Table, Input, Select, Button, Popconfirm, Tag, Space, Avatar,
   Drawer, Tabs, Form, Descriptions, Badge, Empty, Card, Row, Col,
+  Tooltip,
 } from 'antd';
 import {
   SearchOutlined, UserOutlined, LockOutlined, UnlockOutlined,
@@ -146,23 +147,23 @@ const Users = () => {
       title: 'Thao tác', key: 'act', width: 160, fixed: 'right' as const,
       render: (_, r) => (
         <Space size={4}>
-          <Button type="link" size="small" icon={<EditOutlined />} onClick={() => openDrawer(r)}>
-            Xem / Sửa
-          </Button>
+          <Tooltip title="Chi tiết">
+            <Button type="link" size="small" icon={<InfoCircleOutlined />} onClick={() => openDrawer(r)} />
+          </Tooltip>
           <Popconfirm
             title={r.status === 'active' ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?'}
             description={r.status === 'active' ? 'Khách hàng sẽ không thể đăng nhập.' : 'Khách hàng sẽ đăng nhập lại được.'}
             okText="Xác nhận" cancelText="Hủy"
             onConfirm={() => toggleLock(r)}
           >
-            <Button
-              type="link" size="small" danger={r.status === 'active'}
-              icon={r.status === 'active' ? <LockOutlined /> : <UnlockOutlined />}
-            >
-              {r.status === 'active' ? 'Khóa' : 'Mở khóa'}
-            </Button>
+            <Tooltip title={r.status === 'active' ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?'}>
+              <Button
+                type="link" size="small" danger={r.status === 'active'}
+                icon={r.status === 'active' ? <LockOutlined /> : <UnlockOutlined />}
+              />
+            </Tooltip>
           </Popconfirm>
-        </Space>
+        </Space >
       ),
     },
   ];

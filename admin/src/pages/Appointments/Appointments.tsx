@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Table, Input, Select, Tag, Button, Space, Popconfirm } from 'antd';
-import { SearchOutlined, StopOutlined, SwapOutlined } from '@ant-design/icons';
+import { Table, Input, Select, Tag, Button, Space, Popconfirm, Tooltip } from 'antd';
+import { SearchOutlined, MinusCircleOutlined, SwapOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './Appointments.module.css';
 
@@ -39,13 +39,17 @@ const Appointments = () => {
     { title: 'Loại', dataIndex: 'type', key: 'type', width: 100, render: (v: string) => <Tag>{v}</Tag> },
     { title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 140, render: (s: string) => <Tag color={statusColor[s]}>{statusLabel[s]}</Tag> },
     {
-      title: 'Thao tác', key: 'act', width: 150, fixed: 'right' as const,
+      title: 'Thao tác', key: 'act', width: 80, fixed: 'right' as const,
       render: (_, r) => (r.status === 'pending' || r.status === 'confirmed') ? (
-        <Space>
-          <Button type="link" size="small" icon={<SwapOutlined />}>Chuyển BS</Button>
-          <Popconfirm title="Hủy lịch hẹn?" okText="Hủy lịch" cancelText="Không" okButtonProps={{ danger: true }}>
-            <Button type="link" size="small" danger icon={<StopOutlined />}>Hủy</Button>
-          </Popconfirm>
+        <Space size={4}>
+          <Tooltip title="Chuyển bác sĩ">
+            <Button type="link" size="small" icon={<SwapOutlined />} />
+          </Tooltip>
+          <Tooltip title="Hủy lịch hẹn">
+            <Popconfirm title="Hủy lịch hẹn?" okText="Hủy lịch" cancelText="Không" okButtonProps={{ danger: true }}>
+              <Button type="link" size="small" danger icon={<MinusCircleOutlined />} />
+            </Popconfirm>
+          </Tooltip>
         </Space>
       ) : null,
     },
