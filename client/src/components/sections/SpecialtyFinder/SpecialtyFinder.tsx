@@ -68,7 +68,7 @@ const SpecialtyFinder = () => {
         >
           {specialties.map((specialty) => (
             <motion.div key={specialty.id} variants={itemVariants}>
-              <Link to={`/services/${specialty.slug}`} className={styles.card}>
+              <Link to={`/specialties/${specialty.slug}`} className={styles.card}>
                 <div className={styles.iconWrap}>
                   {ICON_MAP[specialty.icon] || <MedicineBoxOutlined />}
                 </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from 'antd';
 import { CheckOutlined, CalendarOutlined, RightOutlined } from '@ant-design/icons';
@@ -29,6 +29,10 @@ const CAT_SLUG_MAP: Record<string, string> = {
   'dich-vu-so': 'Dịch Vụ Số & Hỗ Trợ',
 };
 
+const SLUG_CAT_MAP: Record<string, string> = Object.fromEntries(
+  Object.entries(CAT_SLUG_MAP).map(([slug, cat]) => [cat, slug])
+);
+
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
@@ -41,26 +45,31 @@ const containerVariants = {
 };
 
 const Services = () => {
+  const { slug: pathSlug } = useParams<{ slug: string }>();
   const [searchParams] = useSearchParams();
+  const Param = useParams();
+  const navigate = useNavigate();
   const [packages, setPackages] = useState<ServicePackage[]>([]);
-  const [activeCategory, setActiveCategory] = useState(() => {
-    const slug = searchParams.get('cat');
+
+  const resolveCategory = () => {
+    const slug = pathSlug ?? searchParams.get('cat');
     return slug ? (CAT_SLUG_MAP[slug] ?? 'Tất cả') : 'Tất cả';
-  });
+  };
+
+  const [activeCategory, setActiveCategory] = useState(resolveCategory);
   const [filtered, setFiltered] = useState<ServicePackage[]>([]);
   const { ref: gridRef, isInView: gridInView } = useScrollAnimation();
 
   useEffect(() => {
-    const slug = searchParams.get('cat');
-    setActiveCategory(slug ? (CAT_SLUG_MAP[slug] ?? 'Tất cả') : 'Tất cả');
-  }, [searchParams]);
+    setActiveCategory(resolveCategory());
+  }, [pathSlug, searchParams]);
 
   useEffect(() => {
     getServicePackages().then((data) => {
       setPackages(data);
       setFiltered(data);
     });
-  }, []);
+  }, [packages]);
 
   useEffect(() => {
     if (activeCategory === 'Tất cả') {
@@ -124,7 +133,10 @@ const Services = () => {
               <button
                 key={cat}
                 className={`${styles.tab} ${activeCategory === cat ? styles.tabActive : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  const slug = SLUG_CAT_MAP[cat];
+                  navigate(slug ? `/services/${slug}` : '/services', { replace: true });
+                }}
               >
                 {cat}
               </button>

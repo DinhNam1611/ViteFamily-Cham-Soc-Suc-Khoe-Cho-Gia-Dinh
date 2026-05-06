@@ -88,6 +88,7 @@ Rules được tổ chức theo **sub-folder theo chủ đề** — không để
 | [admin.rules/admin-design-system.md](.claude/rules/admin.rules/admin-design-system.md) | Layout, màu sắc, component chuẩn cho Admin panel | Làm việc với `admin/` |
 | [admin.rules/testing-customer-management.md](.claude/rules/admin.rules/testing-customer-management.md) | Bug list + test cases cho Quản lý Khách hàng & Gia đình | Fix bug hoặc implement tính năng user/family |
 | [admin.rules/testing-doctor-management.md](.claude/rules/admin.rules/testing-doctor-management.md) | Bug list + test cases cho Quản lý Bác sĩ (nghiệp vụ y tế + kỹ thuật) | Fix bug hoặc implement tính năng doctor/schedule/appointment |
+| [admin/payment-module.md](.claude/rules/admin/payment-module.md) | Spec đầy đủ module Thanh Toán: business model, refund policy, DB schema, mock gateway, API, 10-step plan | Implement hoặc review bất kỳ phần nào của payment/refund/payout |
 
 ---
 

@@ -3,6 +3,7 @@ import { CheckCircleFilled, RightOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './AboutPreview.module.css';
+import { Link } from 'react-router-dom';
 
 const highlights = [
   'Hơn 15 năm kinh nghiệm chăm sóc sức khỏe cộng đồng',
@@ -46,11 +47,14 @@ const AboutPreview = () => {
 
           <div className={styles.actions}>
             <Button type="primary" size="large" className={styles.primaryBtn}>
-              Tìm hiểu thêm
-              <RightOutlined />
+              <Link to={`/about`}>
+                Tìm hiểu thêm
+              </Link>
             </Button>
             <Button size="large" className={styles.secondaryBtn}>
-              Đặt lịch khám
+              <Link to={`/services`}>
+                Xem Dịch Vụ
+              </Link>
             </Button>
           </div>
         </motion.div>

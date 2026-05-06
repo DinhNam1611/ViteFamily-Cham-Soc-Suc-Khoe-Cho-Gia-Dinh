@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { CalendarOutlined, PhoneOutlined } from '@ant-design/icons';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './AppointmentCTA.module.css';
+import { Link } from 'react-router-dom';
 
 const AppointmentCTA = () => {
   const { ref, isInView } = useScrollAnimation();
@@ -31,15 +32,18 @@ const AppointmentCTA = () => {
               size="large"
               icon={<CalendarOutlined />}
               className={styles.primaryBtn}
+
             >
-              Đặt lịch trực tuyến
+              <Link to={`/contact/dat-lich-kham`} >
+                Đặt lịch trực tuyến
+              </Link>
             </Button>
             <Button
               size="large"
               icon={<PhoneOutlined />}
               className={styles.phoneBtn}
             >
-              Gọi 1800 123 456
+              <a href="tel:1800 123 456">Gọi 1800 123 456</a>
             </Button>
           </div>
         </motion.div>

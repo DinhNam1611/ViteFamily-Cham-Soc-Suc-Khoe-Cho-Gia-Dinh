@@ -1,7 +1,9 @@
 -- ================================================================
 --  VitaFamily — Seed Data
---  Phiên bản : 2.0
+--  Phiên bản : 3.0
 --  Mô tả     : Dữ liệu mẫu đầy đủ khớp với frontend (db.json)
+--  Changelog : v3.0 — Thêm city vào hospitals, hospital_id vào
+--               doctor_schedules để khớp schema v3.0.
 --  Yêu cầu   : Chạy sau 01_schema.sql
 --  Mật khẩu  : Tất cả tài khoản dùng mật khẩu "123456"
 --               Hash bcrypt (cost=10) — thay bằng hash mới nếu cần
@@ -157,13 +159,13 @@ VALUES
 -- ================================================================
 --  3. BỆNH VIỆN / PHÒNG KHÁM  (hospitals)
 -- ================================================================
-INSERT INTO hospitals (id, name, address, phone, working_hours, is_active) VALUES
-(1, 'Bệnh viện VitaFamily', '15 Trần Hưng Đạo, Quận 1, TP. Hồ Chí Minh', '1800 1234', 'Thứ 2–7: 07:00–17:00; CN: 07:00–12:00', 1),
-(2, 'Phòng khám VitaFamily Quận 7', '135 Nguyễn Thị Thập, Quận 7, TP. Hồ Chí Minh', '028 3820 1234', 'Thứ 2–7: 07:30–17:30', 1),
-(3, 'Phòng khám VitaFamily Cầu Giấy', '88 Xuân Thủy, Cầu Giấy, Hà Nội', '024 3556 1234', 'Thứ 2–7: 07:30–17:30; CN: 08:00–12:00', 1),
-(4, 'Phòng khám VitaFamily Đà Nẵng', '52 Lê Duẩn, Hải Châu, Đà Nẵng', '0236 1234 567', 'Thứ 2–7: 07:00–17:00', 1),
-(5, 'Phòng khám VitaFamily Hải Phòng', '36 Điện Biên Phủ, Ngô Quyền, Hải Phòng', '0225 1234 567', 'Thứ 2–7: 07:30–17:00', 1),
-(6, 'Phòng khám VitaFamily Bình Dương', '29 Đại lộ Bình Dương, TP. Thủ Dầu Một, Bình Dương', '0274 1234 567', 'Thứ 2–7: 07:30–17:30', 1);
+INSERT INTO hospitals (id, name, address, city, phone, working_hours, is_active) VALUES
+(1, 'Bệnh viện VitaFamily',             '15 Trần Hưng Đạo, Quận 1, TP. Hồ Chí Minh',           'TP. Hồ Chí Minh', '1800 1234',       'Thứ 2–7: 07:00–17:00; CN: 07:00–12:00',     1),
+(2, 'Phòng khám VitaFamily Quận 7',     '135 Nguyễn Thị Thập, Quận 7, TP. Hồ Chí Minh',        'TP. Hồ Chí Minh', '028 3820 1234',   'Thứ 2–7: 07:30–17:30',                      1),
+(3, 'Phòng khám VitaFamily Cầu Giấy',   '88 Xuân Thủy, Cầu Giấy, Hà Nội',                      'Hà Nội',          '024 3556 1234',   'Thứ 2–7: 07:30–17:30; CN: 08:00–12:00',     1),
+(4, 'Phòng khám VitaFamily Đà Nẵng',    '52 Lê Duẩn, Hải Châu, Đà Nẵng',                       'Đà Nẵng',         '0236 1234 567',   'Thứ 2–7: 07:00–17:00',                      1),
+(5, 'Phòng khám VitaFamily Hải Phòng',  '36 Điện Biên Phủ, Ngô Quyền, Hải Phòng',              'Hải Phòng',       '0225 1234 567',   'Thứ 2–7: 07:30–17:00',                      1),
+(6, 'Phòng khám VitaFamily Bình Dương', '29 Đại lộ Bình Dương, TP. Thủ Dầu Một, Bình Dương',   'Bình Dương',      '0274 1234 567',   'Thứ 2–7: 07:30–17:30',                      1);
 
 
 -- ================================================================
@@ -573,22 +575,22 @@ VALUES
 --  11. LỊCH LÀM VIỆC BÁC SĨ  (doctor_schedules)
 --      Mỗi bác sĩ có 5 ngày làm việc mẫu (tháng 06/2025)
 -- ================================================================
-INSERT INTO doctor_schedules (id, doctor_id, date, is_off) VALUES
--- Bác sĩ 1 (Nguyễn Văn An - Tim mạch)
-(1,  1, '2025-06-02', 0), (2,  1, '2025-06-03', 0), (3,  1, '2025-06-04', 0),
-(4,  1, '2025-06-05', 0), (5,  1, '2025-06-06', 0),
--- Bác sĩ 2 (Trần Thị Bình - Nhi khoa)
-(6,  2, '2025-06-02', 0), (7,  2, '2025-06-03', 0), (8,  2, '2025-06-04', 0),
-(9,  2, '2025-06-05', 0), (10, 2, '2025-06-06', 0),
--- Bác sĩ 3 (Lê Minh Tuấn - Da liễu)
-(11, 3, '2025-06-02', 0), (12, 3, '2025-06-03', 0), (13, 3, '2025-06-04', 0),
-(14, 3, '2025-06-05', 1), (15, 3, '2025-06-06', 0),  -- 05/06 nghỉ
--- Bác sĩ 4 (Phạm Thị Lan - Thần kinh)
-(16, 4, '2025-06-02', 0), (17, 4, '2025-06-03', 0), (18, 4, '2025-06-04', 0),
-(19, 4, '2025-06-05', 0), (20, 4, '2025-06-06', 0),
--- Bác sĩ 5 (Võ Thanh Quang - TMH)
-(21, 5, '2025-06-02', 0), (22, 5, '2025-06-03', 0), (23, 5, '2025-06-04', 0),
-(24, 5, '2025-06-05', 0), (25, 5, '2025-06-06', 0);
+INSERT INTO doctor_schedules (id, doctor_id, hospital_id, date, is_off) VALUES
+-- Bác sĩ 1 (Nguyễn Văn An - Tim mạch) tại BV VitaFamily HCM (id=1)
+(1,  1, 1, '2025-06-02', 0), (2,  1, 1, '2025-06-03', 0), (3,  1, 1, '2025-06-04', 0),
+(4,  1, 1, '2025-06-05', 0), (5,  1, 1, '2025-06-06', 0),
+-- Bác sĩ 2 (Trần Thị Bình - Nhi khoa) tại BV VitaFamily HCM (id=1)
+(6,  2, 1, '2025-06-02', 0), (7,  2, 1, '2025-06-03', 0), (8,  2, 1, '2025-06-04', 0),
+(9,  2, 1, '2025-06-05', 0), (10, 2, 1, '2025-06-06', 0),
+-- Bác sĩ 3 (Lê Minh Tuấn - Da liễu) tại BV VitaFamily HCM (id=1)
+(11, 3, 1, '2025-06-02', 0), (12, 3, 1, '2025-06-03', 0), (13, 3, 1, '2025-06-04', 0),
+(14, 3, 1, '2025-06-05', 1), (15, 3, 1, '2025-06-06', 0),  -- 05/06 nghỉ
+-- Bác sĩ 4 (Phạm Thị Lan - Thần kinh) tại BV VitaFamily HCM (id=1)
+(16, 4, 1, '2025-06-02', 0), (17, 4, 1, '2025-06-03', 0), (18, 4, 1, '2025-06-04', 0),
+(19, 4, 1, '2025-06-05', 0), (20, 4, 1, '2025-06-06', 0),
+-- Bác sĩ 5 (Võ Thanh Quang - TMH) tại BV VitaFamily HCM (id=1)
+(21, 5, 1, '2025-06-02', 0), (22, 5, 1, '2025-06-03', 0), (23, 5, 1, '2025-06-04', 0),
+(24, 5, 1, '2025-06-05', 0), (25, 5, 1, '2025-06-06', 0);
 
 
 -- ================================================================

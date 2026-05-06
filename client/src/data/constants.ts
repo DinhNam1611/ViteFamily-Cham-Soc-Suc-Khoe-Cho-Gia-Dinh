@@ -129,12 +129,12 @@ export const PATIENT_GUIDE_DROPDOWN = [
 ];
 
 export const SERVICES_DROPDOWN = [
-  { label: "Khám Chuyên Khoa", path: "/services?cat=kham-chuyen-khoa", icon: "medicine" },
-  { label: "Gói Khám Tổng Quát", path: "/services?cat=goi-kham-tong-quat", icon: "heart" },
-  { label: "Xét Nghiệm & Chẩn Đoán", path: "/services?cat=xet-nghiem", icon: "experiment" },
-  { label: "Tiêm Chủng & Phòng Ngừa", path: "/services?cat=tiem-chung", icon: "safety" },
-  { label: "Phẫu Thuật & Thủ Thuật", path: "/services?cat=phau-thuat", icon: "scan" },
-  { label: "Dịch Vụ Số & Hỗ Trợ", path: "/services?cat=dich-vu-so", icon: "video" },
+  { label: "Khám Chuyên Khoa", path: "/services/kham-chuyen-khoa", icon: "medicine" },
+  { label: "Gói Khám Tổng Quát", path: "/services/goi-kham-tong-quat", icon: "heart" },
+  { label: "Xét Nghiệm & Chẩn Đoán", path: "/services/xet-nghiem", icon: "experiment" },
+  { label: "Tiêm Chủng & Phòng Ngừa", path: "/services/tiem-chung", icon: "safety" },
+  { label: "Phẫu Thuật & Thủ Thuật", path: "/services/phau-thuat", icon: "scan" },
+  { label: "Dịch Vụ Số & Hỗ Trợ", path: "/services/dich-vu-so", icon: "video" },
 ];
 
 export const CONTACT_INFO = {

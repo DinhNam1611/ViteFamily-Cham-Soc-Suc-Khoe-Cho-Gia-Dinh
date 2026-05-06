@@ -15,9 +15,12 @@
   --text-muted: #6b7c99;
   --success-green: #28a745;
   --border-gray: #e2e8f0;
-  --section-padding-desktop: 40px;
-  --section-padding-mobile: 40px;
+  --section-padding-desktop: 80px;
+  --section-padding-mobile: 56px;
   --container-max: 1280px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.10), 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
 html {

@@ -1,5 +1,6 @@
 .section {
   background: var(--light-blue);
+  padding: 80px 0;
 }
 
 .header {
@@ -53,7 +54,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 8px 32px rgba(0, 119, 200, 0.15);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
   border-color: var(--primary-blue);
 }
