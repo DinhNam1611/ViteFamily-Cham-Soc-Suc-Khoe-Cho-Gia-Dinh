@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Carousel } from 'antd';
 import { motion } from 'framer-motion';
 import { CalendarOutlined, TeamOutlined, RightOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
 import { getHeroBanners } from '../../../services/homeService';
 import type { HeroBanner as HeroBannerType } from '../../../types';
 import styles from './HeroBanner.module.css';
 
 const HeroBanner = () => {
-  const { t } = useTranslation();
   const [banners, setBanners] = useState<HeroBannerType[]>([]);
 
   useEffect(() => {
@@ -43,7 +41,7 @@ const HeroBanner = () => {
                   transition={{ duration: 0.7, ease: 'easeOut' }}
                   className={styles.textBlock}
                 >
-                  <span className={styles.badge}>{t('hero.badge')}</span>
+                  <span className={styles.badge}>Bệnh viện quốc tế VitaFamily</span>
                   <h1 className={styles.title}>{banner.title}</h1>
                   <p className={styles.subtitle}>{banner.subtitle}</p>
                   <div className={styles.actions}>
@@ -76,7 +74,7 @@ const HeroBanner = () => {
           <div className={styles.infoItem}>
             <CalendarOutlined className={styles.infoIcon} />
             <div>
-              <span className={styles.infoLabel}>{t('hero.quick_booking_label')}</span>
+              <span className={styles.infoLabel}>Đặt lịch nhanh</span>
               <span className={styles.infoValue}>1800 123 456</span>
             </div>
           </div>
@@ -84,16 +82,16 @@ const HeroBanner = () => {
           <div className={styles.infoItem}>
             <TeamOutlined className={styles.infoIcon} />
             <div>
-              <span className={styles.infoLabel}>{t('hero.specialist_label')}</span>
-              <span className={styles.infoValue}>{t('hero.specialist_value')}</span>
+              <span className={styles.infoLabel}>120+ bác sĩ chuyên khoa</span>
+              <span className={styles.infoValue}>Đội ngũ hàng đầu</span>
             </div>
           </div>
           <div className={styles.infoDivider} />
           <div className={styles.infoItem}>
             <RightOutlined className={styles.infoIcon} />
             <div>
-              <span className={styles.infoLabel}>{t('hero.hours_label')}</span>
-              <span className={styles.infoValue}>{t('hero.hours_value')}</span>
+              <span className={styles.infoLabel}>Giờ làm việc</span>
+              <span className={styles.infoValue}>T2 – CN: 7:00 – 20:00</span>
             </div>
           </div>
         </div>

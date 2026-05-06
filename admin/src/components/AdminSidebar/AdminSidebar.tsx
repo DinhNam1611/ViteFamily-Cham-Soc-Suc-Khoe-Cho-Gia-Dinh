@@ -38,7 +38,7 @@ const menu: MenuSection[] = [
   {
     sectionLabel: 'Quản lý',
     items: [
-      { key: 'users', path: '/admin/users', label: 'Người dùng', icon: <UserOutlined /> },
+      { key: 'users', path: '/admin/users', label: 'Quản lý Khách hàng', icon: <UserOutlined /> },
       { key: 'doctors', path: '/admin/doctors', label: 'Bác sĩ', icon: <MedicineBoxOutlined /> },
       { key: 'hospitals', path: '/admin/hospitals', label: 'Bệnh viện', icon: <BankOutlined /> },
       { key: 'specialties', path: '/admin/specialties', label: 'Chuyên khoa', icon: <AppstoreOutlined /> },

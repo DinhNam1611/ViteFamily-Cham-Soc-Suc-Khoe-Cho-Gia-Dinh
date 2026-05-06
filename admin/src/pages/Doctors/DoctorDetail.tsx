@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
   Button, Tabs, Descriptions, Avatar, Tag, Space, Badge,
   Table, Switch, Modal, Select, message, Form, Input,
-  Popconfirm, Empty, Divider, Card, Tooltip,
+  Popconfirm, Empty, Divider, Card, Tooltip, Alert,
   DatePicker, TimePicker, InputNumber, Rate,
 } from 'antd';
 import {
@@ -280,6 +280,24 @@ const DoctorDetail = () => {
     timeSlots: { start: Dayjs; end: Dayjs }[];
     maxPatients: number;
   }) => {
+    // Kiểm tra end > start cho mỗi khung giờ
+    for (const ts of values.timeSlots) {
+      if (ts.end.isBefore(ts.start) || ts.end.isSame(ts.start)) {
+        message.error('Giờ kết thúc phải sau giờ bắt đầu trong mỗi khung giờ');
+        return;
+      }
+    }
+
+    // Kiểm tra trùng ngày (không cho thêm 2 ca cùng ngày, trừ khi đang sửa ca đó)
+    const newDateStr = values.date.format('DD/MM/YYYY');
+    const duplicateExists = doctor.schedules.some(
+      (s) => s.date === newDateStr && s.key !== editingSchedule?.key,
+    );
+    if (duplicateExists) {
+      message.error(`Đã có ca làm việc vào ngày ${newDateStr}. Hãy chỉnh sửa ca hiện có thay vì thêm mới.`);
+      return;
+    }
+
     const saved: ScheduleRow = {
       key: editingSchedule?.key ?? String(Date.now()),
       id: editingSchedule?.id ?? Date.now(),
@@ -307,6 +325,17 @@ const DoctorDetail = () => {
   };
 
   const handleDeleteSchedule = (key: string) => {
+    const schedule = doctor.schedules.find((s) => s.key === key);
+    // Không cho xóa ca nếu còn lịch hẹn pending hoặc confirmed
+    const activeAppts = schedule?.appointments.filter(
+      (a) => a.status === 'pending' || a.status === 'confirmed',
+    ).length ?? 0;
+    if (activeAppts > 0) {
+      message.error(
+        `Không thể xóa — ca này còn ${activeAppts} lịch hẹn đang hoạt động. Hãy hủy hết lịch hẹn trước.`,
+      );
+      return;
+    }
     setDoctor((prev) =>
       prev ? { ...prev, schedules: prev.schedules.filter((s) => s.key !== key) } : prev,
     );
@@ -478,16 +507,31 @@ const DoctorDetail = () => {
       </div>
 
       {doctor.approvalStatus === 'pending' && (
-        <div className={styles.approvalPanel}>
-          <p className={styles.approvalTitle}>Duyệt hồ sơ bác sĩ</p>
-          <p className={styles.approvalDesc}>Hồ sơ đang chờ xem xét. Sau khi duyệt, bác sĩ sẽ hiển thị trên trang tìm bác sĩ.</p>
-          <Space>
-            <Popconfirm title="Duyệt hồ sơ bác sĩ này?" description="Bác sĩ sẽ được hiển thị trên hệ thống." okText="Duyệt" cancelText="Hủy" onConfirm={handleApprove}>
-              <Button type="primary" icon={<CheckCircleOutlined />}>Duyệt hồ sơ</Button>
-            </Popconfirm>
-            <Button danger icon={<CloseCircleOutlined />} onClick={openRejectModal}>Từ chối</Button>
-          </Space>
-        </div>
+        <Alert
+          message="Hồ sơ đang chờ duyệt"
+          description={
+            <div>
+              <p style={{ marginBottom: 12 }}>
+                Sau khi duyệt, bác sĩ sẽ <b>hiển thị công khai</b> và bệnh nhân có thể đặt lịch khám.
+                Lịch làm việc chỉ thiết lập được sau khi hồ sơ được duyệt.
+              </p>
+              <Space>
+                <Popconfirm
+                  title="Duyệt hồ sơ bác sĩ này?"
+                  description="Bác sĩ sẽ hiển thị trên hệ thống và bệnh nhân có thể đặt lịch."
+                  okText="Duyệt" cancelText="Hủy"
+                  onConfirm={handleApprove}
+                >
+                  <Button type="primary" icon={<CheckCircleOutlined />}>Duyệt hồ sơ</Button>
+                </Popconfirm>
+                <Button danger icon={<CloseCircleOutlined />} onClick={openRejectModal}>Từ chối</Button>
+              </Space>
+            </div>
+          }
+          type="warning"
+          showIcon
+          style={{ marginTop: 16 }}
+        />
       )}
 
       {doctor.approvalStatus === 'rejected' && (
@@ -596,11 +640,20 @@ const DoctorDetail = () => {
             },
             {
               key: 'schedule',
+              disabled: doctor.approvalStatus !== 'approved',
               label: (
-                <span>
-                  <CalendarOutlined style={{ marginRight: 6 }} />Lịch Làm Việc
-                  {doctor.schedules.length > 0 && <span className={styles.schedBadge}>{doctor.schedules.length}</span>}
-                </span>
+                <Tooltip
+                  title={
+                    doctor.approvalStatus !== 'approved'
+                      ? 'Duyệt hồ sơ trước khi thiết lập lịch làm việc'
+                      : undefined
+                  }
+                >
+                  <span>
+                    <CalendarOutlined style={{ marginRight: 6 }} />Lịch Làm Việc
+                    {doctor.schedules.length > 0 && <span className={styles.schedBadge}>{doctor.schedules.length}</span>}
+                  </span>
+                </Tooltip>
               ),
               children: scheduleTab,
             },

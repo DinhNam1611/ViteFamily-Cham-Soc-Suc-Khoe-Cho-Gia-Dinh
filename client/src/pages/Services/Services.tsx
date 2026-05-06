@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { CheckOutlined, CalendarOutlined, RightOutlined } from '@ant-design/icons';
 import { getServicePackages } from '../../services/servicePackageService';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
@@ -20,16 +19,6 @@ const CATEGORIES = [
   'Phẫu Thuật & Thủ Thuật',
   'Dịch Vụ Số & Hỗ Trợ',
 ];
-
-const CATEGORY_LABEL_KEYS: Record<string, string> = {
-  'Tất cả': 'services_page.cat_all',
-  'Khám Chuyên Khoa': 'services_dropdown.specialist',
-  'Gói Khám Tổng Quát': 'services_dropdown.general',
-  'Xét Nghiệm & Chẩn Đoán': 'services_dropdown.lab',
-  'Tiêm Chủng & Phòng Ngừa': 'services_dropdown.vaccine',
-  'Phẫu Thuật & Thủ Thuật': 'services_dropdown.surgery',
-  'Dịch Vụ Số & Hỗ Trợ': 'services_dropdown.digital',
-};
 
 const CAT_SLUG_MAP: Record<string, string> = {
   'kham-chuyen-khoa': 'Khám Chuyên Khoa',
@@ -52,7 +41,6 @@ const containerVariants = {
 };
 
 const Services = () => {
-  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [packages, setPackages] = useState<ServicePackage[]>([]);
   const [activeCategory, setActiveCategory] = useState(() => {
@@ -96,9 +84,9 @@ const Services = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
             >
-              <p className={styles.heroEyebrow}>{t('services_page.eyebrow')}</p>
-              <h1 className={styles.heroTitle}>{t('services_page.hero_title')}</h1>
-              <p className={styles.heroDesc}>{t('services_page.hero_desc')}</p>
+              <p className={styles.heroEyebrow}>Dịch vụ y tế VitaFamily</p>
+              <h1 className={styles.heroTitle}>Lựa chọn dịch vụ chăm sóc sức khỏe đúng tầm quan trọng cho bạn</h1>
+              <p className={styles.heroDesc}>Hơn 18 gói dịch vụ đa dạng — từ khám tổng quát, xét nghiệm đến phẫu thuật chuyên sâu, tất cả đạt chuẩn quốc tế JCI.</p>
               <div className={styles.heroActions}>
                 <Button
                   type="primary"
@@ -106,10 +94,10 @@ const Services = () => {
                   icon={<CalendarOutlined />}
                   className={styles.heroPrimaryBtn}
                 >
-                  {t('services_page.book_now')}
+                  Đặt lịch khám ngay
                 </Button>
                 <a href="tel:18001234" className={styles.heroPhoneBtn}>
-                  {t('services_page.call_consult')}
+                  Gọi tư vấn: 1800 1234
                 </a>
               </div>
             </motion.div>
@@ -138,7 +126,7 @@ const Services = () => {
                 className={`${styles.tab} ${activeCategory === cat ? styles.tabActive : ''}`}
                 onClick={() => setActiveCategory(cat)}
               >
-                {t(CATEGORY_LABEL_KEYS[cat])}
+                {cat}
               </button>
             ))}
           </div>
@@ -155,9 +143,9 @@ const Services = () => {
               className={styles.gridHeader}
             >
               <p className={styles.gridCount}>
-                {t('services_page.showing')} <strong>{filtered.length}</strong> {t('services_page.services_count')}
+                Hiển thị <strong>{filtered.length}</strong> dịch vụ
                 {activeCategory !== 'Tất cả' && (
-                  <> {t('services_page.in')} <span>{t(CATEGORY_LABEL_KEYS[activeCategory])}</span></>
+                  <> trong <span>{activeCategory}</span></>
                 )}
               </p>
             </motion.div>
@@ -196,7 +184,7 @@ const Services = () => {
                       </ul>
 
                       <p className={styles.target}>
-                        <strong>{t('services_page.suitable')}</strong> {pkg.targetAudience}
+                        <strong>Phù hợp:</strong> {pkg.targetAudience}
                       </p>
 
                       <div className={styles.cardActions}>
@@ -206,10 +194,10 @@ const Services = () => {
                           className={styles.bookBtn}
                           icon={<CalendarOutlined />}
                         >
-                          {t('services_page.book_service')}
+                          Đặt lịch dịch vụ
                         </Button>
                         <Link to={`/services/${pkg.slug}`} className={styles.detailLink}>
-                          {t('services_page.view_detail')} <RightOutlined />
+                          Xem chi tiết <RightOutlined />
                         </Link>
                       </div>
                     </div>
@@ -230,14 +218,14 @@ const Services = () => {
               transition={{ duration: 0.6 }}
               className={styles.ctaContent}
             >
-              <h2 className={styles.ctaTitle}>{t('services_page.cta_title')}</h2>
-              <p className={styles.ctaDesc}>{t('services_page.cta_desc')}</p>
+              <h2 className={styles.ctaTitle}>Chưa biết chọn dịch vụ nào?</h2>
+              <p className={styles.ctaDesc}>Đội ngũ tư vấn VitaFamily sẵn sàng hỗ trợ bạn chọn gói phù hợp nhất — miễn phí, không cần đặt cọc.</p>
               <div className={styles.ctaActions}>
                 <Button size="large" className={styles.ctaWhiteBtn}>
-                  <CalendarOutlined /> {t('services_page.cta_consult')}
+                  <CalendarOutlined /> Đặt lịch tư vấn
                 </Button>
                 <a href="tel:18001234" className={styles.ctaPhoneLink}>
-                  {t('services_page.hotline')}
+                  Hotline: 1800 1234
                 </a>
               </div>
             </motion.div>

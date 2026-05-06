@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Table, Tabs, Input, Button, Tag, Avatar, Space, Modal, Form,
-  Select, Popconfirm, message, Tooltip,
+  Select, Popconfirm, message, Tooltip, Alert,
 } from 'antd';
 import {
   SearchOutlined, ProfileOutlined, CheckCircleOutlined, CloseCircleOutlined,
@@ -25,6 +25,7 @@ interface DoctorRow {
   bio: string;
   approvalStatus: ApprovalStatus;
   submittedAt: string;
+  rejectionReason?: string;
 }
 
 const initialData: DoctorRow[] = [
@@ -32,9 +33,10 @@ const initialData: DoctorRow[] = [
   { key: '2', id: 2, name: 'BS. Trần Thị Lan', email: 'lan@gmail.com', phone: '0902222222', specialty: 'Nhi khoa', hospital: 'BV Nhi đồng 1', experience: '5 năm', bio: 'Chuyên gia Nhi khoa, điều trị bệnh nhi từ sơ sinh đến 15 tuổi.', approvalStatus: 'pending', submittedAt: '27/04/2026' },
   { key: '3', id: 3, name: 'BS. Lê Văn Hùng', email: 'hung@gmail.com', phone: '0903333333', specialty: 'Thần kinh', hospital: 'BV 115', experience: '12 năm', bio: 'Bác sĩ CKII Thần kinh học, 12 năm kinh nghiệm.', approvalStatus: 'approved', submittedAt: '20/04/2026' },
   { key: '4', id: 4, name: 'BS. Phạm Thu Hà', email: 'ha@gmail.com', phone: '0904444444', specialty: 'Da liễu', hospital: 'BV Da liễu', experience: '6 năm', bio: 'Chuyên khoa Da liễu và thẩm mỹ da.', approvalStatus: 'approved', submittedAt: '18/04/2026' },
-  { key: '5', id: 5, name: 'BS. Vũ Công Minh', email: 'minh@gmail.com', phone: '0905555555', specialty: 'Chỉnh hình', hospital: 'BV Chấn thương', experience: '9 năm', bio: 'Bác sĩ Chỉnh hình và phục hồi chức năng.', approvalStatus: 'rejected', submittedAt: '15/04/2026' },
+  { key: '5', id: 5, name: 'BS. Vũ Công Minh', email: 'minh@gmail.com', phone: '0905555555', specialty: 'Chỉnh hình', hospital: 'BV Chấn thương', experience: '9 năm', bio: 'Bác sĩ Chỉnh hình và phục hồi chức năng.', approvalStatus: 'rejected', submittedAt: '15/04/2026', rejectionReason: 'Bằng cấp chưa được xác minh' },
 ];
 
+// Đồng bộ với trang Specialties và Hospitals — sẽ thay bằng API call khi có backend
 const SPECIALTIES = ['Tim mạch', 'Nhi khoa', 'Thần kinh', 'Da liễu', 'Chỉnh hình', 'Nội tổng quát', 'Tai mũi họng', 'Mắt'];
 const HOSPITALS = ['BV Chợ Rẫy', 'BV Nhi đồng 1', 'BV 115', 'BV Da liễu', 'BV Chấn thương', 'BV Đại học Y Dược'];
 
@@ -44,20 +46,28 @@ const statusLabel: Record<ApprovalStatus, string> = { pending: 'Chờ duyệt', 
 const Doctors = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<DoctorRow[]>(initialData);
-  const [status, setStatus] = useState('all');
-
+  const [statusFilter, setStatusFilter] = useState('all');
   const [search, setSearch] = useState('');
+
+  // Modal thêm/sửa bác sĩ
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<DoctorRow | null>(null);
   const [form] = Form.useForm();
 
-  const counts = (s: ApprovalStatus) => data.filter((d) => d.approvalStatus === s).length;
+  // Modal từ chối hồ sơ (yêu cầu lý do)
+  const [rejectModalOpen, setRejectModalOpen] = useState(false);
+  const [rejectTarget, setRejectTarget] = useState<string | null>(null);
+  const [rejectForm] = Form.useForm();
+
+  const pendingCount = data.filter((d) => d.approvalStatus === 'pending').length;
 
   const filtered = data.filter(
     (d) =>
       (d.name.toLowerCase().includes(search.toLowerCase()) ||
-        d.specialty.toLowerCase().includes(search.toLowerCase())) &&
-      (status === 'all' || d.approvalStatus === status),
+        d.specialty.toLowerCase().includes(search.toLowerCase()) ||
+        d.email.toLowerCase().includes(search.toLowerCase()) ||
+        d.hospital.toLowerCase().includes(search.toLowerCase())) &&
+      (statusFilter === 'all' || d.approvalStatus === statusFilter),
   );
 
   const openAdd = () => {
@@ -78,6 +88,7 @@ const Doctors = () => {
         setData((prev) => prev.map((d) => (d.key === editing.key ? { ...d, ...values } : d)));
         message.success('Đã cập nhật thông tin bác sĩ');
       } else {
+        // Bác sĩ mới thêm phải qua bước duyệt — đặt pending, không phải approved
         const newKey = String(Date.now());
         setData((prev) => [
           ...prev,
@@ -85,11 +96,11 @@ const Doctors = () => {
             ...values,
             key: newKey,
             id: Date.now(),
-            approvalStatus: 'approved' as ApprovalStatus,
+            approvalStatus: 'pending' as ApprovalStatus,
             submittedAt: new Date().toLocaleDateString('vi-VN'),
           },
         ]);
-        message.success('Đã thêm bác sĩ mới');
+        message.success('Đã thêm bác sĩ. Hồ sơ đang chờ duyệt.');
       }
       setModalOpen(false);
     });
@@ -101,13 +112,26 @@ const Doctors = () => {
   };
 
   const handleApprove = (key: string) => {
-    setData((prev) => prev.map((d) => (d.key === key ? { ...d, approvalStatus: 'approved' } : d)));
-    message.success('Đã duyệt hồ sơ bác sĩ');
+    setData((prev) => prev.map((d) => (d.key === key ? { ...d, approvalStatus: 'approved', rejectionReason: undefined } : d)));
+    message.success('Đã duyệt hồ sơ bác sĩ. Bác sĩ sẽ hiển thị trên hệ thống.');
   };
 
-  const handleReject = (key: string) => {
-    setData((prev) => prev.map((d) => (d.key === key ? { ...d, approvalStatus: 'rejected' } : d)));
+  const openRejectModal = (key: string) => {
+    setRejectTarget(key);
+    rejectForm.resetFields();
+    setRejectModalOpen(true);
+  };
+
+  const handleConfirmReject = (values: { reason: string }) => {
+    setData((prev) =>
+      prev.map((d) =>
+        d.key === rejectTarget
+          ? { ...d, approvalStatus: 'rejected', rejectionReason: values.reason }
+          : d,
+      ),
+    );
     message.warning('Đã từ chối hồ sơ bác sĩ');
+    setRejectModalOpen(false);
   };
 
   const cols: ColumnsType<DoctorRow> = [
@@ -131,7 +155,7 @@ const Doctors = () => {
     },
     { title: 'Ngày nộp', dataIndex: 'submittedAt', key: 'submittedAt', width: 120 },
     {
-      title: 'Thao tác', key: 'act', width: 140, fixed: 'right' as const,
+      title: 'Thao tác', key: 'act', width: 160, fixed: 'right' as const,
       render: (_, r) => (
         <Space size={4}>
           <Tooltip title="Xem chi tiết">
@@ -158,6 +182,7 @@ const Doctors = () => {
               <Tooltip title="Duyệt hồ sơ">
                 <Popconfirm
                   title="Duyệt hồ sơ bác sĩ này?"
+                  description="Bác sĩ sẽ được hiển thị và bệnh nhân có thể đặt lịch."
                   okText="Duyệt" cancelText="Hủy"
                   onConfirm={() => handleApprove(r.key)}
                 >
@@ -165,13 +190,11 @@ const Doctors = () => {
                 </Popconfirm>
               </Tooltip>
               <Tooltip title="Từ chối hồ sơ">
-                <Popconfirm
-                  title="Từ chối hồ sơ này?"
-                  okText="Từ chối" okType="danger" cancelText="Hủy"
-                  onConfirm={() => handleReject(r.key)}
-                >
-                  <Button type="link" size="small" danger icon={<CloseCircleOutlined />} />
-                </Popconfirm>
+                <Button
+                  type="link" size="small" danger
+                  icon={<CloseCircleOutlined />}
+                  onClick={() => openRejectModal(r.key)}
+                />
               </Tooltip>
             </>
           )}
@@ -186,30 +209,48 @@ const Doctors = () => {
         <div>
           <h1 className={styles.pageTitle}>Quản lý Bác sĩ</h1>
           <p className={styles.pageSubtitle}>
-            {data.length} bác sĩ — {counts('pending')} chờ duyệt
+            {data.length} bác sĩ — {pendingCount} chờ duyệt
           </p>
         </div>
-
       </div>
+
+      {/* Cảnh báo nổi bật nếu có hồ sơ chờ duyệt */}
+      {pendingCount > 0 && (
+        <Alert
+          message={`Có ${pendingCount} hồ sơ bác sĩ đang chờ duyệt`}
+          description="Hồ sơ chưa được duyệt sẽ không hiển thị cho bệnh nhân. Vui lòng xem xét và xử lý sớm."
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+          action={
+            <Button size="small" onClick={() => setStatusFilter('pending')}>
+              Lọc hồ sơ chờ duyệt
+            </Button>
+          }
+        />
+      )}
 
       <div className={styles.card}>
         <div className={styles.toolbar}>
           <Input
             prefix={<SearchOutlined style={{ color: '#6B7C99' }} />}
-            placeholder="Tìm bác sĩ, chuyên khoa..."
+            placeholder="Tìm bác sĩ, chuyên khoa, bệnh viện..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ width: 280 }}
+            style={{ width: 300 }}
             allowClear
           />
-          <Select value={status} onChange={setStatus} style={{ width: 170 }}>
+          <Select value={statusFilter} onChange={setStatusFilter} style={{ width: 170 }}>
             <Select.Option value="all">Tất cả trạng thái</Select.Option>
-            <Select.Option value="pending">Chờ duyệt</Select.Option>
+            <Select.Option value="pending">Chờ duyệt ({pendingCount})</Select.Option>
             <Select.Option value="approved">Đã duyệt</Select.Option>
             <Select.Option value="rejected">Từ chối</Select.Option>
           </Select>
-
-          <Button type="primary" icon={<PlusOutlined />} style={{ marginLeft: 'auto', background: '#0077C8' }} onClick={openAdd}>
+          <Button
+            type="primary" icon={<PlusOutlined />}
+            style={{ marginLeft: 'auto', background: '#0077C8' }}
+            onClick={openAdd}
+          >
             Thêm bác sĩ
           </Button>
         </div>
@@ -224,17 +265,27 @@ const Doctors = () => {
         />
       </div>
 
+      {/* Modal thêm/sửa bác sĩ */}
       <Modal
         title={editing ? 'Sửa thông tin bác sĩ' : 'Thêm bác sĩ mới'}
         open={modalOpen}
-        onCancel={() => setModalOpen(false)}
         onOk={handleSave}
+        onCancel={() => setModalOpen(false)}
         okText={editing ? 'Lưu thay đổi' : 'Thêm bác sĩ'}
         cancelText="Hủy"
         width={580}
         destroyOnHidden
       >
-        <Form form={form} layout="vertical" style={{ marginTop: 16 }}>
+        {!editing && (
+          <Alert
+            message="Bác sĩ mới sẽ được đặt trạng thái Chờ duyệt"
+            description="Hồ sơ cần được admin xem xét và duyệt trước khi bác sĩ xuất hiện trên hệ thống."
+            type="info"
+            showIcon
+            style={{ marginBottom: 16 }}
+          />
+        )}
+        <Form form={form} layout="vertical">
           <Form.Item label="Họ và tên" name="name" rules={[{ required: true, message: 'Nhập họ tên' }]}>
             <Input placeholder="VD: BS. Nguyễn Văn A" />
           </Form.Item>
@@ -267,6 +318,34 @@ const Doctors = () => {
           </Form.Item>
           <Form.Item label="Giới thiệu ngắn" name="bio">
             <Input.TextArea rows={3} placeholder="Mô tả chuyên môn, kinh nghiệm nổi bật..." />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      {/* Modal từ chối hồ sơ — bắt buộc nhập lý do */}
+      <Modal
+        title="Từ chối hồ sơ bác sĩ"
+        open={rejectModalOpen}
+        onOk={() => rejectForm.submit()}
+        onCancel={() => setRejectModalOpen(false)}
+        okText="Xác nhận từ chối"
+        okButtonProps={{ danger: true }}
+        cancelText="Hủy"
+        destroyOnHidden
+      >
+        <p style={{ marginBottom: 12, color: '#595959' }}>
+          Lý do sẽ được gửi đến bác sĩ để họ có thể chỉnh sửa và nộp lại hồ sơ.
+        </p>
+        <Form form={rejectForm} layout="vertical" onFinish={handleConfirmReject}>
+          <Form.Item
+            name="reason"
+            label="Lý do từ chối"
+            rules={[{ required: true, message: 'Vui lòng nhập lý do từ chối' }]}
+          >
+            <Input.TextArea
+              rows={4}
+              placeholder="VD: Thiếu chứng chỉ hành nghề, bằng cấp chưa xác minh..."
+            />
           </Form.Item>
         </Form>
       </Modal>

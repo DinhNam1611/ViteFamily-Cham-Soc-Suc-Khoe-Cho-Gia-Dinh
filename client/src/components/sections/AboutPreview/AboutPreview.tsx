@@ -1,21 +1,19 @@
-import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { CheckCircleFilled, RightOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './AboutPreview.module.css';
 
+const highlights = [
+  'Hơn 15 năm kinh nghiệm chăm sóc sức khỏe cộng đồng',
+  'Đạt chứng chỉ quốc tế JCI — tiêu chuẩn y tế cao nhất',
+  'Đội ngũ 120+ bác sĩ chuyên khoa đầu ngành',
+  'Hệ thống máy móc thế hệ mới, kết quả chính xác',
+];
+
 const AboutPreview = () => {
-  const { t } = useTranslation();
   const { ref: leftRef, isInView: leftInView } = useScrollAnimation();
   const { ref: rightRef, isInView: rightInView } = useScrollAnimation();
-
-  const highlights = [
-    t('about_preview.highlight_1'),
-    t('about_preview.highlight_2'),
-    t('about_preview.highlight_3'),
-    t('about_preview.highlight_4'),
-  ];
 
   return (
     <section className="section">
@@ -28,11 +26,14 @@ const AboutPreview = () => {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className={styles.textCol}
         >
-          <p className={styles.eyebrow}>{t('about_preview.eyebrow')}</p>
+          <p className={styles.eyebrow}>Về chúng tôi</p>
           <h2 className={styles.title}>
-            {t('about_preview.title_plain')} <span>{t('about_preview.title_highlight')}</span>
+            Bệnh viện quốc tế VitaFamily — <span>Nơi bạn được chăm sóc</span>
           </h2>
-          <p className={styles.desc}>{t('about_preview.desc')}</p>
+          <p className={styles.desc}>
+            Thành lập năm 2007, VitaFamily là bệnh viện tư nhân đầu tiên tại Hà Nội đạt chứng nhận JCI quốc tế.
+            Chúng tôi cam kết mang đến dịch vụ y tế chất lượng cao, lấy bệnh nhân làm trung tâm của mọi quyết định điều trị.
+          </p>
 
           <ul className={styles.highlights}>
             {highlights.map((item, i) => (
@@ -45,11 +46,11 @@ const AboutPreview = () => {
 
           <div className={styles.actions}>
             <Button type="primary" size="large" className={styles.primaryBtn}>
-              {t('about_preview.learn_more')}
+              Tìm hiểu thêm
               <RightOutlined />
             </Button>
             <Button size="large" className={styles.secondaryBtn}>
-              {t('about_preview.book_appointment')}
+              Đặt lịch khám
             </Button>
           </div>
         </motion.div>
@@ -70,12 +71,12 @@ const AboutPreview = () => {
             />
             <div className={styles.statBadge}>
               <span className={styles.statNum}>500K+</span>
-              <span className={styles.statLabel}>{t('about_preview.patients')}</span>
+              <span className={styles.statLabel}>Bệnh nhân tin tưởng</span>
             </div>
             <div className={styles.certBadge}>
               <span className={styles.certYear}>2018</span>
               <span className={styles.certName}>JCI</span>
-              <span className={styles.certDesc}>{t('about_preview.cert_desc')}</span>
+              <span className={styles.certDesc}>Chứng nhận quốc tế</span>
             </div>
           </div>
         </motion.div>

@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Table, Input, Button, Switch, Space, Modal, Form, InputNumber, Select, Popconfirm, Tooltip, Tag } from 'antd';
+import {
+  Table, Input, Button, Switch, Space, Modal, Form,
+  InputNumber, Select, Popconfirm, Tooltip, Tag, message,
+} from 'antd';
 import { PlusOutlined, FormOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './Services.module.css';
@@ -14,13 +17,14 @@ interface ServiceRow {
   isActive: boolean;
 }
 
-const SPECIALTIES = ['Tim mạch', 'Nhi khoa', 'Thần kinh', 'Da liễu', 'Nội khoa', 'Chỉnh hình'];
+// Đồng bộ với danh sách chuyên khoa thực — sẽ thay bằng API call khi có backend
+const SPECIALTIES = ['Tim mạch', 'Nhi khoa', 'Thần kinh', 'Da liễu', 'Chỉnh hình', 'Nội tổng quát', 'Tai mũi họng', 'Mắt'];
 
-const mock: ServiceRow[] = [
-  { key: '1', name: 'Khám tổng quát tại nhà', description: 'Bác sĩ đến tận nhà thăm khám, đo sinh hiệu và tư vấn sức khỏe toàn diện', price: 350000, duration: 60, specialty: 'Nội khoa', isActive: true },
+const initialData: ServiceRow[] = [
+  { key: '1', name: 'Khám tổng quát tại nhà', description: 'Bác sĩ đến tận nhà thăm khám, đo sinh hiệu và tư vấn sức khỏe toàn diện', price: 350000, duration: 60, specialty: 'Nội tổng quát', isActive: true },
   { key: '2', name: 'Khám nhi tại nhà', description: 'Chuyên khám và theo dõi sức khỏe trẻ em từ sơ sinh đến 18 tuổi tại nhà', price: 280000, duration: 45, specialty: 'Nhi khoa', isActive: true },
   { key: '3', name: 'Tư vấn video chuyên khoa', description: 'Kết nối trực tuyến với bác sĩ chuyên khoa, nhận tư vấn và hướng dẫn điều trị', price: 200000, duration: 30, specialty: 'Thần kinh', isActive: true },
-  { key: '4', name: 'Lấy mẫu xét nghiệm tại nhà', description: 'Nhân viên y tế đến lấy mẫu máu, nước tiểu và các mẫu xét nghiệm cần thiết', price: 150000, duration: 30, specialty: 'Nội khoa', isActive: false },
+  { key: '4', name: 'Lấy mẫu xét nghiệm tại nhà', description: 'Nhân viên y tế đến lấy mẫu máu, nước tiểu và các mẫu xét nghiệm cần thiết', price: 150000, duration: 30, specialty: 'Nội tổng quát', isActive: false },
   { key: '5', name: 'Khám tim mạch tại nhà', description: 'Bác sĩ tim mạch thăm khám, đo điện tim và tư vấn chuyên sâu tại nhà bệnh nhân', price: 450000, duration: 75, specialty: 'Tim mạch', isActive: true },
 ];
 
@@ -28,27 +32,69 @@ const formatPrice = (price: number) =>
   new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
 
 const Services = () => {
+  const [data, setData] = useState<ServiceRow[]>(initialData);
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<ServiceRow | null>(null);
   const [search, setSearch] = useState('');
+  const [specialtyFilter, setSpecialtyFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [form] = Form.useForm();
 
-  const openEdit = (r: ServiceRow) => { setEditing(r); form.setFieldsValue(r); setModalOpen(true); };
-  const openAdd  = () => { setEditing(null); form.resetFields(); setModalOpen(true); };
+  const filtered = data.filter((r) => {
+    const matchSearch =
+      r.name.toLowerCase().includes(search.toLowerCase()) ||
+      r.specialty.toLowerCase().includes(search.toLowerCase());
+    const matchSpecialty = specialtyFilter === 'all' || r.specialty === specialtyFilter;
+    const matchStatus =
+      statusFilter === 'all' ||
+      (statusFilter === 'active' ? r.isActive : !r.isActive);
+    return matchSearch && matchSpecialty && matchStatus;
+  });
 
-  const filtered = mock.filter(r =>
-    r.name.toLowerCase().includes(search.toLowerCase()) ||
-    r.specialty.toLowerCase().includes(search.toLowerCase())
-  );
+  const openAdd = () => {
+    setEditing(null);
+    form.resetFields();
+    form.setFieldsValue({ isActive: true });
+    setModalOpen(true);
+  };
+
+  const openEdit = (r: ServiceRow) => {
+    setEditing(r);
+    form.setFieldsValue(r);
+    setModalOpen(true);
+  };
+
+  const handleSave = () => {
+    form.validateFields().then((values) => {
+      if (editing) {
+        setData((prev) => prev.map((r) => (r.key === editing.key ? { ...r, ...values } : r)));
+        message.success('Đã cập nhật dịch vụ');
+      } else {
+        setData((prev) => [...prev, { ...values, key: String(Date.now()) }]);
+        message.success('Đã thêm dịch vụ mới');
+      }
+      setModalOpen(false);
+    });
+  };
+
+  const handleToggleActive = (key: string, active: boolean) => {
+    setData((prev) => prev.map((r) => (r.key === key ? { ...r, isActive: active } : r)));
+    message.success(active ? 'Đã bật dịch vụ' : 'Đã tắt dịch vụ');
+  };
+
+  const handleDelete = (r: ServiceRow) => {
+    setData((prev) => prev.filter((item) => item.key !== r.key));
+    message.success('Đã xóa dịch vụ');
+  };
 
   const cols: ColumnsType<ServiceRow> = [
     {
-      title: 'Dịch vụ', dataIndex: 'name', key: 'name', width: 200,
+      title: 'Dịch vụ', dataIndex: 'name', key: 'name', width: 220,
       render: (v: string) => <b style={{ color: '#1A2B4B' }}>{v}</b>,
     },
-    { title: 'Mô tả', dataIndex: 'description', key: 'description', width: 300 },
+    { title: 'Mô tả', dataIndex: 'description', key: 'description', ellipsis: true },
     {
-      title: 'Giá', dataIndex: 'price', key: 'price', width: 130, align: 'right' as const,
+      title: 'Giá', dataIndex: 'price', key: 'price', width: 140, align: 'right' as const,
       render: (v: number) => <span style={{ color: '#0077C8', fontWeight: 600 }}>{formatPrice(v)}</span>,
     },
     {
@@ -56,12 +102,20 @@ const Services = () => {
       render: (v: number) => `${v} phút`,
     },
     {
-      title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty', width: 130,
+      title: 'Chuyên khoa', dataIndex: 'specialty', key: 'specialty', width: 140,
       render: (v: string) => <Tag color="blue">{v}</Tag>,
     },
     {
-      title: 'Trạng thái', dataIndex: 'isActive', key: 'isActive', width: 110, align: 'center' as const,
-      render: (v: boolean) => <Switch checked={v} size="small" />,
+      title: 'Trạng thái', dataIndex: 'isActive', key: 'isActive', width: 120, align: 'center' as const,
+      render: (v: boolean, r) => (
+        <Switch
+          checked={v}
+          size="small"
+          checkedChildren="Hoạt động"
+          unCheckedChildren="Tắt"
+          onChange={(checked) => handleToggleActive(r.key, checked)}
+        />
+      ),
     },
     {
       title: 'Thao tác', key: 'act', width: 90, fixed: 'right' as const,
@@ -71,7 +125,12 @@ const Services = () => {
             <Button type="link" size="small" icon={<FormOutlined />} onClick={() => openEdit(r)} />
           </Tooltip>
           <Tooltip title="Xóa dịch vụ">
-            <Popconfirm title="Xóa dịch vụ này?" okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}>
+            <Popconfirm
+              title="Xóa dịch vụ này?"
+              description="Hành động này không thể hoàn tác."
+              okText="Xóa" cancelText="Hủy" okButtonProps={{ danger: true }}
+              onConfirm={() => handleDelete(r)}
+            >
               <Button type="link" size="small" danger icon={<DeleteOutlined />} />
             </Popconfirm>
           </Tooltip>
@@ -84,20 +143,31 @@ const Services = () => {
     <div className={styles.page}>
       <div>
         <h1 className={styles.pageTitle}>Quản lý dịch vụ</h1>
-        <p className={styles.pageSubtitle}>Quản lý các gói dịch vụ khám tại nhà và tư vấn video</p>
+        <p className={styles.pageSubtitle}>
+          {data.length} dịch vụ — {data.filter((r) => r.isActive).length} đang hoạt động
+        </p>
       </div>
       <div className={styles.card}>
         <div className={styles.toolbar}>
           <Input
             prefix={<SearchOutlined style={{ color: '#6B7C99' }} />}
             placeholder="Tìm dịch vụ hoặc chuyên khoa..."
-            style={{ width: 280 }}
+            style={{ width: 260 }}
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
+            allowClear
           />
+          <Select value={specialtyFilter} onChange={setSpecialtyFilter} style={{ width: 160 }}>
+            <Select.Option value="all">Tất cả chuyên khoa</Select.Option>
+            {SPECIALTIES.map((s) => <Select.Option key={s} value={s}>{s}</Select.Option>)}
+          </Select>
+          <Select value={statusFilter} onChange={setStatusFilter} style={{ width: 150 }}>
+            <Select.Option value="all">Tất cả trạng thái</Select.Option>
+            <Select.Option value="active">Đang hoạt động</Select.Option>
+            <Select.Option value="inactive">Đã tắt</Select.Option>
+          </Select>
           <Button
-            type="primary"
-            icon={<PlusOutlined />}
+            type="primary" icon={<PlusOutlined />}
             style={{ marginLeft: 'auto', background: '#0077C8' }}
             onClick={openAdd}
           >
@@ -107,7 +177,8 @@ const Services = () => {
         <Table
           dataSource={filtered}
           columns={cols}
-          pagination={{ pageSize: 10, showSizeChanger: true }}
+          rowKey="key"
+          pagination={{ pageSize: 10, showSizeChanger: true, showTotal: (t) => `${t} dịch vụ` }}
           scroll={{ x: 'max-content' }}
           size="middle"
         />
@@ -116,39 +187,54 @@ const Services = () => {
       <Modal
         title={editing ? 'Chỉnh sửa dịch vụ' : 'Thêm dịch vụ mới'}
         open={modalOpen}
-        onOk={() => { form.submit(); setModalOpen(false); }}
+        onOk={handleSave}
         onCancel={() => setModalOpen(false)}
-        okText="Lưu"
-        cancelText="Hủy"
+        okText="Lưu" cancelText="Hủy"
         width={520}
+        destroyOnHidden
       >
         <Form form={form} layout="vertical" style={{ marginTop: 16 }}>
-          <Form.Item name="name" label="Tên dịch vụ" rules={[{ required: true, message: 'Vui lòng nhập tên dịch vụ' }]}>
+          <Form.Item
+            name="name" label="Tên dịch vụ"
+            rules={[{ required: true, message: 'Vui lòng nhập tên dịch vụ' }]}
+          >
             <Input placeholder="VD: Khám tổng quát tại nhà" />
           </Form.Item>
           <Form.Item name="description" label="Mô tả">
             <Input.TextArea rows={3} placeholder="Mô tả chi tiết về dịch vụ..." />
           </Form.Item>
           <div className={styles.formRow}>
-            <Form.Item name="price" label="Giá (VNĐ)" rules={[{ required: true, message: 'Vui lòng nhập giá' }]} style={{ flex: 1 }}>
+            <Form.Item
+              name="price" label="Giá (VNĐ)"
+              rules={[{ required: true, message: 'Vui lòng nhập giá' }]}
+              style={{ flex: 1 }}
+            >
               <InputNumber
                 min={0}
                 step={10000}
                 style={{ width: '100%' }}
-                formatter={v => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                formatter={(v) => `${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                addonAfter="đ"
                 placeholder="350000"
               />
             </Form.Item>
-            <Form.Item name="duration" label="Thời gian (phút)" rules={[{ required: true, message: 'Vui lòng nhập thời gian' }]} style={{ flex: 1 }}>
-              <InputNumber min={15} step={15} style={{ width: '100%' }} placeholder="60" />
+            <Form.Item
+              name="duration" label="Thời gian (phút)"
+              rules={[{ required: true, message: 'Vui lòng nhập thời gian' }]}
+              style={{ flex: 1 }}
+            >
+              <InputNumber min={15} step={15} style={{ width: '100%' }} placeholder="60" addonAfter="phút" />
             </Form.Item>
           </div>
-          <Form.Item name="specialty" label="Chuyên khoa liên kết" rules={[{ required: true, message: 'Vui lòng chọn chuyên khoa' }]}>
+          <Form.Item
+            name="specialty" label="Chuyên khoa liên kết"
+            rules={[{ required: true, message: 'Vui lòng chọn chuyên khoa' }]}
+          >
             <Select placeholder="Chọn chuyên khoa">
-              {SPECIALTIES.map(s => <Select.Option key={s} value={s}>{s}</Select.Option>)}
+              {SPECIALTIES.map((s) => <Select.Option key={s} value={s}>{s}</Select.Option>)}
             </Select>
           </Form.Item>
-          <Form.Item name="isActive" label="Trạng thái" valuePropName="checked" initialValue={true}>
+          <Form.Item name="isActive" label="Trạng thái" valuePropName="checked">
             <Switch checkedChildren="Đang hoạt động" unCheckedChildren="Tạm dừng" />
           </Form.Item>
         </Form>

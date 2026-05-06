@@ -1,5 +1,6 @@
 import { Column, Line, Pie } from '@ant-design/plots';
 import { Table, Tag, Button, Avatar, Progress } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import {
   UserOutlined, MedicineBoxOutlined, CalendarOutlined, ClockCircleOutlined,
   DollarCircleOutlined, ArrowRightOutlined, EyeOutlined, StarFilled,
@@ -135,7 +136,7 @@ const pieConfig = {
   height: 200, autoFit: false,
 };
 
-/* ── KPI config ── */
+/* ── KPI config — link dẫn đến trang tương ứng khi click "Xem chi tiết" ── */
 const kpiCards = [
   {
     color: '#4e73df',
@@ -146,6 +147,7 @@ const kpiCards = [
     change: '+12%',
     dir: 'up',
     note: 'so với tháng trước',
+    link: '/admin/users',
   },
   {
     color: '#1cc88a',
@@ -156,6 +158,7 @@ const kpiCards = [
     change: '+3 mới',
     dir: 'up',
     note: 'tháng này',
+    link: '/admin/doctors',
   },
   {
     color: '#36b9cc',
@@ -166,6 +169,7 @@ const kpiCards = [
     change: '-5%',
     dir: 'down',
     note: 'so với hôm qua',
+    link: '/admin/appointments',
   },
   {
     color: '#f6c23e',
@@ -176,21 +180,26 @@ const kpiCards = [
     change: '+18%',
     dir: 'up',
     note: 'so với tháng trước',
+    link: null,
   },
   {
     color: '#e74a3b',
     colorLight: '#fde8e6',
     icon: <ClockCircleOutlined />,
     label: 'Hồ sơ chờ duyệt',
-    value: '4',
+    value: '2',
     change: 'Cần xử lý',
     dir: 'down',
     note: '',
+    link: '/admin/doctors',
   },
 ];
 
 /* ── Component ── */
-const Dashboard = () => (
+const Dashboard = () => {
+  const navigate = useNavigate();
+
+  return (
   <div className={styles.page}>
 
     {/* KPI Cards */}
@@ -210,9 +219,18 @@ const Dashboard = () => (
               {k.icon}
             </div>
           </div>
-          <div className={styles.kpiFooter} style={{ borderTop: `1px solid ${k.colorLight}` }}>
-            <span style={{ color: k.color }}>Xem chi tiết</span>
-            <ArrowRightOutlined style={{ color: k.color, fontSize: 11 }} />
+          <div
+            className={styles.kpiFooter}
+            style={{
+              borderTop: `1px solid ${k.colorLight}`,
+              cursor: k.link ? 'pointer' : 'default',
+            }}
+            onClick={() => k.link && navigate(k.link)}
+          >
+            <span style={{ color: k.color }}>
+              {k.link ? 'Xem chi tiết' : 'Chưa có dữ liệu'}
+            </span>
+            {k.link && <ArrowRightOutlined style={{ color: k.color, fontSize: 11 }} />}
           </div>
         </div>
       ))}
@@ -337,6 +355,7 @@ const Dashboard = () => (
     </div>
 
   </div>
-);
+  );
+};
 
 export default Dashboard;

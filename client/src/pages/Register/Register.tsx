@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
-import { useTranslation } from 'react-i18next';
 import {
   UserOutlined,
   MailOutlined,
@@ -20,7 +19,6 @@ interface RegisterForm extends RegisterPayload {
 }
 
 const Register = () => {
-  const { t } = useTranslation();
   const [form] = Form.useForm<RegisterForm>();
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -38,10 +36,10 @@ const Register = () => {
         phone: values.phone,
         password: values.password,
       });
-      message.success(t('register.success'));
+      message.success('Đăng ký thành công! Chào mừng bạn đến với VitaFamily.');
       navigate(fromPath, { replace: true });
     } catch (err) {
-      message.error(err instanceof Error ? err.message : t('register.error_default'));
+      message.error(err instanceof Error ? err.message : 'Đăng ký thất bại');
     } finally {
       setLoading(false);
     }
@@ -62,18 +60,18 @@ const Register = () => {
           </span>
         </Link>
 
-        <h1 className={styles.title}>{t('register.title')}</h1>
-        <p className={styles.subtitle}>{t('register.subtitle')}</p>
+        <h1 className={styles.title}>Tạo tài khoản</h1>
+        <p className={styles.subtitle}>Đăng ký để quản lý sức khỏe gia đình bạn</p>
 
         <Form form={form} layout="vertical" onFinish={handleSubmit} size="large" className={styles.form}>
           <Form.Item
             name="fullName"
-            label={t('register.label_name')}
-            rules={[{ required: true, message: t('register.error_name') }]}
+            label="Họ và tên"
+            rules={[{ required: true, message: 'Vui lòng nhập họ và tên' }]}
           >
             <Input
               prefix={<UserOutlined className={styles.inputIcon} />}
-              placeholder={t('register.placeholder_name')}
+              placeholder="Nguyễn Văn A"
               autoComplete="name"
             />
           </Form.Item>
@@ -82,8 +80,8 @@ const Register = () => {
             name="email"
             label="Email"
             rules={[
-              { required: true, message: t('register.error_email_required') },
-              { type: 'email', message: t('register.error_email_invalid') },
+              { required: true, message: 'Vui lòng nhập email' },
+              { type: 'email', message: 'Email không hợp lệ' },
             ]}
           >
             <Input
@@ -95,10 +93,10 @@ const Register = () => {
 
           <Form.Item
             name="phone"
-            label={t('register.label_phone')}
+            label="Số điện thoại"
             rules={[
-              { required: true, message: t('register.error_phone_required') },
-              { pattern: /^[0-9]{10,11}$/, message: t('register.error_phone_invalid') },
+              { required: true, message: 'Vui lòng nhập số điện thoại' },
+              { pattern: /^[0-9]{10,11}$/, message: 'Số điện thoại không hợp lệ (10-11 chữ số)' },
             ]}
           >
             <Input
@@ -110,15 +108,15 @@ const Register = () => {
 
           <Form.Item
             name="password"
-            label={t('register.label_password')}
+            label="Mật khẩu"
             rules={[
-              { required: true, message: t('register.error_password_required') },
-              { min: 6, message: t('register.error_password_min') },
+              { required: true, message: 'Vui lòng nhập mật khẩu' },
+              { min: 6, message: 'Mật khẩu tối thiểu 6 ký tự' },
             ]}
           >
             <Input.Password
               prefix={<LockOutlined className={styles.inputIcon} />}
-              placeholder={t('register.placeholder_password')}
+              placeholder="Tối thiểu 6 ký tự"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               autoComplete="new-password"
             />
@@ -126,23 +124,23 @@ const Register = () => {
 
           <Form.Item
             name="confirmPassword"
-            label={t('register.label_confirm')}
+            label="Xác nhận mật khẩu"
             dependencies={['password']}
             rules={[
-              { required: true, message: t('register.error_confirm_required') },
+              { required: true, message: 'Vui lòng xác nhận mật khẩu' },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error(t('register.error_confirm_mismatch')));
+                  return Promise.reject(new Error('Mật khẩu xác nhận không khớp'));
                 },
               }),
             ]}
           >
             <Input.Password
               prefix={<LockOutlined className={styles.inputIcon} />}
-              placeholder={t('register.placeholder_confirm')}
+              placeholder="Nhập lại mật khẩu"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               autoComplete="new-password"
             />
@@ -156,19 +154,19 @@ const Register = () => {
               block
               className={styles.submitBtn}
             >
-              {loading ? t('register.submitting') : t('register.submit')}
+              {loading ? 'Đang đăng ký...' : 'Đăng ký'}
             </Button>
           </Form.Item>
         </Form>
 
         <p className={styles.switchLink}>
-          {t('register.have_account')}{' '}
+          Đã có tài khoản?{' '}
           <Link
             to="/login"
             state={location.state ?? undefined}
             className={styles.link}
           >
-            {t('register.login_link')}
+            Đăng nhập
           </Link>
         </p>
       </motion.div>

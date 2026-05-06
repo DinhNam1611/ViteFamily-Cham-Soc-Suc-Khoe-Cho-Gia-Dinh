@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import {
   PhoneOutlined,
   MailOutlined,
@@ -12,8 +11,6 @@ import { CONTACT_INFO, FOOTER_NAV } from '../../../data/constants';
 import styles from './Footer.module.css';
 
 const Footer = () => {
-  const { t } = useTranslation();
-
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
@@ -25,7 +22,7 @@ const Footer = () => {
               Vita<strong>Family</strong>
             </span>
           </Link>
-          <p className={styles.tagline}>{t('footer.tagline')}</p>
+          <p className={styles.tagline}>Đồng hành cùng sức khỏe gia đình Việt — chuyên nghiệp, tận tâm, đáng tin cậy.</p>
           <div className={styles.social}>
             <a href="#" aria-label="Facebook VitaFamily" className={styles.socialLink}>
               <FacebookOutlined />
@@ -41,12 +38,12 @@ const Footer = () => {
 
         {/* Services */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>{t('footer.services_col')}</h4>
+          <h4 className={styles.colTitle}>Dịch vụ</h4>
           <ul className={styles.linkList}>
             {FOOTER_NAV.services.map((item) => (
               <li key={item.path}>
                 <Link to={item.path} className={styles.footerLink}>
-                  {t(item.label)}
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -55,12 +52,12 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>{t('footer.quick_links_col')}</h4>
+          <h4 className={styles.colTitle}>Liên kết nhanh</h4>
           <ul className={styles.linkList}>
             {FOOTER_NAV.quickLinks.map((item) => (
               <li key={item.path}>
                 <Link to={item.path} className={styles.footerLink}>
-                  {t(item.label)}
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -69,7 +66,7 @@ const Footer = () => {
 
         {/* Contact */}
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>{t('footer.contact_col')}</h4>
+          <h4 className={styles.colTitle}>Liên hệ</h4>
           <ul className={styles.contactList}>
             <li>
               <EnvironmentOutlined className={styles.contactIcon} />
@@ -96,10 +93,10 @@ const Footer = () => {
       </div>
 
       <div className={styles.bottom}>
-        <p>© {new Date().getFullYear()} VitaFamily. {t('footer.copyright')}</p>
+        <p>© {new Date().getFullYear()} VitaFamily. Bảo lưu mọi quyền.</p>
         <div className={styles.bottomLinks}>
-          <a href="#">{t('footer.privacy')}</a>
-          <a href="#">{t('footer.terms')}</a>
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản sử dụng</a>
         </div>
       </div>
     </footer>

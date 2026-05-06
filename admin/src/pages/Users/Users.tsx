@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
-  Table, Input, Select, Button, Popconfirm, Tag, Space, Avatar,
+  Table, Input, Select, Button, Tag, Space, Avatar,
   Drawer, Tabs, Form, Descriptions, Badge, Empty, Card, Row, Col,
-  Tooltip,
+  Tooltip, Modal, message,
 } from 'antd';
 import {
   SearchOutlined, UserOutlined, LockOutlined, UnlockOutlined,
@@ -29,6 +29,7 @@ interface UserRow {
   phone: string;
   status: string;
   createdAt: string;
+  lockReason?: string;
   familyName?: string;
   members?: FamilyMember[];
 }
@@ -55,6 +56,7 @@ const mockUsers: UserRow[] = [
   {
     key: '3', id: 3, name: 'Phạm Thị Dung', email: 'dung@gmail.com', phone: '0934567890',
     status: 'locked', createdAt: '15/03/2026',
+    lockReason: 'Vi phạm điều khoản sử dụng — đặt lịch ảo nhiều lần',
   },
   {
     key: '4', id: 4, name: 'Lê Quang Khải', email: 'khai@gmail.com', phone: '0956789012',
@@ -74,42 +76,73 @@ const mockUsers: UserRow[] = [
 const genderColor: Record<string, string> = { Nam: 'blue', Nữ: 'pink' };
 
 const Users = () => {
-  const [search, setSearch] = useState('');
-  const [status, setStatus] = useState('all');
   const [data, setData] = useState<UserRow[]>(mockUsers);
+  const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selected, setSelected] = useState<UserRow | null>(null);
   const [activeTab, setActiveTab] = useState('account');
-  const [form] = Form.useForm();
+  const [editForm] = Form.useForm();
+
+  // Modal khóa tài khoản
+  const [lockModalOpen, setLockModalOpen] = useState(false);
+  const [lockTarget, setLockTarget] = useState<UserRow | null>(null);
+  const [lockForm] = Form.useForm();
 
   const filtered = data.filter(
     (u) =>
-      (u.name.toLowerCase().includes(search.toLowerCase()) || u.email.includes(search)) &&
-      (status === 'all' || u.status === status),
+      (u.name.toLowerCase().includes(search.toLowerCase()) ||
+        u.email.toLowerCase().includes(search.toLowerCase())) &&
+      (statusFilter === 'all' || u.status === statusFilter),
   );
 
   const openDrawer = (record: UserRow) => {
     setSelected(record);
     setActiveTab('account');
-    form.setFieldsValue({ name: record.name, phone: record.phone });
+    editForm.setFieldsValue({ name: record.name, phone: record.phone });
     setDrawerOpen(true);
   };
 
-  const handleSave = () => {
-    form.validateFields().then((values) => {
+  const handleSaveEdit = () => {
+    editForm.validateFields().then((values) => {
       setData((prev) =>
-        prev.map((u) => (u.key === selected?.key ? { ...u, name: values.name, phone: values.phone } : u)),
+        prev.map((u) =>
+          u.key === selected?.key ? { ...u, name: values.name, phone: values.phone } : u,
+        ),
       );
-      setDrawerOpen(false);
+      // Cập nhật selected để drawer hiển thị đúng
+      setSelected((prev) => (prev ? { ...prev, ...values } : prev));
+      message.success('Đã cập nhật thông tin khách hàng');
     });
   };
 
-  const toggleLock = (record: UserRow) => {
+  const openLockModal = (record: UserRow) => {
+    setLockTarget(record);
+    lockForm.resetFields();
+    setLockModalOpen(true);
+  };
+
+  const handleConfirmLock = () => {
+    lockForm.validateFields().then((values) => {
+      setData((prev) =>
+        prev.map((u) =>
+          u.key === lockTarget?.key
+            ? { ...u, status: 'locked', lockReason: values.reason }
+            : u,
+        ),
+      );
+      message.success('Đã khóa tài khoản. Khách hàng sẽ nhận được thông báo qua email.');
+      setLockModalOpen(false);
+    });
+  };
+
+  const handleUnlock = (record: UserRow) => {
     setData((prev) =>
       prev.map((u) =>
-        u.key === record.key ? { ...u, status: u.status === 'active' ? 'locked' : 'active' } : u,
+        u.key === record.key ? { ...u, status: 'active', lockReason: undefined } : u,
       ),
     );
+    message.success('Đã mở khóa tài khoản');
   };
 
   const cols: ColumnsType<UserRow> = [
@@ -134,36 +167,47 @@ const Users = () => {
         ),
     },
     {
-      title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 130,
-      render: (s: string) => (
-        <Badge
-          status={s === 'active' ? 'success' : 'error'}
-          text={s === 'active' ? 'Hoạt động' : 'Đã khóa'}
-        />
+      title: 'Trạng thái', dataIndex: 'status', key: 'status', width: 140,
+      render: (s: string, r) => (
+        <div>
+          <Badge
+            status={s === 'active' ? 'success' : 'error'}
+            text={s === 'active' ? 'Hoạt động' : 'Đã khóa'}
+          />
+          {s === 'locked' && r.lockReason && (
+            <div style={{ fontSize: 11, color: '#888', marginTop: 2 }}>
+              {r.lockReason}
+            </div>
+          )}
+        </div>
       ),
     },
     { title: 'Ngày tạo', dataIndex: 'createdAt', key: 'createdAt', width: 120 },
     {
-      title: 'Thao tác', key: 'act', width: 160, fixed: 'right' as const,
+      title: 'Thao tác', key: 'act', width: 100, fixed: 'right' as const,
       render: (_, r) => (
         <Space size={4}>
-          <Tooltip title="Chi tiết">
+          <Tooltip title="Xem chi tiết">
             <Button type="link" size="small" icon={<InfoCircleOutlined />} onClick={() => openDrawer(r)} />
           </Tooltip>
-          <Popconfirm
-            title={r.status === 'active' ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?'}
-            description={r.status === 'active' ? 'Khách hàng sẽ không thể đăng nhập.' : 'Khách hàng sẽ đăng nhập lại được.'}
-            okText="Xác nhận" cancelText="Hủy"
-            onConfirm={() => toggleLock(r)}
-          >
-            <Tooltip title={r.status === 'active' ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?'}>
+          {r.status === 'active' ? (
+            <Tooltip title="Khóa tài khoản">
               <Button
-                type="link" size="small" danger={r.status === 'active'}
-                icon={r.status === 'active' ? <LockOutlined /> : <UnlockOutlined />}
+                type="link" size="small" danger
+                icon={<LockOutlined />}
+                onClick={() => openLockModal(r)}
               />
             </Tooltip>
-          </Popconfirm>
-        </Space >
+          ) : (
+            <Tooltip title="Mở khóa tài khoản">
+              <Button
+                type="link" size="small" style={{ color: '#52c41a' }}
+                icon={<UnlockOutlined />}
+                onClick={() => handleUnlock(r)}
+              />
+            </Tooltip>
+          )}
+        </Space>
       ),
     },
   ];
@@ -171,14 +215,10 @@ const Users = () => {
   const tabItems = [
     {
       key: 'account',
-      label: (
-        <span>
-          <InfoCircleOutlined style={{ marginRight: 6 }} />
-          Thông tin tài khoản
-        </span>
-      ),
+      label: <span><InfoCircleOutlined style={{ marginRight: 6 }} />Thông tin tài khoản</span>,
       children: (
         <div className={styles.tabContent}>
+          {/* Thông tin chỉ đọc */}
           <Descriptions column={1} size="small" className={styles.descriptions} bordered>
             <Descriptions.Item label="Email">{selected?.email}</Descriptions.Item>
             <Descriptions.Item label="Ngày tạo">{selected?.createdAt}</Descriptions.Item>
@@ -187,23 +227,29 @@ const Users = () => {
                 status={selected?.status === 'active' ? 'success' : 'error'}
                 text={selected?.status === 'active' ? 'Hoạt động' : 'Đã khóa'}
               />
+              {selected?.status === 'locked' && selected.lockReason && (
+                <div style={{ fontSize: 12, color: '#888', marginTop: 4 }}>
+                  Lý do: {selected.lockReason}
+                </div>
+              )}
             </Descriptions.Item>
           </Descriptions>
 
+          {/* Form chỉnh sửa */}
           <div className={styles.editSection}>
-            <p className={styles.editTitle}>Chỉnh sửa thông tin</p>
-            <Form form={form} layout="vertical" size="middle">
+            <p className={styles.editTitle}><EditOutlined style={{ marginRight: 6 }} />Chỉnh sửa thông tin</p>
+            <Form form={editForm} layout="vertical" size="middle">
               <Form.Item
                 label="Họ và tên" name="name"
                 rules={[{ required: true, message: 'Vui lòng nhập họ tên' }]}
               >
-                <Input placeholder="Nhập họ và tên" />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Số điện thoại" name="phone"
                 rules={[{ pattern: /^0\d{9}$/, message: 'Số điện thoại không hợp lệ' }]}
               >
-                <Input placeholder="Nhập số điện thoại" />
+                <Input />
               </Form.Item>
             </Form>
           </div>
@@ -274,7 +320,7 @@ const Users = () => {
       <div>
         <h1 className={styles.pageTitle}>Quản lý Khách hàng</h1>
         <p className={styles.pageSubtitle}>
-          {filtered.length} khách hàng —{' '}
+          {data.length} khách hàng —{' '}
           {data.filter((u) => u.status === 'locked').length} tài khoản đã khóa
         </p>
       </div>
@@ -289,7 +335,7 @@ const Users = () => {
             style={{ width: 280 }}
             allowClear
           />
-          <Select value={status} onChange={setStatus} style={{ width: 170 }}>
+          <Select value={statusFilter} onChange={setStatusFilter} style={{ width: 170 }}>
             <Select.Option value="all">Tất cả trạng thái</Select.Option>
             <Select.Option value="active">Hoạt động</Select.Option>
             <Select.Option value="locked">Đã khóa</Select.Option>
@@ -306,6 +352,7 @@ const Users = () => {
         />
       </div>
 
+      {/* Drawer chi tiết khách hàng */}
       <Drawer
         title={
           <Space>
@@ -323,7 +370,7 @@ const Users = () => {
           activeTab === 'account' ? (
             <div className={styles.drawerFooter}>
               <Button onClick={() => setDrawerOpen(false)}>Hủy</Button>
-              <Button type="primary" onClick={handleSave}>Lưu thay đổi</Button>
+              <Button type="primary" onClick={handleSaveEdit}>Lưu thay đổi</Button>
             </div>
           ) : null
         }
@@ -335,6 +382,35 @@ const Users = () => {
           className={styles.tabs}
         />
       </Drawer>
+
+      {/* Modal khóa tài khoản — bắt buộc nhập lý do */}
+      <Modal
+        title="Khóa tài khoản"
+        open={lockModalOpen}
+        onOk={handleConfirmLock}
+        onCancel={() => setLockModalOpen(false)}
+        okText="Xác nhận khóa"
+        okButtonProps={{ danger: true }}
+        cancelText="Hủy"
+        destroyOnHidden
+      >
+        <p style={{ marginBottom: 12 }}>
+          Khách hàng <b>{lockTarget?.name}</b> sẽ không thể đăng nhập.
+          Vui lòng nhập lý do để lưu hồ sơ và thông báo cho khách hàng.
+        </p>
+        <Form form={lockForm} layout="vertical">
+          <Form.Item
+            name="reason"
+            label="Lý do khóa"
+            rules={[{ required: true, message: 'Vui lòng nhập lý do khóa tài khoản' }]}
+          >
+            <Input.TextArea
+              rows={3}
+              placeholder="VD: Vi phạm điều khoản, đặt lịch ảo nhiều lần, yêu cầu của khách hàng..."
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

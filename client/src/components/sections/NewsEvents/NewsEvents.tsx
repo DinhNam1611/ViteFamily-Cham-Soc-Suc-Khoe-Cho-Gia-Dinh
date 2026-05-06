@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button, Tag } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { CalendarOutlined, RightOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { getNews } from '../../../services/newsService';
@@ -17,13 +16,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Sức khỏe': 'cyan',
 };
 
-const CATEGORY_LABEL_KEYS: Record<string, string> = {
-  'Tin tức': 'news_events.cat_news',
-  'Thành tựu': 'news_events.cat_achievements',
-  'Sự kiện': 'news_events.cat_events',
-  'Sức khỏe': 'news_events.cat_health',
-};
-
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
@@ -35,7 +27,6 @@ const itemVariants = {
 };
 
 const NewsEvents = () => {
-  const { t } = useTranslation();
   const [news, setNews] = useState<NewsItem[]>([]);
   const { ref, isInView } = useScrollAnimation();
 
@@ -54,11 +45,11 @@ const NewsEvents = () => {
           className={styles.topRow}
         >
           <div>
-            <p className={styles.eyebrow}>{t('news_events.eyebrow')}</p>
-            <h2 className={`section-title ${styles.heading}`}>{t('news_events.title')}</h2>
+            <p className={styles.eyebrow}>Tin tức & Sự kiện</p>
+            <h2 className={`section-title ${styles.heading}`}>Cập nhật mới nhất</h2>
           </div>
           <Button size="large" className={styles.viewAllBtn}>
-            {t('news_events.view_all')} <ArrowRightOutlined />
+            Xem tất cả <ArrowRightOutlined />
           </Button>
         </motion.div>
 
@@ -77,7 +68,7 @@ const NewsEvents = () => {
                     color={CATEGORY_COLORS[item.category] || 'blue'}
                     className={styles.tag}
                   >
-                    {t(CATEGORY_LABEL_KEYS[item.category] ?? 'news_events.cat_news')}
+                    {item.category}
                   </Tag>
                 </div>
                 <div className={styles.body}>
@@ -90,7 +81,7 @@ const NewsEvents = () => {
                   <h3 className={styles.title}>{item.title}</h3>
                   <p className={styles.summary}>{item.summary}</p>
                   <span className={styles.readMore}>
-                    {t('news_events.read_more')} <RightOutlined />
+                    Đọc tiếp <RightOutlined />
                   </span>
                 </div>
               </Link>

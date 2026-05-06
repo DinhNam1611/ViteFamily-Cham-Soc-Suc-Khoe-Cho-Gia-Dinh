@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -9,7 +8,6 @@ import type { LoginPayload } from '../../types';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const { t } = useTranslation();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -23,7 +21,7 @@ const Login = () => {
     setLoading(true);
     try {
       const user = await login(values);
-      message.success(t('login.success'));
+      message.success('Đăng nhập thành công!');
 
       if (user.role === 'admin') {
         window.location.href = `${import.meta.env.VITE_ADMIN_URL ?? ''}/admin`;
@@ -33,7 +31,7 @@ const Login = () => {
         navigate(fromPath, { replace: true });
       }
     } catch (err) {
-      message.error(err instanceof Error ? err.message : t('login.error_default'));
+      message.error(err instanceof Error ? err.message : 'Đăng nhập thất bại');
     } finally {
       setLoading(false);
     }
@@ -54,9 +52,9 @@ const Login = () => {
           </span>
         </Link>
 
-        <h1 className={styles.title}>{t('login.title')}</h1>
+        <h1 className={styles.title}>Đăng nhập</h1>
         <p className={styles.subtitle}>
-          {isRedirected ? t('login.subtitle_redirect') : t('login.subtitle_welcome')}
+          {isRedirected ? 'Vui lòng đăng nhập để tiếp tục' : 'Chào mừng bạn trở lại VitaFamily'}
         </p>
 
         <Form form={form} layout="vertical" onFinish={handleSubmit} size="large" className={styles.form}>
@@ -64,8 +62,8 @@ const Login = () => {
             name="email"
             label="Email"
             rules={[
-              { required: true, message: t('login.error_email_required') },
-              { type: 'email', message: t('login.error_email_invalid') },
+              { required: true, message: 'Vui lòng nhập email' },
+              { type: 'email', message: 'Email không hợp lệ' },
             ]}
           >
             <Input
@@ -77,12 +75,12 @@ const Login = () => {
 
           <Form.Item
             name="password"
-            label={t('login.label_password')}
-            rules={[{ required: true, message: t('login.error_password_required') }]}
+            label="Mật khẩu"
+            rules={[{ required: true, message: 'Vui lòng nhập mật khẩu' }]}
           >
             <Input.Password
               prefix={<LockOutlined className={styles.inputIcon} />}
-              placeholder={t('login.placeholder_password')}
+              placeholder="Nhập mật khẩu"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               autoComplete="current-password"
             />
@@ -96,19 +94,19 @@ const Login = () => {
               block
               className={styles.submitBtn}
             >
-              {loading ? t('login.submitting') : t('login.submit')}
+              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             </Button>
           </Form.Item>
         </Form>
 
         <p className={styles.switchLink}>
-          {t('login.no_account')}{' '}
+          Chưa có tài khoản?{' '}
           <Link
             to="/register"
             state={isRedirected ? location.state : undefined}
             className={styles.link}
           >
-            {t('login.register_link')}
+            Đăng ký ngay
           </Link>
         </p>
 

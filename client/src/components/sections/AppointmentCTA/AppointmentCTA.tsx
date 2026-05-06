@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Button } from 'antd';
 import { CalendarOutlined, PhoneOutlined } from '@ant-design/icons';
@@ -6,11 +5,10 @@ import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './AppointmentCTA.module.css';
 
 const AppointmentCTA = () => {
-  const { t } = useTranslation();
   const { ref, isInView } = useScrollAnimation();
 
   return (
-    <section className={styles.section} aria-label={t('cta.badge')}>
+    <section className={styles.section} aria-label="Đặt lịch ngay hôm nay">
       <div className={styles.bgDecor} aria-hidden="true" />
       <div className="container">
         <motion.div
@@ -21,9 +19,11 @@ const AppointmentCTA = () => {
           className={styles.inner}
         >
           <div className={styles.textBlock}>
-            <span className={styles.badge}>{t('cta.badge')}</span>
-            <h2 className={styles.title}>{t('cta.title')}</h2>
-            <p className={styles.desc}>{t('cta.desc')}</p>
+            <span className={styles.badge}>Đặt lịch ngay hôm nay</span>
+            <h2 className={styles.title}>Chăm sóc sức khỏe không nên chờ đợi</h2>
+            <p className={styles.desc}>
+              Đặt lịch khám dễ dàng qua website hoặc hotline. Bác sĩ sẽ liên hệ xác nhận trong vòng 15 phút.
+            </p>
           </div>
           <div className={styles.actions}>
             <Button
@@ -32,14 +32,14 @@ const AppointmentCTA = () => {
               icon={<CalendarOutlined />}
               className={styles.primaryBtn}
             >
-              {t('cta.book_online')}
+              Đặt lịch trực tuyến
             </Button>
             <Button
               size="large"
               icon={<PhoneOutlined />}
               className={styles.phoneBtn}
             >
-              {t('cta.call')}
+              Gọi 1800 123 456
             </Button>
           </div>
         </motion.div>

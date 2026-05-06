@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import {
   MedicineBoxOutlined,
   HomeOutlined,
@@ -22,12 +21,6 @@ import styles from './CustomerGuide.module.css';
 
 type TabKey = 'kham-ngoai-tru' | 'nhap-vien' | 'thanh-toan' | 'tien-ich' | 'tham-benh';
 
-interface Step { step: string; title: string; desc: string; }
-interface BedRoom { count: string; label: string; }
-interface HoursCard { time: string; label: string; }
-interface ZoneRule { zone: string; rules: string[]; }
-interface AmenityCard { title: string; desc: string; }
-
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
@@ -42,29 +35,37 @@ const contentVariants = {
 /* ────────────── Tab Contents ────────────── */
 
 const KhamNgoaiTru = () => {
-  const { t } = useTranslation();
-  const specialties = t('customer_guide.outpatient.specialties', { returnObjects: true }) as string[];
-  const notes = t('customer_guide.outpatient.notes', { returnObjects: true }) as string[];
-  const steps = t('customer_guide.outpatient.steps', { returnObjects: true }) as Step[];
+  const specialties = ['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp', 'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng', 'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'];
+  const notes = [
+    'Đến sớm 5–10 phút so với giờ hẹn để hoàn thiện thủ tục và/hoặc lấy mẫu xét nghiệm.',
+    'Nếu không thể đến đúng giờ, vui lòng thông báo sớm qua số: 024 3577 1100.',
+    'Đến sớm giúp bệnh viện chủ động sắp xếp và giảm thời gian chờ đợi.',
+  ];
+  const steps = [
+    { step: '1', title: 'Đến quầy lễ tân', desc: 'Khu Khám bệnh (Tầng 1 – Tòa A) hoặc Quầy thông tin (Tầng 1 – Tòa B). Nhân viên sẽ xác nhận thông tin đặt hẹn và hướng dẫn đến chuyên khoa.' },
+    { step: '2', title: 'Khám và thanh toán', desc: 'Thanh toán phí khám sau khi bác sĩ thăm khám và tư vấn.' },
+    { step: '3', title: 'Nhận thuốc', desc: 'Mua thuốc theo đơn tại Quầy Dược – Tầng 1, Tòa A.' },
+    { step: '4', title: 'Hoàn tất bảo hiểm', desc: 'Phòng Bảo lãnh viện phí hỗ trợ các bước liên quan đến bảo hiểm (nếu có).' },
+  ];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>{t('customer_guide.outpatient.title')}</h2>
+      <h2 className={styles.contentTitle}>Khám Bệnh Ngoại Trú</h2>
 
       <section className={styles.block}>
         <h3 className={styles.blockTitle}>
-          <ClockCircleOutlined className={styles.blockIcon} /> {t('customer_guide.outpatient.hours_title')}
+          <ClockCircleOutlined className={styles.blockIcon} /> Giờ Làm Việc
         </h3>
         <div className={styles.infoBox}>
           <p className={styles.highlight}>
-            <PhoneOutlined /> {t('customer_guide.outpatient.emergency_24')} <strong>{t('customer_guide.outpatient.emergency_hours')}</strong>
+            <PhoneOutlined /> Khoa Cấp Cứu tiếp nhận <strong>24 giờ/ngày, 7 ngày/tuần</strong>
           </p>
-          <p>{t('customer_guide.outpatient.emergency_phone')} <strong>024 3574 1111</strong></p>
+          <p>Trường hợp khẩn cấp: <strong>024 3574 1111</strong></p>
         </div>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.outpatient.monfri_title')}</h3>
+        <h3 className={styles.blockTitle}>Thứ Hai – Thứ Sáu</h3>
         <div className={styles.scheduleRows}>
           <div className={styles.scheduleRow}>
             <div className={styles.scheduleTimeBadge}>07:00 – 12:00<br />13:30 – 17:30</div>
@@ -79,14 +80,14 @@ const KhamNgoaiTru = () => {
           <div className={styles.scheduleRow}>
             <div className={styles.scheduleTimeBadge}>08:30 – 12:00<br />13:30 – 17:30</div>
             <div className={styles.scheduleRowBody}>
-              <p className={styles.scheduleNote}>{t('customer_guide.outpatient.other_specialties')}</p>
+              <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.outpatient.sat_title')}</h3>
+        <h3 className={styles.blockTitle}>Thứ Bảy</h3>
         <div className={styles.scheduleRows}>
           <div className={styles.scheduleRow}>
             <div className={styles.scheduleTimeBadge}>07:00 – 12:00</div>
@@ -101,19 +102,19 @@ const KhamNgoaiTru = () => {
           <div className={styles.scheduleRow}>
             <div className={styles.scheduleTimeBadge}>08:30 – 12:30</div>
             <div className={styles.scheduleRowBody}>
-              <p className={styles.scheduleNote}>{t('customer_guide.outpatient.other_specialties')}</p>
+              <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.outpatient.booking_title')}</h3>
-        <p>{t('customer_guide.outpatient.booking_desc')} <strong>024 3577 1100</strong> {t('customer_guide.outpatient.booking_or_online')}</p>
+        <h3 className={styles.blockTitle}>Đặt Lịch Khám</h3>
+        <p>Vui lòng gọi số: <strong>024 3577 1100</strong> hoặc đặt hẹn trực tuyến trên website.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.outpatient.notes_title')}</h3>
+        <h3 className={styles.blockTitle}>Lưu Ý Khi Đến Khám</h3>
         <ul className={styles.list}>
           {notes.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -122,7 +123,7 @@ const KhamNgoaiTru = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.outpatient.steps_title')}</h3>
+        <h3 className={styles.blockTitle}>Quy Trình Thăm Khám</h3>
         <div className={styles.steps}>
           {steps.map(({ step, title, desc }) => (
             <div key={step} className={styles.stepItem}>
@@ -137,29 +138,45 @@ const KhamNgoaiTru = () => {
       </section>
 
       <div className={styles.infoBox}>
-        <p><PhoneOutlined /> {t('customer_guide.outpatient.info_hotline')} <strong>024 3577 1100</strong></p>
-        <p><PhoneOutlined /> {t('customer_guide.outpatient.info_emergency')} <strong>024 3574 1111</strong></p>
-        <p className={styles.muted}>{t('customer_guide.outpatient.info_docs')}</p>
+        <p><PhoneOutlined /> Tổng đài: <strong>024 3577 1100</strong></p>
+        <p><PhoneOutlined /> Cấp cứu (24/7): <strong>024 3574 1111</strong></p>
+        <p className={styles.muted}>Vui lòng mang theo CMND/CCCD, thẻ bảo hiểm (nếu có) và các kết quả xét nghiệm, chẩn đoán hình ảnh cũ khi đến khám.</p>
       </div>
     </div>
   );
 };
 
 const NhapVien = () => {
-  const { t } = useTranslation();
-  const timeItems = t('customer_guide.inpatient.time_items', { returnObjects: true }) as string[];
-  const prepItems = t('customer_guide.inpatient.prep_items', { returnObjects: true }) as string[];
-  const docsItems = t('customer_guide.inpatient.docs_items', { returnObjects: true }) as string[];
-  const rooms = t('customer_guide.inpatient.rooms', { returnObjects: true }) as BedRoom[];
-  const cancelSchedule = t('customer_guide.inpatient.cancel_schedule', { returnObjects: true }) as string[];
+  const timeItems = ['Thông thường: 07:00 – 10:00 sáng', 'Cấp cứu hoặc nhập viện chuyển dạ ngoài giờ: tiếp nhận 24/7'];
+  const prepItems = [
+    'Nhịn ăn ít nhất 6 tiếng trước giờ thủ thuật/phẫu thuật',
+    'Không hút thuốc ít nhất 12 tiếng trước thủ thuật',
+    'Bác sĩ sẽ hướng dẫn cụ thể cho từng trường hợp',
+  ];
+  const docsItems = [
+    'Giấy tờ tùy thân (CMND/CCCD hoặc hộ chiếu)',
+    'Thẻ bảo hiểm y tế hoặc bảo hiểm tư nhân (nếu sử dụng)',
+    'Giấy chuyển viện, giấy chỉ định nhập viện (nếu có)',
+    'Hồ sơ bệnh án, kết quả xét nghiệm, phim chụp trước đó (nếu có)',
+    'Thẻ thành viên H Plus Membership (nếu có)',
+  ];
+  const rooms = [
+    { count: '62', label: 'giường Nội trú Tổng hợp' },
+    { count: '47', label: 'giường Sản – Phụ khoa' },
+    { count: '38', label: 'giường Nội trú Nhi' },
+    { count: '6', label: 'giường Nội trú VIP' },
+    { count: '9', label: 'giường Điều trị riêng biệt' },
+    { count: '20', label: 'giường Lưu viện trong ngày' },
+  ];
+  const cancelSchedule = ['Thứ Hai – Thứ Sáu: 07:30 – 17:30', 'Thứ Bảy: 07:30 – 14:00'];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>{t('customer_guide.inpatient.title')}</h2>
-      <p className={styles.intro}>{t('customer_guide.inpatient.intro')}</p>
+      <h2 className={styles.contentTitle}>Đăng Ký Nhập Viện</h2>
+      <p className={styles.intro}>Quy trình đăng ký nhập viện được thiết kế nhằm đảm bảo sự nhanh chóng, thuận tiện và an toàn cho người bệnh — cung cấp đầy đủ thông tin về thời gian, thủ tục và các hướng dẫn cần thiết.</p>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> {t('customer_guide.inpatient.time_title')}</h3>
+        <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> Thời Gian Nhập Viện</h3>
         <ul className={styles.list}>
           {timeItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -168,9 +185,9 @@ const NhapVien = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.inpatient.prep_title')}</h3>
+        <h3 className={styles.blockTitle}>Chuẩn Bị Trước Khi Nhập Viện</h3>
         <div className={styles.infoBox}>
-          <p className={styles.highlight}>{t('customer_guide.inpatient.prep_highlight')}</p>
+          <p className={styles.highlight}>Đối với bệnh nhân có hẹn để thực hiện thủ thuật hoặc phẫu thuật:</p>
           <ul className={styles.list}>
             {prepItems.map((item, i) => (
               <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -180,13 +197,13 @@ const NhapVien = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.inpatient.procedure_title')}</h3>
-        <p>{t('customer_guide.inpatient.procedure_p1')}</p>
-        <p>{t('customer_guide.inpatient.procedure_p2')}</p>
+        <h3 className={styles.blockTitle}>Thủ Tục Nhập Viện</h3>
+        <p>Khi được bác sĩ chỉ định nhập viện, nhân viên lễ tân sẽ giải thích các vấn đề liên quan, sắp xếp ngày nhập viện và cung cấp tờ thông tin lưu viện.</p>
+        <p>Bệnh nhân cần điền thông tin và ký "Đồng ý điều trị" — xác nhận đã được giải thích đầy đủ về lợi ích, nguy cơ và đồng ý thực hiện.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.inpatient.docs_title')}</h3>
+        <h3 className={styles.blockTitle}>Giấy Tờ Cần Chuẩn Bị</h3>
         <ul className={styles.list}>
           {docsItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -195,8 +212,8 @@ const NhapVien = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.inpatient.rooms_title')}</h3>
-        <p>{t('customer_guide.inpatient.rooms_total')}</p>
+        <h3 className={styles.blockTitle}>Phòng Lưu Viện</h3>
+        <p>Hệ thống 170 giường bệnh nội trú, bao gồm:</p>
         <div className={styles.bedGrid}>
           {rooms.map(({ count, label }) => (
             <div key={label} className={styles.bedCard}>
@@ -205,19 +222,19 @@ const NhapVien = () => {
             </div>
           ))}
         </div>
-        <p className={styles.muted}>{t('customer_guide.inpatient.rooms_note')}</p>
+        <p className={styles.muted}>Mỗi phòng được trang bị đầy đủ sữa tắm, dầu gội, bàn chải, kem đánh răng và các vật dụng cần thiết.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.inpatient.cancel_title')}</h3>
+        <h3 className={styles.blockTitle}>Hủy Hẹn Nhập Viện</h3>
         <div className={styles.infoBox}>
-          <p>{t('customer_guide.inpatient.cancel_phone')}</p>
+          <p>Vui lòng gọi (84-24) 3577 1100 trong giờ hành chính:</p>
           <ul className={styles.list}>
             {cancelSchedule.map((item, i) => (
               <li key={i}><ClockCircleOutlined className={styles.checkIcon} />{item}</li>
             ))}
           </ul>
-          <p className={styles.muted}>{t('customer_guide.inpatient.cancel_note')}</p>
+          <p className={styles.muted}>Thông báo ít nhất 02 ngày trước ngày nhập viện dự kiến.</p>
         </div>
       </section>
     </div>
@@ -225,19 +242,30 @@ const NhapVien = () => {
 };
 
 const ThanhToan = () => {
-  const { t } = useTranslation();
-  const outpatientItems = t('customer_guide.payment.outpatient_items', { returnObjects: true }) as string[];
-  const inpatientItems = t('customer_guide.payment.inpatient_items', { returnObjects: true }) as string[];
-  const refundItems = t('customer_guide.payment.refund_items', { returnObjects: true }) as string[];
-  const insuranceDocs = t('customer_guide.payment.insurance_docs', { returnObjects: true }) as string[];
+  const outpatientItems = [
+    'Phí khám & tư vấn được thanh toán sau khi thăm khám với bác sĩ',
+    'Chi phí xét nghiệm, chẩn đoán hình ảnh, thuốc, hoặc thủ thuật ngoại trú cần thanh toán trước khi sử dụng dịch vụ',
+  ];
+  const inpatientItems = [
+    'Khi có chỉ định nhập viện, Quý khách sẽ được xác nhận chi phí dự trù và ký "Đồng ý điều trị"',
+    'Nhân viên lễ tân, thu ngân hoặc Bảo lãnh viện phí sẽ hỗ trợ hoàn tất thủ tục',
+    'Hóa đơn lưu viện được hoàn tất và thanh toán trước khi xuất viện',
+    'Bệnh viện không chấp nhận nợ cá nhân',
+  ];
+  const refundItems = [
+    'Khi xuất viện, thanh toán các khoản chi phí không được công ty bảo hiểm chi trả',
+    'Hoàn trả tiền mặt: nhận tại quầy thu ngân',
+    'Hoàn trả thẻ: chuyển vào tài khoản tín dụng theo quy định Ngân hàng Nhà nước',
+  ];
+  const insuranceDocs = ['Căn cước công dân hoặc hộ chiếu', 'Thẻ bảo hiểm hoặc thông tin hợp đồng bảo hiểm'];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>{t('customer_guide.payment.title')}</h2>
-      <p className={styles.intro}>{t('customer_guide.payment.intro')}</p>
+      <h2 className={styles.contentTitle}>Chính Sách Giá Và Thanh Toán</h2>
+      <p className={styles.intro}>Tất cả dịch vụ y tế tại bệnh viện được tính theo biểu giá hiện hành.</p>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><MedicineBoxOutlined className={styles.blockIcon} /> {t('customer_guide.payment.outpatient_title')}</h3>
+        <h3 className={styles.blockTitle}><MedicineBoxOutlined className={styles.blockIcon} /> Thăm Khám Ngoại Trú</h3>
         <ul className={styles.list}>
           {outpatientItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -246,7 +274,7 @@ const ThanhToan = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><HomeOutlined className={styles.blockIcon} /> {t('customer_guide.payment.inpatient_title')}</h3>
+        <h3 className={styles.blockTitle}><HomeOutlined className={styles.blockIcon} /> Bệnh Nhân Nhập Viện</h3>
         <ul className={styles.list}>
           {inpatientItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -255,16 +283,16 @@ const ThanhToan = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><CreditCardOutlined className={styles.blockIcon} /> {t('customer_guide.payment.deposit_title')}</h3>
-        <p>{t('customer_guide.payment.deposit_p1')}</p>
+        <h3 className={styles.blockTitle}><CreditCardOutlined className={styles.blockIcon} /> Tạm Ứng</h3>
+        <p>Khi có chỉ định nhập viện, Quý khách sẽ được yêu cầu tạm ứng chi phí điều trị. Mức tạm ứng được tính dựa trên chỉ định điều trị và loại phòng lưu viện.</p>
         <div className={styles.infoBox}>
-          <p>{t('customer_guide.payment.deposit_info')}</p>
+          <p>Nếu Quý khách có bảo hiểm nhưng bệnh viện chưa nhận được Thư xác nhận bảo lãnh, Quý khách vui lòng thực hiện tạm ứng. Khoản tạm ứng sẽ được hoàn trả khi xuất viện sau khi nhận được xác nhận.</p>
         </div>
-        <p>{t('customer_guide.payment.deposit_methods')}</p>
+        <p>Có thể tạm ứng bằng: tiền mặt · thẻ tín dụng · chuyển khoản</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.payment.refund_title')}</h3>
+        <h3 className={styles.blockTitle}>Thanh Toán Thêm Và Hoàn Trả</h3>
         <ul className={styles.list}>
           {refundItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -273,10 +301,10 @@ const ThanhToan = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.payment.insurance_title')}</h3>
-        <p>{t('customer_guide.payment.insurance_p1')}</p>
+        <h3 className={styles.blockTitle}>Chính Sách Bảo Hiểm</h3>
+        <p>Bệnh viện hợp tác với hầu hết các công ty bảo hiểm trong nước và quốc tế — hiện có thỏa thuận thanh toán trực tiếp với 43 công ty bảo hiểm, cùng 7 đơn vị hỗ trợ và 1 công ty quản lý bảo hiểm.</p>
         <div className={styles.infoBox}>
-          <p className={styles.highlight}>{t('customer_guide.payment.insurance_highlight')}</p>
+          <p className={styles.highlight}>Khi đến khám hoặc nhập viện, vui lòng xuất trình:</p>
           <ul className={styles.list}>
             {insuranceDocs.map((item, i) => (
               <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -284,8 +312,8 @@ const ThanhToan = () => {
           </ul>
         </div>
         <div className={styles.contactCard}>
-          <p><strong>{t('customer_guide.payment.insurance_contact_title')}</strong></p>
-          <p>{t('customer_guide.payment.insurance_contact_name')}</p>
+          <p><strong>Mọi thắc mắc về Bảo hiểm:</strong></p>
+          <p>Ông Trương Kiều Nghị – Trưởng phòng Chăm sóc khách hàng & Hoạt động hợp tác</p>
           <p><PhoneOutlined /> (84-24) 3577 1100</p>
           <p><MailOutlined /> nghi.truongkieu@hfh.com.vn</p>
         </div>
@@ -295,14 +323,17 @@ const ThanhToan = () => {
 };
 
 const TienIch = () => {
-  const { t } = useTranslation();
-  const cards = t('customer_guide.amenities.cards', { returnObjects: true }) as AmenityCard[];
+  const cards = [
+    { title: 'Gửi Xe Miễn Phí', desc: 'Khu vực gửi xe máy và ô tô tại tầng hầm B1 và B2, kiểm soát bằng hệ thống tự động hiện đại và hoàn toàn miễn phí.' },
+    { title: 'Wifi Miễn Phí Toàn Viện', desc: 'Toàn bộ khuôn viên được phủ sóng wifi tốc độ cao, phục vụ nhu cầu kết nối và tra cứu thông tin của người bệnh và người nhà.' },
+    { title: 'An Ninh 24/7', desc: 'Khu điều trị nội trú được kiểm soát bằng hệ thống thẻ từ, giám sát an ninh chặt chẽ 24/7 từ phòng điều khiển trung tâm.' },
+  ];
   const icons = [<CarOutlined key="car" />, <WifiOutlined key="wifi" />, <SafetyOutlined key="safety" />];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>{t('customer_guide.amenities.title')}</h2>
-      <p className={styles.intro}>{t('customer_guide.amenities.intro')}</p>
+      <h2 className={styles.contentTitle}>Tiện Ích</h2>
+      <p className={styles.intro}>Không chỉ nổi bật với chất lượng y tế quốc tế, bệnh viện còn mang đến trải nghiệm chăm sóc toàn diện thông qua hệ thống tiện ích được đầu tư bài bản.</p>
 
       <div className={styles.amenityGrid}>
         {cards.map(({ title, desc }, i) => (
@@ -315,38 +346,64 @@ const TienIch = () => {
       </div>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.amenities.cafe_title')}</h3>
-        <p>{t('customer_guide.amenities.cafe_location')}</p>
-        <p>{t('customer_guide.amenities.cafe_desc')}</p>
+        <h3 className={styles.blockTitle}>Nhà Hàng H Café</h3>
+        <p>Tọa lạc tại tầng 1, tòa B — không gian ẩm thực sang trọng, ấm cúng dành cho khách hàng, người nhà và nhân viên y tế.</p>
+        <p>Thực đơn phong phú đáp ứng khẩu vị đa dạng: món Âu chuẩn vị và các món Á quen thuộc như phở, cơm, mì — chế biến từ nguyên liệu tươi ngon, đảm bảo dinh dưỡng và vệ sinh an toàn thực phẩm.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.amenities.bakery_title')}</h3>
-        <p>{t('customer_guide.amenities.bakery_location')}</p>
-        <p>{t('customer_guide.amenities.bakery_desc')}</p>
+        <h3 className={styles.blockTitle}>Quầy Bánh Café Saint-Honoré</h3>
+        <p>Ngay tại tầng 1, sảnh tòa B — thưởng thức ẩm thực nhẹ nhàng chuẩn Pháp với bánh thủ công và đồ uống tinh tế từ thương hiệu Saint-Honoré.</p>
+        <p>Không gian ấm cúng, phục vụ liên tục trong ngày — rất phù hợp cho các buổi hẹn khám sáng sớm hoặc giờ nghỉ giữa buổi điều trị.</p>
       </section>
 
       <div className={styles.infoBox}>
-        <p className={styles.highlight}>{t('customer_guide.amenities.quote')}</p>
+        <p className={styles.highlight}>Với phương châm "lấy người bệnh làm trung tâm", bệnh viện luôn hướng đến mục tiêu chăm sóc sức khỏe toàn diện cả thể chất lẫn tinh thần.</p>
       </div>
     </div>
   );
 };
 
 const ThamBenh = () => {
-  const { t } = useTranslation();
-  const hoursCards = t('customer_guide.visit.hours_cards', { returnObjects: true }) as HoursCard[];
-  const rules = t('customer_guide.visit.rules', { returnObjects: true }) as string[];
-  const zones = t('customer_guide.visit.zones', { returnObjects: true }) as ZoneRule[];
-  const healthItems = t('customer_guide.visit.health_items', { returnObjects: true }) as string[];
-  const responsibilityItems = t('customer_guide.visit.responsibility_items', { returnObjects: true }) as string[];
+  const hoursCards = [
+    { time: '14:30 – 21:00', label: 'Khu nội trú — hàng ngày' },
+    { time: '16:00 – 20:00', label: 'Khu hồi sức tích cực & chăm sóc đặc biệt (ICU) — hàng ngày' },
+  ];
+  const rules = [
+    'Thăm đúng khung giờ quy định',
+    'Tối đa 02 khách/lần thăm',
+    'Rửa tay sát khuẩn khi vào/ra phòng',
+    'Rời phòng khi người bệnh cần chăm sóc y tế',
+    'Không ngồi lên giường bệnh',
+    'Không chạm thiết bị y tế, vết thương, đường truyền',
+    'Không mang vật nuôi, hoa, cây cảnh',
+    'Không mang đồ ăn/đồ uống có mùi mạnh',
+    'Giữ trật tự, để điện thoại im lặng',
+    'Không hút thuốc (trừ khu vực cho phép cạnh H Café)',
+    'Trẻ dưới 16 tuổi phải đi cùng người lớn',
+    'Không ở lại qua đêm tại phòng',
+    'Bệnh viện không chịu trách nhiệm về tài sản thất lạc',
+  ];
+  const zones = [
+    { zone: 'Khu Nội Trú Nhi', rules: ['Cha mẹ được thăm & ở lại phòng bệnh Nhi', 'Khách khác tuân thủ giờ thăm quy định'] },
+    { zone: 'NICU – Hồi Sức Sơ Sinh', rules: ['Cha mẹ được vào bất kỳ lúc nào (trừ lúc chăm sóc y tế)', 'Tuân thủ vô khuẩn: mặc đồ bảo hộ, không mang vật dụng cá nhân', 'Không chạm thiết bị/lồng ấp khi chưa được phép', 'Không cho khách thăm (kể cả trẻ em)'] },
+    { zone: 'ICU – Hồi Sức Tích Cực', rules: ['Trẻ dưới 16 tuổi: cha mẹ được vào thăm (trừ lúc cấp cứu)', 'Tuân thủ nghiêm quy định kiểm soát nhiễm khuẩn'] },
+    { zone: 'Khu Nội Trú Sản', rules: ['Tối đa 02 khách/lần thăm', 'Cha được vào phòng Sinh (nếu Sản phụ sinh thường)', 'Trẻ dưới 16 tuổi phải có người lớn đi kèm'] },
+    { zone: 'Phòng Cách Ly', rules: ['Chỉ vào khi được nhân viên y tế cho phép'] },
+  ];
+  const healthItems = ['Nôn, tiêu chảy', 'Ho, sốt, cảm lạnh/cúm', 'Nghi ngờ bệnh truyền nhiễm'];
+  const responsibilityItems = [
+    'Hỗ trợ ăn uống, dùng thuốc, hoặc vệ sinh cá nhân khi được điều dưỡng hướng dẫn',
+    'Tôn trọng và hợp tác với nhân viên y tế, tuân thủ hướng dẫn trong suốt thời gian thăm',
+    'Giữ thái độ lịch sự, nhẹ nhàng, tạo môi trường an toàn và yên tĩnh cho người bệnh',
+  ];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>{t('customer_guide.visit.title')}</h2>
+      <h2 className={styles.contentTitle}>Quy Định Thăm Bệnh</h2>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> {t('customer_guide.visit.hours_title')}</h3>
+        <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> Giờ Thăm Bệnh</h3>
         <div className={styles.scheduleGrid}>
           {hoursCards.map(({ time, label }) => (
             <div key={time} className={styles.scheduleCard}>
@@ -355,11 +412,11 @@ const ThamBenh = () => {
             </div>
           ))}
         </div>
-        <p className={styles.muted}>{t('customer_guide.visit.hours_note')}</p>
+        <p className={styles.muted}>Người chăm sóc được ở lại theo chỉ định của bác sĩ điều trị.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.visit.rules_title')}</h3>
+        <h3 className={styles.blockTitle}>Quy Định Chung</h3>
         <ul className={styles.list}>
           {rules.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -368,7 +425,7 @@ const ThamBenh = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.visit.zones_title')}</h3>
+        <h3 className={styles.blockTitle}>Quy Định Tại Từng Khu Vực</h3>
         <div className={styles.zoneGrid}>
           {zones.map(({ zone, rules: zoneRules }) => (
             <div key={zone} className={styles.zoneCard}>
@@ -384,9 +441,9 @@ const ThamBenh = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.visit.health_title')}</h3>
+        <h3 className={styles.blockTitle}>Lưu Ý Sức Khỏe</h3>
         <div className={styles.warningBox}>
-          <p>{t('customer_guide.visit.health_warning')}</p>
+          <p>Vì sự an toàn của người bệnh và cộng đồng, vui lòng không vào thăm nếu đang có:</p>
           <ul className={styles.list}>
             {healthItems.map((item, i) => (
               <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -396,8 +453,8 @@ const ThamBenh = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>{t('customer_guide.visit.responsibility_title')}</h3>
-        <p>{t('customer_guide.visit.responsibility_intro')}</p>
+        <h3 className={styles.blockTitle}>Trách Nhiệm Khi Thăm Bệnh</h3>
+        <p>Bệnh viện khuyến khích người nhà chủ động phối hợp và hợp tác chăm sóc người bệnh:</p>
         <ul className={styles.list}>
           {responsibilityItems.map((item, i) => (
             <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
@@ -412,6 +469,14 @@ const ThamBenh = () => {
 
 const TAB_KEYS: TabKey[] = ['kham-ngoai-tru', 'nhap-vien', 'thanh-toan', 'tien-ich', 'tham-benh'];
 
+const TABS = [
+  { key: 'kham-ngoai-tru' as TabKey, label: 'Khám Bệnh Ngoại Trú', icon: <MedicineBoxOutlined /> },
+  { key: 'nhap-vien' as TabKey, label: 'Nhập Viện', icon: <HomeOutlined /> },
+  { key: 'thanh-toan' as TabKey, label: 'Thanh Toán', icon: <CreditCardOutlined /> },
+  { key: 'tien-ich' as TabKey, label: 'Tiện Ích', icon: <StarOutlined /> },
+  { key: 'tham-benh' as TabKey, label: 'Thăm Bệnh', icon: <TeamOutlined /> },
+];
+
 const TAB_CONTENT: Record<TabKey, React.ReactNode> = {
   'kham-ngoai-tru': <KhamNgoaiTru />,
   'nhap-vien': <NhapVien />,
@@ -421,7 +486,6 @@ const TAB_CONTENT: Record<TabKey, React.ReactNode> = {
 };
 
 const CustomerGuide = () => {
-  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabKey>(() => {
     const tab = searchParams.get('tab');
@@ -437,14 +501,6 @@ const CustomerGuide = () => {
     }
   }, [searchParams]);
 
-  const TABS = [
-    { key: 'kham-ngoai-tru' as TabKey, label: t('customer_guide.tab_outpatient'), icon: <MedicineBoxOutlined /> },
-    { key: 'nhap-vien' as TabKey, label: t('customer_guide.tab_inpatient'), icon: <HomeOutlined /> },
-    { key: 'thanh-toan' as TabKey, label: t('customer_guide.tab_payment'), icon: <CreditCardOutlined /> },
-    { key: 'tien-ich' as TabKey, label: t('customer_guide.tab_amenities'), icon: <StarOutlined /> },
-    { key: 'tham-benh' as TabKey, label: t('customer_guide.tab_visit'), icon: <TeamOutlined /> },
-  ];
-
   return (
     <>
       <Header />
@@ -457,9 +513,9 @@ const CustomerGuide = () => {
             animate="visible"
             variants={fadeInUp}
           >
-            <p className={styles.heroSub}>{t('customer_guide.hero_sub')}</p>
-            <h1 className={styles.heroTitle}>{t('customer_guide.hero_title')}</h1>
-            <p className={styles.heroDesc}>{t('customer_guide.hero_desc')}</p>
+            <p className={styles.heroSub}>VitaFamily</p>
+            <h1 className={styles.heroTitle}>Hướng Dẫn Khách Hàng</h1>
+            <p className={styles.heroDesc}>Thông tin đầy đủ về quy trình khám bệnh, nhập viện, thanh toán và các tiện ích tại bệnh viện — giúp Quý khách chuẩn bị tốt nhất cho mỗi lần đến khám.</p>
           </motion.div>
         </section>
 
@@ -473,7 +529,7 @@ const CustomerGuide = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <h2 className={styles.sidebarHeading}>{t('customer_guide.sidebar_heading')}</h2>
+              <h2 className={styles.sidebarHeading}>Danh Mục</h2>
               <nav className={styles.sidebarNav}>
                 {TABS.map((tab) => (
                   <button
