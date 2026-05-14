@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MedicineBoxOutlined,
@@ -11,9 +11,12 @@ import {
   CheckCircleOutlined,
   PhoneOutlined,
   MailOutlined,
-  CarOutlined,
-  WifiOutlined,
-  SafetyOutlined,
+  CalendarOutlined,
+  FileTextOutlined,
+  BellOutlined,
+  SearchOutlined,
+  CustomerServiceOutlined,
+  BankOutlined,
 } from '@ant-design/icons';
 import Header from '../../components/layout/Header/Header';
 import Footer from '../../components/layout/Footer/Footer';
@@ -35,32 +38,36 @@ const contentVariants = {
 /* ────────────── Tab Contents ────────────── */
 
 const KhamNgoaiTru = () => {
-  const specialties = ['Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch & Tim mạch can thiệp', 'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng', 'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa'];
+  const specialties = [
+    'Khoa Nhi & Nhi sơ sinh', 'Khoa Tiêu hóa & Gan mật', 'Khoa Tim mạch',
+    'Khoa Chẩn đoán hình ảnh', 'Khoa Chấn thương chỉnh hình', 'Khoa Tai mũi họng',
+    'Khoa Nội thần kinh', 'Đa khoa', 'Sản khoa',
+  ];
   const notes = [
-    'Đến sớm 5–10 phút so với giờ hẹn để hoàn thiện thủ tục và/hoặc lấy mẫu xét nghiệm.',
-    'Nếu không thể đến đúng giờ, vui lòng thông báo sớm qua số: 024 3577 1100.',
-    'Đến sớm giúp bệnh viện chủ động sắp xếp và giảm thời gian chờ đợi.',
+    'Đến sớm 10–15 phút so với giờ hẹn để làm thủ tục check-in tại cơ sở y tế.',
+    'Nếu không thể đến đúng giờ, vui lòng huỷ lịch trên VitaFamily càng sớm càng tốt để được hoàn tiền theo chính sách.',
+    'Mang theo CMND/CCCD và mã lịch hẹn (xem trong mục "Lịch hẹn của tôi").',
+    'Mang theo kết quả xét nghiệm, phim chụp trước đó (nếu có) để bác sĩ tham khảo.',
   ];
   const steps = [
-    { step: '1', title: 'Đến quầy lễ tân', desc: 'Khu Khám bệnh (Tầng 1 – Tòa A) hoặc Quầy thông tin (Tầng 1 – Tòa B). Nhân viên sẽ xác nhận thông tin đặt hẹn và hướng dẫn đến chuyên khoa.' },
-    { step: '2', title: 'Khám và thanh toán', desc: 'Thanh toán phí khám sau khi bác sĩ thăm khám và tư vấn.' },
-    { step: '3', title: 'Nhận thuốc', desc: 'Mua thuốc theo đơn tại Quầy Dược – Tầng 1, Tòa A.' },
-    { step: '4', title: 'Hoàn tất bảo hiểm', desc: 'Phòng Bảo lãnh viện phí hỗ trợ các bước liên quan đến bảo hiểm (nếu có).' },
+    { step: '1', title: 'Đặt lịch trực tuyến', desc: 'Tìm bác sĩ theo chuyên khoa, chọn ngày giờ phù hợp và đặt lịch trên VitaFamily. Lịch hẹn được xác nhận ngay sau khi thanh toán thành công.' },
+    { step: '2', title: 'Đến cơ sở y tế', desc: 'Mang theo mã lịch hẹn và CMND/CCCD đến quầy lễ tân. Nhân viên xác nhận thông tin đặt hẹn và hướng dẫn bạn đến đúng chuyên khoa.' },
+    { step: '3', title: 'Thăm khám với bác sĩ', desc: 'Bác sĩ thăm khám, tư vấn và kê đơn. Phí dịch vụ phát sinh trong buổi khám được thanh toán trực tiếp tại quầy thu ngân của cơ sở y tế.' },
+    { step: '4', title: 'Nhận kết quả & đơn thuốc', desc: 'Nhận đơn thuốc và kết quả xét nghiệm (nếu có). Mua thuốc theo đơn tại quầy dược hoặc nhà thuốc theo chỉ định của bác sĩ.' },
   ];
 
   return (
     <div className={styles.content}>
       <h2 className={styles.contentTitle}>Khám Bệnh Ngoại Trú</h2>
+      <p className={styles.intro}>VitaFamily kết nối bạn với hàng trăm bác sĩ từ nhiều chuyên khoa khác nhau. Dưới đây là hướng dẫn từ lúc đặt lịch đến khi hoàn tất buổi khám tại cơ sở y tế đối tác.</p>
 
       <section className={styles.block}>
         <h3 className={styles.blockTitle}>
-          <ClockCircleOutlined className={styles.blockIcon} /> Giờ Làm Việc
+          <ClockCircleOutlined className={styles.blockIcon} /> Giờ Khám Tham Khảo
         </h3>
         <div className={styles.infoBox}>
-          <p className={styles.highlight}>
-            <PhoneOutlined /> Khoa Cấp Cứu tiếp nhận <strong>24 giờ/ngày, 7 ngày/tuần</strong>
-          </p>
-          <p>Trường hợp khẩn cấp: <strong>024 3574 1111</strong></p>
+          <p className={styles.highlight}>Giờ khám thực tế phụ thuộc vào từng bác sĩ và cơ sở y tế.</p>
+          <p>Lịch trống của từng bác sĩ được cập nhật tự động trên nền tảng VitaFamily khi bạn tìm kiếm.</p>
         </div>
       </section>
 
@@ -75,12 +82,6 @@ const KhamNgoaiTru = () => {
                   <li key={item}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
                 ))}
               </ul>
-            </div>
-          </div>
-          <div className={styles.scheduleRow}>
-            <div className={styles.scheduleTimeBadge}>08:30 – 12:00<br />13:30 – 17:30</div>
-            <div className={styles.scheduleRowBody}>
-              <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
             </div>
           </div>
         </div>
@@ -99,18 +100,7 @@ const KhamNgoaiTru = () => {
               </ul>
             </div>
           </div>
-          <div className={styles.scheduleRow}>
-            <div className={styles.scheduleTimeBadge}>08:30 – 12:30</div>
-            <div className={styles.scheduleRowBody}>
-              <p className={styles.scheduleNote}>Áp dụng cho các chuyên khoa còn lại</p>
-            </div>
-          </div>
         </div>
-      </section>
-
-      <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Đặt Lịch Khám</h3>
-        <p>Vui lòng gọi số: <strong>024 3577 1100</strong> hoặc đặt hẹn trực tuyến trên website.</p>
       </section>
 
       <section className={styles.block}>
@@ -123,7 +113,7 @@ const KhamNgoaiTru = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Quy Trình Thăm Khám</h3>
+        <h3 className={styles.blockTitle}>Quy Trình Từ Đặt Lịch Đến Khám Xong</h3>
         <div className={styles.steps}>
           {steps.map(({ step, title, desc }) => (
             <div key={step} className={styles.stepItem}>
@@ -137,10 +127,9 @@ const KhamNgoaiTru = () => {
         </div>
       </section>
 
-      <div className={styles.infoBox}>
-        <p><PhoneOutlined /> Tổng đài: <strong>024 3577 1100</strong></p>
-        <p><PhoneOutlined /> Cấp cứu (24/7): <strong>024 3574 1111</strong></p>
-        <p className={styles.muted}>Vui lòng mang theo CMND/CCCD, thẻ bảo hiểm (nếu có) và các kết quả xét nghiệm, chẩn đoán hình ảnh cũ khi đến khám.</p>
+      <div className={styles.ctaBox}>
+        <p>Sẵn sàng đặt lịch khám?</p>
+        <Link to="/doctors" className={styles.ctaBtn}>Tìm bác sĩ & Đặt lịch ngay →</Link>
       </div>
     </div>
   );
@@ -158,22 +147,13 @@ const NhapVien = () => {
     'Thẻ bảo hiểm y tế hoặc bảo hiểm tư nhân (nếu sử dụng)',
     'Giấy chuyển viện, giấy chỉ định nhập viện (nếu có)',
     'Hồ sơ bệnh án, kết quả xét nghiệm, phim chụp trước đó (nếu có)',
-    'Thẻ thành viên H Plus Membership (nếu có)',
-  ];
-  const rooms = [
-    { count: '62', label: 'giường Nội trú Tổng hợp' },
-    { count: '47', label: 'giường Sản – Phụ khoa' },
-    { count: '38', label: 'giường Nội trú Nhi' },
-    { count: '6', label: 'giường Nội trú VIP' },
-    { count: '9', label: 'giường Điều trị riêng biệt' },
-    { count: '20', label: 'giường Lưu viện trong ngày' },
   ];
   const cancelSchedule = ['Thứ Hai – Thứ Sáu: 07:30 – 17:30', 'Thứ Bảy: 07:30 – 14:00'];
 
   return (
     <div className={styles.content}>
       <h2 className={styles.contentTitle}>Đăng Ký Nhập Viện</h2>
-      <p className={styles.intro}>Quy trình đăng ký nhập viện được thiết kế nhằm đảm bảo sự nhanh chóng, thuận tiện và an toàn cho người bệnh — cung cấp đầy đủ thông tin về thời gian, thủ tục và các hướng dẫn cần thiết.</p>
+      <p className={styles.intro}>Thông tin dưới đây là hướng dẫn chung về quy trình nhập viện tại các cơ sở y tế. Chi tiết cụ thể có thể khác nhau tùy từng bệnh viện — vui lòng liên hệ trực tiếp cơ sở y tế để được hỗ trợ.</p>
 
       <section className={styles.block}>
         <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> Thời Gian Nhập Viện</h3>
@@ -212,29 +192,15 @@ const NhapVien = () => {
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Phòng Lưu Viện</h3>
-        <p>Hệ thống 170 giường bệnh nội trú, bao gồm:</p>
-        <div className={styles.bedGrid}>
-          {rooms.map(({ count, label }) => (
-            <div key={label} className={styles.bedCard}>
-              <span className={styles.bedCount}>{count}</span>
-              <span className={styles.bedLabel}>{label}</span>
-            </div>
-          ))}
-        </div>
-        <p className={styles.muted}>Mỗi phòng được trang bị đầy đủ sữa tắm, dầu gội, bàn chải, kem đánh răng và các vật dụng cần thiết.</p>
-      </section>
-
-      <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Hủy Hẹn Nhập Viện</h3>
+        <h3 className={styles.blockTitle}>Hủy Lịch Nhập Viện</h3>
         <div className={styles.infoBox}>
-          <p>Vui lòng gọi (84-24) 3577 1100 trong giờ hành chính:</p>
+          <p>Vui lòng liên hệ trực tiếp cơ sở y tế trong giờ hành chính để thông báo huỷ:</p>
           <ul className={styles.list}>
             {cancelSchedule.map((item, i) => (
               <li key={i}><ClockCircleOutlined className={styles.checkIcon} />{item}</li>
             ))}
           </ul>
-          <p className={styles.muted}>Thông báo ít nhất 02 ngày trước ngày nhập viện dự kiến.</p>
+          <p className={styles.muted}>Thông báo ít nhất 02 ngày trước ngày nhập viện dự kiến. Lịch khám ngoại trú đặt qua VitaFamily được huỷ trực tiếp trên ứng dụng.</p>
         </div>
       </section>
     </div>
@@ -242,123 +208,163 @@ const NhapVien = () => {
 };
 
 const ThanhToan = () => {
-  const outpatientItems = [
-    'Phí khám & tư vấn được thanh toán sau khi thăm khám với bác sĩ',
-    'Chi phí xét nghiệm, chẩn đoán hình ảnh, thuốc, hoặc thủ thuật ngoại trú cần thanh toán trước khi sử dụng dịch vụ',
+  const paymentSteps = [
+    { step: '1', title: 'Đặt lịch khám', desc: 'Chọn bác sĩ, dịch vụ và thời gian khám phù hợp trên nền tảng VitaFamily.' },
+    { step: '2', title: 'Thanh toán trực tuyến', desc: 'Xác nhận thông tin lịch khám và thanh toán qua cổng VitaPay. Lịch hẹn chỉ được xác nhận sau khi thanh toán thành công.' },
+    { step: '3', title: 'Nhận xác nhận', desc: 'Hệ thống tự động ghi nhận và gửi xác nhận lịch hẹn ngay sau khi thanh toán.' },
+    { step: '4', title: 'Đến khám đúng giờ', desc: 'Mang theo mã lịch hẹn đã xác nhận đến cơ sở y tế theo đúng giờ đã đặt.' },
   ];
-  const inpatientItems = [
-    'Khi có chỉ định nhập viện, Quý khách sẽ được xác nhận chi phí dự trù và ký "Đồng ý điều trị"',
-    'Nhân viên lễ tân, thu ngân hoặc Bảo lãnh viện phí sẽ hỗ trợ hoàn tất thủ tục',
-    'Hóa đơn lưu viện được hoàn tất và thanh toán trước khi xuất viện',
-    'Bệnh viện không chấp nhận nợ cá nhân',
+
+  const refundTiers = [
+    { time: '≥ 24 giờ trước lịch khám', percent: '100%', colorClass: styles.badgeGreen },
+    { time: '12 – 24 giờ trước lịch khám', percent: '80%', colorClass: styles.badgeBlue },
+    { time: '6 – 12 giờ trước lịch khám', percent: '50%', colorClass: styles.badgeOrange },
+    { time: '< 6 giờ trước lịch khám', percent: '0%', colorClass: styles.badgeRed },
   ];
-  const refundItems = [
-    'Khi xuất viện, thanh toán các khoản chi phí không được công ty bảo hiểm chi trả',
-    'Hoàn trả tiền mặt: nhận tại quầy thu ngân',
-    'Hoàn trả thẻ: chuyển vào tài khoản tín dụng theo quy định Ngân hàng Nhà nước',
+
+  const specialCases = [
+    { title: 'Bác sĩ huỷ lịch', desc: 'Hoàn tiền 100% bất kể thời gian huỷ.' },
+    { title: 'Bệnh nhân không đến (no-show)', desc: 'Không được hoàn tiền.' },
+    { title: 'Huỷ do lỗi hệ thống', desc: 'Hoàn tiền 100% và hệ thống ghi nhận lỗi.' },
+    { title: 'Lịch đã khám xong', desc: 'Không thể yêu cầu hoàn tiền sau khi buổi khám đã hoàn tất.' },
   ];
-  const insuranceDocs = ['Căn cước công dân hoặc hộ chiếu', 'Thẻ bảo hiểm hoặc thông tin hợp đồng bảo hiểm'];
+
+  const cancelSteps = [
+    { step: '1', title: 'Vào trang lịch hẹn', desc: 'Mở chi tiết lịch hẹn cần huỷ trong mục "Lịch hẹn của tôi".' },
+    { step: '2', title: 'Nhấn "Huỷ lịch"', desc: 'Hệ thống hiển thị số tiền hoàn lại dựa trên thời gian còn lại trước giờ khám.' },
+    { step: '3', title: 'Xác nhận huỷ', desc: 'Đọc kỹ thông tin hoàn tiền và xác nhận huỷ lịch.' },
+    { step: '4', title: 'Nhận hoàn tiền', desc: 'Tiền hoàn được xử lý trong 3–5 ngày làm việc sau khi yêu cầu được duyệt.' },
+  ];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>Chính Sách Giá Và Thanh Toán</h2>
-      <p className={styles.intro}>Tất cả dịch vụ y tế tại bệnh viện được tính theo biểu giá hiện hành.</p>
+      <h2 className={styles.contentTitle}>Thanh Toán & Hoàn Tiền</h2>
+      <p className={styles.intro}>
+        VitaFamily là nền tảng trung gian kết nối bệnh nhân và cơ sở y tế. Mọi thanh toán được thực hiện trực tuyến qua cổng VitaPay — an toàn, nhanh chóng và minh bạch.
+      </p>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><MedicineBoxOutlined className={styles.blockIcon} /> Thăm Khám Ngoại Trú</h3>
-        <ul className={styles.list}>
-          {outpatientItems.map((item, i) => (
-            <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
+        <h3 className={styles.blockTitle}><CreditCardOutlined className={styles.blockIcon} /> Quy Trình Thanh Toán</h3>
+        <div className={styles.steps}>
+          {paymentSteps.map(({ step, title, desc }) => (
+            <div key={step} className={styles.stepItem}>
+              <div className={styles.stepNumber}>{step}</div>
+              <div className={styles.stepBody}>
+                <strong>{title}</strong>
+                <p>{desc}</p>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}><HomeOutlined className={styles.blockIcon} /> Bệnh Nhân Nhập Viện</h3>
-        <ul className={styles.list}>
-          {inpatientItems.map((item, i) => (
-            <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={styles.block}>
-        <h3 className={styles.blockTitle}><CreditCardOutlined className={styles.blockIcon} /> Tạm Ứng</h3>
-        <p>Khi có chỉ định nhập viện, Quý khách sẽ được yêu cầu tạm ứng chi phí điều trị. Mức tạm ứng được tính dựa trên chỉ định điều trị và loại phòng lưu viện.</p>
+        <h3 className={styles.blockTitle}><BankOutlined className={styles.blockIcon} /> Phương Thức Thanh Toán</h3>
         <div className={styles.infoBox}>
-          <p>Nếu Quý khách có bảo hiểm nhưng bệnh viện chưa nhận được Thư xác nhận bảo lãnh, Quý khách vui lòng thực hiện tạm ứng. Khoản tạm ứng sẽ được hoàn trả khi xuất viện sau khi nhận được xác nhận.</p>
+          <p>VitaFamily hỗ trợ thanh toán qua <strong>chuyển khoản ngân hàng</strong> thông qua cổng thanh toán VitaPay.</p>
+          <p>Sau khi chuyển khoản thành công, lịch hẹn được xác nhận ngay lập tức — không cần chờ xác minh thủ công.</p>
+          <p className={styles.muted}>Lưu ý: lịch hẹn chưa thanh toán có thể bị huỷ sau 30 phút nếu không hoàn tất giao dịch.</p>
         </div>
-        <p>Có thể tạm ứng bằng: tiền mặt · thẻ tín dụng · chuyển khoản</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Thanh Toán Thêm Và Hoàn Trả</h3>
-        <ul className={styles.list}>
-          {refundItems.map((item, i) => (
-            <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
+        <h3 className={styles.blockTitle}>Chính Sách Hoàn Tiền Khi Huỷ Lịch</h3>
+        <p className={styles.muted}>Mức hoàn tiền phụ thuộc vào thời điểm huỷ so với giờ khám đã đặt:</p>
+        <div className={styles.refundTable}>
+          {refundTiers.map(({ time, percent, colorClass }) => (
+            <div key={time} className={styles.refundRow}>
+              <span className={styles.refundTime}>{time}</span>
+              <span className={`${styles.refundBadge} ${colorClass}`}>{percent}</span>
+            </div>
           ))}
-        </ul>
+        </div>
+        <p className={styles.muted}>Tiền hoàn được xử lý trong 3–5 ngày làm việc sau khi yêu cầu được Admin duyệt.</p>
       </section>
 
       <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Chính Sách Bảo Hiểm</h3>
-        <p>Bệnh viện hợp tác với hầu hết các công ty bảo hiểm trong nước và quốc tế — hiện có thỏa thuận thanh toán trực tiếp với 43 công ty bảo hiểm, cùng 7 đơn vị hỗ trợ và 1 công ty quản lý bảo hiểm.</p>
+        <h3 className={styles.blockTitle}>Trường Hợp Đặc Biệt</h3>
         <div className={styles.infoBox}>
-          <p className={styles.highlight}>Khi đến khám hoặc nhập viện, vui lòng xuất trình:</p>
-          <ul className={styles.list}>
-            {insuranceDocs.map((item, i) => (
-              <li key={i}><CheckCircleOutlined className={styles.checkIcon} />{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.contactCard}>
-          <p><strong>Mọi thắc mắc về Bảo hiểm:</strong></p>
-          <p>Ông Trương Kiều Nghị – Trưởng phòng Chăm sóc khách hàng & Hoạt động hợp tác</p>
-          <p><PhoneOutlined /> (84-24) 3577 1100</p>
-          <p><MailOutlined /> nghi.truongkieu@hfh.com.vn</p>
+          {specialCases.map(({ title, desc }) => (
+            <p key={title}><strong>{title}:</strong> {desc}</p>
+          ))}
         </div>
       </section>
+
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Quy Trình Huỷ Lịch Và Nhận Hoàn Tiền</h3>
+        <div className={styles.steps}>
+          {cancelSteps.map(({ step, title, desc }) => (
+            <div key={step} className={styles.stepItem}>
+              <div className={styles.stepNumber}>{step}</div>
+              <div className={styles.stepBody}>
+                <strong>{title}</strong>
+                <p>{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className={styles.infoBox}>
+        <p><PhoneOutlined /> Hỗ trợ thanh toán: <strong>024 3577 1100</strong></p>
+        <p><MailOutlined /> Email: <strong>support@vitafamily.vn</strong></p>
+      </div>
     </div>
   );
 };
 
 const TienIch = () => {
-  const cards = [
-    { title: 'Gửi Xe Miễn Phí', desc: 'Khu vực gửi xe máy và ô tô tại tầng hầm B1 và B2, kiểm soát bằng hệ thống tự động hiện đại và hoàn toàn miễn phí.' },
-    { title: 'Wifi Miễn Phí Toàn Viện', desc: 'Toàn bộ khuôn viên được phủ sóng wifi tốc độ cao, phục vụ nhu cầu kết nối và tra cứu thông tin của người bệnh và người nhà.' },
-    { title: 'An Ninh 24/7', desc: 'Khu điều trị nội trú được kiểm soát bằng hệ thống thẻ từ, giám sát an ninh chặt chẽ 24/7 từ phòng điều khiển trung tâm.' },
+  const features = [
+    {
+      icon: <CalendarOutlined />,
+      title: 'Đặt Lịch 24/7',
+      desc: 'Tìm và đặt lịch khám với hàng trăm bác sĩ bất kỳ lúc nào trong ngày — không cần gọi điện hay xếp hàng chờ.',
+    },
+    {
+      icon: <FileTextOutlined />,
+      title: 'Hồ Sơ Sức Khỏe Cá Nhân',
+      desc: 'Toàn bộ lịch sử khám bệnh và lịch hẹn được lưu trữ an toàn trong tài khoản, tra cứu lại bất cứ lúc nào.',
+    },
+    {
+      icon: <BellOutlined />,
+      title: 'Nhắc Lịch Tự Động',
+      desc: 'Nhận thông báo qua email trước giờ hẹn, giúp bạn không bao giờ bỏ lỡ buổi khám quan trọng.',
+    },
+    {
+      icon: <StarOutlined />,
+      title: 'Đánh Giá Bác Sĩ',
+      desc: 'Xem nhận xét thực tế từ bệnh nhân đã khám để chọn đúng bác sĩ phù hợp với nhu cầu và ngân sách.',
+    },
+    {
+      icon: <SearchOutlined />,
+      title: 'Tìm Kiếm Thông Minh',
+      desc: 'Lọc bác sĩ theo chuyên khoa, cơ sở y tế, khung giờ trống và mức giá — nhanh chóng và chính xác.',
+    },
+    {
+      icon: <CustomerServiceOutlined />,
+      title: 'Hỗ Trợ Khách Hàng',
+      desc: 'Đội ngũ hỗ trợ sẵn sàng giải đáp thắc mắc về lịch hẹn, thanh toán và mọi vấn đề bạn gặp phải.',
+    },
   ];
-  const icons = [<CarOutlined key="car" />, <WifiOutlined key="wifi" />, <SafetyOutlined key="safety" />];
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.contentTitle}>Tiện Ích</h2>
-      <p className={styles.intro}>Không chỉ nổi bật với chất lượng y tế quốc tế, bệnh viện còn mang đến trải nghiệm chăm sóc toàn diện thông qua hệ thống tiện ích được đầu tư bài bản.</p>
+      <h2 className={styles.contentTitle}>Tiện Ích Nền Tảng</h2>
+      <p className={styles.intro}>VitaFamily được xây dựng để đơn giản hóa hành trình chăm sóc sức khỏe của bạn — từ tìm kiếm bác sĩ đến quản lý toàn bộ lịch hẹn và hồ sơ khám bệnh cá nhân.</p>
 
       <div className={styles.amenityGrid}>
-        {cards.map(({ title, desc }, i) => (
+        {features.map(({ icon, title, desc }) => (
           <div key={title} className={styles.amenityCard}>
-            <div className={styles.amenityIcon}>{icons[i]}</div>
+            <div className={styles.amenityIcon}>{icon}</div>
             <h3 className={styles.amenityTitle}>{title}</h3>
             <p>{desc}</p>
           </div>
         ))}
       </div>
 
-      <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Nhà Hàng H Café</h3>
-        <p>Tọa lạc tại tầng 1, tòa B — không gian ẩm thực sang trọng, ấm cúng dành cho khách hàng, người nhà và nhân viên y tế.</p>
-        <p>Thực đơn phong phú đáp ứng khẩu vị đa dạng: món Âu chuẩn vị và các món Á quen thuộc như phở, cơm, mì — chế biến từ nguyên liệu tươi ngon, đảm bảo dinh dưỡng và vệ sinh an toàn thực phẩm.</p>
-      </section>
-
-      <section className={styles.block}>
-        <h3 className={styles.blockTitle}>Quầy Bánh Café Saint-Honoré</h3>
-        <p>Ngay tại tầng 1, sảnh tòa B — thưởng thức ẩm thực nhẹ nhàng chuẩn Pháp với bánh thủ công và đồ uống tinh tế từ thương hiệu Saint-Honoré.</p>
-        <p>Không gian ấm cúng, phục vụ liên tục trong ngày — rất phù hợp cho các buổi hẹn khám sáng sớm hoặc giờ nghỉ giữa buổi điều trị.</p>
-      </section>
-
       <div className={styles.infoBox}>
-        <p className={styles.highlight}>Với phương châm "lấy người bệnh làm trung tâm", bệnh viện luôn hướng đến mục tiêu chăm sóc sức khỏe toàn diện cả thể chất lẫn tinh thần.</p>
+        <p className={styles.highlight}>Tất cả tiện ích hoàn toàn miễn phí cho người dùng</p>
+        <p>Tạo tài khoản miễn phí trên VitaFamily để truy cập đầy đủ tính năng và bắt đầu chủ động quản lý sức khỏe của mình.</p>
       </div>
     </div>
   );
@@ -379,7 +385,7 @@ const ThamBenh = () => {
     'Không mang vật nuôi, hoa, cây cảnh',
     'Không mang đồ ăn/đồ uống có mùi mạnh',
     'Giữ trật tự, để điện thoại im lặng',
-    'Không hút thuốc (trừ khu vực cho phép cạnh H Café)',
+    'Không hút thuốc trong khuôn viên bệnh viện (chỉ tại khu vực hút thuốc được chỉ định)',
     'Trẻ dưới 16 tuổi phải đi cùng người lớn',
     'Không ở lại qua đêm tại phòng',
     'Bệnh viện không chịu trách nhiệm về tài sản thất lạc',
@@ -401,6 +407,7 @@ const ThamBenh = () => {
   return (
     <div className={styles.content}>
       <h2 className={styles.contentTitle}>Quy Định Thăm Bệnh</h2>
+      <p className={styles.intro}>Thông tin dưới đây là quy định chung tại các cơ sở y tế đối tác trên nền tảng VitaFamily. Vui lòng tuân thủ để đảm bảo an toàn và sức khỏe cho người bệnh.</p>
 
       <section className={styles.block}>
         <h3 className={styles.blockTitle}><ClockCircleOutlined className={styles.blockIcon} /> Giờ Thăm Bệnh</h3>
@@ -515,7 +522,7 @@ const CustomerGuide = () => {
           >
             <p className={styles.heroSub}>VitaFamily</p>
             <h1 className={styles.heroTitle}>Hướng Dẫn Khách Hàng</h1>
-            <p className={styles.heroDesc}>Thông tin đầy đủ về quy trình khám bệnh, nhập viện, thanh toán và các tiện ích tại bệnh viện — giúp Quý khách chuẩn bị tốt nhất cho mỗi lần đến khám.</p>
+            <p className={styles.heroDesc}>Hướng dẫn đầy đủ về cách sử dụng nền tảng VitaFamily — từ đặt lịch khám, thanh toán trực tuyến đến chính sách hoàn tiền — giúp Quý khách trải nghiệm dịch vụ y tế dễ dàng và hiệu quả.</p>
           </motion.div>
         </section>
 

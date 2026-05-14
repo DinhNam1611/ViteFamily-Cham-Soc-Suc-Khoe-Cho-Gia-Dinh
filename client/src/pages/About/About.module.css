@@ -6,13 +6,13 @@
     center / cover no-repeat;
   display: flex;
   align-items: center;
-  margin-top: 72px;
+  margin-top: 120px;
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 119, 200, 0.82), rgba(0, 180, 216, 0.7));
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.88), rgba(29, 78, 216, 0.75));
 }
 
 .heroContent {
@@ -37,7 +37,7 @@
 }
 
 .heroTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 48px;
   font-weight: 700;
   color: white;
@@ -59,7 +59,7 @@
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   margin: 0 0 12px;
 }
 
@@ -73,22 +73,22 @@
 }
 
 .sectionTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 34px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.2;
   margin: 0 0 20px;
 }
 
 .sectionTitle span {
-  color: var(--primary-blue);
+  color: var(--indigo-700);
 }
 
 .desc {
   font-size: 16px;
   line-height: 1.75;
-  color: var(--text-muted);
+  color: var(--slate-500);
   margin: 0 0 16px;
 }
 
@@ -118,12 +118,12 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 15px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   font-weight: 500;
 }
 
 .check {
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   font-size: 16px;
   flex-shrink: 0;
   margin-top: 3px;
@@ -156,23 +156,23 @@
 }
 
 .badgeNum {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 28px;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   line-height: 1;
 }
 
 .badgeLabel {
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   font-weight: 500;
   white-space: nowrap;
 }
 
 /* ── Milestones ── */
 .milestoneSec {
-  background: var(--light-blue);
+  background: var(--cream-50);
 }
 
 .milestoneGrid {
@@ -199,7 +199,7 @@
   top: 8px;
   bottom: 8px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--primary-blue), var(--accent-cyan));
+  background: linear-gradient(to bottom, var(--indigo-900), var(--indigo-700));
 }
 
 .timelineItem {
@@ -218,9 +218,9 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--primary-blue);
+  background: var(--indigo-700);
   border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--primary-blue);
+  box-shadow: 0 0 0 2px var(--indigo-700);
 }
 
 .timelineBody {
@@ -230,15 +230,15 @@
 }
 
 .timelineYear {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
 }
 
 .timelineDesc {
   font-size: 15px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   line-height: 1.65;
   margin: 0;
 }
@@ -264,7 +264,7 @@
 
 .awardsSubtitle {
   font-size: 16px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   max-width: 560px;
   margin: 0 auto;
 }
@@ -273,7 +273,7 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--border-gray);
+  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -282,9 +282,9 @@
   grid-template-columns: 140px 1fr 240px;
   gap: 16px;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -295,7 +295,7 @@
   grid-template-columns: 140px 1fr 240px;
   gap: 16px;
   padding: 16px 24px;
-  border-bottom: 1px solid var(--border-gray);
+  border-bottom: 1px solid #e2e8f0;
   align-items: center;
   transition: background 200ms;
 }
@@ -305,30 +305,30 @@
 }
 
 .awardsRow:hover {
-  background: var(--light-blue);
+  background: var(--indigo-50);
 }
 
 .awardYear {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
 }
 
 .awardName {
   font-size: 14px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.5;
 }
 
 .awardBy {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--slate-500);
 }
 
 /* ── CTA / Work with us ── */
 .ctaSec {
-  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   padding: 80px 0;
 }
 
@@ -359,7 +359,7 @@
 }
 
 .ctaTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: white;
@@ -386,12 +386,13 @@
   padding: 0 28px !important;
   font-weight: 600 !important;
   background: white !important;
-  color: var(--primary-blue) !important;
+  color: var(--indigo-700) !important;
   border: none !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
 }
 
 .ctaBtn:hover {
@@ -440,7 +441,7 @@
 }
 
 @media (max-width: 640px) {
-  .hero { height: 260px; margin-top: 64px; }
+  .hero { height: 260px; margin-top: 82px; }
   .heroTitle { font-size: 26px; }
   .sectionTitle { font-size: 26px; }
   .introImage { height: 320px; }

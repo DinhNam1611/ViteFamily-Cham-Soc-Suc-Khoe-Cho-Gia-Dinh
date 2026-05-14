@@ -13,25 +13,38 @@
 }
 
 .eyebrow {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--sage-500);
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 36px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 38px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.2;
   margin: 0;
 }
 
 .title span {
-  color: var(--primary-blue);
+  color: var(--indigo-700);
 }
 
 .desc {
@@ -70,84 +83,113 @@
   flex-wrap: wrap;
 }
 
+/* Buttons bo pill */
 .primaryBtn {
   height: 48px !important;
   padding: 0 28px !important;
   font-weight: 600 !important;
-  background: linear-gradient(135deg, #0077C8, #00B4D8) !important;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700)) !important;
   border: none !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.28) !important;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out) !important;
+}
+
+.primaryBtn:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.38) !important;
 }
 
 .secondaryBtn {
   height: 48px !important;
   padding: 0 28px !important;
   font-weight: 600 !important;
-  border-color: var(--primary-blue) !important;
-  color: var(--primary-blue) !important;
-  border-radius: 10px !important;
+  border: 1.5px solid var(--indigo-700) !important;
+  color: var(--indigo-700) !important;
+  border-radius: 100px !important;
+  background: transparent !important;
+  transition: background 200ms !important;
 }
 
 .secondaryBtn:hover {
-  background: var(--primary-blue) !important;
-  color: white !important;
+  background: var(--indigo-50) !important;
 }
 
-/* Image */
-.imageCol {}
-
+/* Image column */
 .imageWrap {
   position: relative;
+  width: 100%;
+  padding-bottom: 48px;
+  padding-left: 24px;
 }
 
+/* Ảnh chính — rounded modern */
 .mainImage {
   width: 100%;
-  height: 500px;
+  height: 420px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 24px;
+  display: block;
+  box-shadow: var(--shadow-xl);
+}
+
+/* Ảnh phụ — stacked góc dưới trái, tạo chiều sâu */
+.secondaryImage {
+  position: absolute;
+  bottom: 0;
+  left: -12px;
+  width: 180px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 4px solid white;
+  box-shadow: var(--shadow-lg);
   display: block;
 }
 
+/* Floating badge dưới trái */
 .statBadge {
   position: absolute;
-  bottom: 32px;
-  left: -24px;
+  bottom: 24px;
+  left: 0;
   background: white;
   border-radius: 14px;
-  padding: 16px 20px;
+  padding: 14px 20px;
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  border: 1px solid var(--border-gray);
 }
 
 .statNum {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 28px;
-  font-weight: 700;
-  color: var(--primary-blue);
+  font-weight: 800;
+  color: var(--indigo-700);
   line-height: 1;
 }
 
 .statLabel {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
+/* Floating badge trên phải */
 .certBadge {
   position: absolute;
   top: 24px;
-  right: -16px;
-  background: linear-gradient(135deg, #0077C8, #00B4D8);
-  border-radius: 12px;
-  padding: 14px 16px;
-  box-shadow: 0 4px 16px rgba(0, 119, 200, 0.3);
+  right: 0;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -155,22 +197,23 @@
 }
 
 .certYear {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .certName {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
   color: white;
   line-height: 1;
 }
 
 .certDesc {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
   font-weight: 500;
 }
@@ -189,14 +232,31 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .statBadge {
-    left: 16px;
+
+  .imageWrap {
+    padding-left: 0;
+    padding-bottom: 40px;
   }
-  .certBadge {
-    right: 16px;
-  }
+
   .mainImage {
-    height: 380px;
+    height: 300px;
+  }
+
+  .secondaryImage {
+    width: 140px;
+    height: 110px;
+    left: 0;
+  }
+
+  .statBadge {
+    bottom: -4px;
+    right: 0;
+    left: auto;
+  }
+
+  .certBadge {
+    top: 16px;
+    right: -8px;
   }
 }
 
@@ -204,7 +264,12 @@
   .title {
     font-size: 26px;
   }
+
   .mainImage {
-    height: 300px;
+    height: 260px;
+  }
+
+  .secondaryImage {
+    display: none;
   }
 }

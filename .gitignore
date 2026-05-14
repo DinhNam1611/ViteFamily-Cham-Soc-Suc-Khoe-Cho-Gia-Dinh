@@ -1,4 +1,12 @@
 node_modules/
+dist/
+*.tsbuildinfo
 
 .claude/
 CLAUDE.md
+
+# Environment variables — KHÔNG push lên Git, chia sẻ riêng qua Zalo/Slack
+.env
+server/.env
+client/.env
+admin/.env

@@ -1,13 +1,41 @@
+/* Nền gradient indigo — đậm hơn, sang hơn */
 .section {
-  background: var(--light-blue);
-  padding: 80px 0;
+  background: linear-gradient(135deg, var(--indigo-900) 0%, var(--indigo-700) 100%);
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dot pattern trang trí */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Blob trang trí */
+.section::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .titleBlock {
@@ -15,63 +43,61 @@
 }
 
 .title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
   margin-bottom: 12px;
 }
 
 .subtitle {
   font-size: 16px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.72);
   margin: 0;
+  line-height: 1.6;
 }
 
+/* Grid 4 stat — glass cards */
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 16px;
   width: 100%;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-gray);
 }
 
+/* Mỗi stat là 1 glass card riêng */
 .statItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 24px;
+  padding: 36px 20px;
   text-align: center;
-  position: relative;
-  gap: 8px;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: background 280ms, transform 280ms var(--ease-out);
 }
 
-.statItem:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 20%;
-  height: 60%;
-  width: 1px;
-  background: var(--border-gray);
+.statItem:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-4px);
 }
 
 .statValue {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 52px;
-  font-weight: 700;
-  color: var(--primary-blue);
+  font-weight: 800;
+  color: white;
   line-height: 1;
 }
 
 .statLabel {
-  font-size: 15px;
-  color: var(--text-muted);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 500;
+  line-height: 1.4;
 }
 
 .statDivider {
@@ -82,30 +108,21 @@
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .statItem:nth-child(2)::after {
-    display: none;
-  }
-  .statItem:not(:last-child)::after {
-    display: block;
-  }
-  .statItem:nth-child(even)::after {
-    display: none;
-  }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding: 56px 0;
+    padding: 64px 0;
   }
   .title {
-    font-size: 26px;
+    font-size: 28px;
   }
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
-    border-radius: 16px;
+    gap: 12px;
   }
   .statValue {
-    font-size: 36px;
+    font-size: 38px;
   }
   .statItem {
     padding: 28px 16px;

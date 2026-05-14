@@ -586,60 +586,203 @@
       "name": "Khám Tim Mạch Chuyên Sâu",
       "category": "Khám Chuyên Khoa",
       "slug": "kham-tim-mach",
+      "badge": "Phổ biến nhất",
       "image": "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=400&fit=crop",
-      "description": "Siêu âm tim, Holter ECG 24h, đo huyết áp lưu động — chẩn đoán toàn diện các bệnh lý tim mạch.",
-      "features": ["Siêu âm tim màu Doppler", "Holter ECG 24 giờ", "Đo huyết áp lưu động", "Tư vấn chuyên khoa sau khám"],
-      "targetAudience": "Người trên 40 tuổi, có tiền sử bệnh tim"
+      "description": "Siêu âm tim, Holter ECG 24h, đo huyết áp lưu động — chẩn đoán toàn diện các bệnh lý tim mạch. Gói khám được thực hiện bởi đội ngũ bác sĩ tim mạch chuyên sâu với hơn 20 năm kinh nghiệm, sử dụng trang thiết bị hiện đại đạt chuẩn JCI quốc tế.",
+      "features": ["Siêu âm tim màu Doppler — đánh giá cấu trúc và chức năng tim", "Holter ECG 24 giờ — theo dõi nhịp tim liên tục", "Đo huyết áp lưu động 24 giờ (ABPM)", "Điện tâm đồ gắng sức (nếu có chỉ định)", "Xét nghiệm máu: lipid máu, đường huyết, chức năng thận", "Tư vấn chuyên khoa và lập phác đồ điều trị sau khám"],
+      "targetAudience": "Người trên 40 tuổi, có tiền sử bệnh tim, tăng huyết áp, rối loạn mỡ máu hoặc đái tháo đường",
+      "price": { "from": 1200000, "to": 2500000, "unit": "đ", "note": "Giá tùy theo chỉ định bác sĩ và danh mục thực hiện" },
+      "duration": "2–3 giờ",
+      "location": "Tại cơ sở VitaFamily (Hà Nội & TP. HCM)",
+      "steps": [
+        { "step": 1, "title": "Tiếp nhận & Hỏi bệnh", "description": "Check-in nhanh qua app hoặc quầy lễ tân. Điều dưỡng ghi nhận tiền sử bệnh, thuốc đang dùng và các triệu chứng hiện tại." },
+        { "step": 2, "title": "Đo chỉ số cơ bản", "description": "Đo huyết áp, nhịp tim, cân nặng, chiều cao, BMI và thực hiện điện tâm đồ (ECG) 12 chuyển đạo ban đầu." },
+        { "step": 3, "title": "Lấy máu xét nghiệm", "description": "Lấy máu kiểm tra công thức máu, sinh hóa, lipid máu, đường huyết và chức năng thận — kết quả trong 2 giờ." },
+        { "step": 4, "title": "Siêu âm tim & Holter", "description": "Siêu âm Doppler màu đánh giá chi tiết cấu trúc tim. Gắn máy Holter ECG 24 giờ nếu có chỉ định rối loạn nhịp." },
+        { "step": 5, "title": "Tư vấn kết quả", "description": "Bác sĩ tim mạch phân tích toàn bộ kết quả, giải thích rõ ràng và lập phác đồ theo dõi hoặc điều trị cá nhân hóa." }
+      ],
+      "preparation": [
+        "Nhịn ăn ít nhất 4 giờ trước khi lấy máu (có thể uống nước lọc)",
+        "Không uống cà phê, trà đặc hoặc chất kích thích trong 12 giờ trước khám",
+        "Mặc quần áo rộng rãi, dễ cởi để thuận tiện cho siêu âm và đo huyết áp",
+        "Mang theo CMND/CCCD và thẻ bảo hiểm y tế (nếu có)",
+        "Mang theo kết quả xét nghiệm hoặc hồ sơ bệnh cũ để bác sĩ tham khảo",
+        "Thông báo cho bác sĩ về các thuốc đang dùng (đặc biệt thuốc tim mạch, huyết áp)"
+      ],
+      "specialists": [
+        "PGS. TS. BS. Nguyễn Văn An — Chuyên gia Tim Mạch Can Thiệp (20+ năm kinh nghiệm)",
+        "TS. BS. Lê Hoàng Sơn — Tim Mạch Tổng Quát & Siêu Âm Tim",
+        "BS. CKII. Phạm Thị Hoa — Tim Mạch, chuyên về Rối Loạn Nhịp Tim"
+      ],
+      "faq": [
+        { "q": "Gói khám này có cần đặt lịch trước không?", "a": "Có, bạn nên đặt lịch trước ít nhất 1 ngày để đảm bảo có bác sĩ chuyên khoa và thiết bị sẵn sàng. Đặt lịch qua app hoặc gọi hotline 1800 1234." },
+        { "q": "Tôi có thể dùng bảo hiểm y tế cho gói này không?", "a": "Một số danh mục trong gói được bảo hiểm y tế thanh toán theo quy định. Vui lòng mang thẻ BHYT và hỏi nhân viên tiếp nhận để được tư vấn cụ thể." },
+        { "q": "Kết quả có thể lấy trong ngày không?", "a": "Kết quả xét nghiệm máu và ECG có ngay trong 2–3 giờ. Kết quả Holter ECG 24 giờ sẽ có sau 1 ngày mang máy về." },
+        { "q": "Gói khám dành cho người trẻ tuổi có phù hợp không?", "a": "Gói này tập trung cho người trên 40 tuổi hoặc có yếu tố nguy cơ. Người trẻ có triệu chứng bất thường như đau ngực, hồi hộp vẫn nên khám theo chỉ định bác sĩ." },
+        { "q": "Sau khi đeo máy Holter về nhà, tôi cần làm gì?", "a": "Sinh hoạt bình thường, ghi chép nhật ký hoạt động trong 24 giờ đeo máy. Tránh tắm, tắm suối khoáng và tránh tiếp xúc với thiết bị từ trường mạnh." }
+      ]
     },
     {
       "id": 2,
       "name": "Khám Sản Phụ Khoa & Siêu Âm Thai 4D",
       "category": "Khám Chuyên Khoa",
       "slug": "kham-san-phu-khoa",
+      "badge": "Chuẩn quốc tế",
       "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&h=400&fit=crop",
-      "description": "Khám thai định kỳ, siêu âm 4D HD, tầm soát ung thư cổ tử cung và vú theo chuẩn quốc tế.",
-      "features": ["Siêu âm thai 4D độ phân giải cao", "Xét nghiệm Double/Triple test", "Tầm soát ung thư phụ khoa", "Tư vấn dinh dưỡng cho mẹ bầu"],
-      "targetAudience": "Phụ nữ mang thai và phụ nữ từ 25 tuổi"
+      "description": "Khám thai định kỳ, siêu âm 4D HD, tầm soát ung thư cổ tử cung và vú theo chuẩn quốc tế. Dịch vụ chăm sóc sức khỏe toàn diện cho phụ nữ tại mọi giai đoạn cuộc sống — từ dự phòng đến thai kỳ và hậu sản.",
+      "features": ["Siêu âm thai 4D độ phân giải cao — in ảnh 3D/4D cho gia đình", "Xét nghiệm Double Test / Triple Test sàng lọc dị tật thai nhi", "Tầm soát ung thư cổ tử cung (Pap smear + HPV test)", "Siêu âm vú và tuyến giáp", "Xét nghiệm tiểu đường thai kỳ (GCT/OGTT)", "Tư vấn dinh dưỡng và theo dõi thai kỳ toàn diện"],
+      "targetAudience": "Phụ nữ mang thai ở mọi giai đoạn, phụ nữ từ 25 tuổi cần tầm soát phụ khoa định kỳ",
+      "price": { "from": 900000, "to": 1800000, "unit": "đ", "note": "Giá tùy theo tuần thai và danh mục được chỉ định" },
+      "duration": "1–2 giờ",
+      "location": "Tại cơ sở VitaFamily (Hà Nội & TP. HCM)",
+      "steps": [
+        { "step": 1, "title": "Tiếp nhận & Hỏi bệnh", "description": "Ghi nhận tuổi thai, chu kỳ kinh nguyệt, tiền sử sản khoa và các triệu chứng hiện tại của thai phụ." },
+        { "step": 2, "title": "Siêu âm thai 4D", "description": "Siêu âm 4D độ phân giải cao đánh giá hình thái thai nhi, nhau thai, nước ối và vị trí thai. In ảnh 3D/4D tặng gia đình." },
+        { "step": 3, "title": "Tầm soát dị tật & Xét nghiệm", "description": "Lấy máu làm Double/Triple Test. Đo độ mờ da gáy (NT) nếu thai 11–14 tuần. Xét nghiệm tiểu đường thai kỳ theo tuần chỉ định." },
+        { "step": 4, "title": "Tầm soát ung thư phụ khoa", "description": "Pap smear và HPV test tầm soát ung thư cổ tử cung. Siêu âm vú nếu có chỉ định hoặc theo yêu cầu." },
+        { "step": 5, "title": "Tư vấn và lịch tái khám", "description": "Bác sĩ sản khoa giải thích chi tiết kết quả, tư vấn dinh dưỡng và đưa ra lịch theo dõi thai kỳ phù hợp với từng người." }
+      ],
+      "preparation": [
+        "Uống nhiều nước và giữ bàng quang đầy trong 1 giờ trước khi siêu âm (giúp ảnh rõ hơn)",
+        "Mang theo sổ khám thai, thẻ BHYT và kết quả siêu âm lần trước",
+        "Nhịn ăn từ nửa đêm nếu có chỉ định xét nghiệm đường huyết buổi sáng",
+        "Mặc quần áo thoải mái, dễ mặc và cởi để thuận tiện khám và siêu âm",
+        "Đem theo người thân nếu muốn xem ảnh siêu âm 4D cùng gia đình"
+      ],
+      "specialists": [
+        "TS. BS. Nguyễn Thị Lan — Sản Phụ Khoa, chuyên gia sản khoa nguy cơ cao (18+ năm)",
+        "BS. CKII. Trần Mỹ Linh — Sản Phụ Khoa & Siêu Âm Thai chuyên sâu",
+        "CN. Dinh dưỡng Ngô Thị Thu — Tư vấn dinh dưỡng mẹ và bé"
+      ],
+      "faq": [
+        { "q": "Siêu âm 4D có an toàn cho thai nhi không?", "a": "Hoàn toàn an toàn. Siêu âm sử dụng sóng âm tần số cao, không bức xạ, không ảnh hưởng đến thai nhi và đã được kiểm chứng an toàn trong nhiều thập kỷ sử dụng lâm sàng." },
+        { "q": "Tôi nên làm siêu âm 4D vào tuần thai bao nhiêu là tốt nhất?", "a": "Thời điểm lý tưởng nhất là từ tuần 26–32 khi thai đủ lớn để thấy khuôn mặt và cử động rõ ràng. Tuy nhiên có thể siêu âm từ tuần 16 để xem sớm." },
+        { "q": "Gói có bao gồm xét nghiệm tiểu đường thai kỳ không?", "a": "Có thể bổ sung theo chỉ định của bác sĩ. Xét nghiệm GCT thường được thực hiện từ tuần 24–28, nếu có kết quả bất thường sẽ làm thêm OGTT." },
+        { "q": "Phụ nữ chưa mang thai có cần gói này không?", "a": "Có. Phụ nữ từ 25 tuổi nên khám phụ khoa định kỳ mỗi năm để tầm soát ung thư cổ tử cung, dù chưa có kế hoạch mang thai." }
+      ]
     },
     {
       "id": 3,
       "name": "Khám Nhi Khoa & Dinh Dưỡng Trẻ Em",
       "category": "Khám Chuyên Khoa",
       "slug": "kham-nhi-khoa",
+      "badge": "Chuyên gia nhi",
       "image": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&h=400&fit=crop",
-      "description": "Đánh giá phát triển thể chất, tâm thần vận động, tư vấn dinh dưỡng và lịch tiêm chủng cho trẻ.",
-      "features": ["Đánh giá phát triển toàn diện", "Tư vấn dinh dưỡng cá nhân hóa", "Lịch tiêm chủng mở rộng", "Xét nghiệm vi chất dinh dưỡng"],
-      "targetAudience": "Trẻ em từ sơ sinh đến 15 tuổi"
+      "description": "Đánh giá phát triển thể chất, tâm thần vận động, tư vấn dinh dưỡng và lịch tiêm chủng cho trẻ từ sơ sinh đến 15 tuổi. Đội ngũ bác sĩ nhi VitaFamily được đào tạo chuyên sâu tại các trung tâm nhi khoa hàng đầu thế giới.",
+      "features": ["Đánh giá phát triển toàn diện theo chuẩn WHO và Denver II", "Tư vấn dinh dưỡng cá nhân hóa theo từng độ tuổi", "Lịch tiêm chủng mở rộng và tư vấn vắc-xin dịch vụ", "Xét nghiệm vi chất dinh dưỡng: sắt, canxi, vitamin D, kẽm", "Khám lâm sàng toàn diện: hô hấp, tim, tai-mũi-họng, da, thần kinh", "Tư vấn tâm lý và hành vi trẻ em (nếu có dấu hiệu cần theo dõi)"],
+      "targetAudience": "Trẻ em từ sơ sinh đến 15 tuổi, đặc biệt trẻ chậm tăng cân, biếng ăn hoặc chậm phát triển",
+      "price": { "from": 500000, "to": 1200000, "unit": "đ", "note": "Giá tùy theo độ tuổi và danh mục xét nghiệm được chỉ định" },
+      "duration": "1–1.5 giờ",
+      "location": "Tại cơ sở VitaFamily — Phòng khám Nhi riêng biệt, thân thiện",
+      "steps": [
+        { "step": 1, "title": "Cân đo & Ghi nhận tiền sử", "description": "Đo cân nặng, chiều cao, vòng đầu và so sánh với biểu đồ tăng trưởng WHO. Ghi nhận tiền sử bệnh, dị ứng và lịch tiêm chủng của bé." },
+        { "step": 2, "title": "Khám lâm sàng toàn diện", "description": "Bác sĩ nhi kiểm tra hệ hô hấp, tim mạch, tai-mũi-họng, da liễu, hệ thần kinh và phản xạ vận động theo độ tuổi." },
+        { "step": 3, "title": "Đánh giá phát triển tâm thần vận động", "description": "Kiểm tra các mốc phát triển tương ứng với độ tuổi: ngôn ngữ, vận động thô/tinh, tương tác xã hội và nhận thức (Denver II)." },
+        { "step": 4, "title": "Xét nghiệm vi chất dinh dưỡng", "description": "Lấy máu kiểm tra sắt, ferritin, canxi, vitamin D, kẽm và một số chỉ số sinh hóa theo chỉ định của bác sĩ." },
+        { "step": 5, "title": "Tư vấn dinh dưỡng & Tiêm chủng", "description": "Chuyên gia dinh dưỡng tư vấn thực đơn phù hợp. Bác sĩ nhắc lịch tiêm sắp tới và tư vấn vắc-xin dịch vụ nếu cần." }
+      ],
+      "preparation": [
+        "Mang theo sổ tiêm chủng và sổ theo dõi sức khỏe của bé",
+        "Cho bé ăn nhẹ trước — không cần nhịn ăn trừ khi có chỉ định xét nghiệm máu lúc đói",
+        "Mang đồ chơi hoặc vật dụng yêu thích để bé thoải mái trong lúc chờ và khám",
+        "Chuẩn bị sẵn danh sách câu hỏi về sự phát triển của bé để hỏi bác sĩ",
+        "Thông báo nếu bé đang dùng thuốc hoặc vừa ốm trong vòng 2 tuần gần đây"
+      ],
+      "specialists": [
+        "TS. BS. Trần Thị Bình — Nhi Khoa & Dinh Dưỡng (15+ năm, đào tạo tại Australia)",
+        "BS. CKII. Hoàng Quốc Việt — Nhi Hô Hấp & Dị Ứng",
+        "CN. Dinh dưỡng Lê Thị Mai — Chuyên gia dinh dưỡng nhi"
+      ],
+      "faq": [
+        { "q": "Trẻ bao nhiêu tuổi thì nên khám định kỳ?", "a": "Trẻ sơ sinh nên khám theo lịch chuẩn: 1, 2, 4, 6, 9, 12, 18, 24 tháng. Sau 2 tuổi, khám định kỳ ít nhất mỗi năm một lần để theo dõi phát triển toàn diện." },
+        { "q": "Gói có bao gồm tiêm vắc-xin không?", "a": "Gói khám không bao gồm chi phí vắc-xin, nhưng bác sĩ sẽ tư vấn đầy đủ và bạn có thể đặt lịch tiêm ngay tại phòng tiêm chủng VitaFamily cùng ngày." },
+        { "q": "Nếu bé quấy khóc thì có khám được không?", "a": "Hoàn toàn được. Các bác sĩ nhi VitaFamily được đào tạo để khám trẻ trong mọi tình huống. Phòng khám được thiết kế thân thiện, có đồ chơi và khu vui chơi nhỏ để bé thư giãn." },
+        { "q": "Làm sao biết bé bị thiếu vi chất dinh dưỡng?", "a": "Các dấu hiệu như biếng ăn, chậm lớn, hay ốm vặt, tóc thưa, móng yếu có thể gợi ý thiếu vi chất. Xét nghiệm máu sẽ xác định chính xác và bác sĩ sẽ tư vấn bổ sung phù hợp." }
+      ]
     },
     {
       "id": 4,
       "name": "Gói Khám Sức Khỏe Cơ Bản",
       "category": "Gói Khám Tổng Quát",
       "slug": "goi-co-ban",
+      "badge": "Tiết kiệm",
       "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
       "description": "Kiểm tra sức khỏe định kỳ với 22+ danh mục xét nghiệm — phù hợp người trẻ khỏe mạnh cần tầm soát hàng năm.",
       "features": ["Xét nghiệm máu toàn phần (20 chỉ số)", "Xét nghiệm nước tiểu", "X-quang phổi thẳng", "Siêu âm ổ bụng tổng quát", "Đo huyết áp & ECG"],
-      "targetAudience": "Người từ 18–40 tuổi, kiểm tra sức khỏe định kỳ"
+      "targetAudience": "Người từ 18–40 tuổi, kiểm tra sức khỏe định kỳ",
+      "price": { "from": 1200000, "to": 2000000, "unit": "đ", "note": "Trọn gói, không phát sinh thêm" },
+      "duration": "Nửa ngày (4–5 giờ)",
+      "location": "Khu Khám Tổng Quát — Tầng 1, Tòa B",
+      "specialists": ["BS. CKI. Nguyễn Hữu Lộc", "BS. Trần Minh Châu"],
+      "steps": [
+        { "step": 1, "title": "Nhận kit khám & hướng dẫn", "description": "Nhận phiếu chỉ định, hướng dẫn quy trình và thứ tự các phòng khám." },
+        { "step": 2, "title": "Lấy mẫu xét nghiệm", "description": "Lấy máu, nước tiểu lúc còn đói bụng để đảm bảo kết quả chính xác nhất." },
+        { "step": 3, "title": "Thực hiện cận lâm sàng", "description": "X-quang phổi, siêu âm ổ bụng, điện tâm đồ, đo huyết áp." },
+        { "step": 4, "title": "Khám lâm sàng tổng quát", "description": "Bác sĩ khám nội tổng quát, đánh giá toàn trạng sức khỏe." },
+        { "step": 5, "title": "Nhận kết quả & tư vấn", "description": "Nhận kết quả đầy đủ, tư vấn và hướng dẫn điều chỉnh lối sống nếu cần." }
+      ],
+      "preparation": ["Nhịn ăn tối thiểu 8 giờ trước khi lấy máu", "Không uống rượu bia 24 giờ trước khám", "Uống nhiều nước để dễ lấy mẫu nước tiểu", "Tháo trang sức kim loại trước chụp X-quang"],
+      "faq": [
+        { "q": "Cần đặt lịch trước không?", "a": "Nên đặt lịch trước 1–2 ngày để đảm bảo slot và rút ngắn thời gian chờ." },
+        { "q": "Mất bao lâu để có kết quả đầy đủ?", "a": "Hầu hết kết quả có trong ngày. Một số xét nghiệm đặc biệt có thể cần 24–48h." },
+        { "q": "Có được nhận kết quả online không?", "a": "Có. Kết quả được tải lên hồ sơ y tế điện tử, bạn xem qua app VitaFamily." }
+      ]
     },
     {
       "id": 5,
       "name": "Gói Khám Sức Khỏe Nâng Cao",
       "category": "Gói Khám Tổng Quát",
       "slug": "goi-nang-cao",
+      "badge": "Phổ biến nhất",
       "image": "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&h=400&fit=crop",
       "description": "Hơn 30 danh mục chuyên sâu — bổ sung siêu âm tuyến giáp, đo loãng xương và chỉ điểm ung thư cơ bản.",
       "features": ["Tất cả danh mục gói Cơ Bản", "Siêu âm tuyến giáp", "Đo mật độ xương (loãng xương)", "Chỉ điểm ung thư: CEA, AFP", "Khám chuyên khoa Tim & Mắt"],
-      "targetAudience": "Người từ 40–60 tuổi hoặc có yếu tố nguy cơ"
+      "targetAudience": "Người từ 40–60 tuổi hoặc có yếu tố nguy cơ",
+      "price": { "from": 2500000, "to": 4500000, "unit": "đ", "note": "Bao gồm toàn bộ gói Cơ Bản" },
+      "duration": "Cả ngày (6–8 giờ)",
+      "location": "Khu Khám Tổng Quát — Tầng 1 & 2, Tòa B",
+      "specialists": ["BS. CKI. Nguyễn Hữu Lộc", "BS. CKII. Lê Văn Sơn"],
+      "steps": [
+        { "step": 1, "title": "Nhận kit khám & hướng dẫn", "description": "Nhận phiếu chỉ định đầy đủ và lịch trình khám theo từng khoa." },
+        { "step": 2, "title": "Lấy mẫu xét nghiệm mở rộng", "description": "Xét nghiệm máu mở rộng bao gồm chỉ điểm ung thư CEA, AFP và hormone tuyến giáp." },
+        { "step": 3, "title": "Cận lâm sàng toàn diện", "description": "X-quang, siêu âm ổ bụng, siêu âm tuyến giáp, đo mật độ xương DEXA." },
+        { "step": 4, "title": "Khám chuyên khoa Tim & Mắt", "description": "ECG, đo huyết áp, khám mắt toàn diện (thị lực, nhãn áp)." },
+        { "step": 5, "title": "Tổng hợp & tư vấn chuyên sâu", "description": "Bác sĩ đọc và phân tích toàn bộ kết quả, đưa ra khuyến nghị sức khỏe chi tiết." }
+      ],
+      "preparation": ["Nhịn ăn ít nhất 10 giờ trước khi lấy máu", "Không dùng rượu bia 48 giờ trước khám", "Không uống thuốc trừ thuốc không thể bỏ (báo bác sĩ trước)", "Mặc đồ rộng thoải mái, tháo trang sức kim loại"],
+      "faq": [
+        { "q": "Gói Nâng Cao có bao gồm gói Cơ Bản không?", "a": "Có. Gói Nâng Cao bao gồm tất cả danh mục của gói Cơ Bản cộng thêm các chỉ số mở rộng." },
+        { "q": "Chỉ điểm ung thư cao có nghĩa là bị ung thư không?", "a": "Không nhất thiết. Đây chỉ là công cụ sàng lọc, cần kết hợp nhiều yếu tố khác. Bác sĩ sẽ giải thích kỹ." },
+        { "q": "Sau khám có nhận được báo cáo tổng hợp không?", "a": "Có. Bạn nhận báo cáo sức khỏe PDF, lưu trên app và chia sẻ với bác sĩ gia đình." }
+      ]
     },
     {
       "id": 6,
       "name": "Gói Khám Sức Khỏe Cao Cấp",
       "category": "Gói Khám Tổng Quát",
       "slug": "goi-cao-cap",
+      "badge": "Toàn diện nhất",
       "image": "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&h=400&fit=crop",
       "description": "Tầm soát toàn diện 40+ danh mục bao gồm CT 128 dãy, MRI não, nội soi NBI và toàn bộ chỉ điểm ung thư.",
       "features": ["CT 128 dãy vùng ngực-bụng", "MRI não không thuốc cản quang", "Nội soi dạ dày NBI HD", "Bộ chỉ điểm ung thư đầy đủ (8 loại)", "Tư vấn dinh dưỡng chuyên sâu"],
-      "targetAudience": "Người trên 50 tuổi hoặc cần tầm soát chuyên sâu"
+      "targetAudience": "Người trên 50 tuổi hoặc cần tầm soát chuyên sâu",
+      "price": { "from": 5500000, "to": 9000000, "unit": "đ", "note": "Dịch vụ VIP, phòng riêng biệt" },
+      "duration": "Cả ngày + tái khám ngày hôm sau",
+      "location": "Khu VIP — Tầng 5, Tòa A (phòng riêng)",
+      "specialists": ["PGS. TS. BS. Nguyễn Văn An", "TS. BS. Phạm Thế Hùng", "BS. CKII. Lê Văn Sơn"],
+      "steps": [
+        { "step": 1, "title": "Tiếp đón VIP & tư vấn sơ bộ", "description": "Bác sĩ điều phối phân tích tiền sử bệnh và điều chỉnh gói phù hợp cá nhân." },
+        { "step": 2, "title": "Xét nghiệm toàn diện", "description": "Lấy máu mở rộng: 8 chỉ điểm ung thư, hormone, sinh hóa đầy đủ, miễn dịch." },
+        { "step": 3, "title": "Chẩn đoán hình ảnh cao cấp", "description": "CT 128 dãy ngực-bụng, MRI não 3.0 Tesla, siêu âm toàn thân." },
+        { "step": 4, "title": "Nội soi tiêu hóa có gây mê", "description": "Nội soi dạ dày-đại tràng NBI HD có gây mê (nếu trong phác đồ chỉ định)." },
+        { "step": 5, "title": "Hội chẩn & tư vấn tổng hợp", "description": "Hội đồng bác sĩ đa chuyên khoa đọc kết quả và lập kế hoạch sức khỏe 1 năm." }
+      ],
+      "preparation": ["Nhịn ăn ít nhất 12 giờ trước khám", "Không dùng thuốc kháng đông 5 ngày trước nếu có nội soi", "Tháo tất cả đồ kim loại trước khi MRI", "Sắp xếp 2 ngày để hoàn thành toàn bộ danh mục"],
+      "faq": [
+        { "q": "Gói Cao Cấp có cần nằm viện không?", "a": "Không cần nằm viện. Thực hiện tất cả ngoại trú trong 1–2 ngày theo lịch hẹn." },
+        { "q": "CT và MRI có nguy hiểm không?", "a": "CT sử dụng tia X liều thấp, MRI dùng từ trường — đều an toàn khi đúng chỉ định." },
+        { "q": "Nếu phát hiện bất thường thì sao?", "a": "Bác sĩ tư vấn ngay, đặt lịch hội chẩn chuyên sâu và đề xuất hướng điều trị phù hợp." }
+      ]
     },
     {
       "id": 7,
@@ -649,27 +792,76 @@
       "image": "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&h=400&fit=crop",
       "description": "Hệ thống máy phân tích tự động thế hệ mới, cho kết quả trong 2–4 giờ với hơn 50 chỉ số sinh hóa.",
       "features": ["Công thức máu toàn phần", "Sinh hóa máu (đường, mỡ, gan, thận)", "Hormone (TSH, T3, T4, FSH, LH)", "HbA1c — kiểm soát đái tháo đường"],
-      "targetAudience": "Mọi đối tượng cần kiểm tra định kỳ"
+      "targetAudience": "Mọi đối tượng cần kiểm tra định kỳ",
+      "price": { "from": 150000, "to": 450000, "unit": "đ", "note": "Tùy số lượng chỉ số xét nghiệm" },
+      "duration": "15–30 phút lấy mẫu, kết quả sau 2–4 giờ",
+      "location": "Phòng Xét Nghiệm — Tầng 1, Tòa C",
+      "specialists": ["BS. Nguyễn Thị Thu", "KTV. Lê Hoàng Nam"],
+      "steps": [
+        { "step": 1, "title": "Đăng ký & nhận phiếu chỉ định", "description": "Nhận phiếu xét nghiệm có mã QR để theo dõi kết quả trực tuyến." },
+        { "step": 2, "title": "Lấy mẫu máu", "description": "Kỹ thuật viên lấy mẫu máu tĩnh mạch, nhanh chóng và không đau." },
+        { "step": 3, "title": "Phân tích tự động", "description": "Mẫu máu phân tích trên hệ thống máy tự động thế hệ mới, độ chính xác cao." },
+        { "step": 4, "title": "Nhận kết quả", "description": "Kết quả trả qua SMS, email hoặc xem trực tiếp trên app VitaFamily." }
+      ],
+      "preparation": ["Nhịn ăn 8–10 giờ trước lấy máu xét nghiệm đường huyết, mỡ máu", "Uống đủ nước trước ngày xét nghiệm", "Không tập thể dục nặng 24 giờ trước xét nghiệm", "Báo nhân viên y tế nếu đang dùng thuốc hoặc vitamin"],
+      "faq": [
+        { "q": "Xét nghiệm máu có cần hẹn trước không?", "a": "Không cần hẹn, có thể đến trực tiếp từ 6:30–16:30. Đặt lịch trước để tránh chờ đợi." },
+        { "q": "Bao lâu có kết quả?", "a": "Công thức máu và sinh hóa cơ bản: 2–4 giờ. Xét nghiệm miễn dịch, hormone: 4–24 giờ." },
+        { "q": "Kết quả có thể gửi cho bác sĩ khác không?", "a": "Có. Bạn tải kết quả PDF từ app và chia sẻ với bất kỳ bác sĩ nào." }
+      ]
     },
     {
       "id": 8,
       "name": "Chẩn Đoán Hình Ảnh Cao Cấp",
       "category": "Xét Nghiệm & Chẩn Đoán",
       "slug": "chan-doan-hinh-anh",
-      "image": "https://images.unsplash.com/photo-Jg89tuvB1iQ?w=600&h=400&fit=crop",
+      "image": "https://images.unsplash.com/photo-1516069677018-378b1174c2d0?w=600&h=400&fit=crop",
       "description": "Hệ thống X-quang kỹ thuật số, siêu âm 4D, CT 128 dãy và MRI 3.0 Tesla chuẩn quốc tế.",
       "features": ["X-quang kỹ thuật số DR", "Siêu âm màu 4D", "CT 128 dãy đa lát cắt", "MRI 3.0 Tesla"],
-      "targetAudience": "Bệnh nhân cần chẩn đoán hình ảnh chính xác"
+      "targetAudience": "Bệnh nhân cần chẩn đoán hình ảnh chính xác",
+      "price": { "from": 350000, "to": 3500000, "unit": "đ", "note": "Tùy loại kỹ thuật thực hiện" },
+      "duration": "30 phút – 1,5 giờ tùy kỹ thuật",
+      "location": "Khoa Chẩn Đoán Hình Ảnh — Tầng B1, Tòa A",
+      "specialists": ["TS. BS. Hoàng Văn Minh", "BS. CKII. Trần Thị Thu"],
+      "steps": [
+        { "step": 1, "title": "Nhận phiếu chỉ định & hướng dẫn", "description": "Nhận phiếu và hướng dẫn chuẩn bị phù hợp với từng loại kỹ thuật." },
+        { "step": 2, "title": "Chuẩn bị bệnh nhân", "description": "Tháo kim loại, thay đồ chuyên dụng, uống thuốc cản quang nếu cần." },
+        { "step": 3, "title": "Thực hiện kỹ thuật", "description": "Chụp X-quang/siêu âm/CT/MRI bởi kỹ thuật viên chứng chỉ quốc tế." },
+        { "step": 4, "title": "Đọc phim & trả kết quả", "description": "Bác sĩ chuyên khoa hình ảnh đọc kết quả và viết mô tả chi tiết trong 2–4 giờ." }
+      ],
+      "preparation": ["Nhịn ăn 4–6 giờ nếu chụp CT bụng có thuốc cản quang", "Thông báo nếu có dị ứng thuốc cản quang hoặc tiền sử hen", "Tháo tất cả đồ kim loại, đồng hồ, điện thoại trước MRI", "Không mang thẻ từ, thiết bị điện tử vào phòng MRI"],
+      "faq": [
+        { "q": "CT và MRI khác nhau thế nào?", "a": "CT dùng tia X, chụp nhanh, tốt cho xương và phổi. MRI dùng từ trường, chi tiết mô mềm hơn, phù hợp não và khớp." },
+        { "q": "Phụ nữ mang thai có chụp được không?", "a": "Tránh CT và X-quang khi mang thai. Siêu âm an toàn tuyệt đối. MRI an toàn từ tam cá nguyệt 2 trở đi." },
+        { "q": "Có cần tiêm thuốc cản quang không?", "a": "Tùy chỉ định của bác sĩ. Thuốc cản quang giúp hình ảnh rõ hơn nhưng cần kiểm tra chức năng thận trước." }
+      ]
     },
     {
       "id": 9,
       "name": "Nội Soi Tiêu Hóa Có Gây Mê",
       "category": "Xét Nghiệm & Chẩn Đoán",
       "slug": "noi-soi-tieu-hoa",
+      "badge": "Không đau",
       "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=400&fit=crop",
       "description": "Nội soi dạ dày và đại tràng bằng máy NBI HD thế hệ mới, gây mê an toàn, không đau, kết quả ngay sau 30 phút.",
       "features": ["Nội soi NBI HD phát hiện tổn thương sớm", "Gây mê an toàn bởi bác sĩ gây mê chuyên nghiệp", "Sinh thiết nếu cần thiết", "Kết quả trong ngày"],
-      "targetAudience": "Người có triệu chứng tiêu hóa hoặc tầm soát ung thư đại tràng"
+      "targetAudience": "Người có triệu chứng tiêu hóa hoặc tầm soát ung thư đại tràng",
+      "price": { "from": 1200000, "to": 2500000, "unit": "đ", "note": "Bao gồm phí gây mê và sinh thiết nếu có" },
+      "duration": "1–2 giờ (bao gồm thời gian tỉnh mê)",
+      "location": "Đơn vị Nội Soi — Tầng 2, Tòa C",
+      "specialists": ["BS. CKII. Trần Minh Châu", "BS. Gây mê Nguyễn Văn Hùng"],
+      "steps": [
+        { "step": 1, "title": "Khám sàng lọc trước nội soi", "description": "Đánh giá tình trạng sức khỏe, chống chỉ định và giải thích quy trình." },
+        { "step": 2, "title": "Gây mê tĩnh mạch", "description": "Bác sĩ gây mê thực hiện gây mê tĩnh mạch, bệnh nhân ngủ sâu, không cảm giác đau." },
+        { "step": 3, "title": "Thực hiện nội soi NBI HD", "description": "Nội soi dạ dày/đại tràng bằng ống soi NBI HD — phát hiện polyp, loét, ung thư giai đoạn sớm." },
+        { "step": 4, "title": "Tỉnh mê & nhận kết quả", "description": "Theo dõi 30–60 phút sau tỉnh mê. Bác sĩ giải thích kết quả với ảnh tổn thương nếu có." }
+      ],
+      "preparation": ["Nhịn ăn uống hoàn toàn 8 giờ trước nội soi dạ dày", "Uống thuốc sổ ruột từ tối hôm trước (với nội soi đại tràng)", "Không lái xe sau nội soi, cần người thân đưa về", "Dừng aspirin, thuốc kháng đông 5–7 ngày trước (hỏi bác sĩ)"],
+      "faq": [
+        { "q": "Có thực sự không đau không?", "a": "Có. Với gây mê tĩnh mạch bạn sẽ không cảm giác gì. Sau tỉnh mê chỉ cảm thấy đầy bụng nhẹ." },
+        { "q": "Sau nội soi có ăn được ngay không?", "a": "Sau nội soi dạ dày có thể ăn sau 1–2 giờ. Sau nội soi đại tràng nên ăn lỏng nhẹ trong ngày đầu." },
+        { "q": "Sinh thiết có đau không? Kết quả bao lâu?", "a": "Không đau vì thực hiện khi đang gây mê. Kết quả giải phẫu bệnh có sau 5–7 ngày làm việc." }
+      ]
     },
     {
       "id": 10,
@@ -679,17 +871,50 @@
       "image": "https://images.unsplash.com/photo-1558583055-d7ac00b1adbb?w=600&h=400&fit=crop",
       "description": "Đầy đủ các loại vắc-xin khuyến cáo cho người lớn — HPV, cúm mùa, viêm gan A/B, phế cầu khuẩn.",
       "features": ["Vắc-xin HPV (Gardasil 9)", "Vắc-xin cúm tứ giá hàng năm", "Viêm gan A & B", "Phế cầu khuẩn, Uốn ván-Bạch hầu"],
-      "targetAudience": "Người lớn từ 18 tuổi trở lên"
+      "targetAudience": "Người lớn từ 18 tuổi trở lên",
+      "price": { "from": 300000, "to": 1500000, "unit": "đ/mũi", "note": "Tùy loại vắc-xin, tư vấn miễn phí" },
+      "duration": "30–45 phút (bao gồm theo dõi sau tiêm)",
+      "location": "Phòng Tiêm Chủng — Tầng 1, Tòa B",
+      "specialists": ["BS. Nguyễn Thị Lan", "Điều dưỡng tiêm chủng chuyên nghiệp"],
+      "steps": [
+        { "step": 1, "title": "Tư vấn & khám sàng lọc", "description": "Bác sĩ tư vấn loại vắc-xin phù hợp, khám sàng lọc chống chỉ định." },
+        { "step": 2, "title": "Ký cam kết & xác nhận", "description": "Ký phiếu đồng ý tiêm chủng, xác nhận thông tin và lịch tiêm." },
+        { "step": 3, "title": "Tiêm vắc-xin", "description": "Điều dưỡng tiêm vắc-xin vô trùng tuyệt đối, nhanh chóng." },
+        { "step": 4, "title": "Theo dõi 30 phút sau tiêm", "description": "Ngồi theo dõi tại phòng chờ 30 phút để phát hiện phản ứng bất thường." }
+      ],
+      "preparation": ["Không cần nhịn ăn trước tiêm", "Mặc áo tay ngắn để dễ tiêm vào cánh tay", "Thông báo nếu đang ốm, sốt, hoặc dùng thuốc ức chế miễn dịch", "Mang sổ tiêm chủng để cập nhật lịch sử"],
+      "faq": [
+        { "q": "Vắc-xin HPV tiêm mấy mũi?", "a": "3 mũi: mũi 1 → mũi 2 sau 2 tháng → mũi 3 sau 6 tháng kể từ mũi 1." },
+        { "q": "Sau tiêm có được tắm không?", "a": "Được tắm bình thường. Chỉ tránh chà xát mạnh vùng tiêm trong 24 giờ đầu." },
+        { "q": "Có thể tiêm nhiều vắc-xin cùng lúc không?", "a": "Có thể tiêm đồng thời một số vắc-xin theo phác đồ. Bác sĩ sẽ tư vấn phối hợp phù hợp." }
+      ]
     },
     {
       "id": 11,
       "name": "Tiêm Chủng Trẻ Em",
       "category": "Tiêm Chủng & Phòng Ngừa",
       "slug": "tiem-chung-tre-em",
-      "image": "https://images.unsplash.com/photo-BSozBCQn6oY?w=600&h=400&fit=crop",
+      "badge": "An toàn cho bé",
+      "image": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&h=400&fit=crop",
       "description": "Lịch tiêm chủng theo chuẩn Bộ Y tế và mở rộng quốc tế — theo dõi sổ tiêm điện tử cá nhân hóa.",
       "features": ["Vắc-xin 6 trong 1 (Hexaxim/Infanrix)", "Rota virus, Phế cầu PCV13", "Thủy đậu, Sởi-Quai bị-Rubella", "Theo dõi lịch nhắc tự động qua app"],
-      "targetAudience": "Trẻ từ sơ sinh đến 12 tuổi"
+      "targetAudience": "Trẻ từ sơ sinh đến 12 tuổi",
+      "price": { "from": 200000, "to": 800000, "unit": "đ/mũi", "note": "Vắc-xin 6 trong 1 cao cấp hơn" },
+      "duration": "45–60 phút (bao gồm theo dõi sau tiêm)",
+      "location": "Phòng Tiêm Chủng Trẻ Em — Tầng 2, Tòa A",
+      "specialists": ["TS. BS. Trần Thị Bình", "Điều dưỡng nhi tiêm chủng"],
+      "steps": [
+        { "step": 1, "title": "Khám sàng lọc trẻ", "description": "Bác sĩ nhi khám sức khỏe, kiểm tra cân nặng và nhiệt độ, đảm bảo trẻ đủ điều kiện tiêm." },
+        { "step": 2, "title": "Tư vấn phụ huynh", "description": "Giải thích về loại vắc-xin, tác dụng phụ thường gặp và cách xử lý tại nhà." },
+        { "step": 3, "title": "Tiêm vắc-xin", "description": "Điều dưỡng nhi tiêm nhẹ nhàng trong khu tiêm trang trí thân thiện với trẻ." },
+        { "step": 4, "title": "Theo dõi & nhận sổ tiêm điện tử", "description": "Theo dõi 30 phút. Cập nhật lịch tiêm vào sổ điện tử và nhắc mũi tiếp theo qua app." }
+      ],
+      "preparation": ["Cho trẻ ăn nhẹ hoặc bú no trước tiêm", "Mang sổ tiêm chủng đã có", "Không tiêm khi trẻ đang sốt trên 38°C hoặc ốm cấp tính", "Mặc quần áo dễ kéo lên để tiêm vào đùi hoặc cánh tay"],
+      "faq": [
+        { "q": "Sau tiêm trẻ bị sốt có nguy hiểm không?", "a": "Sốt nhẹ 37.5–38.5°C trong 24–48h là bình thường. Sốt cao trên 39°C cần đến ngay cơ sở y tế." },
+        { "q": "Vắc-xin 6 trong 1 có thể thay bằng vắc-xin miễn phí không?", "a": "Vắc-xin 6 trong 1 tiêm được cả 6 bệnh trong 1 mũi, ít đau hơn. Vắc-xin miễn phí tiêm riêng lẻ từng loại." },
+        { "q": "Trẻ dị ứng trứng có tiêm vắc-xin cúm được không?", "a": "Vắc-xin cúm thế hệ mới an toàn cho trẻ dị ứng trứng. Bác sĩ sẽ theo dõi thêm 60 phút sau tiêm." }
+      ]
     },
     {
       "id": 12,

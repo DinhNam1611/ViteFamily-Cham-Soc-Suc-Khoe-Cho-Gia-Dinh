@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from 'antd';
 import { CheckOutlined, CalendarOutlined, RightOutlined } from '@ant-design/icons';
-import { getServicePackages } from '../../services/servicePackageService';
+import { getServicePackages, getCachedServicePackages } from '../../services/servicePackageService';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import Header from '../../components/layout/Header/Header';
 import Footer from '../../components/layout/Footer/Footer';
@@ -47,30 +47,34 @@ const containerVariants = {
 const Services = () => {
   const { slug: pathSlug } = useParams<{ slug: string }>();
   const [searchParams] = useSearchParams();
-  const Param = useParams();
   const navigate = useNavigate();
-  const [packages, setPackages] = useState<ServicePackage[]>([]);
 
   const resolveCategory = () => {
     const slug = pathSlug ?? searchParams.get('cat');
     return slug ? (CAT_SLUG_MAP[slug] ?? 'Tất cả') : 'Tất cả';
   };
 
+  // Init từ cache: nếu đã load lần trước thì không bị flash trống khi remount
+  const [packages, setPackages] = useState<ServicePackage[]>(getCachedServicePackages);
   const [activeCategory, setActiveCategory] = useState(resolveCategory);
-  const [filtered, setFiltered] = useState<ServicePackage[]>([]);
+  const [filtered, setFiltered] = useState<ServicePackage[]>(() => {
+    const cat = resolveCategory();
+    const pkgs = getCachedServicePackages();
+    return cat === 'Tất cả' ? pkgs : pkgs.filter((p) => p.category === cat);
+  });
   const { ref: gridRef, isInView: gridInView } = useScrollAnimation();
 
+  // Đồng bộ activeCategory khi URL thay đổi
   useEffect(() => {
     setActiveCategory(resolveCategory());
   }, [pathSlug, searchParams]);
 
+  // Fetch 1 lần duy nhất khi mount (nếu cache đã có sẽ trả về ngay)
   useEffect(() => {
-    getServicePackages().then((data) => {
-      setPackages(data);
-      setFiltered(data);
-    });
-  }, [packages]);
+    getServicePackages().then(setPackages);
+  }, []);
 
+  // Filter client-side mỗi khi packages hoặc activeCategory thay đổi
   useEffect(() => {
     if (activeCategory === 'Tất cả') {
       setFiltered(packages);
@@ -208,7 +212,7 @@ const Services = () => {
                         >
                           Đặt lịch dịch vụ
                         </Button>
-                        <Link to={`/services/${pkg.slug}`} className={styles.detailLink}>
+                        <Link to={`/services/goi/${pkg.slug}`} className={styles.detailLink}>
                           Xem chi tiết <RightOutlined />
                         </Link>
                       </div>

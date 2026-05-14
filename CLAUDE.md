@@ -68,6 +68,7 @@ Rules được tổ chức theo **sub-folder theo chủ đề** — không để
 |------|----------|-------------|
 | [frontend/frontend-react.md](.claude/rules/frontend/frontend-react.md) | Component, Ant Design, CSS Modules, services/ | Làm việc với frontend |
 | [frontend/ui-design-system.md](.claude/rules/frontend/ui-design-system.md) | Màu sắc, typography, spacing, component style | Chỉnh sửa giao diện |
+| [frontend/medilix-layout-pattern.md](.claude/rules/frontend/medilix-layout-pattern.md) | **Pattern bố cục Home: section full-width + cards bên trong, bảng mapping bg cho 9 section** | **Tạo/sửa bất kỳ section nào trên Home** |
 | [frontend/animation-responsive.md](.claude/rules/frontend/animation-responsive.md) | Scroll animation, breakpoints, mobile checklist | Tạo/sửa UI section |
 | [frontend/performance-accessibility.md](.claude/rules/frontend/performance-accessibility.md) | Lighthouse, WCAG, image guidelines | Thêm ảnh, lazy load, audit |
 
@@ -111,9 +112,10 @@ Rules được tổ chức theo **sub-folder theo chủ đề** — không để
 ## Quy tắc ưu tiên cao nhất (tóm tắt nhanh)
 
 1. **Chỉ dùng `.tsx`** — cấm tạo file `.jsx`.
-2. **Xem ảnh gốc** `www.hfh.com.vn_en_home_.png` trước mỗi lần sửa UI.
-3. **Ant Design** cho mọi UI component và Form — không tự viết lại.
-4. **CSS Module** riêng mỗi component — cấm inline style trong TSX.
-5. **Mọi section** phải có scroll-triggered animation.
-6. **Kiểm tra 3 viewport** trước khi hoàn thành: 375px · 768px · 1280px.
-7. **Chỉ đọc file cần thiết** — dùng Grep/Glob trước, Read sau; không đọc toàn bộ codebase khi tạo chức năng mới.
+2. **Xem ảnh gốc Medilix** `html.rrdevs.net_medilix_index-3.html.png` trước mỗi lần sửa UI Home.
+3. **Section luôn tràn ngang viewport** — KHÔNG bao section trong wrapper card. Đọc [medilix-layout-pattern.md](.claude/rules/frontend/medilix-layout-pattern.md).
+4. **Ant Design** cho mọi UI component và Form — không tự viết lại.
+5. **CSS Module** riêng mỗi component — cấm inline style trong TSX.
+6. **Mọi section** phải có scroll-triggered animation.
+7. **Kiểm tra 3 viewport** trước khi hoàn thành: 375px · 768px · 1280px.
+8. **Chỉ đọc file cần thiết** — dùng Grep/Glob trước, Read sau; không đọc toàn bộ codebase khi tạo chức năng mới.

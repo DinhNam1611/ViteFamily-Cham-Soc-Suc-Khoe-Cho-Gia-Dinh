@@ -17,7 +17,7 @@ const AboutPreview = () => {
   const { ref: rightRef, isInView: rightInView } = useScrollAnimation();
 
   return (
-    <section className="section">
+    <section className="section section-bg-cream">
       <div className={`container ${styles.inner}`}>
         {/* Text column */}
         <motion.div
@@ -68,19 +68,26 @@ const AboutPreview = () => {
           className={styles.imageCol}
         >
           <div className={styles.imageWrap}>
+            {/* Ảnh chính — rounded modern */}
             <img
-              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=700&fit=crop"
+              src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccf?w=600&h=520&fit=crop&q=80"
               alt="Bệnh viện VitaFamily — cơ sở vật chất hiện đại"
               className={styles.mainImage}
+            />
+            {/* Ảnh phụ — stacked góc dưới trái */}
+            <img
+              src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=280&h=200&fit=crop&q=80"
+              alt="Thiết bị y tế hiện đại"
+              className={styles.secondaryImage}
             />
             <div className={styles.statBadge}>
               <span className={styles.statNum}>500K+</span>
               <span className={styles.statLabel}>Bệnh nhân tin tưởng</span>
             </div>
             <div className={styles.certBadge}>
-              <span className={styles.certYear}>2018</span>
+              <span className={styles.certYear}>Chứng nhận</span>
               <span className={styles.certName}>JCI</span>
-              <span className={styles.certDesc}>Chứng nhận quốc tế</span>
+              <span className={styles.certDesc}>Quốc tế 2018</span>
             </div>
           </div>
         </motion.div>

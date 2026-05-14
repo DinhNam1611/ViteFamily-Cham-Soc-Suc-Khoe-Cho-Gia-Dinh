@@ -79,6 +79,24 @@ export interface Milestone {
   description: string;
 }
 
+export interface ServicePrice {
+  from: number;
+  to?: number;
+  unit: string;
+  note?: string;
+}
+
+export interface ServiceStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+export interface ServiceFAQ {
+  q: string;
+  a: string;
+}
+
 export interface ServicePackage {
   id: number;
   name: string;
@@ -88,6 +106,14 @@ export interface ServicePackage {
   description: string;
   features: string[];
   targetAudience: string;
+  price?: ServicePrice;
+  duration?: string;
+  steps?: ServiceStep[];
+  preparation?: string[];
+  specialists?: string[];
+  location?: string;
+  badge?: string;
+  faq?: ServiceFAQ[];
 }
 
 // ─── Auth ────────────────────────────────────────────────────────────────────

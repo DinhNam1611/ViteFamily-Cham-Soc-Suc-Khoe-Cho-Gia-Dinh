@@ -65,17 +65,27 @@ const ServicesHighlight = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <motion.div key={service.id} variants={itemVariants}>
               <Link to={`/services/${service.slug}`} className={styles.card}>
-                <div className={styles.iconWrap}>
-                  {ICON_MAP[service.icon] || <MedicineBoxOutlined />}
+                {index === 0 && (
+                  <img
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=900&fit=crop&q=80"
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.featuredImg}
+                  />
+                )}
+                <div className={styles.cardContent}>
+                  <div className={styles.iconWrap}>
+                    {ICON_MAP[service.icon] || <MedicineBoxOutlined />}
+                  </div>
+                  <h3 className={styles.cardTitle}>{service.name}</h3>
+                  <p className={styles.cardDesc}>{service.description}</p>
+                  <span className={styles.link}>
+                    Tìm hiểu thêm <RightOutlined />
+                  </span>
                 </div>
-                <h3 className={styles.cardTitle}>{service.name}</h3>
-                <p className={styles.cardDesc}>{service.description}</p>
-                <span className={styles.link}>
-                  Tìm hiểu thêm <RightOutlined />
-                </span>
               </Link>
             </motion.div>
           ))}

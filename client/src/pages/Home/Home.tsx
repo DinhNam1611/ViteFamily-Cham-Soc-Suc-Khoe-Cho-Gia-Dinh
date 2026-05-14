@@ -4,7 +4,9 @@ import HeroBanner from '../../components/sections/HeroBanner/HeroBanner';
 import SpecialtyFinder from '../../components/sections/SpecialtyFinder/SpecialtyFinder';
 import AboutPreview from '../../components/sections/AboutPreview/AboutPreview';
 import ServicesHighlight from '../../components/sections/ServicesHighlight/ServicesHighlight';
+import WhyChooseUs from '../../components/sections/WhyChooseUs/WhyChooseUs';
 import KeyStats from '../../components/sections/KeyStats/KeyStats';
+import DoctorsTeam from '../../components/sections/DoctorsTeam/DoctorsTeam';
 import NewsEvents from '../../components/sections/NewsEvents/NewsEvents';
 import AppointmentCTA from '../../components/sections/AppointmentCTA/AppointmentCTA';
 
@@ -17,7 +19,9 @@ const Home = () => {
         <SpecialtyFinder />
         <AboutPreview />
         <ServicesHighlight />
+        <WhyChooseUs />
         <KeyStats />
+        <DoctorsTeam />
         <NewsEvents />
         <AppointmentCTA />
       </main>

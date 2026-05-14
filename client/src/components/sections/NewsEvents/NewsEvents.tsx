@@ -35,7 +35,7 @@ const NewsEvents = () => {
   }, []);
 
   return (
-    <section className="section">
+    <section className="section section-bg-cream">
       <div className="container">
         <motion.div
           ref={ref}

@@ -1,22 +1,21 @@
 .footer {
-  background: var(--text-dark);
-  color: rgba(255, 255, 255, 0.8);
-  padding-top: 25px;
+  background: #0a1d3a;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .inner {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 48px;
-  padding-top: 64px;
-  padding-bottom: 48px;
+  padding-top: 72px;
+  padding-bottom: 56px;
 }
 
-/* Brand */
+/* ── Brand ── */
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .logo {
@@ -27,78 +26,85 @@
 }
 
 .logoIcon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #0077c8, #00b4d8);
+  width: 42px;
+  height: 42px;
+  background: var(--indigo-700);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
+  flex-shrink: 0;
 }
 
 .logoText {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 20px;
   color: white;
 }
 
 .logoText strong {
-  color: var(--accent-cyan);
+  color: var(--indigo-700);
 }
 
 .tagline {
   font-size: 14px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
   max-width: 280px;
 }
 
+/* Social icons */
 .social {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .socialLink {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 18px;
-  transition: background 200ms;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
+  transition:
+    background 200ms,
+    color 200ms,
+    border-color 200ms;
   text-decoration: none;
 }
 
 .socialLink:hover {
-  background: var(--primary-blue);
+  background: var(--indigo-700);
+  color: white;
+  border-color: var(--indigo-700);
 }
 
 .zaloIcon {
   font-weight: 700;
-  font-size: 14px;
-  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-/* Columns */
+/* ── Columns ── */
 .col {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .colTitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
   font-weight: 700;
   color: white;
   margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(255, 181, 71, 0.4);
+  letter-spacing: 0.3px;
 }
 
 .linkList {
@@ -110,21 +116,41 @@
 
 .footerLink {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: color 200ms;
+  transition:
+    color 200ms,
+    padding-left 200ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footerLink::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 2px;
+  background: #ffb547;
+  border-radius: 1px;
+  transition: width 200ms;
+  flex-shrink: 0;
 }
 
 .footerLink:hover {
-  color: var(--accent-cyan);
+  color: white;
 }
 
-/* Contact */
+.footerLink:hover::before {
+  width: 12px;
+}
+
+/* ── Contact column ── */
 .contactList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .contactList li {
@@ -132,34 +158,36 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
 }
 
 .contactIcon {
-  color: var(--accent-cyan);
+  color: #ffb547;
   margin-top: 3px;
   flex-shrink: 0;
+  font-size: 15px;
 }
 
 .contactLink {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 200ms;
 }
 
 .contactLink:hover {
-  color: var(--accent-cyan);
+  color: white;
 }
 
-/* Bottom bar */
+/* ── Bottom bar ── */
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.35);
   max-width: var(--container-max);
   margin: 0 auto;
 }
@@ -170,20 +198,22 @@
 }
 
 .bottomLinks a {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.35);
   text-decoration: none;
   transition: color 200ms;
 }
 
 .bottomLinks a:hover {
-  color: var(--accent-cyan);
+  color: #ffb547;
 }
 
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .inner {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
   }
+
   .brand {
     grid-column: 1 / -1;
   }
@@ -193,12 +223,14 @@
   .inner {
     grid-template-columns: 1fr;
     padding-top: 48px;
-    padding-bottom: 32px;
-    gap: 32px;
+    padding-bottom: 36px;
+    gap: 28px;
   }
+
   .brand {
     grid-column: auto;
   }
+
   .bottom {
     flex-direction: column;
     gap: 12px;

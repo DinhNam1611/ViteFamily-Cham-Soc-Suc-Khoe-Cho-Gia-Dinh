@@ -152,7 +152,7 @@ const News = () => {
     <div className={styles.page}>
       <Header />
 
-      {/* ── Banner image ────────────────────────────────────────── */}
+      {/* ── Banner ──────────────────────────────────────────────── */}
       <section className={styles.banner}>
         <img
           src={activeCategory.banner}
@@ -160,6 +160,20 @@ const News = () => {
           className={styles.bannerImage}
         />
         <div className={styles.bannerOverlay} />
+        <div className={`container ${styles.bannerContent}`}>
+          <motion.div
+            key={activeSlug}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <p className={styles.bannerBreadcrumb}>
+              <Link to="/">Trang chủ</Link> / <Link to="/news">Tin tức</Link> / {activeCategory.label}
+            </p>
+            <h1 className={styles.bannerTitle}>{activeCategory.label}</h1>
+            <p className={styles.bannerSub}>Cập nhật tin tức, sự kiện và thông tin y tế mới nhất từ VitaFamily</p>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── Category Tabs ────────────────────────────────────────── */}
@@ -175,28 +189,6 @@ const News = () => {
               {cat.label}
             </button>
           ))}
-        </div>
-      </div>
-
-      {/* ── Page header (title + breadcrumb) ────────────────────── */}
-      <div className={styles.pageHeader}>
-        <div className={`container ${styles.pageHeaderInner}`}>
-          <motion.h1
-            key={activeSlug}
-            className={styles.pageTitle}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {activeCategory.label}
-          </motion.h1>
-          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link to="/" className={styles.breadcrumbLink}>Trang chủ</Link>
-            <span className={styles.breadcrumbSep}>/</span>
-            <span className={styles.breadcrumbCurrent}>Tin tức</span>
-            <span className={styles.breadcrumbSep}>/</span>
-            <span className={styles.breadcrumbCurrent}>{activeCategory.label}</span>
-          </nav>
         </div>
       </div>
 

@@ -7,10 +7,10 @@
   position: relative;
   background: linear-gradient(
     135deg,
-    var(--group-color, #0077c8) 0%,
-    #00a8e8 100%
+    var(--group-color, var(--indigo-900)) 0%,
+    var(--indigo-700) 100%
   );
-  padding-top: 130px;
+  padding-top: 103px;
   overflow: hidden;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .heroTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 36px;
   font-weight: 800;
   color: #fff;
@@ -131,7 +131,7 @@
 
 /* ── 2-column body ── */
 .body {
-  background: #f4f8fb;
+  background: var(--cream-50);
   padding: 48px 0 80px;
 }
 
@@ -159,11 +159,11 @@
 }
 
 .sidebarTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 13px;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #0077c8, #00a8e8);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   padding: 14px 18px;
   margin: 0;
   text-transform: uppercase;
@@ -184,7 +184,7 @@
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--slate-900);
   text-decoration: none;
   transition:
     background 200ms,
@@ -193,38 +193,38 @@
 }
 
 .sidebarLink:hover {
-  background: #e8f4fd;
-  color: #0077c8;
+  background: var(--indigo-50);
+  color: var(--indigo-700);
 }
 
 .sidebarLinkActive {
-  background: #e8f4fd !important;
-  color: #0077c8 !important;
+  background: var(--indigo-50) !important;
+  color: var(--indigo-700) !important;
   font-weight: 600;
-  border-left: 3px solid #0077c8;
+  border-left: 3px solid var(--indigo-700);
 }
 
 .sidebarLinkIcon {
   width: 28px;
   height: 28px;
   border-radius: 7px;
-  background: #e8f4fd;
+  background: var(--indigo-50);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: #0077c8;
+  color: var(--indigo-700);
   flex-shrink: 0;
 }
 
 .sidebarLinkActive .sidebarLinkIcon {
-  background: #0077c8;
+  background: var(--indigo-700);
   color: #fff;
 }
 
 /* CTA box */
 .sidebarCta {
-  background: linear-gradient(135deg, #0077c8, #00b4d8);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   border-radius: 16px;
   padding: 24px 20px;
   display: flex;
@@ -248,10 +248,10 @@
 
 .sidebarCtaBtn {
   background: #fff !important;
-  color: #0077c8 !important;
+  color: var(--indigo-700) !important;
   border-color: transparent !important;
   font-weight: 700 !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   width: 100%;
 }
 
@@ -280,14 +280,14 @@
   border: 1px solid #e2e8f0;
   font-size: 14px;
   font-weight: 600;
-  color: #6b7c99;
+  color: var(--slate-500);
   text-decoration: none;
   transition: all 200ms;
 }
 
 .sidebarAllLink:hover {
-  border-color: #0077c8;
-  color: #0077c8;
+  border-color: var(--indigo-700);
+  color: var(--indigo-700);
 }
 
 /* ── Main content ── */
@@ -305,13 +305,13 @@
 }
 
 .sectionTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin: 0 0 20px;
   padding-bottom: 14px;
-  border-bottom: 2px solid #e8f4fd;
+  border-bottom: 2px solid var(--indigo-50);
   position: relative;
 }
 
@@ -322,12 +322,12 @@
   left: 0;
   width: 48px;
   height: 2px;
-  background: #0077c8;
+  background: var(--indigo-700);
 }
 
 .descText {
   font-size: 15px;
-  color: #4a5568;
+  color: var(--slate-500);
   line-height: 1.8;
   margin: 0 0 14px;
 }
@@ -349,19 +349,19 @@
   gap: 10px;
   padding: 12px 16px;
   border-radius: 10px;
-  background: #f4f8fb;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
   font-size: 14px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--slate-900);
   transition:
     background 200ms,
     border-color 200ms;
 }
 
 .diseaseItem:hover {
-  background: #e8f4fd;
-  border-color: #b3d9f2;
+  background: var(--indigo-50);
+  border-color: var(--indigo-100);
 }
 
 .diseaseCheck {
@@ -383,7 +383,7 @@
   gap: 12px;
   padding: 14px 16px;
   border-radius: 10px;
-  background: #f4f8fb;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
 }
 
@@ -391,19 +391,19 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: #e8f4fd;
+  background: var(--indigo-50);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: #0077c8;
+  color: var(--indigo-700);
   flex-shrink: 0;
 }
 
 .staffLabel {
   font-size: 14px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--slate-900);
   line-height: 1.4;
 }
 
@@ -420,15 +420,15 @@
   gap: 14px;
   padding: 14px 18px;
   border-radius: 10px;
-  background: #f4f8fb;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
   text-decoration: none;
   transition: all 200ms;
 }
 
 .relatedCard:hover {
-  background: #e8f4fd;
-  border-color: #b3d9f2;
+  background: var(--indigo-50);
+  border-color: var(--indigo-100);
   transform: translateX(4px);
 }
 
@@ -436,17 +436,17 @@
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: #e8f4fd;
+  background: var(--indigo-50);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: #0077c8;
+  color: var(--indigo-700);
   flex-shrink: 0;
 }
 
 .relatedCard:hover .relatedIcon {
-  background: #0077c8;
+  background: var(--indigo-700);
   color: #fff;
 }
 
@@ -454,12 +454,12 @@
   flex: 1;
   font-size: 14px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--slate-900);
 }
 
 .relatedArrow {
   font-size: 12px;
-  color: #6b7c99;
+  color: var(--slate-500);
   transition:
     transform 200ms,
     color 200ms;
@@ -467,19 +467,19 @@
 
 .relatedCard:hover .relatedArrow {
   transform: translateX(4px);
-  color: #0077c8;
+  color: var(--indigo-700);
 }
 
 /* Bottom CTA */
 .bottomCta {
-  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   border-radius: 16px;
   padding: 40px 32px;
   text-align: center;
 }
 
 .bottomCtaTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: #fff;
@@ -505,12 +505,12 @@
 
 .bottomCtaBtnPrimary {
   background: #fff !important;
-  color: #0077c8 !important;
+  color: var(--indigo-700) !important;
   border-color: transparent !important;
   font-weight: 700 !important;
   height: 48px !important;
   padding: 0 28px !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   font-size: 15px !important;
 }
 
@@ -521,7 +521,7 @@
   font-weight: 600 !important;
   height: 48px !important;
   padding: 0 28px !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   font-size: 15px !important;
 }
 
@@ -537,7 +537,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding-top: 130px;
+  padding-top: 133px;
 }
 
 /* ── Responsive ── */
@@ -553,7 +553,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 110px;
+    padding-top: 112px;
   }
   .heroTitle {
     font-size: 22px;

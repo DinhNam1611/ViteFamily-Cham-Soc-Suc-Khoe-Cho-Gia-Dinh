@@ -1,84 +1,146 @@
 .header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 52px;
 }
 
 .eyebrow {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--primary-blue);
-  margin-bottom: 12px;
+  color: var(--indigo-700);
+  margin-bottom: 14px;
 }
 
+/* Bento: 3 cột, item đầu featured (span 2 cols, 2 rows) */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
+/* Item wrapper đầu tiên chiếm 2 cột, 2 hàng */
+.grid > *:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Card base */
 .card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 32px 28px;
   background: white;
-  border-radius: 16px;
-  border: 1px solid var(--border-gray);
+  border-radius: 24px;
+  border: 1px solid #f1f5f9;
   text-decoration: none;
-  transition: box-shadow 200ms, transform 200ms;
-  cursor: pointer;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+  box-shadow: var(--shadow-sm);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Content wrapper — dùng cho tất cả card */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px 28px;
+  flex: 1;
+}
+
+/* ── Featured card: layout NGANG (ảnh trái, content phải) ── */
+/* Root cause fix: ảnh dùng height: 100% thay vì px cố định,
+   tự fill đúng chiều cao card bất kể grid row cao bao nhiêu */
+.grid > *:first-child .card {
+  flex-direction: row;
+  border-color: var(--indigo-100);
+}
+
+.grid > *:first-child .card:hover {
+  box-shadow: 0 16px 48px rgba(29, 78, 216, 0.12);
+}
+
+/* Ảnh fill toàn bộ chiều cao card phía trái */
+.featuredImg {
+  width: 46%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Content bên phải featured card */
+.grid > *:first-child .cardContent {
+  padding: 40px 36px;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--indigo-50) 0%, white 70%);
 }
 
 .iconWrap {
   width: 56px;
   height: 56px;
-  border-radius: 14px;
-  background: var(--light-blue);
+  border-radius: 16px;
+  background: var(--indigo-100);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 26px;
-  color: var(--primary-blue);
-  transition: background 200ms, color 200ms;
+  color: var(--indigo-700);
+  transition: background 280ms var(--ease-out), color 280ms var(--ease-out);
   flex-shrink: 0;
 }
 
 .card:hover .iconWrap {
-  background: linear-gradient(135deg, #0077C8, #00B4D8);
+  background: var(--indigo-700);
   color: white;
 }
 
+/* Featured: icon lớn hơn */
+.grid > *:first-child .iconWrap {
+  width: 68px;
+  height: 68px;
+  font-size: 32px;
+  border-radius: 20px;
+}
+
 .cardTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   margin: 0;
+}
+
+.grid > *:first-child .cardTitle {
+  font-size: 22px;
 }
 
 .cardDesc {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   line-height: 1.7;
   margin: 0;
   flex: 1;
 }
 
+.grid > *:first-child .cardDesc {
+  font-size: 15px;
+}
+
 .link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--primary-blue);
-  margin-top: 4px;
+  color: var(--indigo-700);
+  margin-top: 8px;
   transition: gap 200ms;
 }
 
@@ -86,18 +148,41 @@
   gap: 10px;
 }
 
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .grid > *:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .featuredImg {
+    width: 42%;
   }
 }
 
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
-  .card {
+  .grid > *:first-child {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  /* Mobile: đổi lại layout dọc, ảnh trên content dưới */
+  .grid > *:first-child .card {
+    flex-direction: column;
+  }
+  .featuredImg {
+    width: 100%;
+    height: 200px;
+  }
+  .grid > *:first-child .cardContent {
+    padding: 24px 20px;
+  }
+  .cardContent {
     padding: 24px 20px;
   }
 }

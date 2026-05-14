@@ -1,14 +1,3 @@
-export const COLORS = {
-  primaryBlue: "#0077C8",
-  lightBlue: "#E8F4FD",
-  accentCyan: "#00B4D8",
-  white: "#FFFFFF",
-  textDark: "#1A2B4B",
-  textMuted: "#6B7C99",
-  successGreen: "#28A745",
-  borderGray: "#E2E8F0",
-} as const;
-
 export const NAV_ITEMS = [
   { id: "specialties", label: "Chuyên khoa", path: "/specialties" },
   { id: "about", label: "Giới thiệu", path: "/about" },

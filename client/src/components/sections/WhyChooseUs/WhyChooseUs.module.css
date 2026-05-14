@@ -1,0 +1,177 @@
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--indigo-700);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--sage-500);
+  border-radius: 2px;
+}
+
+/* Bento asymmetric — 3 cột, card 1 và 4 chiếm 2 cột */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card 1 (BIG, first): chiếm 2 cột — featured */
+.card:nth-child(1) {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--indigo-900) 0%, var(--indigo-700) 100%);
+  color: white;
+}
+
+/* Card 4 (BIG, last): chiếm 2 cột */
+.card:nth-child(4) {
+  grid-column: span 2;
+}
+
+/* Card base */
+.card {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 24px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card 1 hover — indigo gradient hover không cần transform */
+.card:nth-child(1):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(29, 78, 216, 0.3);
+}
+
+/* Card 1: layout ngang (icon trái + text phải) vì rộng hơn */
+.card:nth-child(1) {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* Icon wrapper — rounded square */
+.iconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--indigo-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 280ms;
+}
+
+.card:nth-child(1) .iconWrap {
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.card:hover:not(:nth-child(1)) .iconWrap {
+  background: var(--indigo-700);
+}
+
+.icon {
+  font-size: 24px;
+  color: var(--indigo-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 280ms;
+}
+
+.card:nth-child(1) .icon {
+  color: white;
+}
+
+.card:hover:not(:nth-child(1)) .icon {
+  color: white;
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.card:nth-child(1) .cardTitle {
+  font-size: 22px;
+  color: white;
+}
+
+.cardDesc {
+  font-size: 14px;
+  color: var(--slate-500);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.card:nth-child(1) .cardDesc {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card:nth-child(1),
+  .card:nth-child(4) {
+    grid-column: span 1;
+  }
+  .card:nth-child(1) {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .card:nth-child(4) {
+    grid-column: span 1;
+  }
+  .card {
+    padding: 28px 22px;
+  }
+  .card:nth-child(1) {
+    flex-direction: column;
+  }
+}

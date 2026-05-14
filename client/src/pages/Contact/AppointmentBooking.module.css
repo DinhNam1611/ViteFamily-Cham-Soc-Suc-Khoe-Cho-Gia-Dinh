@@ -1,6 +1,6 @@
 .page {
-  padding-top: 72px;
-  background: #f7fafd;
+  padding-top: 133px;
+  background: var(--cream-50);
   min-height: 100vh;
 }
 
@@ -8,7 +8,7 @@
 .hero {
   position: relative;
   height: 260px;
-  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -44,7 +44,7 @@
 }
 
 .heroTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 40px;
   font-weight: 700;
   color: #fff;
@@ -75,7 +75,7 @@
 .formCard {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 119, 200, 0.1);
+  box-shadow: 0 4px 24px rgba(29, 78, 216, 0.08);
   padding: 40px 40px 32px;
 }
 
@@ -86,22 +86,22 @@
 
 .formIcon {
   font-size: 40px;
-  color: #0077c8;
+  color: var(--indigo-700);
   display: block;
   margin-bottom: 12px;
 }
 
 .formTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 26px;
   font-weight: 700;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin-bottom: 10px;
 }
 
 .formDesc {
   font-size: 15px;
-  color: #6b7c99;
+  color: var(--slate-500);
   max-width: 460px;
   margin: 0 auto;
   line-height: 1.6;
@@ -109,7 +109,7 @@
 
 .form :global(.ant-form-item-label > label) {
   font-weight: 600;
-  color: #1a2b4b;
+  color: var(--slate-900);
   font-size: 14px;
 }
 
@@ -125,16 +125,16 @@
 .form :global(.ant-input-affix-wrapper:focus),
 .form :global(.ant-input-affix-wrapper-focused),
 .form :global(.ant-select-focused .ant-select-selector) {
-  border-color: #0077c8 !important;
-  box-shadow: 0 0 0 3px rgba(0, 119, 200, 0.1) !important;
+  border-color: var(--indigo-700) !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1) !important;
 }
 
 .inputIcon {
-  color: #0077c8;
+  color: var(--indigo-700);
 }
 
 .suffixIcon {
-  color: #0077c8;
+  color: var(--indigo-700);
 }
 
 .textarea {
@@ -160,8 +160,8 @@
   height: 52px !important;
   font-size: 16px !important;
   font-weight: 700 !important;
-  border-radius: 10px !important;
-  background: linear-gradient(135deg, #0077c8, #00b4d8) !important;
+  border-radius: 100px !important;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700)) !important;
   border: none !important;
   letter-spacing: 0.3px;
   transition: transform 150ms, box-shadow 150ms !important;
@@ -169,7 +169,7 @@
 
 .submitBtn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 119, 200, 0.35) !important;
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.35) !important;
 }
 
 /* ── Side Info ── */
@@ -182,7 +182,7 @@
 .infoCard {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 119, 200, 0.08);
+  box-shadow: 0 2px 12px rgba(29, 78, 216, 0.06);
   padding: 20px;
   display: flex;
   align-items: flex-start;
@@ -191,8 +191,8 @@
 
 .infoIcon {
   font-size: 22px;
-  color: #0077c8;
-  background: #e8f4fd;
+  color: var(--indigo-700);
+  background: var(--indigo-50);
   width: 44px;
   height: 44px;
   border-radius: 10px;
@@ -205,7 +205,7 @@
 .infoTitle {
   font-size: 12px;
   font-weight: 600;
-  color: #6b7c99;
+  color: var(--slate-500);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 2px;
@@ -214,26 +214,26 @@
 .infoDesc {
   font-size: 15px;
   font-weight: 700;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin-bottom: 2px;
 }
 
 .infoSub {
   font-size: 13px;
-  color: #6b7c99;
+  color: var(--slate-500);
 }
 
 .noteBox {
-  background: #e8f4fd;
+  background: var(--indigo-50);
   border-radius: 12px;
   padding: 20px;
-  border-left: 4px solid #0077c8;
+  border-left: 4px solid var(--indigo-700);
 }
 
 .noteTitle {
   font-size: 14px;
   font-weight: 700;
-  color: #0077c8;
+  color: var(--indigo-700);
   margin-bottom: 10px;
 }
 
@@ -244,7 +244,7 @@
 
 .noteList li {
   font-size: 13px;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin-bottom: 6px;
   line-height: 1.5;
 }

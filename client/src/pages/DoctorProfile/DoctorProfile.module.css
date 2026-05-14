@@ -1,8 +1,8 @@
 /* ── Hero ── */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #003d7a 0%, #0077C8 55%, #00B4D8 100%);
-  margin-top: 72px;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
+  margin-top: 120px;
   padding: 48px 0 56px;
   overflow: hidden;
 }
@@ -96,7 +96,7 @@
 }
 
 .heroName {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 32px;
   font-weight: 700;
   color: white;
@@ -146,7 +146,7 @@
 }
 
 .statNum {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 22px;
   font-weight: 700;
   color: white;
@@ -171,9 +171,9 @@
   padding: 0 28px !important;
   font-weight: 600 !important;
   background: white !important;
-  color: var(--primary-blue) !important;
+  color: var(--indigo-700) !important;
   border: none !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
   margin-top: 4px;
   display: inline-flex !important;
   align-items: center !important;
@@ -195,7 +195,7 @@
 /* ── Cards ── */
 .card {
   background: white;
-  border: 1px solid var(--border-gray);
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 32px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
@@ -208,13 +208,13 @@
 }
 
 .cardTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   margin: 0 0 20px;
   padding-left: 16px;
-  border-left: 4px solid var(--primary-blue);
+  border-left: 4px solid var(--indigo-700);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -223,13 +223,13 @@
 }
 
 .titleIcon {
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   font-size: 18px;
 }
 
 .bioText {
   font-size: 16px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.8;
   margin: 0;
 }
@@ -238,7 +238,7 @@
 .credSection {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid var(--border-gray);
+  border-top: 1px solid #e2e8f0;
 }
 
 .credSection:first-of-type {
@@ -250,17 +250,13 @@
 .credTitle {
   font-size: 15px;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   margin: 0 0 16px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
 
-/* ──────────────────────────────────────
-   Timeline
-   layout: [period 96px] [dot-col 20px] [desc 1fr]
-   line extends from dot down through padding via ::after on dot-col
-   ────────────────────────────────────── */
+/* ── Timeline ── */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -280,7 +276,7 @@
 .timelinePeriod {
   font-size: 13px;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   text-align: right;
   padding-top: 3px;
   line-height: 1.4;
@@ -298,15 +294,14 @@
 .timelineDot {
   width: 12px;
   height: 12px;
-  background: var(--primary-blue);
+  background: var(--indigo-700);
   border-radius: 50%;
   border: 2px solid white;
-  box-shadow: 0 0 0 2px var(--primary-blue);
+  box-shadow: 0 0 0 2px var(--indigo-700);
   flex-shrink: 0;
   z-index: 1;
 }
 
-/* Vertical line connecting dots */
 .timelineItem:not(:last-child) .timelineDotCol::after {
   content: '';
   position: absolute;
@@ -315,17 +310,17 @@
   transform: translateX(-50%);
   width: 2px;
   bottom: -20px;
-  background: var(--border-gray);
+  background: #e2e8f0;
 }
 
 .timelineDesc {
   font-size: 15px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.65;
   padding-top: 1px;
 }
 
-/* ── Bullet list (memberships) ── */
+/* ── Bullet list ── */
 .bulletList {
   list-style: none;
   padding: 0;
@@ -337,7 +332,7 @@
 
 .bulletItem {
   font-size: 15px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.6;
   display: flex;
   align-items: baseline;
@@ -349,7 +344,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--primary-blue);
+  background: var(--indigo-700);
   flex-shrink: 0;
   margin-top: 6px;
 }
@@ -369,19 +364,19 @@
   align-items: baseline;
   gap: 14px;
   font-size: 15px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   line-height: 1.65;
   padding: 14px 16px;
-  background: var(--light-blue);
+  background: var(--indigo-50);
   border-radius: 10px;
-  border-left: 3px solid var(--primary-blue);
+  border-left: 3px solid var(--indigo-700);
 }
 
 .interestDot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--primary-blue);
+  background: var(--indigo-700);
   flex-shrink: 0;
   margin-top: 7px;
 }
@@ -392,7 +387,7 @@
   flex-direction: column;
   gap: 20px;
   position: sticky;
-  top: calc(72px + 24px);
+  top: calc(80px + 24px);
 }
 
 .sideCard {
@@ -400,10 +395,10 @@
 }
 
 .sideTitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   margin: 0 0 16px;
 }
 
@@ -422,25 +417,25 @@
 .ratingNum {
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
 }
 
 .ratingCount {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--slate-500);
 }
 
 .sideBookBtn {
   height: 48px !important;
   font-weight: 600 !important;
-  border-radius: 10px !important;
-  background: linear-gradient(135deg, #0077C8, #00B4D8) !important;
+  border-radius: 100px !important;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700)) !important;
   border: none !important;
 }
 
 .sideNote {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   text-align: center;
   margin: 12px 0 0;
   line-height: 1.5;
@@ -461,7 +456,7 @@
 
 .infoIcon {
   font-size: 18px;
-  color: var(--primary-blue);
+  color: var(--indigo-700);
   margin-top: 2px;
   flex-shrink: 0;
 }
@@ -474,7 +469,7 @@
 
 .infoLabel {
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -482,16 +477,16 @@
 
 .infoValue {
   font-size: 14px;
-  color: var(--text-dark);
+  color: var(--slate-900);
   font-weight: 500;
   line-height: 1.5;
 }
 
 /* ── Skeleton ── */
 .heroSkeleton {
-  margin-top: 72px;
+  margin-top: 120px;
   height: 280px;
-  background: linear-gradient(90deg, #b3d4f0 25%, #9ac5e8 50%, #b3d4f0 75%);
+  background: linear-gradient(90deg, var(--indigo-100) 25%, var(--indigo-50) 50%, var(--indigo-100) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
 }
@@ -511,7 +506,7 @@
 
 .skeletonBlock {
   border-radius: 16px;
-  background: linear-gradient(90deg, #e8f4fd 25%, #d0e8f5 50%, #e8f4fd 75%);
+  background: linear-gradient(90deg, var(--indigo-50) 25%, var(--indigo-100) 50%, var(--indigo-50) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
 }
@@ -533,19 +528,19 @@
 
 .notFoundIcon {
   font-size: 56px;
-  color: var(--border-gray);
+  color: #e2e8f0;
 }
 
 .notFoundTitle {
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--slate-900);
   margin: 0;
 }
 
 .notFoundDesc {
   font-size: 16px;
-  color: var(--text-muted);
+  color: var(--slate-500);
   margin: 0;
   max-width: 400px;
 }
@@ -562,7 +557,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    margin-top: 64px;
+    margin-top: 82px;
     padding: 32px 0 40px;
   }
 

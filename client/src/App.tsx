@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Services from './pages/Services/Services';
+import ServiceDetail from './pages/Services/ServiceDetail';
 import Doctors from './pages/Doctors/Doctors';
 import DoctorProfile from './pages/DoctorProfile/DoctorProfile';
 import CustomerGuide from './pages/CustomerGuide/CustomerGuide';
@@ -28,6 +30,7 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <ScrollToTop />
+        <ScrollToTopBtn />
         <Routes>
           {/* Public */}
           <Route path="/" element={<Home />} />
@@ -36,6 +39,7 @@ const App = () => {
           <Route path="/specialties/:slug" element={<SpecialtyDetail />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<Services />} />
+          <Route path="/services/goi/:slug" element={<ServiceDetail />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/doctors/:slug" element={<DoctorProfile />} />
           <Route path="/news" element={<News />} />

@@ -1,92 +1,140 @@
+/* ── Section wrapper ── */
 .hero {
   position: relative;
-  margin-top: 72px;
+  margin-top: 120px;
+  background: linear-gradient(135deg, var(--cream-50) 0%, var(--indigo-50) 100%);
+  overflow: hidden;
 }
 
+/* Blob trang trí phía sau */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29, 78, 216, 0.08) 0%, transparent 70%);
+  top: -150px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+  bottom: -100px;
+  left: -80px;
+  pointer-events: none;
+}
+
+/* ── Carousel dots ── */
 .carousel :global(.slick-dots) {
-  bottom: 80px;
+  bottom: 20px;
+}
+
+.carousel :global(.slick-dots li) {
+  width: auto !important;
+  margin: 0 4px !important;
 }
 
 .carousel :global(.slick-dots li button) {
-  background: rgba(255, 255, 255, 0.6) !important;
-  border-radius: 50%;
-  width: 10px !important;
-  height: 10px !important;
+  width: 24px !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  background: rgba(29, 78, 216, 0.2) !important;
+  transition: width 0.3s ease, background 0.3s ease !important;
+  padding: 0 !important;
 }
 
 .carousel :global(.slick-dots li.slick-active button) {
-  background: white !important;
+  width: 48px !important;
+  background: var(--indigo-700) !important;
 }
 
+/* ── Slide ── */
 .slide {
-  height: 580px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 36, 77, 0.75) 0%,
-    rgba(0, 119, 200, 0.45) 60%,
-    rgba(0, 180, 216, 0.2) 100%
-  );
-}
-
-.content {
+  padding: 72px 0 108px;
   position: relative;
   z-index: 1;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
-.textBlock {
-  max-width: 600px;
+.inner {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 48px;
+  align-items: center;
+  min-height: 520px;
+}
+
+/* ── Cột trái ── */
+.textCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 28px;
 }
 
-.badge {
-  display: inline-block;
-  background: rgba(0, 180, 216, 0.25);
-  border: 1px solid rgba(0, 180, 216, 0.5);
-  color: #7FDFFF;
-  padding: 6px 16px;
-  border-radius: 100px;
-  font-size: 13px;
+/* Eyebrow */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  width: fit-content;
+  color: var(--indigo-700);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: heroSlideLeft 0.6s ease both;
 }
 
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 3px;
+  background: var(--sage-500);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Heading lớn — Plus Jakarta Sans qua global reset */
 .title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 44px;
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1.1;
   margin: 0;
+  animation: heroSlideLeft 0.7s 0.1s ease both;
+}
+
+/* Italic accent — dùng Lora cho 1 span bên trong */
+.title :global(.italic-accent) {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--indigo-700);
 }
 
 .subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.7;
+  font-size: 17px;
+  color: var(--slate-500);
+  line-height: 1.75;
   margin: 0;
+  max-width: 480px;
+  animation: heroSlideLeft 0.65s 0.22s ease both;
 }
 
+/* CTA buttons */
 .actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 4px;
+  animation: heroFadeUp 0.6s 0.38s ease both;
 }
 
 .primaryBtn {
@@ -94,9 +142,19 @@
   padding: 0 28px !important;
   font-size: 15px !important;
   font-weight: 600 !important;
-  background: linear-gradient(135deg, #0077C8, #00B4D8) !important;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700)) !important;
   border: none !important;
-  border-radius: 10px !important;
+  border-radius: 100px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.32) !important;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out) !important;
+}
+
+.primaryBtn:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 12px 32px rgba(29, 78, 216, 0.42) !important;
 }
 
 .secondaryBtn {
@@ -104,22 +162,172 @@
   padding: 0 28px !important;
   font-size: 15px !important;
   font-weight: 600 !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 2px solid rgba(255, 255, 255, 0.6) !important;
-  color: white !important;
-  border-radius: 10px !important;
-  backdrop-filter: blur(4px);
+  background: transparent !important;
+  border: 1.5px solid var(--indigo-700) !important;
+  color: var(--indigo-700) !important;
+  border-radius: 100px !important;
+  transition: background 200ms, color 200ms !important;
 }
 
 .secondaryBtn:hover {
-  background: rgba(255, 255, 255, 0.25) !important;
-  border-color: white !important;
+  background: var(--indigo-50) !important;
 }
 
-/* Skeleton */
+/* Trust row — badge style */
+.trustRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  animation: heroFadeUp 0.6s 0.55s ease both;
+}
+
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate-500);
+  background: white;
+  border: 1px solid var(--border-gray);
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+
+.trustIcon {
+  color: var(--sage-500);
+  font-size: 13px;
+}
+
+.trustDot {
+  width: 3px;
+  height: 3px;
+  background: var(--slate-500);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* ── Cột phải ── */
+.imageCol {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  animation: heroSlideRight 0.8s 0.12s ease both;
+}
+
+.imageWrap {
+  position: relative;
+  width: 440px;
+  max-width: 100%;
+}
+
+/* Blob xanh trang trí phía sau ảnh */
+.imageBg {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(29, 78, 216, 0.12) 0%, rgba(29, 78, 216, 0.03) 70%, transparent 100%);
+  border-radius: 50%;
+  bottom: -40px;
+  right: -40px;
+  z-index: 0;
+}
+
+/* Ảnh bác sĩ — bo tròn đầu, organic feel */
+.doctorImg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 540px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 220px 220px 32px 32px;
+  display: block;
+  filter: drop-shadow(0 16px 48px rgba(29, 78, 216, 0.16));
+}
+
+/* Floating glass card 1 — góc dưới trái */
+.floatCard1 {
+  position: absolute;
+  z-index: 2;
+  bottom: 72px;
+  left: -28px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 138px;
+  animation: heroFadeUp 0.6s 0.75s ease both, floatY 3.2s 1.4s ease-in-out infinite;
+}
+
+/* Floating glass card 2 — góc trên phải */
+.floatCard2 {
+  position: absolute;
+  z-index: 2;
+  top: 64px;
+  right: -24px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 138px;
+  animation: heroFadeUp 0.6s 0.65s ease both, floatY 3.8s 1.2s ease-in-out infinite;
+}
+
+.floatNum {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--indigo-700);
+}
+
+.floatLabel {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+  color: var(--slate-500);
+}
+
+/* ── Hero Entry Animations ── */
+@keyframes heroSlideLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes heroSlideRight {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Skeleton ── */
 .skeleton {
-  height: 580px;
-  background: linear-gradient(90deg, #e8f4fd 25%, #d0e8f5 50%, #e8f4fd 75%);
+  height: 640px;
+  background: linear-gradient(90deg, var(--cream-50) 25%, var(--indigo-50) 50%, var(--cream-50) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
 }
@@ -129,96 +337,49 @@
   100% { background-position: -200% 0; }
 }
 
-/* Info Bar */
-.infoBar {
-  background: white;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .title { font-size: 50px; }
+  .imageWrap { width: 380px; }
+  .doctorImg { height: 480px; }
 }
 
-.infoInner {
-  display: flex;
-  align-items: center;
-  height: 80px;
-  gap: 0;
-}
-
-.infoItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  padding: 0 32px;
-}
-
-.infoItem > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.infoIcon {
-  font-size: 24px;
-  color: var(--primary-blue);
-  flex-shrink: 0;
-}
-
-.infoLabel {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.infoValue {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-.infoDivider {
-  width: 1px;
-  height: 40px;
-  background: var(--border-gray);
-  flex-shrink: 0;
-}
-
-/* Responsive */
 @media (max-width: 1024px) {
-  .title {
-    font-size: 36px;
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
-  .slide {
-    height: 500px;
-  }
+  .title { font-size: 40px; }
+  .imageWrap { width: 320px; }
+  .doctorImg { height: 420px; }
+  .floatCard1 { left: -12px; }
+  .floatCard2 { right: -12px; }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    margin-top: 64px;
+  .hero { margin-top: 82px; }
+  .slide { padding: 52px 0 80px; }
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    min-height: auto;
   }
-  .slide {
-    height: 480px;
-  }
-  .title {
-    font-size: 28px;
-  }
-  .subtitle {
-    font-size: 14px;
-  }
-  .infoInner {
-    display: none;
-  }
+  .title { font-size: 34px; }
+  .subtitle { font-size: 15px; }
+  .imageWrap { width: 280px; margin: 0 auto; }
+  .doctorImg { height: 320px; }
+  .floatCard1 { left: 0; bottom: 44px; }
+  .floatCard2 { right: 0; top: 44px; }
 }
 
 @media (max-width: 640px) {
-  .slide {
-    height: 420px;
-  }
-  .title {
-    font-size: 24px;
-  }
+  .slide { padding: 44px 0 64px; }
+  .title { font-size: 28px; }
   .primaryBtn,
   .secondaryBtn {
-    height: 44px !important;
+    height: 46px !important;
     padding: 0 20px !important;
     font-size: 14px !important;
   }
+  .trustRow { display: none; }
 }

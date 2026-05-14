@@ -1,6 +1,6 @@
-/* ═══════════════════════════════════════════════════════════
-   Header — 2 tầng: Topbar + Navbar  (mọi kích thước +30%)
-   ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   Header — Medilix 2-layer: Topbar xanh + Navbar card trắng
+   ═══════════════════════════════════════════════════════ */
 
 .header {
   position: fixed;
@@ -8,56 +8,177 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #fff;
-  transition: box-shadow 200ms ease;
 }
 
-.scrolled {
-  box-shadow: 0 4px 24px rgba(0, 119, 200, 0.15);
-}
-
-/* ── Tầng 1: Topbar ─────────────────────────────────────── */
+/* ══════════════════════════════
+   TOPBAR — liên lạc + social
+   ══════════════════════════════ */
 
 .topbar {
-  background: #fff;
-  border-bottom: 1px solid var(--border-gray);
+  background: var(--indigo-700);
+  height: 48px;
+  overflow: hidden;
+  transition:
+    height 300ms ease,
+    opacity 280ms ease;
+}
+
+/* ── Khi cuộn: thu gọn topbar ── */
+.scrolled .topbar {
+  height: 0;
+  opacity: 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 .topbarInner {
   display: flex;
   align-items: center;
-  height: 72px; /* 56 × 1.3 */
-  gap: 0;
+  justify-content: space-between;
+  height: 100%;
 }
 
-/* Logo */
-.logo {
+.topbarContact {
   display: flex;
   align-items: center;
-  gap: 13px; /* 10 × 1.3 */
-  flex-shrink: 0;
-  text-decoration: none;
-  margin-right: 36px; /* 28 × 1.3 */
+  gap: 22px;
 }
 
-.logoIcon {
-  width: 49px; /* 38 × 1.3 */
-  height: 49px;
-  background: linear-gradient(135deg, #0077c8, #00b4d8);
-  border-radius: 13px; /* 10 × 1.3 */
+.topbarItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 150ms;
+}
+
+.topbarItem :global(.anticon) {
+  font-size: 16px;
+}
+
+.topbarItem:hover {
+  color: #fff;
+}
+
+.topbarSep {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 16px;
+  user-select: none;
+}
+
+/* Social icons */
+.topbarSocial {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socialBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 25px; /* 19 × 1.3 */
+  text-decoration: none;
+  transition:
+    background 200ms,
+    color 200ms,
+    transform 180ms;
+}
+
+.socialBtn:hover {
+  background: rgba(255, 255, 255, 0.26);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════
+   NAVBAR — floating pill trắng
+   ══════════════════════════════ */
+
+/* Container tuyệt đối — căn giữa pill ngay dưới topbar */
+.navbarOuter {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none;
+  background: transparent;
+  padding: 8px 0 0 0;
+  transition: top 300ms ease, padding-top 300ms ease;
+}
+
+/* Khi cuộn: topbar đã ẩn, pill dán sát mép trên viewport */
+.scrolled .navbarOuter {
+  top: 0;
+  padding-top: 0;
+}
+
+/* Pill card — nổi ngay dưới topbar */
+.navbar {
+  pointer-events: all;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding-left: 28px;
+  padding-right: 28px;
+  gap: 0;
+  width: 95%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 99;
+  transition:
+    transform 280ms ease,
+    box-shadow 280ms ease;
+}
+
+/* Khi cuộn: pill dán cách mép trên viewport 8px */
+.scrolled .navbar {
+  transform: translateY(8px);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.14);
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.logoIcon {
+  width: 38px;
+  height: 38px;
+  background: var(--indigo-700);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
 .logoText {
-  font-family: "Montserrat", sans-serif;
-  font-size: 25px; /* 19 × 1.3 */
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 19px;
   color: var(--text-dark);
   white-space: nowrap;
 }
@@ -66,137 +187,192 @@
   color: var(--primary-blue);
 }
 
-/* Hotline */
-.hotline {
+/* ── Nav area (desktop) ── */
+.navArea {
   display: flex;
   align-items: center;
-  gap: 13px; /* 10 × 1.3 */
-  text-decoration: none;
-  padding: 8px 20px; /* 6×16 × 1.3 */
-  border-radius: 10px;
-  transition: background 200ms;
-  flex-shrink: 0;
-}
-
-.hotline:hover {
-  background: var(--light-blue);
-}
-
-.hotlineIcon {
-  width: 42px; /* 32 × 1.3 */
-  height: 42px;
-  background: var(--light-blue);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-blue);
-  font-size: 20px; /* 15 × 1.3 */
-  flex-shrink: 0;
-}
-
-.hotlineText {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   gap: 2px;
 }
 
-.hotlineLabel {
-  font-size: 14px; /* 11 × 1.3 */
-  color: var(--text-muted);
+.navLink {
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.hotlineNumber {
-  font-size: 18px; /* 14 × 1.3 */
-  font-weight: 700;
-  color: var(--primary-blue);
-  font-family: "Montserrat", sans-serif;
-}
-
-/* Topbar right */
-.topbarRight {
+  color: var(--text-dark);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 200ms,
+    background 200ms;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   display: flex;
   align-items: center;
-  gap: 8px; /* 6 × 1.3 */
-  margin-left: auto;
+  gap: 5px;
 }
 
-/* Icon buttons */
+.navLink:hover {
+  color: var(--primary-blue);
+  background: var(--light-blue);
+}
+
+.navLink.active {
+  color: var(--primary-blue);
+  font-weight: 600;
+  background: var(--light-blue);
+}
+
+/* ── Right actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Icon buttons — Medilix circle style */
 .iconBtn {
-  width: 46px; /* 36 × 1.3 */
-  height: 46px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 10px;
+  border: 1.5px solid var(--border-gray);
+  border-radius: 50%;
   background: none;
   color: var(--text-muted);
-  font-size: 22px; /* 17 × 1.3 */
+  font-size: 16px;
   cursor: pointer;
   transition:
+    border-color 200ms,
     background 200ms,
     color 200ms;
   flex-shrink: 0;
 }
 
 .iconBtn:hover {
-  background: var(--light-blue);
+  border-color: var(--primary-blue);
   color: var(--primary-blue);
+  background: var(--light-blue);
 }
 
-/* Language toggle button */
-.langBtn {
-  height: 30px;
-  padding: 0 10px;
-  border: 1.5px solid var(--primary-blue);
-  border-radius: 6px;
+/* Auth buttons */
+.authBtns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+.loginBtn {
+  font-weight: 600 !important;
+  border-radius: 100px !important;
+  border-color: var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  font-size: 13.5px !important;
+}
+
+.loginBtn:hover {
+  background: var(--light-blue) !important;
+}
+
+.bookBtn {
+  height: 38px !important;
+  padding: 0 18px !important;
+  background: linear-gradient(
+    135deg,
+    var(--indigo-900),
+    var(--indigo-700)
+  ) !important;
+  border: none !important;
+  border-radius: 100px !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 12px rgba(29, 78, 216, 0.3) !important;
+}
+
+.bookBtn:hover {
+  background: var(--indigo-900) !important;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.4) !important;
+}
+
+/* User button (logged in) */
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: none;
-  color: var(--primary-blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  border: 1px solid var(--border-gray);
+  border-radius: 100px;
+  padding: 4px 12px 4px 4px;
   cursor: pointer;
-  transition: background 200ms, color 200ms;
+  transition:
+    background 200ms,
+    border-color 200ms;
+  height: 42px;
+}
+
+.userBtn:hover {
+  background: var(--light-blue);
+  border-color: var(--primary-blue);
+}
+
+.avatar {
+  background: var(--indigo-700) !important;
   flex-shrink: 0;
 }
 
-.langBtn:hover {
-  background: var(--primary-blue);
-  color: #fff;
-}
-
-/* Language toggle in mobile drawer */
-.drawerLangBtn {
-  width: 100%;
-  padding: 10px 16px;
-  margin-bottom: 8px;
-  border: 1.5px solid var(--primary-blue);
-  border-radius: 8px;
-  background: var(--light-blue);
-  color: var(--primary-blue);
+.userName {
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  transition: background 200ms, color 200ms;
+  color: var(--text-dark);
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.drawerLangBtn:hover {
-  background: var(--primary-blue);
-  color: #fff;
+.userArrow {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
-/* Search form */
+/* User dropdown info */
+.userMenuInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px 0;
+  min-width: 180px;
+}
+
+.userMenuName {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+.userMenuEmail {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Search form (overlay mode) ── */
 .searchForm {
   display: flex;
   align-items: center;
   gap: 8px;
   flex: 1;
-  max-width: 480px;
+  max-width: 600px;
+  margin: 0 16px;
   animation: slideIn 180ms ease;
 }
 
@@ -213,147 +389,15 @@
 
 .searchInput {
   flex: 1;
-  border-radius: 10px !important;
-  font-size: 15px !important;
+  border-radius: 100px !important;
+  font-size: 14px !important;
 }
 
 .searchPrefixIcon {
   color: var(--text-muted);
 }
 
-/* Auth buttons */
-.authBtns {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* 8 × 1.3 */
-  margin-left: 4px;
-}
-
-.loginBtn {
-  font-weight: 600 !important;
-  border-radius: 10px !important;
-  border-color: #0077c8 !important;
-  color: #0077c8 !important;
-  height: 44px !important; /* 34 × 1.3 */
-  padding: 0 18px !important; /* 14 × 1.3 */
-  font-size: 15px !important; /* 13 × 1.3 → 17, dùng 15 cho dễ nhìn */
-}
-
-.loginBtn:hover {
-  background: #e8f4fd !important;
-}
-
-.registerBtn {
-  background: linear-gradient(135deg, #0077c8, #00b4d8) !important;
-  border: none !important;
-  font-weight: 600 !important;
-  border-radius: 10px !important;
-  height: 44px !important;
-  padding: 0 18px !important;
-  font-size: 15px !important;
-}
-
-/* User button (đã đăng nhập) */
-.userBtn {
-  display: flex;
-  align-items: center;
-  gap: 9px; /* 7 × 1.3 */
-  background: none;
-  border: 1px solid var(--border-gray);
-  border-radius: 10px;
-  padding: 4px 13px 4px 5px; /* 3×10×3×4 × 1.3 */
-  cursor: pointer;
-  transition:
-    background 200ms,
-    border-color 200ms;
-  height: 46px; /* 36 × 1.3 */
-}
-
-.userBtn:hover {
-  background: var(--light-blue);
-  border-color: #0077c8;
-}
-
-.avatar {
-  background: linear-gradient(135deg, #0077c8, #00b4d8) !important;
-  flex-shrink: 0;
-}
-
-.userName {
-  font-size: 15px; /* 13 × 1.3 → ~17, dùng 15 */
-  font-weight: 600;
-  color: var(--text-dark);
-  max-width: 104px; /* 80 × 1.3 */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.userArrow {
-  font-size: 13px; /* 10 × 1.3 */
-  color: var(--text-muted);
-}
-
-/* User dropdown */
-.userMenuInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 2px 0;
-  min-width: 200px; /* 168 × 1.3 → ~218, dùng 200 */
-}
-
-.userMenuName {
-  font-weight: 600;
-  color: var(--text-dark);
-  font-size: 16px; /* 14 × 1.3 */
-}
-
-.userMenuEmail {
-  font-size: 13px; /* 12 × 1.3 */
-  color: var(--text-muted);
-}
-
-/* ── Tầng 2: Navbar — màu nền xanh ──────────────────────── */
-
-.navbar {
-  background: linear-gradient(135deg, #0077c8 0%, #00a8e8 100%);
-  box-shadow: 0 3px 12px rgba(0, 119, 200, 0.3);
-}
-
-.navInner {
-  display: flex;
-  align-items: center;
-  height: 57px; /* 44 × 1.3 */
-  justify-content: center;
-  gap: 4px;
-}
-
-.navLink {
-  padding: 8px 17px; /* 6×13 × 1.3 */
-  border-radius: 8px;
-  font-size: 16px; /* 14 × 1.3 → ~18, dùng 16 */
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
-  text-decoration: none;
-  transition:
-    color 200ms,
-    background 200ms;
-  white-space: nowrap;
-}
-
-.navLink:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.navLink.active {
-  color: #0077c8;
-  background: #fff;
-  font-weight: 600;
-}
-
-/* Dropdown trên navbar xanh */
+/* ── Dropdown wrapper ── */
 .dropdownWrapper {
   position: relative;
 }
@@ -361,22 +405,25 @@
 .dropdownTrigger {
   display: flex;
   align-items: center;
-  gap: 7px; /* 5 × 1.3 */
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
+  gap: 5px;
 }
 
 .dropdownArrow {
-  font-size: 13px; /* 10 × 1.3 */
-  transition: transform 200ms ease, color 200ms ease;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  transition: transform 200ms ease;
+  color: var(--text-muted);
 }
 
-/* Khi nav item đang active (nền trắng), mũi tên đổi sang màu xanh để hiển thị */
-.dropdownTrigger.active .dropdownArrow {
-  color: #0077c8;
+.dropdownArrowBtn {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 200ms;
+}
+
+.dropdownArrowBtn:hover {
+  background: rgba(29, 78, 216, 0.1);
 }
 
 .arrowOpen {
@@ -385,20 +432,28 @@
 
 .dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 8px;
-  min-width: 220px; /* 200 × 1.3 */
+  min-width: 220px;
   z-index: 200;
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
 }
 
 .dropdownInner {
   background: #fff;
-  border-radius: 16px; /* 12 × 1.3 */
-  box-shadow: 0 10px 40px rgba(0, 119, 200, 0.2);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-gray);
-  padding: 10px; /* 8 × 1.3 */
+  padding: 8px;
   animation: dropIn 160ms ease;
 }
 
@@ -416,10 +471,10 @@
 .dropdownItem {
   display: flex;
   align-items: center;
-  gap: 13px; /* 10 × 1.3 */
-  padding: 12px 18px; /* 9×14 × 1.3 */
-  border-radius: 10px;
-  font-size: 15px; /* 14 × 1.3 → ~18, dùng 15 */
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-dark);
   text-decoration: none;
@@ -440,29 +495,36 @@
 }
 
 .dropdownIcon {
-  font-size: 20px; /* 15 × 1.3 */
+  font-size: 16px;
   color: var(--primary-blue);
   display: flex;
   align-items: center;
 }
 
-/* ── Mega Dropdown — Chuyên khoa ─────────────────────────── */
-
+/* ── Mega Dropdown — Chuyên khoa ── */
 .megaDropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 8px;
   width: 680px;
   z-index: 200;
+}
+
+.megaDropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
 }
 
 .megaDropdownInner {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 119, 200, 0.2);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-gray);
   padding: 20px 24px;
   animation: dropIn 160ms ease;
   display: grid;
@@ -478,20 +540,20 @@
 
 .megaGroupTitle {
   display: block;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  color: #0077c8;
+  color: var(--primary-blue);
   text-transform: uppercase;
   letter-spacing: 0.6px;
   margin-bottom: 8px;
   padding-bottom: 8px;
-  border-bottom: 2px solid #e8f4fd;
+  border-bottom: 2px solid var(--light-blue);
   text-decoration: none;
   transition: color 200ms;
 }
 
 .megaGroupTitle:hover {
-  color: #00b4d8;
+  color: var(--primary-blue-dark);
 }
 
 .megaItem {
@@ -500,9 +562,9 @@
   gap: 8px;
   padding: 6px 10px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--text-dark);
   text-decoration: none;
   transition:
     background 200ms,
@@ -515,35 +577,46 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #00b4d8;
+  background: var(--primary-blue);
+  opacity: 0.4;
   flex-shrink: 0;
 }
 
 .megaItem:hover {
-  background: #e8f4fd;
-  color: #0077c8;
+  background: var(--light-blue);
+  color: var(--primary-blue);
 }
 
-/* ── Mobile hamburger ────────────────────────────────────── */
-
+/* ── Mobile hamburger (circle, Medilix style) ── */
 .menuBtn {
   display: none;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border-gray);
+  border-radius: 50%;
   background: none;
-  border: none;
-  font-size: 27px; /* 21 × 1.3 */
+  font-size: 16px;
   color: var(--text-dark);
   cursor: pointer;
-  padding: 10px; /* 8 × 1.3 */
-  border-radius: 10px;
-  transition: background 200ms;
-  margin-left: 4px;
+  transition:
+    border-color 200ms,
+    background 200ms,
+    color 200ms;
+  margin-left: 8px;
+  flex-shrink: 0;
 }
 
 .menuBtn:hover {
+  border-color: var(--primary-blue);
   background: var(--light-blue);
+  color: var(--primary-blue);
 }
 
-/* ── Mobile Drawer ───────────────────────────────────────── */
+/* ══════════════════════════════
+   MOBILE DRAWER
+   ══════════════════════════════ */
 
 .drawerNav {
   display: flex;
@@ -552,13 +625,27 @@
   padding-top: 4px;
 }
 
+.drawerHotline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--light-blue);
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
 .drawerUser {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
   background: var(--light-blue);
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 8px;
 }
 
@@ -571,7 +658,7 @@
 
 .drawerUserName {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-dark);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -579,7 +666,7 @@
 }
 
 .drawerUserEmail {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -590,9 +677,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
+  padding: 11px 14px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-dark);
   text-decoration: none;
@@ -616,6 +703,27 @@
   text-align: left;
 }
 
+.drawerLinkLabel {
+  flex: 1;
+  cursor: pointer;
+}
+
+.drawerArrowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: background 200ms;
+  flex-shrink: 0;
+}
+
+.drawerArrowBtn:hover {
+  background: rgba(29, 78, 216, 0.1);
+}
+
 .drawerSubMenu {
   margin-left: 12px;
   display: flex;
@@ -630,9 +738,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-muted);
   text-decoration: none;
@@ -651,9 +759,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 11px 14px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-dark);
   background: none;
@@ -683,17 +791,23 @@
 }
 
 .drawerLoginBtn {
-  border-color: #0077c8 !important;
-  color: #0077c8 !important;
+  border: 2px solid var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
   font-weight: 600 !important;
+  border-radius: 100px !important;
   margin-top: 4px !important;
 }
 
-.drawerRegisterBtn {
+.drawerBookBtn {
   margin-top: 8px !important;
-  background: linear-gradient(135deg, #0077c8, #00b4d8) !important;
+  background: linear-gradient(
+    135deg,
+    var(--indigo-900),
+    var(--indigo-700)
+  ) !important;
   border: none !important;
   font-weight: 600 !important;
+  border-radius: 100px !important;
 }
 
 .drawerLogoutBtn {
@@ -701,53 +815,42 @@
   font-weight: 600 !important;
 }
 
-/* ── Responsive ──────────────────────────────────────────── */
+/* ══════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════ */
 
 @media (max-width: 1200px) {
   .navLink {
-    padding: 8px 12px;
-    font-size: 15px;
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  .logo {
+    margin-right: 16px;
   }
 }
 
 @media (max-width: 1024px) {
-  .hotlineLabel {
-    display: none;
-  }
-  .hotlineNumber {
-    font-size: 15px;
-  }
   .navLink {
-    padding: 7px 10px;
-    font-size: 14px;
-  }
-  .logo {
-    margin-right: 20px;
+    padding: 6px 8px;
+    font-size: 13px;
   }
 }
 
+/* Tablet — ẩn nav, hiện hamburger */
 @media (max-width: 900px) {
-  .hotline {
+  .navArea {
     display: none;
   }
-}
 
-/* Mobile */
-@media (max-width: 768px) {
-  .navbar {
-    display: none;
+  .menuBtn {
+    display: flex;
   }
 
   .authBtns {
     display: none;
   }
 
-  .menuBtn {
-    display: flex;
-    align-items: center;
-  }
-
-  /* Mobile: chỉ giữ avatar icon, ẩn tên */
   .userBtn .userName,
   .userBtn .userArrow {
     display: none;
@@ -755,27 +858,50 @@
 
   .userBtn {
     border: none;
-    padding: 5px;
-    width: 46px;
-    height: 46px;
-    border-radius: 10px;
+    padding: 4px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-gray);
+  }
+}
+
+/* Mobile — ẩn topbar, pill ngồi sát mép trên */
+@media (max-width: 768px) {
+  .topbar {
+    display: none;
   }
 
-  .topbarInner {
-    height: 64px;
+  .navbarOuter {
+    top: 0;
+    padding-top: 0;
+  }
+
+  .navbar {
+    height: 66px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 92%;
+    transform: translateY(8px);
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.1);
+  }
+
+  .scrolled .navbar {
+    transform: translateY(8px);
   }
 }
 
 @media (max-width: 480px) {
   .logoText {
-    font-size: 20px;
+    font-size: 17px;
   }
+
   .logoIcon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 34px;
+    height: 34px;
   }
-  .topbarInner {
-    height: 60px;
+
+  .logo {
+    margin-right: 0;
   }
 }

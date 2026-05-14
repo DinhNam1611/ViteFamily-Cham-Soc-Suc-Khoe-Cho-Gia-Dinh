@@ -1,7 +1,7 @@
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
-  margin-top: 110px;
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
+  margin-top: 120px;
   padding: 80px 16px 64px;
   text-align: center;
   color: #fff;
@@ -22,7 +22,7 @@
 }
 
 .heroTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
@@ -40,7 +40,7 @@
 
 /* ── Body layout ── */
 .body {
-  background: #f5f8ff;
+  background: var(--cream-50);
   padding: 48px 16px 80px;
 }
 
@@ -57,19 +57,19 @@
 .sidebar {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 119, 200, 0.08);
+  box-shadow: 0 2px 12px rgba(29, 78, 216, 0.08);
   overflow: hidden;
   position: sticky;
-  top: 90px;
+  top: 140px;
 }
 
 .sidebarHeading {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #6b7c99;
+  color: var(--slate-500);
   padding: 20px 20px 12px;
   margin: 0;
   border-bottom: 1px solid #e2e8f0;
@@ -92,7 +92,7 @@
   text-align: left;
   font-size: 14px;
   font-weight: 500;
-  color: #1a2b4b;
+  color: var(--slate-900);
   transition:
     background 200ms,
     color 200ms;
@@ -100,14 +100,14 @@
 }
 
 .sidebarItem:hover {
-  background: #e8f4fd;
-  color: #0077c8;
+  background: var(--indigo-50);
+  color: var(--indigo-700);
 }
 
 .sidebarItem.active {
-  background: #e8f4fd;
-  color: #0077c8;
-  border-left-color: #0077c8;
+  background: var(--indigo-50);
+  color: var(--indigo-700);
+  border-left-color: var(--indigo-700);
   font-weight: 600;
 }
 
@@ -125,7 +125,7 @@
 .main {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 119, 200, 0.08);
+  box-shadow: 0 2px 12px rgba(29, 78, 216, 0.08);
   min-height: 600px;
 }
 
@@ -134,19 +134,19 @@
 }
 
 .contentTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 28px;
   font-weight: 700;
-  color: #0077c8;
+  color: var(--indigo-700);
   margin: 0 0 8px;
   padding-bottom: 16px;
-  border-bottom: 2px solid #e8f4fd;
+  border-bottom: 2px solid var(--indigo-50);
 }
 
 .intro {
   font-size: 15px;
   line-height: 1.7;
-  color: #6b7c99;
+  color: var(--slate-500);
   margin: 16px 0 24px;
 }
 
@@ -156,10 +156,10 @@
 }
 
 .blockTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin: 0 0 14px;
   display: flex;
   align-items: center;
@@ -167,7 +167,7 @@
 }
 
 .blockIcon {
-  color: #0077c8;
+  color: var(--indigo-700);
 }
 
 /* ── Lists ── */
@@ -186,18 +186,18 @@
   gap: 8px;
   font-size: 14px;
   line-height: 1.6;
-  color: #1a2b4b;
+  color: var(--slate-900);
 }
 
 .checkIcon {
-  color: #0077c8;
+  color: var(--indigo-700);
   font-size: 14px;
   margin-top: 3px;
   flex-shrink: 0;
 }
 
 .muted {
-  color: #6b7c99;
+  color: var(--slate-500);
   font-size: 13px;
   margin: 8px 0 0;
   line-height: 1.6;
@@ -205,14 +205,14 @@
 
 .highlight {
   font-weight: 600;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin-bottom: 8px;
 }
 
 /* ── Info / Warning boxes ── */
 .infoBox {
-  background: #e8f4fd;
-  border-left: 4px solid #0077c8;
+  background: var(--indigo-50);
+  border-left: 4px solid var(--indigo-700);
   border-radius: 0 8px 8px 0;
   padding: 16px 20px;
   margin: 12px 0;
@@ -221,7 +221,7 @@
 .infoBox p {
   margin: 4px 0;
   font-size: 14px;
-  color: #1a2b4b;
+  color: var(--slate-900);
   line-height: 1.6;
 }
 
@@ -236,7 +236,7 @@
 .warningBox p {
   margin: 0 0 10px;
   font-size: 14px;
-  color: #1a2b4b;
+  color: var(--slate-900);
 }
 
 /* ── Schedule rows (horizontal layout) ── */
@@ -252,23 +252,23 @@
   align-items: center;
   gap: 0;
   background: #fff;
-  border: 1px solid #dce8f7;
+  border: 1px solid var(--indigo-100);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 119, 200, 0.06);
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.06);
   transition: box-shadow 200ms;
 }
 
 .scheduleRow:hover {
-  box-shadow: 0 4px 16px rgba(0, 119, 200, 0.12);
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.12);
 }
 
 .scheduleTimeBadge {
   flex-shrink: 0;
   width: 170px;
-  background: linear-gradient(160deg, #0077c8 0%, #00b4d8 100%);
+  background: linear-gradient(160deg, var(--indigo-900), var(--indigo-700));
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.6;
@@ -283,7 +283,7 @@
 .scheduleRowBody {
   flex: 1;
   padding: 16px 20px;
-  border-left: 1px solid #dce8f7;
+  border-left: 1px solid var(--indigo-100);
 }
 
 .scheduleSpecialties {
@@ -302,7 +302,7 @@
   align-items: center;
   gap: 7px;
   font-size: 14px;
-  color: #1a2b4b;
+  color: var(--slate-900);
   line-height: 1.5;
   break-inside: avoid;
   padding: 2px 0;
@@ -310,7 +310,7 @@
 
 .scheduleNote {
   font-size: 14px;
-  color: #6b7c99;
+  color: var(--slate-500);
   margin: 0;
   font-style: italic;
 }
@@ -324,17 +324,17 @@
 }
 
 .scheduleCard {
-  background: #f5f8ff;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 16px 18px;
 }
 
 .scheduleTime {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #0077c8;
+  color: var(--indigo-700);
   margin-bottom: 10px;
 }
 
@@ -369,9 +369,9 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #0077c8;
+  background: var(--indigo-700);
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   font-size: 15px;
   display: flex;
@@ -385,7 +385,7 @@
 .stepBody {
   padding-top: 6px;
   font-size: 14px;
-  color: #1a2b4b;
+  color: var(--slate-900);
   line-height: 1.6;
 }
 
@@ -396,40 +396,8 @@
 }
 
 .stepBody p {
-  color: #6b7c99;
+  color: var(--slate-500);
   margin: 0;
-}
-
-/* ── Bed grid ── */
-.bedGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 16px 0;
-}
-
-.bedCard {
-  background: linear-gradient(135deg, #0077c8 0%, #00b4d8 100%);
-  border-radius: 10px;
-  padding: 16px;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bedCount {
-  font-family: "Montserrat", sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.bedLabel {
-  font-size: 12px;
-  opacity: 0.9;
-  line-height: 1.4;
 }
 
 /* ── Amenity grid ── */
@@ -441,7 +409,7 @@
 }
 
 .amenityCard {
-  background: #f5f8ff;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 24px 20px;
@@ -452,27 +420,27 @@
 }
 
 .amenityCard:hover {
-  box-shadow: 0 6px 24px rgba(0, 119, 200, 0.12);
+  box-shadow: 0 6px 24px rgba(29, 78, 216, 0.12);
   transform: translateY(-3px);
 }
 
 .amenityIcon {
   font-size: 32px;
-  color: #0077c8;
+  color: var(--indigo-700);
   margin-bottom: 12px;
 }
 
 .amenityTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #1a2b4b;
+  color: var(--slate-900);
   margin: 0 0 8px;
 }
 
 .amenityCard p {
   font-size: 13px;
-  color: #6b7c99;
+  color: var(--slate-500);
   line-height: 1.6;
   margin: 0;
 }
@@ -486,23 +454,23 @@
 }
 
 .zoneCard {
-  background: #f5f8ff;
+  background: var(--cream-50);
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 16px 18px;
 }
 
 .zoneTitle {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: #0077c8;
+  color: var(--indigo-700);
   margin: 0 0 10px;
 }
 
 /* ── Contact card ── */
 .contactCard {
-  background: #1a2b4b;
+  background: var(--indigo-900);
   color: #fff;
   border-radius: 10px;
   padding: 20px 24px;
@@ -519,6 +487,99 @@
   font-size: 15px;
   display: block;
   margin-bottom: 6px;
+}
+
+/* ── CTA Box ── */
+.ctaBox {
+  background: linear-gradient(135deg, var(--indigo-900), var(--indigo-700));
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ctaBox p {
+  color: #fff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background: #fff;
+  color: var(--indigo-700);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 200ms;
+  flex-shrink: 0;
+}
+
+.ctaBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Refund table ── */
+.refundTable {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.refundRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cream-50);
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  gap: 12px;
+}
+
+.refundTime {
+  font-size: 14px;
+  color: var(--slate-900);
+  font-weight: 500;
+}
+
+.refundBadge {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.badgeGreen {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badgeBlue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badgeOrange {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.badgeRed {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 /* ── Responsive ── */
@@ -541,18 +602,14 @@
     columns: 1;
   }
 
-  .bedGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .amenityGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    margin-top: 64px;
+    margin-top: 82px;
     padding: 60px 16px 48px;
   }
 
@@ -591,7 +648,7 @@
 
   .sidebarItem.active {
     border-left: none;
-    border-bottom-color: #0077c8;
+    border-bottom-color: var(--indigo-700);
   }
 
   .content {
@@ -602,12 +659,8 @@
     font-size: 22px;
   }
 
-  .bedGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .amenityGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .scheduleRow {
@@ -624,7 +677,7 @@
 
   .scheduleRowBody {
     border-left: none;
-    border-top: 1px solid #dce8f7;
+    border-top: 1px solid var(--indigo-100);
     width: 100%;
   }
 
@@ -636,11 +689,22 @@
   .zoneGrid {
     grid-template-columns: 1fr;
   }
+
+  .ctaBox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .refundRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 480px) {
   .hero {
-    margin-top: 60px;
+    margin-top: 82px;
   }
 
   .sidebarNav {
@@ -655,10 +719,10 @@
   }
 
   .sidebarItem.active {
-    border-left-color: #0077c8;
+    border-left-color: var(--indigo-700);
   }
 
-  .bedGrid {
-    grid-template-columns: 1fr 1fr;
+  .amenityGrid {
+    grid-template-columns: 1fr;
   }
 }
