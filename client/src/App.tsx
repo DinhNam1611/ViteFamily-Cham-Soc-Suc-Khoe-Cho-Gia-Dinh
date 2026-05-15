@@ -24,6 +24,7 @@ import Profile from './pages/Profile/Profile';
 import FamilyProfile from './pages/FamilyProfile/FamilyProfile';
 import TestResults from './pages/TestResults/TestResults';
 import DoctorPortal from './pages/DoctorPortal/DoctorPortal';
+import Forbidden from './pages/Forbidden/Forbidden';
 
 const App = () => {
   return (
@@ -49,6 +50,9 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
+          {/* 403 Forbidden */}
+          <Route path="/403" element={<Forbidden />} />
+
           {/* Contact — chỉ đặt lịch cần đăng nhập */}
           <Route
             path="/contact/dat-lich-kham"
@@ -65,7 +69,7 @@ const App = () => {
           <Route
             path="/doctor"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="doctor">
                 <DoctorPortal />
               </ProtectedRoute>
             }
