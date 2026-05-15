@@ -12,8 +12,7 @@ const db = knex({
     user:     process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-    family: 4, // ép IPv4, tránh timeout IPv6
-  },
+  } as object,
   pool: { min: 2, max: 10 },
 });
 
