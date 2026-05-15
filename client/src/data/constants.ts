@@ -132,3 +132,25 @@ export const CONTACT_INFO = {
   email: "contact@vitafamily.vn",
   workingHours: "Thứ 2 – Chủ nhật: 7:00 – 20:00",
 } as const;
+
+export const BOOKING_HOSPITALS = [
+  'VitaFamily – Cơ sở Quận 7',
+  'VitaFamily – Cơ sở Quận 1',
+  'VitaFamily – Cơ sở Bình Thạnh',
+  'VitaFamily – Cơ sở Thủ Đức',
+];
+
+export const BOOKING_SPECIALTIES = [
+  'Tim Mạch',
+  'Thần Kinh',
+  'Nhi Khoa',
+  'Da Liễu',
+  'Mắt',
+  'Tai Mũi Họng',
+  'Nội Tiết',
+  'Xương Khớp',
+  'Sản Phụ Khoa',
+  'Tiêu Hóa',
+  'Ung Bướu',
+  'Khám Tổng Quát',
+];

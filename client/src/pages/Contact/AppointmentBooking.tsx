@@ -13,32 +13,11 @@ import {
 } from '@ant-design/icons';
 import Header from '../../components/layout/Header/Header';
 import Footer from '../../components/layout/Footer/Footer';
+import { BOOKING_HOSPITALS, BOOKING_SPECIALTIES } from '../../data/constants';
 import styles from './AppointmentBooking.module.css';
 
 const { TextArea } = Input;
 const { Option } = Select;
-
-const HOSPITALS = [
-  'VitaFamily – Cơ sở Quận 7',
-  'VitaFamily – Cơ sở Quận 1',
-  'VitaFamily – Cơ sở Bình Thạnh',
-  'VitaFamily – Cơ sở Thủ Đức',
-];
-
-const SPECIALTIES = [
-  'Tim Mạch',
-  'Thần Kinh',
-  'Nhi Khoa',
-  'Da Liễu',
-  'Mắt',
-  'Tai Mũi Họng',
-  'Nội Tiết',
-  'Xương Khớp',
-  'Sản Phụ Khoa',
-  'Tiêu Hóa',
-  'Ung Bướu',
-  'Khám Tổng Quát',
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -184,7 +163,7 @@ const AppointmentBooking = () => {
                       placeholder="Chọn cơ sở khám"
                       suffixIcon={<EnvironmentOutlined className={styles.suffixIcon} />}
                     >
-                      {HOSPITALS.map((h) => (
+                      {BOOKING_HOSPITALS.map((h) => (
                         <Option key={h} value={h}>{h}</Option>
                       ))}
                     </Select>
@@ -249,7 +228,7 @@ const AppointmentBooking = () => {
                       placeholder="Chọn chuyên khoa"
                       suffixIcon={<MedicineBoxOutlined className={styles.suffixIcon} />}
                     >
-                      {SPECIALTIES.map((s) => (
+                      {BOOKING_SPECIALTIES.map((s) => (
                         <Option key={s} value={s}>{s}</Option>
                       ))}
                     </Select>

@@ -1,11 +1,12 @@
 import { Button, Result } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import styles from './Forbidden.module.css';
 
 const Forbidden = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    <div className={styles.wrapper}>
       <Result
         status="403"
         title="403"
