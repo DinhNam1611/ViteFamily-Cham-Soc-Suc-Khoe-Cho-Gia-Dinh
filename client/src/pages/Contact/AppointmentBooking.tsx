@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Form, Input, Select, Button, message } from 'antd';
+import { Form, Input, Select, Button, message, DatePicker, Modal } from 'antd';
 import { motion } from 'framer-motion';
+import dayjs from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import {
   CalendarOutlined,
   UserOutlined,
@@ -50,13 +52,22 @@ const fadeUp = {
 const AppointmentBooking = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmData, setConfirmData] = useState<Record<string, unknown> | null>(null);
 
-  const handleSubmit = async (_values: Record<string, string>) => {
+  const handleOpenConfirm = (values: Record<string, unknown>) => {
+    setConfirmData(values);
+    setConfirmOpen(true);
+  };
+
+  const handleConfirmSubmit = async () => {
+    setConfirmOpen(false);
     setLoading(true);
     try {
       await new Promise((r) => setTimeout(r, 1200));
       message.success('Đặt lịch thành công! Chúng tôi sẽ liên hệ xác nhận trong vòng 30 phút.');
       form.resetFields();
+      setConfirmData(null);
     } finally {
       setLoading(false);
     }
@@ -123,7 +134,7 @@ const AppointmentBooking = () => {
               <Form
                 form={form}
                 layout="vertical"
-                onFinish={handleSubmit}
+                onFinish={handleOpenConfirm}
                 className={styles.form}
                 size="large"
               >
@@ -182,6 +193,40 @@ const AppointmentBooking = () => {
 
                 <div className={styles.formRow}>
                   <Form.Item
+                    name="appointmentDate"
+                    label="Ngày khám mong muốn"
+                    rules={[{ required: true, message: 'Vui lòng chọn ngày khám' }]}
+                    className={styles.formItem}
+                  >
+                    <DatePicker
+                      style={{ width: '100%' }}
+                      format="DD/MM/YYYY"
+                      placeholder="Chọn ngày khám"
+                      disabledDate={(current: Dayjs) => current && current < dayjs().startOf('day')}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="appointmentTime"
+                    label="Giờ khám mong muốn"
+                    rules={[{ required: true, message: 'Vui lòng chọn khung giờ' }]}
+                    className={styles.formItem}
+                  >
+                    <Select placeholder="Chọn khung giờ">
+                      <Option value="07:00-08:00">07:00 – 08:00</Option>
+                      <Option value="08:00-09:00">08:00 – 09:00</Option>
+                      <Option value="09:00-10:00">09:00 – 10:00</Option>
+                      <Option value="10:00-11:00">10:00 – 11:00</Option>
+                      <Option value="13:00-14:00">13:00 – 14:00</Option>
+                      <Option value="14:00-15:00">14:00 – 15:00</Option>
+                      <Option value="15:00-16:00">15:00 – 16:00</Option>
+                      <Option value="16:00-17:00">16:00 – 17:00</Option>
+                    </Select>
+                  </Form.Item>
+                </div>
+
+                <div className={styles.formRow}>
+                  <Form.Item
                     name="appointmentType"
                     label="Hình thức khám"
                     rules={[{ required: true, message: 'Vui lòng chọn hình thức khám' }]}
@@ -213,11 +258,15 @@ const AppointmentBooking = () => {
 
                 <Form.Item
                   name="symptoms"
-                  label="Triệu chứng / Ghi chú"
+                  label="Triệu chứng / Lý do khám"
+                  rules={[
+                    { required: true, message: 'Vui lòng mô tả triệu chứng hoặc lý do khám' },
+                    { min: 10, message: 'Vui lòng mô tả rõ hơn (tối thiểu 10 ký tự)' },
+                  ]}
                 >
                   <TextArea
                     rows={5}
-                    placeholder="Mô tả triệu chứng hoặc yêu cầu của bạn..."
+                    placeholder="Mô tả triệu chứng hoặc lý do khám (ít nhất 10 ký tự)..."
                     className={styles.textarea}
                   />
                 </Form.Item>
@@ -230,7 +279,7 @@ const AppointmentBooking = () => {
                     className={styles.submitBtn}
                     block
                   >
-                    {loading ? 'Đang gửi...' : 'Đặt Lịch Ngay'}
+                    {loading ? 'Đang xử lý...' : 'Xem lại & Đặt Lịch'}
                   </Button>
                 </Form.Item>
               </Form>
@@ -304,6 +353,35 @@ const AppointmentBooking = () => {
         </section>
       </main>
       <Footer />
+      <Modal
+        title="Xác nhận thông tin đặt lịch"
+        open={confirmOpen}
+        onOk={handleConfirmSubmit}
+        onCancel={() => setConfirmOpen(false)}
+        okText="Xác nhận đặt lịch"
+        cancelText="Sửa lại"
+        width={480}
+      >
+        {confirmData && (
+          <div style={{ lineHeight: 2 }}>
+            <p><b>Họ tên:</b> {confirmData.fullName as string}</p>
+            <p><b>Email:</b> {confirmData.email as string}</p>
+            <p><b>Số điện thoại:</b> {confirmData.phone as string}</p>
+            <p><b>Cơ sở:</b> {confirmData.hospital as string}</p>
+            <p><b>Hình thức:</b> {
+              confirmData.appointmentType === 'tai-vien' ? 'Tại viện' :
+              confirmData.appointmentType === 'tai-nha' ? 'Tại nhà' : 'Tư vấn video'
+            }</p>
+            <p><b>Chuyên khoa:</b> {confirmData.specialty as string}</p>
+            <p><b>Ngày:</b> {confirmData.appointmentDate
+              ? dayjs(confirmData.appointmentDate as Dayjs).format('DD/MM/YYYY')
+              : '—'}
+            </p>
+            <p><b>Giờ:</b> {confirmData.appointmentTime as string}</p>
+            <p><b>Lý do khám:</b> {confirmData.symptoms as string}</p>
+          </div>
+        )}
+      </Modal>
     </>
   );
 };
