@@ -199,7 +199,7 @@ const AppointmentBooking = () => {
                     className={styles.formItem}
                   >
                     <DatePicker
-                      style={{ width: '100%' }}
+                      className={styles.datePicker}
                       format="DD/MM/YYYY"
                       placeholder="Chọn ngày khám"
                       disabledDate={(current: Dayjs) => current && current < dayjs().startOf('day')}
@@ -363,7 +363,7 @@ const AppointmentBooking = () => {
         width={480}
       >
         {confirmData && (
-          <div style={{ lineHeight: 2 }}>
+          <div className={styles.confirmContent}>
             <p><b>Họ tên:</b> {confirmData.fullName as string}</p>
             <p><b>Email:</b> {confirmData.email as string}</p>
             <p><b>Số điện thoại:</b> {confirmData.phone as string}</p>

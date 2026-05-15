@@ -253,6 +253,14 @@
   margin-bottom: 0;
 }
 
+.datePicker {
+  width: 100%;
+}
+
+.confirmContent {
+  line-height: 2;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .formWrapper {
